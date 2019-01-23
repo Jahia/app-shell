@@ -1,0 +1,212 @@
+{
+    "label": {
+        "contentManager": {
+            "preview": {
+                "hide": "Masquer l'aperçu",
+                "tabs": {
+                    "preview": "Apperçu",
+                    "metadata": "Metadata",
+                    "quickEdit": "Edition rapide"
+                },
+                "show": "Afficher l'aperçu"
+            },
+            "workInProgress": "Travail en cours: {{wipLang}} (propriétés communes exclues)",
+            "publicationStatus": {
+                "notPublished": "Ce contenu n'a jamais été publié",
+                "unPublished": "Dépublié par {{userName}} le {{timestamp}}",
+                "modified": "Modifié par {{userName}} le {{timestamp}}",
+                "published": "Publié par {{userName}} le {{timestamp}}",
+                "mandatoryLanguageUnpublishable": {
+                    "description":"Le contenu ne peut pas être publié dans la langue courante car une propriété obligatoire n'est pas renseignée.",
+                    "label": "Propriété obligatoire manquante"
+                },
+                "mandatoryLanguageValid": {
+                    "description": "Le contenu ne sera visible en ligne qu'après publication dans toutes les langues obligatoires.",
+                    "label": "Non publiable (publiez les langues obligatoires avant)"
+                },
+                "conflict": {
+                    "description": "Un contenu avec le même nom existe déjà en mode live et ne fera pas partie de cette publication",
+                    "label": "Non publiable (conflit)"
+                },
+                "markedForDeletion": "Effacé par {{userName}} le {{timestamp}}",
+                "unknown": "Statut de publication indisponible"
+            },
+            "contentNotFound": "Oups, nous ne trouvons pas ce que vous cherchez. La ressource n'existe pas, ou elle a récemment été supprimée, déplacée ou modifiée.",
+            "link": {
+                "academy": "Besoin d'aide avec le Gestionnaire de contenu et média ? Consultez l'<0>Academy</0>."
+            },
+            "fileUpload": {
+                "selectMessage": "Sélectionner des fichiers depuis mon ordinateur",
+                "uploadingActionMessage": "Il y a des erreurs qui nécessitent votre attention.",
+                "or": "ou",
+                "dropMessage": "Déposez les fichiers ici pour les télécharger",
+                "queued": "Mis en file d'attente",
+                "errorMessage": "Il y a eu des problèmes lors du téléchargement de certains fichiers",
+                "replace": "Remplacer",
+                "failed": "Impossible de télécharger le fichier",
+                "dontUpload": "Ne téléchargez pas",
+                "uploadButtonLabel": "Importer des fichiers",
+                "successfulUploadMessage": "Fichier téléchargé avec succès",
+                "newName": "Nouveau nom",
+                "uploadingMessage": "Téléchargement ({{uploaded}} sur {{total}} terminé)",
+                "rename": "Renommer",
+                "successfulUploadMessage_plural": "{{number}} Fichiers téléchargés avec succès",
+                "cannotStore": "L'import du fichier a échoué : La taille du fichier dépasse la limite de {{maxUploadSize}}Mo",
+                "uploaded": "Téléchargé",
+                "exists": "Le fichier existe déjà",
+                "uploading": "Téléchargement ...",
+                "retry": "Réessayer",
+                "errorActionMessage": "Veuillez résoudre le(s) problème(s)"
+            },
+            "error": {
+                "contentUnavailable": "Le contenu demandé n'est pas disponible",
+                "queryingContent": "Erreur lors de l'interrogation du contenu: {{details}}"
+            },
+            "title": {
+                "browse-files": "Média",
+                "search": "Recherche",
+                "sql2Search": "Recherche",
+                "browse": "Contenu"
+            },
+            "appTitle": "DX Gestionnaire de contenu et média {{path}}",
+            "showCurrentPath": "Ouvrir le chemin courant",
+            "filesGrid": {
+                "emptyMessage": "Ce dossier ne contient aucun fichier",
+                "toggleListDisplay": "Liste",
+                "createdBy": "Créé par:",
+                "author": "{{author}} le",
+                "publish": "Publier",
+                "toggleGridDisplay": "Vignettes",
+                "name": "Nom:",
+                "fileSizeSelector": "Zoom",
+                "fileInfo": "Taille:"
+            },
+            "search": {
+                "sql2": "Recherche avancée",
+                "normal": "Recherche simple",
+                "search": "Chercher",
+                "searchEverywhere": "Rechercher sur tout {{site}}",
+                "searchPath": "<0>Recherche sous: </0> <1>{{path}}</1>",
+                "clear": "Effacer la recherche",
+                "refresh": "Rafraîchir les résultats",
+                "normalPrompt": "Que cherchez-vous?",
+                "sql2Prompt": "Vous utilisez des requêtes SQL2. Consultez l'<0>Academy</0> pour plus d'informations."
+            },
+            "workInProgressAll": "Travail en cours: Tout le contenu (propriétés communes et internationalisées)",
+            "unpublish": "Dépublier",
+            "editAction": "Editer",
+            "noResults": "Aucun résultat",
+            "create": {
+                "contentFolder": "Nouveau répertoire de contenu",
+                "folder": "Nouveau dossier",
+                "create": "Créer",
+                "contentOfType": "Nouveau : {{typeName}}",
+                "content": "Nouveau contenu"
+            },
+            "locked": "Le contenu est verrouillé",
+            "saveAsWip": "Marquer comme travail en cours",
+            "browseFiles": "Parcourir les fichiers",
+            "tree": {
+                "hide": "Masquer l'arborescence",
+                "show": "Afficher l'arborescence",
+                "title": "Arborescence"
+            },
+            "browsePages": "Parcourir les pages",
+            "refresh": "Rafraîchir",
+            "listColumns": {
+                "createdBy": "Créé par",
+                "name": "Nom",
+                "lastModified": "Modifié le",
+                "type": "Type"
+            },
+            "leftMenu": {
+                "savedSearches": "Recherches sauvegardées",
+                "workflow": "Workflow",
+                "media": "Média",
+                "content": "Contenu",
+                "manage": {
+                    "languages": {
+                        "title": "Langues"
+                    },
+                    "roles": {
+                        "title": "Rôles de site"
+                    },
+                    "groups": {
+                        "title": "Groupes"
+                    },
+                    "title": "Gestion",
+                    "users": {
+                        "title": "Utilisateurs"
+                    },
+                    "tags": {
+                        "title": "Gestionnaire de tags"
+                    }
+                }
+            },
+            "contextMenu": {
+                "lockActions": {
+                    "unlock": "Déverrouiller",
+                    "clearAllLocks": "Retirer tout le verrou",
+                    "lock": "Verrouiller"
+                }
+            },
+            "contentPreview": {
+                "preview": "Aperçu",
+                "publishedBy": "Publié par {{userName}} le",
+                "advancedPublish": "Publication avancée...",
+                "cut": "Couper",
+                "lockNode": "Verrouiller le contenu",
+                "noViewAvailable": "Aperçu non disponible",
+                "noContentSelected": "Sélectionnez un contenu pour le prévisualiser",
+                "paste": "Coller",
+                "delete": "Supprimer",
+                "translate": "Traduire",
+                "emptyMessage": "Chargement en cours...",
+                "download": "Télecharger",
+                "publishMenu": "Publier...",
+                "unpublish": "Dépublier <em>{{displayName}}</em> - {{language}}",
+                "modifiedBy": "Modifié par {{userName}} le",
+                "share": "Copier chemin/UUID",
+                "copy": "Copier",
+                "staging": "En édition",
+                "live": "En ligne",
+                "publishInAllLanguages": "Publier <em>{{displayName}}</em> dans toutes les langues",
+                "publishTableMenu": "Publier...",
+                "edit": "Editer",
+                "notPublished": "Contenu jamais publié",
+                "copyUUIDToClipboard": "Copier l'UUID dans le presse-papier",
+                "duplicate": "Dupliquer",
+                "expand": "Agrandir",
+                "publish": "Publier <em>{{displayName}}</em> - {{language}}",
+                "undelete": "Annuler la suppresion",
+                "publishDeletion": "Publier la suppression",
+                "markedForDeletionBy": "Marqué pour la suppression par {{userName}} le",
+                "publishAll": "Publier tout sous <em>{{displayName}}</em> - {{language}}",
+                "copyPathToClipboard": "Copier le chemin dans le presse-papier",
+                "deletePermanently": "Supprimer (définitivement)",
+                "nodeLockedBy": "Contenu verrouillé par {{username}}",
+                "publishAllInAllLanguages": "Publier tout sous <em>{{displayName}}</em> dans toutes les langues",
+                "collapse": "Réduire",
+                "unPublishedBy": "Dépublié par {{userName}} le",
+                "moreOptions": "Plus d'options"
+            },
+            "contentTypes": {
+                "error": {
+                    "loading": "Erreur lors de la récupération des types de contenu: {{details}}"
+                },
+                "any": "Tout contenu"
+            },
+            "copyPaste": {
+                "success": "L'élément a été collé avec succès",
+                "error": "Une erreur s'est produite lors du collage de l'élément"
+            },
+            "actions": {
+                "openInEditMode": "Ouvrir en mode édition",
+                "error": {
+                    "loading": "Erreur lors de l'extraction des données d'action: {{details}}"
+                }
+            },
+            "browseFolders": "Parcourir les répertoires"
+        }
+    }
+}
