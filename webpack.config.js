@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
                 name: 'dx_commons_export'
             }),
             new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|fr|de/),
-            new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/')),
+            new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}),
             new webpack.HashedModuleIdsPlugin({
                 hashFunction: 'sha256',
                 hashDigest: 'hex',

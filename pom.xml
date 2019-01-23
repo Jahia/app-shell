@@ -158,7 +158,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${basedir}/target/manifests/common.manifest.json</file>
+                                    <file>${basedir}/target/manifests/commons.manifest.json</file>
                                     <type>json</type>
                                     <classifier>manifest</classifier>
                                 </artifact>

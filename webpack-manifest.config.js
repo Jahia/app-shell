@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            common: [path.resolve(__dirname, 'src/javascript/main')] // ! Generates the manifest for main.js
+            commons: [path.resolve(__dirname, 'src/javascript/main')] // ! Generates the manifest for main.js
         },
         output: {
             path: path.resolve(__dirname, 'target'),
@@ -47,10 +47,10 @@ module.exports = (env, argv) => {
         plugins: [
             new webpack.DllPlugin({
                 path: 'target/manifests/[name].manifest.json',
-                name: 'dx_common_export'
+                name: 'dx_commons_export'
             }),
             new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|fr|de/),
-            new CleanWebpackPlugin(path.resolve(__dirname, 'manifests')),
+            new CleanWebpackPlugin(path.resolve(__dirname, 'manifests'), {verbose: false}),
             new webpack.HashedModuleIdsPlugin({
                 hashFunction: 'sha256',
                 hashDigest: 'hex',
