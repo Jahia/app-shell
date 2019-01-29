@@ -2,6 +2,7 @@ require('@jahia/apollo-dx');
 require('@jahia/ds-mui-theme');
 require('@jahia/i18next');
 require('@jahia/icons');
+require('@jahia/layouts');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
 
