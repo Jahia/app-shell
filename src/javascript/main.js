@@ -5,6 +5,7 @@ require('@jahia/icons');
 require('@jahia/layouts');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
+require('@jahia/registry');
 
 function jsload(path) {
     return new Promise(resolve => {
