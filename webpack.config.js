@@ -14,14 +14,13 @@ module.exports = (env, argv) => {
             chunkFilename: '[name].commons.[chunkhash:6].js',
             library: 'dx_commons_export'
         },
-        optimization: {
-            splitChunks: {
-                maxSize: 4000000
-            }
-        },
         resolve: {
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
+        },
+        optimization: {
+            usedExports: false,
+            concatenateModules: false
         },
         module: {
             rules: [
@@ -42,6 +41,24 @@ module.exports = (env, argv) => {
                         plugins: [
                             'lodash',
                             '@babel/plugin-syntax-dynamic-import'
+                        ]
+                    }
+                },
+                {
+                    test: /\.jsx?$/,
+                    include: [path.join(__dirname, 'node_modules/@jahia')],
+                    loader: 'babel-loader',
+                    query: {
+                        plugins: [
+                            'lodash',
+                            [
+                                'transform-imports', {
+                                    '@material-ui/icons': {
+                                        transform: '@material-ui/icons/${member}',
+                                        preventFullImport: true
+                                    }
+                                }
+                            ]
                         ]
                     }
                 },

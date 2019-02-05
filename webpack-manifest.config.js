@@ -12,6 +12,10 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, 'target'),
             filename: 'temp.js'
         },
+        optimization: {
+            usedExports: false,
+            concatenateModules: false
+        },
         resolve: {
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
@@ -35,6 +39,24 @@ module.exports = (env, argv) => {
                         plugins: [
                             'lodash',
                             '@babel/plugin-syntax-dynamic-import'
+                        ]
+                    }
+                },
+                {
+                    test: /\.jsx?$/,
+                    include: [path.join(__dirname, 'node_modules/@jahia')],
+                    loader: 'babel-loader',
+                    query: {
+                        plugins: [
+                            'lodash',
+                            [
+                                'transform-imports', {
+                                    '@material-ui/icons': {
+                                        transform: '@material-ui/icons/${member}',
+                                        preventFullImport: true
+                                    }
+                                }
+                            ]
                         ]
                     }
                 },
