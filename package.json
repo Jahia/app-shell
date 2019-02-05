@@ -6,7 +6,7 @@
     "webpack": "npx --node-arg=--max_old_space_size=2048 webpack",
     "webpack:manifest": "npx --node-arg=--max_old_space_size=2048 webpack --config webpack-manifest.config.js",
     "build:analyze": "yarn build --analyze",
-    "build:production": "yarn build -p",
+    "build:production": "yarn test && yarn webpack -p && yarn webpack:manifest -p",
     "build:production-analyze": "yarn build -p --analyze",
     "watch": "yarn webpack --watch",
     "clean": "rimraf *.log src/main/resources/javascript/apps",
@@ -30,9 +30,11 @@
     "@jahia/react-apollo": "^1.0.0-beta.20181113171845",
     "@jahia/react-material": "^1.0.0-beta.20190104141430",
     "@jahia/registry": "^1.0.0-beta.20190130110253",
+    "babel-plugin-transform-imports": "^1.5.1",
     "react-apollo": "^2.1.3",
     "redux": "^4.0.0",
     "rxjs": "^6.3.3",
+    "transform-imports": "^2.0.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
