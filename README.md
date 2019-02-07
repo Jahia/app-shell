@@ -1,6 +1,6 @@
 DX commons Webpack
 ==================
-This module provide shared components using [dll](https://webpack.js.org/plugins/dll-plugin/) for webpacked js application. These components will be use by webpack
+This module provide shared components using [dll](https://webpack.js.org/plugins/dll-plugin/) for webpacked js application. These components will be used by webpack
 
 ## Set up 
 ### Maven
@@ -45,17 +45,12 @@ This provides the manifest that contains all shared packages while building the 
 ### Set webpack configuration to use DLL and Hashed Module Ids
 ```
   plugins: [
- new webpack.DllReferencePlugin({
-                manifest: require('./target/dependency/dx-commons-webpack-1.0.0-SNAPSHOT-manifest')
-            }),
-            new webpack.HashedModuleIdsPlugin({
-                            hashFunction: 'sha256',
-                            hashDigest: 'hex',
-                            hashDigestLength: 20
-                        })
-                        ]
+    new webpack.DllReferencePlugin({
+      manifest: require('./target/dependency/dx-commons-webpack-1.0.0-SNAPSHOT-manifest')
+    })
+  ]
 ```
-We use `HashedModuleIdsPlugin` to use hashed name of module to reduce the size of the bundle.
+
 ### Add the loader
 In your DX view that loads the js application you need to add 
 ```
