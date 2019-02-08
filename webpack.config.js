@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            commons: [path.resolve(__dirname, 'src/javascript/load')]
+            commons: [path.resolve(__dirname, 'src/javascript/main')]
         },
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
@@ -80,7 +80,6 @@ module.exports = (env, argv) => {
                 name: 'dx_commons_export'
             }),
             new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|fr|de/),
-            new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}),
             new webpack.HashedModuleIdsPlugin({
                 hashFunction: 'sha256',
                 hashDigest: 'hex',
@@ -109,6 +108,17 @@ module.exports = (env, argv) => {
     if (argv.analyze) {
         config.devtool = 'source-map';
         config.plugins.push(new BundleAnalyzerPlugin());
+    }
+
+    if (!argv.manifest) {
+        config.optimization.splitChunks =  {
+            maxSize: 400000
+        };
+        config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}));
+
+    } else {
+        config.output.path = path.resolve(__dirname, 'target');
+        config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'target/manifests'), {verbose: false}));
     }
 
     return config;

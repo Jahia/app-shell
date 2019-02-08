@@ -47,7 +47,7 @@ public class LoaderTag extends AbstractJahiaTag {
             String contextPath = renderContext.getRequest().getContextPath();
 
             for (String resource : resources) {
-                pageContext.getOut().write("<jahia:resource type=\"javascript\" path=\"" + URLEncoder.encode(contextPath + resource, "UTF-8") + "\" />");
+                // Todo: generate bootstrap() from js-load.js
             }
         } catch (IOException e) {
             e.printStackTrace();

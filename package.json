@@ -4,7 +4,7 @@
   "scripts": {
     "build": "yarn test && yarn webpack && yarn webpack:manifest",
     "webpack": "npx --node-arg=--max_old_space_size=2048 webpack",
-    "webpack:manifest": "npx --node-arg=--max_old_space_size=2048 webpack --config webpack-manifest.config.js",
+    "webpack:manifest": "npx --node-arg=--max_old_space_size=2048 webpack --manifest",
     "build:analyze": "yarn build --analyze",
     "build:production": "yarn test && yarn webpack -p && yarn webpack:manifest -p",
     "build:production-analyze": "yarn build -p --analyze",

@@ -7,6 +7,9 @@ require('@jahia/react-apollo');
 require('@jahia/react-material');
 require('@jahia/registry');
 
+/* eslint-disable */
+__webpack_public_path__ = window.contextJsParameters.contextPath + '/modules/dx-commons-webpack/javascript/apps/';
+
 function jsload(path) {
     return new Promise(resolve => {
         var scriptTag = document.createElement('script');
