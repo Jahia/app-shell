@@ -12,10 +12,11 @@ __webpack_public_path__ = window.contextJsParameters.contextPath + '/modules/dx-
 
 function jsload(path) {
     return new Promise(resolve => {
+        console.log(`Load ${path}`);
         var scriptTag = document.createElement('script');
         scriptTag.src = window.contextJsParameters.contextPath + path;
         scriptTag.onload = function () {
-            resolve();
+            resolve(path);
         };
         document.getElementsByTagName('head').item(0).appendChild(scriptTag);
     });
@@ -25,8 +26,10 @@ export default function (js) {
     let jsloads = js.slice(0, js.length - 1).map(path => {
         return jsload(path);
     });
-    Promise.all(jsloads).then(() => {
-        jsload(js.slice(js.length - 1));
+    Promise.all(jsloads).then(path => {
+        console.log(`${path} loaded`);
+        let appJs = js.slice(js.length - 1);
+        jsload(appJs);
     });
 }
 

@@ -111,14 +111,11 @@ module.exports = (env, argv) => {
     }
 
     if (!argv.manifest) {
-        config.optimization.splitChunks =  {
-            maxSize: 400000
-        };
         config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}));
 
     } else {
         config.output.path = path.resolve(__dirname, 'target');
-        config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'target/manifests'), {verbose: false}));
+        config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'target/manifests'), {verbose: false}    ));
     }
 
     return config;
