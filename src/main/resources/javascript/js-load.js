@@ -8,7 +8,7 @@ function bootstrap(js) {
     scriptTag.onload = function () {
         console.log('Common loaded');
         // Dx_common_export('ae41f0e0a22f148eb296').default(js);
-        dx_commons_export('ae41f0e0a22f148eb296').default(js);
+        dx_commons_export('c3442d1a6432b2a12854').default(js);
     };
 
     document.getElementsByTagName('head').item(0).appendChild(scriptTag);
