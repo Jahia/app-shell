@@ -42,27 +42,45 @@ And use copy plugin:
 ```
 This provides the manifest that contains all shared packages while building the application or the extension.
 
-### Set webpack configuration to use DLL and Hashed Module Ids
+### Set webpack configuration to use DLL and CopyWebpackPlugin to provide package.json
+The output exposed of the extension must be a single file named `*.bundle.js`
+```
+output: {
+            path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
+            filename: 'content-editor-ext.bundle.js',
+            chunkFilename: '[name].content-editor.[chunkhash:6].js'
+        }
+```
+
+Plugin configuration:
 ```
   plugins: [
     new webpack.DllReferencePlugin({
       manifest: require('./target/dependency/dx-commons-webpack-1.0.0-SNAPSHOT-manifest')
-    })
+    }),
+    new CopyWebpackPlugin([{ from: './package.json', to: '' }])
   ]
 ```
 
-### Add the loader
-In your DX view that loads the js application you need to add 
+### Define the modules that can be extended
+Set apps that are extended in the `package.json` file using the following format
 ```
-<template:addResources type="javascript" resources="js-load.js"/>
+  "dx-extends": {
+    "@jahia/content-manager": "^1.2.0"
+  },
 ```
-To provide `bootstrap()` function that will load the shared and the required resources provided as argument (as an array of javascript file).
-for example:
-```
-    bootstrap(['/modules/content-editor/javascript/apps/content-editor-ext.bundle.js', '/modules/content-media-manager/javascript/apps/cmm.bundle.js']);
 
+### Add the loader to the main application
+Use the tag `<js:loader/>` to load the shared resources, the loader script and expose available extensions
+The parameter tag `target` defines the window variable that will receive the array of extensions (default is `target`) 
+Use that array to call the loader script (`bootstap()`) with the application as last entry of the array, as follow:
 ```
-_Note: This will be replaced by a tag that will do all the work._
+    <js:loader target="cmm-extends"/>
+...
+    window['cmm-extends'].push('/modules/content-media-manager/javascript/apps/cmm.bundle.js');
+    bootstrap(window['cmm-extends']);
+``` 
+In the current state, the extensions found will provide the first file named `javascript/apps/*.bundle.js` found in the extension DX bundle
 ## Execution Sequence
 ![sequence](docs/img/webpack-common-execution-sequence.svg)
 [source][webpack-common-execution-sequence]

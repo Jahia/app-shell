@@ -7,7 +7,7 @@ function bootstrap(js) {
     scriptTag.src = window.contextJsParameters.contextPath + '/modules/dx-commons-webpack/javascript/apps/commons.bundle.js';
     scriptTag.onload = function () {
         console.log('Common loaded');
-        // Dx_common_export('ae41f0e0a22f148eb296').default(js);
+        // this ID matches the export entry of 'init.js' in common.bundle.js
         dx_commons_export('c3442d1a6432b2a12854').default(js);
     };
 

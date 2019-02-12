@@ -69,6 +69,7 @@
         <jahia-deploy-on-site>all</jahia-deploy-on-site>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
+        <export-package>org.jahia.modules.dxwebpack.loader</export-package>
     </properties>
 
     <repositories>
@@ -91,6 +92,11 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vdurmont</groupId>
+            <artifactId>semver4j</artifactId>
+            <version>2.2.0</version>
         </dependency>
     </dependencies>
 

@@ -12,12 +12,13 @@
     <uri>http://www.jahia.org/tags/dxwebpack</uri>
 
     <tag>
-        <description>Loader</description>
+        <description>Javascript Loader</description>
         <name>loader</name>
         <tag-class>org.jahia.modules.dxwebpack.loader.LoaderTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>baseExt</name>
+            <description>Target window variable that will receive the array of dependencies</description>
+            <name>target</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
