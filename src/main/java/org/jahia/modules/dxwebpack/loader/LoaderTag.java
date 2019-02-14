@@ -112,9 +112,7 @@ public class LoaderTag extends AbstractJahiaTag {
             // Add JSLoad Script as resource / provide extensions to load
             String contextPath = getRenderContext().getRequest().getContextPath();
             String out = "<jahia:resource type=\"javascript\" path=\"" + contextPath + "/modules/dx-commons-webpack/javascript/js-load.js\" resource=\"js-load.js\"/>\n";
-            if (!resources.isEmpty()) {
-                out += "<script>window[\"" + target + "\"]=[" + Joiner.on(",").join(resources) + "]</script>";
-            }
+            out += "<script>window[\"" + target + "\"]=[" + Joiner.on(",").join(resources) + "]</script>";
 
             pageContext.getOut().print(out);
 
