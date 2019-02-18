@@ -719,9 +719,10 @@
     react "^16.4.1"
     recompose "^0.27.1"
 
-"@jahia/icons@^1.0.0-beta.20181210101557":
-  version "1.0.0-beta.20190130110251"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190130110251.tgz#33c608d26e9623c03ae2dc202e65bb6504c1e606"
+"@jahia/icons@^1.0.0-beta.20190218105956":
+  version "1.0.0-beta.20190218105956"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190218105956.tgz#d29c967af80059688814d22966c7a9c8bac8a61e"
+  integrity sha512-a9DGeIzYqZKz1qWoDM3z7ixfWmDv/qlNbAeIA9YtgXd4IxuDPU2Fb1wdaAnjbJzkvq4VbKsoz/FIfEf/VDqaEg==
   dependencies:
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
