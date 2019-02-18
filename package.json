@@ -15,9 +15,9 @@
     "lint": "eslint --ext js,jsx .",
     "lint:fix": "eslint --ext js,jsx --fix ."
   },
-  "description": "Content and Media Manager for DX",
+  "description": "DX Commons Javascript loader",
   "main": "index.js",
-  "repository": "git@github.com:Jahia/content-manager.git",
+  "repository": "git@github.com:Jahia/dx-commons-webpack.git",
   "author": "Jahia Core Team <core@jahia.com>",
   "license": "MIT",
   "dependencies": {

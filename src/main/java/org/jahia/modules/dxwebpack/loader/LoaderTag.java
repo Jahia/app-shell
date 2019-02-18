@@ -85,7 +85,7 @@ public class LoaderTag extends AbstractJahiaTag {
             // get current package.json from current bundle
             URL currentPackageUrl = Thread.currentThread().getContextClassLoader().getResource(PACKAGE_JSON);
             if (currentPackageUrl == null) {
-                String moduleName = getClass().getClassLoader().toString();
+                String moduleName = Thread.currentThread().getContextClassLoader().toString();
                 logger.warn("unable to locate [package.json] in {}", moduleName);
                 return super.doEndTag();
             }
