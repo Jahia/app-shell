@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            commons: [path.resolve(__dirname, 'src/javascript/main')]
+            commons: ['@babel/polyfill', path.resolve(__dirname, 'src/javascript/main')]
         },
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
