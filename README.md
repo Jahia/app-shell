@@ -120,3 +120,52 @@ require('@jahia/i18next');
 ```
 
 [webpack-common-execution-sequence]: https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5QYXJ0aWNpcGFudCBicm93c2VyIGFzIEJyb3dzZXJcblBhcnRpY2lwYW50IHJlYWN0IGFzIEpTIEFwcFxuUGFydGljaXBhbnQgZXh0ZW5zaW9ucyBhcyBFeHRlbnNpb25zXG5QYXJ0aWNpcGFudCBsb2FkZXIgYXMgRFggQ29tbW9uXG4gXG5icm93c2VyLT4-cmVhY3Q6IHN0YXJ0XG5yZWFjdC0-PmxvYWRlcjogYm9vdHN0cmFwKG1vZHVsZXMgdG8gbG9hZClcbmxvYWRlci0-PmxvYWRlcjogTG9hZCBzaGFyZWQgcGFja2FnZXNcbmxvYWRlci0tPj5icm93c2VyOiBzaGFyZWQgcGFja2FnZXMgbG9hZGVkXG5sb2FkZXItPj5leHRlbnNpb25zOiBsb2FkIGV4dGVuc2lvbnNcbmV4dGVuc2lvbnMtLT4-YnJvd3NlcjogRXh0ZW5zaW9ucyBsb2FkZWRcbmxvYWRlci0-PnJlYWN0OiBsb2FkIHBhY2thZ2VzIGFwcGxpY2F0aW9uXG5yZWFjdC0tPj5icm93c2VyOiBhcHBsaWNhdGlvbiBMb2FkZWRcbk5vdGUgb3ZlciBicm93c2VyOiBSdW4gQXBwbGljYXRpb25cbiAgICAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ
+
+## Loading screen
+
+This module also contains a loading screen that can be setup to make users wait for large scripts or pages to initialize.
+It works by using the GWT ModuleGWTResources extension mechanism to load small scripts that will display immediately a 
+loading screen until all the content of the GWT iframe are loaded. 
+
+Here's an example of how to activate the loading screen from a module (it is deactivated by default) :
+
+In `src/main/resources/META-INF/spring/my-module.xml`:
+
+```
+   <bean class="org.jahia.ajax.gwt.helper.ModuleGWTResources">
+        <property name="javascriptResources">
+            <list>
+                <value>/modules/my-module/javascript/activate-loader.js</value>
+            </list>
+        </property>
+    </bean>
+```
+
+In `src/main/resources/javascript/activate-loader.js`:
+
+```
+    (function () {
+    
+        // the following is just an example but you should have a condition here otherwise it will apply to all the GWT engines 
+        if (window.location.href.indexOf('/cms/my-module-mode') === -1) {
+            return;
+        }
+    
+        function waitForFunction() {
+            if (window.displayDXLoadingScreen) {
+                window.displayDXLoadingScreen({
+                    "en" : "Loading My Module...",
+                    "fr" : "Chargement de My Module...",
+                    "de" : "My Module wird geladen...",
+                });
+            } else {
+                console.log("Waiting for 100ms for function window.displayDXLoadingScreen to become available");
+                setTimeout(waitForFunction, 100);
+            }
+        }
+    
+        waitForFunction();
+    
+    })();
+    
+ ```
