@@ -680,9 +680,25 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@jahia/apollo-dx@^1.0.0-beta.1", "@jahia/apollo-dx@^1.0.0-beta.20181113171842":
+"@jahia/apollo-dx@^1.0.0-beta.1":
   version "1.0.0-beta.20190130110251"
   resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190130110251.tgz#a91bfd0608d6701811cde570c92947a544a6a6b1"
+  dependencies:
+    apollo-cache-inmemory "^1.2.2"
+    apollo-client "^2.3.2"
+    apollo-link "^1.2.2"
+    apollo-link-batch-http "^1.2.3"
+    apollo-link-http "^1.5.4"
+    apollo-utilities "^1.0.13"
+    graphql "^0.13.2"
+    graphql-tag "^2.9.2"
+    lodash "^4.17.10"
+    zen-observable "^0.8.8"
+
+"@jahia/apollo-dx@^1.0.0-beta.20190222132048":
+  version "1.0.0-beta.20190222132048"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190222132048.tgz#368fe1f6b31cf43d474a361101a7e514d5ed1426"
+  integrity sha512-F0/j9QCE2jqTy3ENY5J1xNvKGGgiUWm1PnLnXmvZN1kNWiYJBqzIcWmtaPWjujpWuyTxTogzvpP+0SSD8Uzoyw==
   dependencies:
     apollo-cache-inmemory "^1.2.2"
     apollo-client "^2.3.2"
