@@ -26,7 +26,7 @@
     "@jahia/ds-mui-theme": "^1.0.0-beta.20190222161758",
     "@jahia/i18next": "^1.0.0-beta.20180628145923",
     "@jahia/icons": "^1.0.0-beta.20190218105956",
-    "@jahia/layouts": "^1.0.0-beta.20190220123348",
+    "@jahia/layouts": "^1.0.0-beta.20190228173644",
     "@jahia/react-apollo": "^1.0.0-beta.20181113171845",
     "@jahia/react-material": "^1.0.0-beta.20190104141430",
     "@jahia/registry": "^1.0.0-beta.20190130110253",
