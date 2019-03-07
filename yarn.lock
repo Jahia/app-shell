@@ -721,10 +721,10 @@
     lodash "^4.17.10"
     prop-types "^15.6.2"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190306182049":
-  version "1.0.0-beta.20190306182049"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190306182049.tgz#d4d3f0796ec5b4e509971b17404e386cd9226901"
-  integrity sha512-xMgU0UAbcks0PCXqAan4O/taYIgxofsqDU+K3k1dh622aeBa1e+ZOLn1vWOE7ir4VmODhZmCiNmB6xDOeCdybg==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190307093355":
+  version "1.0.0-beta.20190307093355"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190307093355.tgz#79a76ee912ce73255b056f8ddd1b373b49c25190"
+  integrity sha512-W7S7265lUJ9febhWOaM0slhwCYlYoNBcxPZT7GPLSWGt2Oi5gKZSoTq686Pi4CkbZWWQ3aCNb11gWDWHmZYRpw==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
