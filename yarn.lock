@@ -711,20 +711,20 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190305164146":
-  version "1.0.0-beta.20190305164146"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190305164146.tgz#18356e9885c5e1ca910202af4cbc15decba4afdf"
-  integrity sha512-pd5D1pdi6bjo1oi3KCxIFw6Y4l3olOSQMwgN8JhYtrBGW+ZKZkYs6KE9ZNgj2UBsNp6D3nVvhN1/X14vaaEw+Q==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190307150000":
+  version "1.0.0-beta.20190307150000"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190307150000.tgz#72de9d9450ca2894798b96e29c8b1d86bef86a37"
+  integrity sha512-YiKI62L0wZ65OQunsJD/OCYnT3JegxpTFdNz87EgI0Hc/BPBuXBjH5urCpaR5l1w/Onimcd72nK+vwNSVQaCkw==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
     lodash "^4.17.10"
     prop-types "^15.6.2"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190307150000":
-  version "1.0.0-beta.20190307150000"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190307150000.tgz#72de9d9450ca2894798b96e29c8b1d86bef86a37"
-  integrity sha512-YiKI62L0wZ65OQunsJD/OCYnT3JegxpTFdNz87EgI0Hc/BPBuXBjH5urCpaR5l1w/Onimcd72nK+vwNSVQaCkw==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190308174512":
+  version "1.0.0-beta.20190312123123"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312123123.tgz#8c47e40b49857217e9423f4d56c3754d64620638"
+  integrity sha512-ueMIbfL1esatWNHgD/fN4jtj58HJI8Y7PkbAz9LgEBLk4MeHb1wSCVm4AMR4ELqPU9zLZi0o8jmTCVJKa42G0Q==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -782,12 +782,12 @@
     react "^16.4.0"
     react-apollo "^2.1.4"
 
-"@jahia/react-material@^1.0.0-beta.20190308153704":
-  version "1.0.0-beta.20190308153704"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190308153704.tgz#3daf5384e96079e7f285554544bae1290ac8c716"
-  integrity sha512-7FIDDULzwF+oE+aL6PH2tINIwctCx0ghG+3/3Z/sAyheQZYA9K9jPOEJsifHJsuon9y2tD++f+/gXbwAuxvpMw==
+"@jahia/react-material@^1.0.0-beta.20190312123128":
+  version "1.0.0-beta.20190312123128"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190312123128.tgz#4713a57cac0d2cc1c7fc95af10315ffe8dc4bdb6"
+  integrity sha512-tkcdDDy/TYIROdBqdg/QNthI5TRS6C/0UhiEvuv0lmsn2P4cpmojW5/qidbMtKzcDQsquhS123n8tRVRexMgLw==
   dependencies:
-    "@jahia/ds-mui-theme" "^1.0.0-beta.20190305164146"
+    "@jahia/ds-mui-theme" "^1.0.0-beta.20190308174512"
     "@jahia/icons" "^1.0.0-beta.20181011112119"
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
