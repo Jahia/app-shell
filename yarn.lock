@@ -759,10 +759,20 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190308174512", "@jahia/ds-mui-theme@^1.0.0-beta.20190312153245":
-  version "1.0.0-beta.20190312153245"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312153245.tgz#867932cc280861f9b526d011ccd1d505482266a6"
-  integrity sha512-YseaoVY9N7KMsXcu78zsVRr+GmiZ3SLCWUNDCso3G9u+4p5l4hyovoXB0GoupUia2zRuPpOVifDhr/YHKz5uFA==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190308174512":
+  version "1.0.0-beta.20190312123123"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312123123.tgz#8c47e40b49857217e9423f4d56c3754d64620638"
+  integrity sha512-ueMIbfL1esatWNHgD/fN4jtj58HJI8Y7PkbAz9LgEBLk4MeHb1wSCVm4AMR4ELqPU9zLZi0o8jmTCVJKa42G0Q==
+  dependencies:
+    "@material-ui/core" "^3.6.2"
+    classnames "^2.2.6"
+    lodash "^4.17.10"
+    prop-types "^15.6.2"
+
+"@jahia/ds-mui-theme@^1.0.0-beta.20190312175956":
+  version "1.0.0-beta.20190312175956"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312175956.tgz#22752e2785205fe863cc3b64581e9f2d3a194c36"
+  integrity sha512-HkcmhA90J7zkiUeEVhtWeq0t9F9BmMFWe/Zpw8da4mrt5jJr2ywrbCBuQuKJuFOeySuemImTMA+bsoRXBKHgCA==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
