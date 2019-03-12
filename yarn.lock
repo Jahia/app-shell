@@ -744,9 +744,9 @@
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
 "@jahia/apollo-dx@^1.0.0-beta.1", "@jahia/apollo-dx@^1.0.0-beta.20190222132048":
-  version "1.0.0-beta.20190312143845"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190312143845.tgz#6f459aaf33ac68cc9d1fca196146e9b6234f5456"
-  integrity sha512-rt61ASukIwaSZpfPDCPTToX2nT/lwjmV56Go48LElkozum4G5/H91zF8jr7FtHhoHvZu3xaqkiFl+ZSX0vdHkg==
+  version "1.0.0-beta.20190312180549"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190312180549.tgz#292a231afad18ddc96f86711bdfef38a19c680d2"
+  integrity sha512-+8+ODs89AHejwRr/BjdBsnla+c/Nmxzug+x0dcfVlH4CZoQnW4+038f83PDyJkWVNmkxXjKGM0+WvBzOSAQNFQ==
   dependencies:
     apollo-cache-inmemory "^1.2.2"
     apollo-client "^2.3.2"
@@ -759,20 +759,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190308174512":
-  version "1.0.0-beta.20190312123123"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312123123.tgz#8c47e40b49857217e9423f4d56c3754d64620638"
-  integrity sha512-ueMIbfL1esatWNHgD/fN4jtj58HJI8Y7PkbAz9LgEBLk4MeHb1wSCVm4AMR4ELqPU9zLZi0o8jmTCVJKa42G0Q==
-  dependencies:
-    "@material-ui/core" "^3.6.2"
-    classnames "^2.2.6"
-    lodash "^4.17.10"
-    prop-types "^15.6.2"
-
 "@jahia/ds-mui-theme@^1.0.0-beta.20190312175956":
-  version "1.0.0-beta.20190312175956"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312175956.tgz#22752e2785205fe863cc3b64581e9f2d3a194c36"
-  integrity sha512-HkcmhA90J7zkiUeEVhtWeq0t9F9BmMFWe/Zpw8da4mrt5jJr2ywrbCBuQuKJuFOeySuemImTMA+bsoRXBKHgCA==
+  version "1.0.0-beta.20190312180549"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312180549.tgz#a546effdcc4ebaee6b609d6c8d40203ddc2dafce"
+  integrity sha512-pi6dXn2qA3r74i/HSWNiPoLrhMg3ZAG7A0xzf/HozQAeleuhTijIiLXrjZMzmT4cg7gLwtysokhhaEHiIHLMLw==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -780,18 +770,18 @@
     prop-types "^15.6.2"
 
 "@jahia/i18next@^1.0.0-beta.20180628145923":
-  version "1.0.0-beta.20190312143845"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190312143845.tgz#f63157a437dba72b173604e94886792156d14d13"
-  integrity sha512-W7JhyIPXxs9cF1U6S/cpT07CFPct/XkGRDb5Eidr7M0oHQ71qkaoXq+OgIcAnuvjr1Dfu0nf7tkzoXTnVZr1Xg==
+  version "1.0.0-beta.20190312180549"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190312180549.tgz#82f056d80bee410c28b0ab9604ec80674e265baa"
+  integrity sha512-XVNsYKVQvP8Zt9/Kkgk9ll/J6hHxctHzHWeBBDfhzqP5gjtm4ZE9sZ5/YrQTChJ6h1TFluQKHs7L/Y2FcLPoHg==
   dependencies:
     i18next "^11.3.2"
     i18next-chained-backend "^0.1.2"
     i18next-xhr-backend "^1.5.1"
 
 "@jahia/icons@^1.0.0-beta.20181011112119", "@jahia/icons@^1.0.0-beta.20190218105956":
-  version "1.0.0-beta.20190312143845"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190312143845.tgz#74973b55e82ad054e964ae751813aec9692e4d96"
-  integrity sha512-DSGBodmeSYyes2sJCNcr+xQUMeVTARND5D0RSeAxPuBQSH9rB6t9O9x7MLGbQuPIg7jTuXvDS+lCfryk3TjL5g==
+  version "1.0.0-beta.20190312180549"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190312180549.tgz#7aa2cfc47851f49c705289cf4fc6af9e9c2aae73"
+  integrity sha512-3IdqXIb9Y+SMrvhsNalxPoV+cQ/nqnRWnVExofABFIJ+PEVSlZWqBXqEX0py4th4f0Cx7xcr1+usXh4apU/dew==
   dependencies:
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
@@ -799,9 +789,9 @@
     recompose "^0.27.1"
 
 "@jahia/layouts@^1.0.0-beta.20190307142048":
-  version "1.0.0-beta.20190312143847"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190312143847.tgz#1e65112e923058ad69bd67389b2a61efa08ed2f4"
-  integrity sha512-fB6YsqoixCb7BxZHtSByVejW+ytoopWwGbJ/BrRnQUmxAAH8h6TK6lIo4Ym3777nNubFsODfx3P+DgbudMAWZQ==
+  version "1.0.0-beta.20190312180550"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190312180550.tgz#9037c03cf5a13dc906d85c8dad4ab844edcb2b65"
+  integrity sha512-75HK3OkHRjZfogSri8SJ47svBz4VDhMaQ/faUDigpXlgT28ekGyybPkCJqKaf+iw+YYQYrAzKZMzqHoZmfw/lA==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -811,9 +801,9 @@
     recompose "^0.30.0"
 
 "@jahia/react-apollo@^1.0.0-beta.20181113171845":
-  version "1.0.0-beta.20190312143849"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190312143849.tgz#48fa0ccea302d9ffe91b6aa83d5c6acd21fcafb8"
-  integrity sha512-cRxyPrFkXjUOm8k8rS4r/2d+SagGaJPfu5lbZbSD1vkKKY5OB/OlC3hBCjVX4wGq8PYmZnuVAF+9QuiS1TIEXA==
+  version "1.0.0-beta.20190312180551"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190312180551.tgz#5094649a2993a6bc6917261b35a933844967c9a5"
+  integrity sha512-sFlEmVh2wCwciO86ov8Z0t+F45wtTYPGfZerY/P2PuPU+EK5aJBPRr6vJDKBYV/NdcYwRYeTK+pv42VapDN6Hg==
   dependencies:
     "@jahia/apollo-dx" "^1.0.0-beta.1"
     apollo-client "^2.3.2"
@@ -823,11 +813,11 @@
     react-apollo "^2.1.4"
 
 "@jahia/react-material@^1.0.0-beta.20190312123128":
-  version "1.0.0-beta.20190312143849"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190312143849.tgz#5c63708aa9d306795fe2ce3bb58994dd10c5beea"
-  integrity sha512-7gbyz3mEF6KzpDh8kypdj19SzYdAzdNOXWBH+iz2/K29abviOkm0G16aFF6+JgloKu+SGE+9UmkDWRPTd1hvqQ==
+  version "1.0.0-beta.20190312180551"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190312180551.tgz#8e4df3377bc5d428120105a6bba0d68bc31316b7"
+  integrity sha512-JuAXRHXqR7aAfJsb0P3Siw4ytIYbzuUdTQ9qMliQzfjLdYxzaF0fyZ/nwUpL1Hvgt/h75obbGnCEei84zJSnIg==
   dependencies:
-    "@jahia/ds-mui-theme" "^1.0.0-beta.20190308174512"
+    "@jahia/ds-mui-theme" "^1.0.0-beta.20190312175956"
     "@jahia/icons" "^1.0.0-beta.20181011112119"
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
@@ -840,9 +830,9 @@
     rxjs "^6.3.3"
 
 "@jahia/registry@^1.0.0-beta.20190130110253":
-  version "1.0.0-beta.20190312143848"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fregistry/-/registry-1.0.0-beta.20190312143848.tgz#f0d5b97c3ee2561ddd58a034e9e93fd601cde591"
-  integrity sha512-5aPtn9jUHxnW199VlzPxvDvjRWEG8sIoyR2TRdJhXK4rvTAP45iVa4NKZ35kpfTBQ0LgfByvIznPSC6bRkCCpw==
+  version "1.0.0-beta.20190312180550"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fregistry/-/registry-1.0.0-beta.20190312180550.tgz#0a16320c3e869f40f55bb009fc6329de78cda309"
+  integrity sha512-ZXi9IIfhlEemhPJQT5jq+rx3eOTz3TJSRqNf9NxJKfEWzoEw3i5fiCAPZrKkD655ka6V3nR1OnlQFyzcmx/Asg==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
@@ -4117,12 +4107,12 @@ media-typer@0.3.0:
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
 mem@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/mem/-/mem-4.1.0.tgz#aeb9be2d21f47e78af29e4ac5978e8afa2ca5b8a"
-  integrity sha512-I5u6Q1x7wxO0kdOpYBB28xueHADYps5uty/zg936CiG8NTe5sJL8EjrCuLneuDW3PlMdZBGDIn8BirEVdovZvg==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/mem/-/mem-4.2.0.tgz#5ee057680ed9cb8dad8a78d820f9a8897a102025"
+  integrity sha512-5fJxa68urlY0Ir8ijatKa3eRz5lwXnRCTvo9+TbTGAuTFJOwpGcY0X05moBd0nW45965Njt4CDI2GFQoG8DvqA==
   dependencies:
     map-age-cleaner "^0.1.1"
-    mimic-fn "^1.0.0"
+    mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
 
 memoize-one@^5.0.0:
@@ -4196,6 +4186,11 @@ mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
   integrity sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==
+
+mimic-fn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.0.0.tgz#0913ff0b121db44ef5848242c38bbb35d44cabde"
+  integrity sha512-jbex9Yd/3lmICXwYT6gA/j2mNQGU48wCh/VzRd+/Y/PjYQtlg1gLMdZqvu9s/xH7qKvngxRObl56XZR609IMbA==
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
