@@ -759,20 +759,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190312175956":
-  version "1.0.0-beta.20190312180549"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190312180549.tgz#a546effdcc4ebaee6b609d6c8d40203ddc2dafce"
-  integrity sha512-pi6dXn2qA3r74i/HSWNiPoLrhMg3ZAG7A0xzf/HozQAeleuhTijIiLXrjZMzmT4cg7gLwtysokhhaEHiIHLMLw==
-  dependencies:
-    "@material-ui/core" "^3.6.2"
-    classnames "^2.2.6"
-    lodash "^4.17.10"
-    prop-types "^15.6.2"
-
-"@jahia/ds-mui-theme@^1.0.0-beta.20190313102147":
-  version "1.0.0-beta.20190313102147"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313102147.tgz#b5683bb9c6cc0d7f14e6a29d228625b7523d2067"
-  integrity sha512-CTTVXNvzfep8LtvWZjB0UEAuuGqUGRB0VIdk5RozsdanmuKgxg4NSmpRVh/vznxD4ynV4seXlJls5j6niNjmlA==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190313102147", "@jahia/ds-mui-theme@^1.0.0-beta.20190313102954":
+  version "1.0.0-beta.20190313102954"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313102954.tgz#5c8595723e976ab81447addb1f0241142046c832"
+  integrity sha512-hU1UZ2kdM4XRgHNF0GOUw2Lmid+t+9UHULRoR0e8HtYFKXU5EnAKzS2/dTWpPRa27SjqiSANj2DG52oDts4p5A==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -822,12 +812,12 @@
     react "^16.4.0"
     react-apollo "^2.1.4"
 
-"@jahia/react-material@^1.0.0-beta.20190313102150":
-  version "1.0.0-beta.20190313102150"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190313102150.tgz#0f0f08aa0fadc95a88583f082495f8f41d0ba260"
-  integrity sha512-5ajctis1PLnTustB5Opzirb3NbKzOJmWrDZLkDnrdWeFzOJR7gtR0NpBHvXgxRbWdNzXgyE9I6UrvIRr8tqtfA==
+"@jahia/react-material@^1.0.0-beta.20190313102956":
+  version "1.0.0-beta.20190313102956"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190313102956.tgz#62a2909209a09f00ed4a90a054bb742c7f5d5810"
+  integrity sha512-ECoIuC5L8h6RwHVp6F2ZZ1DZe5OwDPKNZhGaaPUjC9uLIaCgLO1dcRldPRV4zS7wf2JFMqHq71UVkZSi9CKd+A==
   dependencies:
-    "@jahia/ds-mui-theme" "^1.0.0-beta.20190312175956"
+    "@jahia/ds-mui-theme" "^1.0.0-beta.20190313102147"
     "@jahia/icons" "^1.0.0-beta.20181011112119"
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
