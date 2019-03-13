@@ -759,10 +759,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190313103245", "@jahia/ds-mui-theme@^1.0.0-beta.20190313105345":
-  version "1.0.0-beta.20190313105345"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313105345.tgz#fbdd4c5c929f779ba1f2bdd6356a09f83920fc1e"
-  integrity sha512-u6VSrFPoR0kOWH4XVBZzUN+Qp7PRkq8XjQqzsW9lxFYwjyEtmA+NeDtAw/9vA3jizkWtDWhefshaujDxTYXxfw==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190313103245", "@jahia/ds-mui-theme@^1.0.0-beta.20190313131450":
+  version "1.0.0-beta.20190313131450"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313131450.tgz#d3b71ba5a86def09a0a44d5c4a322577a5167a1e"
+  integrity sha512-2BnRjhdRGhfCSInRBhqdVUEpPedWhSaknjioh9eusBaiRvmFIBeqlfqidMbAv554vHx+IPM2sDYBIrRTjTmXYg==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -788,10 +788,10 @@
     react "^16.4.1"
     recompose "^0.27.1"
 
-"@jahia/layouts@^1.0.0-beta.20190313105346":
-  version "1.0.0-beta.20190313105346"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190313105346.tgz#2db217b0a965f3bd8f666e197a8c39058023fa53"
-  integrity sha512-z0djTOYTK6vZJJsTLAiCafGDjQXbCnjcG/ouQOtbdGSu26XItxHY/8jycgUhNjrBTz82f96Y4iLJLkhWFXnOMA==
+"@jahia/layouts@^1.0.0-beta.20190313131451":
+  version "1.0.0-beta.20190313131451"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190313131451.tgz#2a75e066a22b2bf9fcabbb5345301e54de938f8a"
+  integrity sha512-nmCXyg1/WDnqWtwa5LUr1WfySwODoAn9qvhU9sov3y6WKWUTf2RcZmbXGj97OvGlpVVek1MnzpBcT5eRFrieqw==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
