@@ -759,10 +759,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190313102147", "@jahia/ds-mui-theme@^1.0.0-beta.20190313102954":
-  version "1.0.0-beta.20190313102954"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313102954.tgz#5c8595723e976ab81447addb1f0241142046c832"
-  integrity sha512-hU1UZ2kdM4XRgHNF0GOUw2Lmid+t+9UHULRoR0e8HtYFKXU5EnAKzS2/dTWpPRa27SjqiSANj2DG52oDts4p5A==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190313102954", "@jahia/ds-mui-theme@^1.0.0-beta.20190313103245":
+  version "1.0.0-beta.20190313103245"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190313103245.tgz#58e08089aa6489814b0cfa66d24dacb8182e38a3"
+  integrity sha512-f99RiQjxtuiqUShLVsci2aXVF4Liy8erWRcvmG0ePwoPw5nSfdaVCqGJx+ajSmo6ZgaBna83QXAjPiYLyvT/Gg==
   dependencies:
     "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
@@ -812,12 +812,12 @@
     react "^16.4.0"
     react-apollo "^2.1.4"
 
-"@jahia/react-material@^1.0.0-beta.20190313102956":
-  version "1.0.0-beta.20190313102956"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190313102956.tgz#62a2909209a09f00ed4a90a054bb742c7f5d5810"
-  integrity sha512-ECoIuC5L8h6RwHVp6F2ZZ1DZe5OwDPKNZhGaaPUjC9uLIaCgLO1dcRldPRV4zS7wf2JFMqHq71UVkZSi9CKd+A==
+"@jahia/react-material@^1.0.0-beta.20190313103248":
+  version "1.0.0-beta.20190313103248"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190313103248.tgz#9dd86c22bcd0e357dbc7b4dca24f700d43699e2b"
+  integrity sha512-WSCF/HBasBrC3/+E+nfWwxIaQhLqK6g9zoZHGs4KCHn+3Vd3g5xjrW2NwKpMcwqBMIWrEOFVYo9kYHMcJYRG7w==
   dependencies:
-    "@jahia/ds-mui-theme" "^1.0.0-beta.20190313102147"
+    "@jahia/ds-mui-theme" "^1.0.0-beta.20190313102954"
     "@jahia/icons" "^1.0.0-beta.20181011112119"
     "@material-ui/core" "^3.6.2"
     "@material-ui/icons" "^3.0.1"
