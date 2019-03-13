@@ -23,10 +23,10 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@jahia/apollo-dx": "^1.0.0-beta.20190222132048",
-    "@jahia/ds-mui-theme": "^1.0.0-beta.20190313152644",
+    "@jahia/ds-mui-theme": "^1.0.0-beta.20190313154146",
     "@jahia/i18next": "^1.0.0-beta.20180628145923",
     "@jahia/icons": "^1.0.0-beta.20190218105956",
-    "@jahia/layouts": "^1.0.0-beta.20190313152645",
+    "@jahia/layouts": "^1.0.0-beta.20190313154146",
     "@jahia/react-apollo": "^1.0.0-beta.20181113171845",
     "@jahia/react-material": "^1.0.0-beta.20190313104755",
     "@jahia/registry": "^1.0.0-beta.20190130110253",
