@@ -24,7 +24,6 @@
     // React specific rules
     "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", "first"],
-    "react/prop-types": "warn",
     "react/jsx-max-props-per-line": ["error", {
       "maximum": 1,
       "when": "multiline"
