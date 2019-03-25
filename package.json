@@ -27,7 +27,7 @@
     "@jahia/i18next": "^1.0.0-beta.20180628145923",
     "@jahia/icons": "^1.0.0-beta.20190218105956",
     "@jahia/layouts": "^1.0.0-beta.20190314104249",
-    "@jahia/react-apollo": "^1.0.0-beta.20181113171845",
+    "@jahia/react-apollo": "^1.0.0-beta.20190325151341",
     "@jahia/react-material": "^1.0.0-beta.20190313104755",
     "@jahia/registry": "^1.0.0-beta.20190130110253",
     "babel-plugin-transform-imports": "^1.5.1",
