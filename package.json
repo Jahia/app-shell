@@ -10,7 +10,7 @@
         "build:production-analyze": "yarn build -p --analyze",
         "watch": "yarn webpack --watch",
         "clean": "rimraf *.log src/main/resources/javascript/apps",
-        "clean:all": "yarn clean && rimraf node_modules target",
+        "clean:all": "yarn clean && rimraf node_modules node target",
         "test": "yarn lint",
         "lint": "eslint --ext js,jsx .",
         "lint:fix": "eslint --ext js,jsx --fix ."

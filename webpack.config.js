@@ -111,7 +111,7 @@ module.exports = (env, argv) => {
     }
 
     if (!argv.manifest) {
-        config.entry.commons = [path.resolve(__dirname, 'src/javascript/init')]
+        config.entry.commons = [path.resolve(__dirname, 'src/javascript/init')];
         if (argv.mode === 'production') {
             config.optimization.splitChunks = {
                 maxSize: 1000000
