@@ -81,16 +81,27 @@ window.displayDXLoadingScreen = function (loadingMessages) {
         }
 
         var iframe = getNewNode('IFRAME', 'gwt-Frame');
+
+        var removeLoader = function () {
+            console.log('iframe[className="gwt-Frame"] loaded');
+            loader.remove();
+            o.disconnect();
+        };
+
         if (iframe) {
-            console.log(
-                'iframe[className="gwt-Frame"] readyState:' +
-                    iframe.contentDocument.readyState
-            );
-            iframe.contentWindow.addEventListener('load', function () {
-                console.log('iframe[className="gwt-Frame"] loaded');
-                loader.remove();
-                o.disconnect();
-            });
+            console.log('iframe[className="gwt-Frame"] readyState: ' + iframe.contentDocument.readyState);
+
+            // If the readyState is complete we likely missed the load event so let's remove the loading screen
+            // https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
+            if (iframe.contentDocument.readyState === 'complete') {
+                setTimeout(function () {
+                    removeLoader();
+                }, 3000);
+            } else {
+                iframe.contentWindow.addEventListener('load', function () {
+                    removeLoader();
+                });
+            }
         }
     });
 
