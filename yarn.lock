@@ -785,10 +785,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190409130843":
-  version "1.0.0-beta.20190409130843"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190409130843.tgz#1088d5ff82c4355fe39aca1db73810c5e23c03c1"
-  integrity sha512-vDVCEgBzw+akzHHvYI1zw50y7OZ/T2AqckacE5DJULPNLYWEu2Bv7l9D2Oyxh0n0kBsJN1Y0/OX0KgO9dMqP1w==
+"@jahia/ds-mui-theme@^1.0.0-beta.20190411134307":
+  version "1.0.0-beta.20190411134307"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190411134307.tgz#baab36cc2f3824516954746234a1d546e2727eba"
+  integrity sha512-spdzhG1IGfki0Ty8NlrayDffCMETLl1YpFiQH6JQnKiRNtwW2+O0qEOhw0LtDe8kkiF7zeVCFHVLlZCBIGRMuA==
   dependencies:
     classnames "^2.2.6"
     lodash "^4.17.10"
