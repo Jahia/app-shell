@@ -87,6 +87,7 @@ window.displayDXLoadingScreen = function (loadingMessages) {
         // but here again IE seams to fail in some cases. so in the worst possible outcome we will just hide the loader
         var removeLoader = function (parent, child) {
             console.log('iframe[className="gwt-Frame"] loaded');
+
             if (child.remove && typeof child.remove === 'function') {
                 child.remove();
             } else if (parent.removeChild && typeof parent.removeChild === 'function') {
@@ -94,6 +95,7 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             } else {
                 child.style.display = 'none';
             }
+
             o.disconnect();
         };
 
