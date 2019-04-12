@@ -82,9 +82,18 @@ window.displayDXLoadingScreen = function (loadingMessages) {
 
         var iframe = getNewNode('IFRAME', 'gwt-Frame');
 
-        var removeLoader = function () {
+        // This method will at first try to remove the loader with child.remove(), where child is the loader element
+        // but as IE doesn't support it, we will try to remove the loader with parent.removeChild(child)
+        // but here again IE seams to fail in some cases. so in the worst possible outcome we will just hide the loader
+        var removeLoader = function (parent, child) {
             console.log('iframe[className="gwt-Frame"] loaded');
-            loader.remove();
+            if (child.remove && typeof child.remove === 'function') {
+                child.remove();
+            } else if (parent.removeChild && typeof parent.removeChild === 'function') {
+                parent.removeChild(child);
+            } else {
+                child.style.display = 'none';
+            }
             o.disconnect();
         };
 
@@ -95,11 +104,11 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             // https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
             if (iframe.contentDocument.readyState === 'complete') {
                 setTimeout(function () {
-                    removeLoader();
+                    removeLoader(newbody ? newbody : body, loader);
                 }, 3000);
             } else {
                 iframe.contentWindow.addEventListener('load', function () {
-                    removeLoader();
+                    removeLoader(newbody ? newbody : body, loader);
                 });
             }
         }
