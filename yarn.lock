@@ -712,9 +712,10 @@
     i18next-chained-backend "^0.1.2"
     i18next-xhr-backend "^1.5.1"
 
-"@jahia/icons@^1.0.0-featureBACKLOG9621.20190411163417":
-  version "1.0.0-featureBACKLOG9621.20190411163417"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-featureBACKLOG9621.20190411163417.tgz#0e5bf3708ebbb8d9e4d378ae854327289d36ab86"
+"@jahia/icons@^1.0.0-beta.20190423131959":
+  version "1.0.0-beta.20190423131959"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190423131959.tgz#1001f942da0435e12c8b31c9abe0ba5366ad0d81"
+  integrity sha512-dKQaSSAOtC5uZJloY/yhSNblLWagl5LMUgteAAg/pj8B+3qWNiovZqNtPKJaeVDETGQGi1ecInbEB7PJA9Oa0Q==
   dependencies:
     "@material-ui/icons" "^3.0.2"
     mdi-material-ui "^5.10.0"
@@ -742,10 +743,10 @@
     react "^16.4.0"
     react-apollo "^2.1.4"
 
-"@jahia/react-material@^1.0.0-featureBACKLOG9621.20190418090115":
-  version "1.0.0-featureBACKLOG9621.20190418090115"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-featureBACKLOG9621.20190418090115.tgz#b4f631fdf2d6cb2e1b6d08003d0fa40fdcf6d0e9"
-  integrity sha512-EvXQzDoBpvGgjCblTIdbQyBw7bEdmlXN6Tt3g9Owl6dmvq5sOInXrdn3YJaSLfO6+RhdTniQNSuXqb14pwGorQ==
+"@jahia/react-material@^1.0.0-beta.20190423132000":
+  version "1.0.0-beta.20190423132000"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190423132000.tgz#7f51dc58cebd2aa9d343f175594758bdd591505c"
+  integrity sha512-kl+3vh4St6+szjsDoPo16xsAs9vM+AXSMlz6efwkS8NK4TQ9o3d5RXM53V6OMcJfuLDu+AjOq1Gv0zPTOHt6vw==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
