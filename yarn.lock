@@ -696,9 +696,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190411134307":
-  version "1.0.0-beta.20190411134307"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190411134307.tgz#baab36cc2f3824516954746234a1d546e2727eba"
+"@jahia/ds-mui-theme@^1.0.0-beta.20190423144545":
+  version "1.0.0-beta.20190423144545"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190423144545.tgz#0c83b29b81550ffebe9620118c2ef4a46f9dc7d3"
+  integrity sha512-tb4HX1pYir/gR1LceFNGX98IaphXThP4ooOFmANVPrBMegnrJpOxDqut73eK012Ohq3xFGqdSvX6OzA9lBvhtQ==
   dependencies:
     classnames "^2.2.6"
     lodash "^4.17.10"
