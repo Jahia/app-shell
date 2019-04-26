@@ -681,7 +681,7 @@
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
 
-"@jahia/apollo-dx@^1.0.0-beta.1", "@jahia/apollo-dx@^1.0.0-beta.20190222132048":
+"@jahia/apollo-dx@^1.0.0-beta.1":
   version "1.0.0-beta.20190403192100"
   resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190403192100.tgz#c8a3ae7ed64e6fd69977d10f3a7b888d74996222"
   dependencies:
@@ -696,18 +696,35 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190423144545":
-  version "1.0.0-beta.20190423144545"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190423144545.tgz#0c83b29b81550ffebe9620118c2ef4a46f9dc7d3"
-  integrity sha512-tb4HX1pYir/gR1LceFNGX98IaphXThP4ooOFmANVPrBMegnrJpOxDqut73eK012Ohq3xFGqdSvX6OzA9lBvhtQ==
+"@jahia/apollo-dx@^1.0.0-beta.20190426164851":
+  version "1.0.0-beta.20190426164851"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190426164851.tgz#85b6b7d65bc4426c4f50a7d76bd9f8f095604be3"
+  integrity sha512-Hc2YcZdtdc82rsEgfCXbUcVRT60RjC38Tpwrljh3ddOENuDPpwADL2Q3vlVdUxpj+RzqFdvU/Npgi++bzD1/CQ==
+  dependencies:
+    apollo-cache-inmemory "^1.5.1"
+    apollo-client "^2.5.1"
+    apollo-link "^1.2.11"
+    apollo-link-batch-http "^1.2.11"
+    apollo-link-http "^1.5.14"
+    apollo-utilities "^1.0.13"
+    graphql "^14.0.2"
+    graphql-tag "^2.9.2"
+    lodash "^4.17.10"
+    zen-observable "^0.8.8"
+
+"@jahia/ds-mui-theme@^1.0.0-beta.20190426164851":
+  version "1.0.0-beta.20190426164851"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190426164851.tgz#bf70d0fe7265c9f109904dae3b5e2eb06851ccde"
+  integrity sha512-Bqjvt3qIG29n95VdzBpf9NYumVZ1YtXXEjdUdowN9TZw1T9xpLdo7/kl8uAI4wE/re62EGxIchGICVE85t87hw==
   dependencies:
     classnames "^2.2.6"
     lodash "^4.17.10"
     prop-types "^15.6.2"
 
-"@jahia/i18next@^1.0.0-beta.20180628145923":
-  version "1.0.0-beta.20190403192100"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190403192100.tgz#69f33f78fc2d97b83d496c0b527438b9d227ca31"
+"@jahia/i18next@^1.0.0-beta.20190426164851":
+  version "1.0.0-beta.20190426164851"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190426164851.tgz#013dfde28a256d777554968993c548cb4c1df990"
+  integrity sha512-fogh0VKWFGV/c8u6max91+ZWcJ7/mhuxd3khrcH58FOabJkkuhAKSIZA8FBjRndqAI5T0a+oiLfb3xJJh/TOmw==
   dependencies:
     i18next "^11.3.2"
     i18next-chained-backend "^0.1.2"
@@ -744,10 +761,10 @@
     react "^16.4.0"
     react-apollo "^2.1.4"
 
-"@jahia/react-material@^1.0.0-beta.20190426142241":
-  version "1.0.0-beta.20190426142241"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190426142241.tgz#308506fa55cfbbc03564fa549befbf2594122c20"
-  integrity sha512-qd2SUxV/C+rDuoLPEukcOmuRhqIiArcgbhm0N+HgpqzryUd64hBukZ/GS7ksxa0L+I5h+hk+fUUQLLhXEyUdCQ==
+"@jahia/react-material@^1.0.0-beta.20190426164852":
+  version "1.0.0-beta.20190426164852"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190426164852.tgz#70202c368c943ea6400861a49ac0a6c4609d9777"
+  integrity sha512-LJf/25Fs7YL0zvyipeHJRMUC6HmM266HPTn65xCJRAuIdHWOLP1qvPE/BjmdbdUW6lvbJ3snaFN+K+luTDQEzw==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
@@ -1075,7 +1092,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-cache-inmemory@^1.2.2:
+apollo-cache-inmemory@^1.2.2, apollo-cache-inmemory@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.5.1.tgz#265d1ee67b0bf0aca9c37629d410bfae44e62953"
   dependencies:
@@ -1092,7 +1109,7 @@ apollo-cache@1.2.1, apollo-cache@^1.2.1:
     apollo-utilities "^1.2.1"
     tslib "^1.9.3"
 
-apollo-client@^2.3.2:
+apollo-client@^2.3.2, apollo-client@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.5.1.tgz#36126ed1d32edd79c3713c6684546a3bea80e6d1"
   dependencies:
@@ -1106,7 +1123,7 @@ apollo-client@^2.3.2:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
 
-apollo-link-batch-http@^1.2.8:
+apollo-link-batch-http@^1.2.11, apollo-link-batch-http@^1.2.8:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link-batch-http/-/apollo-link-batch-http-1.2.11.tgz#ae42dbcc02820658e1e267d05bf2aae7ac208088"
   dependencies:
@@ -1137,7 +1154,7 @@ apollo-link-http-common@^0.2.13:
     ts-invariant "^0.3.2"
     tslib "^1.9.3"
 
-apollo-link-http@^1.5.11:
+apollo-link-http@^1.5.11, apollo-link-http@^1.5.14:
   version "1.5.14"
   resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.14.tgz#ed6292248d1819ccd16523e346d35203a1b31109"
   dependencies:
