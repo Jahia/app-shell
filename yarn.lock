@@ -681,25 +681,10 @@
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
 
-"@jahia/apollo-dx@^1.0.0-beta.1":
-  version "1.0.0-beta.20190403192100"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190403192100.tgz#c8a3ae7ed64e6fd69977d10f3a7b888d74996222"
-  dependencies:
-    apollo-cache-inmemory "^1.2.2"
-    apollo-client "^2.3.2"
-    apollo-link "^1.2.8"
-    apollo-link-batch-http "^1.2.8"
-    apollo-link-http "^1.5.11"
-    apollo-utilities "^1.0.13"
-    graphql "^14.0.2"
-    graphql-tag "^2.9.2"
-    lodash "^4.17.10"
-    zen-observable "^0.8.8"
-
-"@jahia/apollo-dx@^1.0.0-beta.20190426164851":
-  version "1.0.0-beta.20190426164851"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190426164851.tgz#85b6b7d65bc4426c4f50a7d76bd9f8f095604be3"
-  integrity sha512-Hc2YcZdtdc82rsEgfCXbUcVRT60RjC38Tpwrljh3ddOENuDPpwADL2Q3vlVdUxpj+RzqFdvU/Npgi++bzD1/CQ==
+"@jahia/apollo-dx@^1.0.0-beta.20190509135725":
+  version "1.0.0-beta.20190509135725"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190509135725.tgz#e25120d81f5127c6c35d915f31162cf5318429f5"
+  integrity sha512-I6E8xW6/JGLErtViZ5IM655GLz3yGnvirqbHkX3q+3Yc/bHM8NkYSczYnJ7nWAVnS1/PNc9y4L0NadnCUCQR1g==
   dependencies:
     apollo-cache-inmemory "^1.5.1"
     apollo-client "^2.5.1"
@@ -712,59 +697,76 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/ds-mui-theme@^1.0.0-beta.20190426164851":
-  version "1.0.0-beta.20190426164851"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190426164851.tgz#bf70d0fe7265c9f109904dae3b5e2eb06851ccde"
-  integrity sha512-Bqjvt3qIG29n95VdzBpf9NYumVZ1YtXXEjdUdowN9TZw1T9xpLdo7/kl8uAI4wE/re62EGxIchGICVE85t87hw==
+"@jahia/apollo-dx@featureBACKLOG10163":
+  version "1.0.0-featureBACKLOG10163.20190509133208"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-featureBACKLOG10163.20190509133208.tgz#0e9bf910451b9ea486a2122bf774b03f32755519"
+  integrity sha512-mZnKeDzJqu40kBlKmj2mn4jjIalZ1DIpcol0wycsivFTXEJ7/lVWXQ8o2yodM/eWb3Uc6fgz2nTph2CYYC68Og==
   dependencies:
+    apollo-cache-inmemory "^1.5.1"
+    apollo-client "^2.5.1"
+    apollo-link "^1.2.11"
+    apollo-link-batch-http "^1.2.11"
+    apollo-link-http "^1.5.14"
+    apollo-utilities "^1.0.13"
+    graphql "^14.0.2"
+    graphql-tag "^2.9.2"
+    lodash "^4.17.10"
+    zen-observable "^0.8.8"
+
+"@jahia/ds-mui-theme@^1.0.0-beta.20190509135725":
+  version "1.0.0-beta.20190509135725"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fds-mui-theme/-/ds-mui-theme-1.0.0-beta.20190509135725.tgz#47bf764163cfdf423c5aa3caa9c0d4def2b6f271"
+  integrity sha512-IGZId3fDyjC/RellLMjAC6hG3PEgL/8a8Qy9sNbvzf3tcmXPblcHSGqSxthCC1ug8/9cty3eO+RtoeEX7AXzeQ==
+  dependencies:
+    "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
     lodash "^4.17.10"
     prop-types "^15.6.2"
 
-"@jahia/i18next@^1.0.0-beta.20190426164851":
-  version "1.0.0-beta.20190426164851"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190426164851.tgz#013dfde28a256d777554968993c548cb4c1df990"
-  integrity sha512-fogh0VKWFGV/c8u6max91+ZWcJ7/mhuxd3khrcH58FOabJkkuhAKSIZA8FBjRndqAI5T0a+oiLfb3xJJh/TOmw==
+"@jahia/i18next@^1.0.0-beta.20190509135725":
+  version "1.0.0-beta.20190509135725"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190509135725.tgz#1b303a05ae98a8bef3028890e5265dc805d11242"
+  integrity sha512-4c9UaDAtXKORyEIGxteDanb5D8i6nH3Sm1/Hd7liOLGXZXD6u8hCRhA2u7+EjFuXF+Mng+TDT4K7Tx+XGl3n9A==
   dependencies:
     i18next "^11.3.2"
     i18next-chained-backend "^0.1.2"
     i18next-xhr-backend "^1.5.1"
 
-"@jahia/icons@^1.0.0-beta.20190423131959":
-  version "1.0.0-beta.20190423131959"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190423131959.tgz#1001f942da0435e12c8b31c9abe0ba5366ad0d81"
-  integrity sha512-dKQaSSAOtC5uZJloY/yhSNblLWagl5LMUgteAAg/pj8B+3qWNiovZqNtPKJaeVDETGQGi1ecInbEB7PJA9Oa0Q==
+"@jahia/icons@^1.0.0-beta.20190509135725":
+  version "1.0.0-beta.20190509135725"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190509135725.tgz#be2af863833d9a7b6478f80316d1a451b8c0bb18"
+  integrity sha512-uqPuQf1Zct2UQ+RW6MA1w8fn84edsR6PDgbnr1YfNJCOF7gHLrzLPU8CMGPDJdexBkKNUicjkgTxtbbNb3nxhA==
   dependencies:
     "@material-ui/icons" "^3.0.2"
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/layouts@^1.0.0-beta.20190401120852":
-  version "1.0.0-beta.20190403192100"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190403192100.tgz#8d398addb60a1d8655920728fe5c137342e3b2f3"
+"@jahia/layouts@^1.0.0-beta.20190509135726":
+  version "1.0.0-beta.20190509135726"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2flayouts/-/layouts-1.0.0-beta.20190509135726.tgz#31f52c7be3ead71595e431a9232c9f735cf3c059"
+  integrity sha512-YBBbl4vcsvRSkZQu9c3jwLieZVqGP1DF/kgH7ugEMg4p/7PLAxdhp1WwvPsO1KDtOi9zs+GRmGp6qXsN+v7Kww==
   dependencies:
-    "@material-ui/core" "^3.6.2"
     classnames "^2.2.6"
     lodash "^4.17.10"
     prop-types "^15.6.2"
     react-i18next "^7.6.1"
     recompose "^0.30.0"
 
-"@jahia/react-apollo@^1.0.0-beta.20190325151341":
-  version "1.0.0-beta.20190403192103"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190403192103.tgz#ec776f40c80f835dd2a17d3ebce17075c0165d6b"
+"@jahia/react-apollo@^1.0.0-beta.20190509135726":
+  version "1.0.0-beta.20190509135726"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190509135726.tgz#16a8f838daa8f0169bffccd4f202a1b7136a1164"
+  integrity sha512-FzwN6EVSdapEEG/O0brHqAupC1iVH4zyql5e6BHZHqTxfEMN2ffKOVBIvz2U8TN4eZaHI/25ukxH2UAxGjkieg==
   dependencies:
-    "@jahia/apollo-dx" "^1.0.0-beta.1"
-    apollo-client "^2.3.2"
+    "@jahia/apollo-dx" featureBACKLOG10163
+    apollo-client "^2.5.1"
     lodash "^4.17.10"
     prop-types "^15.6.1"
-    react "^16.4.0"
-    react-apollo "^2.1.4"
+    react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20190430163438":
-  version "1.0.0-beta.20190430163438"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190430163438.tgz#e52d21d4d5c47972598c5fb500c3786f5f8bf4a8"
-  integrity sha512-KIvE0L0X+vrsAKSbK+n38tKMwQL9sbU1PryHiRSCCgSDkKKd99UqxrtasDdKij1sr1ZqEDy/LWauJsyQkzw64w==
+"@jahia/react-material@^1.0.0-beta.20190509135726":
+  version "1.0.0-beta.20190509135726"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190509135726.tgz#37ed85c53fa43c1b214c9491b158e9c779ded185"
+  integrity sha512-dJIJIpl7GKE0vsvkwguMPXPUcfvTAiTQ5j0Lg35Ha63XYyS6nZhvH5bixkNrbE3SG4ZTjO635JaJifQA1jz1mw==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
@@ -772,16 +774,18 @@
     react-select "^2.4.2"
     recompose "^0.30.0"
 
-"@jahia/registry@^1.0.0-beta.20190130110253":
-  version "1.0.0-beta.20190403192101"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fregistry/-/registry-1.0.0-beta.20190403192101.tgz#d89c5775775be23c23e64654111e35e851a1da6c"
+"@jahia/registry@^1.0.0-beta.20190509135727":
+  version "1.0.0-beta.20190509135727"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2fregistry/-/registry-1.0.0-beta.20190509135727.tgz#50ddcbd6d5e66e2a8761e11e26c744caf321589f"
+  integrity sha512-TsCbkyNCYkONeezUtIIZae+IwcOA1xDTaTSxs0q0Hj7RDDhYfw4198T4V43Cq8XEnrA6eVFRqp6n6lnivjXUjg==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-"@material-ui/core@^3.6.2":
+"@material-ui/core@^3.9.3":
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.9.3.tgz#d378c1f4beb18df9a534ca7258c2c33fb8e0e51f"
+  integrity sha512-REIj62+zEvTgI/C//YL4fZxrCVIySygmpZglsu/Nl5jPqy3CDjZv1F9ubBYorHqmRgeVPh64EghMMWqk4egmfg==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@material-ui/system" "^3.0.0-alpha.0"
@@ -1092,7 +1096,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-cache-inmemory@^1.2.2, apollo-cache-inmemory@^1.5.1:
+apollo-cache-inmemory@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.5.1.tgz#265d1ee67b0bf0aca9c37629d410bfae44e62953"
   dependencies:
@@ -1109,7 +1113,7 @@ apollo-cache@1.2.1, apollo-cache@^1.2.1:
     apollo-utilities "^1.2.1"
     tslib "^1.9.3"
 
-apollo-client@^2.3.2, apollo-client@^2.5.1:
+apollo-client@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.5.1.tgz#36126ed1d32edd79c3713c6684546a3bea80e6d1"
   dependencies:
@@ -1123,7 +1127,7 @@ apollo-client@^2.3.2, apollo-client@^2.5.1:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
 
-apollo-link-batch-http@^1.2.11, apollo-link-batch-http@^1.2.8:
+apollo-link-batch-http@^1.2.11:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link-batch-http/-/apollo-link-batch-http-1.2.11.tgz#ae42dbcc02820658e1e267d05bf2aae7ac208088"
   dependencies:
@@ -1154,7 +1158,7 @@ apollo-link-http-common@^0.2.13:
     ts-invariant "^0.3.2"
     tslib "^1.9.3"
 
-apollo-link-http@^1.5.11, apollo-link-http@^1.5.14:
+apollo-link-http@^1.5.14:
   version "1.5.14"
   resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.14.tgz#ed6292248d1819ccd16523e346d35203a1b31109"
   dependencies:
@@ -1162,7 +1166,7 @@ apollo-link-http@^1.5.11, apollo-link-http@^1.5.14:
     apollo-link-http-common "^0.2.13"
     tslib "^1.9.3"
 
-apollo-link@^1.0.0, apollo-link@^1.2.11, apollo-link@^1.2.8:
+apollo-link@^1.0.0, apollo-link@^1.2.11:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.11.tgz#493293b747ad3237114ccd22e9f559e5e24a194d"
   dependencies:
@@ -4565,7 +4569,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-apollo@^2.1.3, react-apollo@^2.1.4:
+react-apollo@^2.1.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.3.tgz#9844a522894a6e0392f6a982c6052348d9a4ae12"
   dependencies:
@@ -4574,6 +4578,18 @@ react-apollo@^2.1.3, react-apollo@^2.1.4:
     lodash.isequal "^4.5.0"
     prop-types "^15.7.2"
     ts-invariant "^0.3.2"
+    tslib "^1.9.3"
+
+react-apollo@^2.5.3:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.5.tgz#0f27079a8fa9d9ceea8b29a5977eb42885f88fb9"
+  integrity sha512-zoJYlkI3i7+f1ejCbFtWU2GLCxjrmB3Es6RANyEZcbl0yetf5TI6ofMjBzILTvwoqp6tiQHH/8q66vQF0KcLmQ==
+  dependencies:
+    apollo-utilities "^1.2.1"
+    hoist-non-react-statics "^3.3.0"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.7.2"
+    ts-invariant "^0.4.0"
     tslib "^1.9.3"
 
 react-data-grid@^5.0.5:
@@ -4665,7 +4681,7 @@ react-visibility-sensor@^5.0.2:
   dependencies:
     prop-types "^15.6.2"
 
-react@^16.4.0, react@^16.8.6:
+react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   dependencies:
@@ -5466,6 +5482,13 @@ ts-invariant@^0.2.1:
 ts-invariant@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.3.2.tgz#89a2ffeb70879b777258df1df1c59383c35209b0"
+  dependencies:
+    tslib "^1.9.3"
+
+ts-invariant@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.4.1.tgz#2612cb76626cf7c6debf59e6d284d0abd9caae07"
+  integrity sha512-fdL8AZinDiVKMsOI0cOWHLprS85LWy2p/eVSctVe6fpZF9BAvO59sQYMEWQ37yybBtlKU2zkmILYmy1jrOf6+g==
   dependencies:
     tslib "^1.9.3"
 
