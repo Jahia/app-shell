@@ -74,19 +74,13 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             return element;
         }
 
-        var newbody = getNewNode('BODY');
-        if (newbody) {
-            newbody.appendChild(loader);
-            body.remove();
-        }
-
-        var iframe = getNewNode('IFRAME', 'gwt-Frame');
-
         // This method will at first try to remove the loader with child.remove(), where child is the loader element
         // but as IE doesn't support it, we will try to remove the loader with parent.removeChild(child)
         // but here again IE seams to fail in some cases. so in the worst possible outcome we will just hide the loader
-        var removeLoader = function (parent, child) {
-            console.log('iframe[className="gwt-Frame"] loaded');
+        var removeElement = function (parent, child, message) {
+            if (message) {
+                console.log(message);
+            }
 
             if (child.remove && typeof child.remove === 'function') {
                 child.remove();
@@ -99,18 +93,30 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             o.disconnect();
         };
 
+        var newbody = getNewNode('BODY');
+        if (newbody) {
+            newbody.appendChild(loader);
+            removeElement(body.parentElement, body);
+        }
+
+        var iframe = getNewNode('IFRAME', 'gwt-Frame');
+
         if (iframe) {
             console.log('iframe[className="gwt-Frame"] readyState: ' + iframe.contentDocument.readyState);
 
             // If the readyState is complete we likely missed the load event so let's remove the loading screen
             // https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
-            if (iframe.contentDocument.readyState === 'complete') {
+            var userAgent = window.navigator.userAgent;
+            if (iframe.contentDocument.readyState === 'complete' ||
+                userAgent.indexOf('MSIE ') || Boolean(userAgent.match(/Trident.*rv\:11\./))) {
                 setTimeout(function () {
-                    removeLoader(newbody ? newbody : body, loader);
+                    removeElement(newbody ? newbody : body, loader, 'iframe[className="gwt-Frame"] loaded');
+                    removeElement(body.parentElement, body);
                 }, 3000);
             } else {
                 iframe.contentWindow.addEventListener('load', function () {
-                    removeLoader(newbody ? newbody : body, loader);
+                    removeElement(newbody ? newbody : body, loader, 'iframe[className="gwt-Frame"] loaded');
+                    removeElement(body.parentElement, body);
                 });
             }
         }

@@ -3,8 +3,8 @@
     "version": "1.2.0",
     "scripts": {
         "build": "yarn test && yarn webpack && yarn webpack:manifest",
-        "webpack": "node --max_old_space_size=2048 ./node_modules/.bin/webpack",
-        "webpack:manifest": "node --max_old_space_size=2048 ./node_modules/.bin/webpack --manifest",
+        "webpack": "npx --node-arg=--max_old_space_size=2048 webpack",
+        "webpack:manifest": "npx --node-arg=--max_old_space_size=2048 webpack --manifest",
         "build:analyze": "yarn build --analyze",
         "build:production": "yarn test && yarn webpack -p && yarn webpack:manifest -p",
         "build:production-analyze": "yarn build -p --analyze",
