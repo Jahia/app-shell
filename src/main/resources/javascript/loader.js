@@ -99,9 +99,7 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             removeElement(body.parentElement, body);
         }
 
-        var iframe = getNewNode('IFRAME', 'gwt-Frame');
-
-        if (iframe) {
+        var removeLoader = function (iframe) {
             console.log('iframe[className="gwt-Frame"] readyState: ' + iframe.contentDocument.readyState);
 
             // If the readyState is complete we likely missed the load event so let's remove the loading screen
@@ -119,6 +117,19 @@ window.displayDXLoadingScreen = function (loadingMessages) {
                     removeElement(body.parentElement, body);
                 });
             }
+        };
+
+        var iframe = getNewNode('IFRAME', 'gwt-Frame');
+        if (iframe) {
+            removeLoader(iframe);
+        } else {
+            var checkExist = setInterval(function () {
+                iframe = getNewNode('IFRAME', 'gwt-Frame');
+                if (iframe) {
+                    clearInterval(checkExist);
+                    removeLoader(iframe);
+                }
+            }, 100);
         }
     });
 
