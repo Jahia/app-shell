@@ -51,14 +51,17 @@ module.exports = (env, argv) => {
                     query: {
                         plugins: [
                             'lodash',
-                            [
-                                'transform-imports', {
-                                    '@material-ui/icons': {
-                                        transform: '@material-ui/icons/${member}',
-                                        preventFullImport: true
-                                    }
+                            ['transform-imports', {
+                                '@material-ui/icons': {
+                                    transform: '@material-ui/icons/${member}',
+                                    preventFullImport: true
+                                },
+                                'mdi-material-ui': {
+                                    transform: 'mdi-material-ui/${member}',
+                                    preventFullImport: true
                                 }
-                            ]
+                            }],
+                            '@babel/plugin-syntax-dynamic-import'
                         ]
                     }
                 },
@@ -112,11 +115,9 @@ module.exports = (env, argv) => {
 
     if (!argv.manifest) {
         config.entry.commons = [path.resolve(__dirname, 'src/javascript/init')];
-        if (argv.mode === 'production') {
-            config.optimization.splitChunks = {
-                maxSize: 1000000
-            };
-        }
+        config.optimization.splitChunks = {
+            maxSize: 400000
+        };
         config.plugins.push(new CleanWebpackPlugin(path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}));
 
     } else {

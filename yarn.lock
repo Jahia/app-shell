@@ -711,10 +711,10 @@
     lodash "^4.17.10"
     zen-observable "^0.8.8"
 
-"@jahia/design-system-kit@^1.0.0-beta.20190605160644":
-  version "1.0.0-beta.20190605160644"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190605160644.tgz#662afae3d123c5a4cc4a267c8b6d0916fded49ec"
-  integrity sha512-3tLrfaOUOq75a0BU5SV4lNtnlHfO97Mf4q6fMILxwoN/rcnJiVmHJs81ajEQe0l8omojFaZp7gYk8hWx8wypiA==
+"@jahia/design-system-kit@^1.0.0-beta.20190607132632":
+  version "1.0.0-beta.20190607132632"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190607132632.tgz#aa762038e535570ea7dca928657ab7ce5e39a0e6"
+  integrity sha512-lNm4thKuTB2aM7f5r/CHnT9ZL/wBku8QLbNvB4R4S/Zu/io4Y96QJH8PMWn0WLqiRDtMgpADXGqpMv1hIK2elA==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
@@ -769,14 +769,15 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20190605160645":
-  version "1.0.0-beta.20190605160645"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20190605160645.tgz#256e1a55ed7935c8c1428fc73f6df8eca082a223"
-  integrity sha512-UTHU2LAHTz5UlQ3wSwLoXhtgBDILLSJi74GyPYgJJIjOYhjj7eMizznqkrQNjB12SALvOJFsRyaZngpOe1s0kw==
+"@jahia/react-material@^1.0.0-beta.20190607132633":
+  version "1.0.0-beta.20190607132633"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20190607132633.tgz#18f8fd7cc7e6e305ab101fa77b5207799f420ee3"
+  integrity sha512-GHP1uNANybgQoU+zHxF022Ab7WC/OKSyhlk3n5+vwVelehckQhm5Jg7aIklV3FJFKCsorqzADVcCEA/+PTVd/A==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
     react-i18next "^7.6.1"
+    react-loadable "^5.5.0"
     react-select "^2.4.2"
     recompose "^0.30.0"
 
@@ -5603,7 +5604,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   dependencies:
@@ -5836,6 +5837,13 @@ react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.1:
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-loadable@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.5.0.tgz#582251679d3da86c32aae2c8e689c59f1196d8c4"
+  integrity sha512-C8Aui0ZpMd4KokxRdVAm2bQtI03k2RMRNzOB+IipV3yxFTSVICv7WoUr5L9ALB5BmKO1iHgZtWM8EvYG83otdg==
+  dependencies:
+    prop-types "^15.5.0"
 
 react-pdf-js@^4.0.2:
   version "4.0.2"
