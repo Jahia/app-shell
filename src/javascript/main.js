@@ -8,11 +8,9 @@ import 'whatwg-fetch';
 
 // Jahia packages
 require('@jahia/apollo-dx');
-require('@jahia/ds-mui-theme');
 require('@jahia/design-system-kit');
 require('@jahia/i18next');
 require('@jahia/icons');
-require('@jahia/layouts');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
 require('@jahia/registry');
