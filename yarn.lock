@@ -782,10 +782,10 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20190607132633":
-  version "1.0.0-beta.20190607132633"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20190607132633.tgz#18f8fd7cc7e6e305ab101fa77b5207799f420ee3"
-  integrity sha512-GHP1uNANybgQoU+zHxF022Ab7WC/OKSyhlk3n5+vwVelehckQhm5Jg7aIklV3FJFKCsorqzADVcCEA/+PTVd/A==
+"@jahia/react-material@^1.0.0-beta.20190610173539":
+  version "1.0.0-beta.20190610173539"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20190610173539.tgz#f81d95c26f1ef9e3fede6c79c5692cfeb02c5c5e"
+  integrity sha512-uoECZ4Xm2NnKx6XBM/rtZYTrw7IBYePqXB3ird7cMcQwm9XNItJf7pe3OEd0B8/tGhJ19ftgaLlWgmynp6b1qw==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
