@@ -142,9 +142,12 @@ The packages provided by the module are those defined in `/dx-commons-webpack/sr
 
 ```
 require('@jahia/apollo-dx');
-require('@jahia/ds-mui-theme');
+require('@jahia/design-system-kit');
 require('@jahia/i18next');
-...
+require('@jahia/icons');
+require('@jahia/react-apollo');
+require('@jahia/react-material');
+require('@jahia/registry');
 ```
 
 [webpack-common-execution-sequence]: https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5QYXJ0aWNpcGFudCBicm93c2VyIGFzIEJyb3dzZXJcblBhcnRpY2lwYW50IHJlYWN0IGFzIEpTIEFwcFxuUGFydGljaXBhbnQgZXh0ZW5zaW9ucyBhcyBFeHRlbnNpb25zXG5QYXJ0aWNpcGFudCBsb2FkZXIgYXMgRFggQ29tbW9uXG4gXG5icm93c2VyLT4-cmVhY3Q6IHN0YXJ0XG5yZWFjdC0-PmxvYWRlcjogYm9vdHN0cmFwKG1vZHVsZXMgdG8gbG9hZClcbmxvYWRlci0-PmxvYWRlcjogTG9hZCBzaGFyZWQgcGFja2FnZXNcbmxvYWRlci0tPj5icm93c2VyOiBzaGFyZWQgcGFja2FnZXMgbG9hZGVkXG5sb2FkZXItPj5leHRlbnNpb25zOiBsb2FkIGV4dGVuc2lvbnNcbmV4dGVuc2lvbnMtLT4-YnJvd3NlcjogRXh0ZW5zaW9ucyBsb2FkZWRcbmxvYWRlci0-PnJlYWN0OiBsb2FkIHBhY2thZ2VzIGFwcGxpY2F0aW9uXG5yZWFjdC0tPj5icm93c2VyOiBhcHBsaWNhdGlvbiBMb2FkZWRcbk5vdGUgb3ZlciBicm93c2VyOiBSdW4gQXBwbGljYXRpb25cbiAgICAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ
