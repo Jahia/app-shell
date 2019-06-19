@@ -771,7 +771,7 @@
 
 "@jahia/apollo-dx@^1.0.0-beta.20190515122203":
   version "1.0.0-beta.20190613122950"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190613122950.tgz#3925f7bc25cf320fa2b50f03c3eabfba03b579c1"
+  resolved "https://npm.jahia.com/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20190613122950.tgz#3925f7bc25cf320fa2b50f03c3eabfba03b579c1"
   integrity sha512-+iilwoNiGpp1GIRXACEHHKVEbumzfAxgZHK/JNhNUZG79NXgJh73DtD/pH3OmZwOEOJHg7U5N8Ij7YE6rEmYfQ==
   dependencies:
     apollo-cache-inmemory "^1.5.1"
@@ -787,7 +787,7 @@
 
 "@jahia/apollo-dx@featureBACKLOG10163":
   version "1.0.0-featureBACKLOG10163.20190509133208"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-featureBACKLOG10163.20190509133208.tgz#0e9bf910451b9ea486a2122bf774b03f32755519"
+  resolved "https://npm.jahia.com/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-featureBACKLOG10163.20190509133208.tgz#0e9bf910451b9ea486a2122bf774b03f32755519"
   integrity sha512-mZnKeDzJqu40kBlKmj2mn4jjIalZ1DIpcol0wycsivFTXEJ7/lVWXQ8o2yodM/eWb3Uc6fgz2nTph2CYYC68Og==
   dependencies:
     apollo-cache-inmemory "^1.5.1"
@@ -803,7 +803,7 @@
 
 "@jahia/design-system-kit@^1.0.0-beta.20190613122950":
   version "1.0.0-beta.20190613122950"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190613122950.tgz#3c0c4d4b0fc1ca3ac4353d69b9f34fc0cf51d869"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190613122950.tgz#3c0c4d4b0fc1ca3ac4353d69b9f34fc0cf51d869"
   integrity sha512-ULwL6Q6q/RD27rX7Kd9J596Cl5/PDDssHYJQPEkJMgYi2GtTUbPI8X6w2peDGLX97Ktgtc8r1sOsjqedCctumg==
   dependencies:
     "@material-ui/core" "^3.9.3"
@@ -813,7 +813,7 @@
 
 "@jahia/eslint-config@^1.0.0-beta.20190605160644":
   version "1.0.0-beta.20190613122950"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2feslint-config/-/eslint-config-1.0.0-beta.20190613122950.tgz#e8ef64f277c9a0cba466da3ce11ca2812c98fbee"
+  resolved "https://npm.jahia.com/@jahia%2feslint-config/-/eslint-config-1.0.0-beta.20190613122950.tgz#e8ef64f277c9a0cba466da3ce11ca2812c98fbee"
   integrity sha512-SS1ECnG4X4yh3aEM4XqJ+uzX59+WiVdyrE0s24ylsF2wi5yipXipbbT6QeW3605xXzr1d6jUeUE1l2hghypwqg==
   dependencies:
     babel-eslint "^10.0.1"
@@ -826,7 +826,7 @@
 
 "@jahia/i18next@^1.0.0-beta.20190515122203":
   version "1.0.0-beta.20190613122950"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fi18next/-/i18next-1.0.0-beta.20190613122950.tgz#3781a435f1e38254ee26a0e33e2000725a5ef19b"
+  resolved "https://npm.jahia.com/@jahia%2fi18next/-/i18next-1.0.0-beta.20190613122950.tgz#3781a435f1e38254ee26a0e33e2000725a5ef19b"
   integrity sha512-OFT5klmBbgLYGlCZE8EAthgmXk26xAkIjRxp0f4TXmQEuPzuBgUb/fkg2t6Kz9mznojcjs31FSGUo3Eybj4ZBA==
   dependencies:
     i18next "^11.3.2"
@@ -835,7 +835,7 @@
 
 "@jahia/icons@^1.0.0-beta.20190515122203":
   version "1.0.0-beta.20190613122951"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2ficons/-/icons-1.0.0-beta.20190613122951.tgz#fb6ddade6fedcff6af63d1c6473142a2463ed16c"
+  resolved "https://npm.jahia.com/@jahia%2ficons/-/icons-1.0.0-beta.20190613122951.tgz#fb6ddade6fedcff6af63d1c6473142a2463ed16c"
   integrity sha512-+CXGRnVThWxVRUwoJqa/2wFCOwK5Ek7U4kiGOW6MKgeS4bODoUw16Z8vpjhMsLUI+Npb6yIr/iAK7JTMwqvTTw==
   dependencies:
     "@material-ui/icons" "^3.0.2"
@@ -844,7 +844,7 @@
 
 "@jahia/react-apollo@^1.0.0-beta.20190516124448":
   version "1.0.0-beta.20190613122951"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190613122951.tgz#ba2d34ee73e0e509e05ad03fb3d672a5ddbe46da"
+  resolved "https://npm.jahia.com/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190613122951.tgz#ba2d34ee73e0e509e05ad03fb3d672a5ddbe46da"
   integrity sha512-ntvNL5RnBpJcwlGDZy+oo9jRTimKTpUALKHXKkuCZs1vZ6SQsgqx4B+BOsxsKgUv/fGN9O2DbCLSIPLLNlVKPQ==
   dependencies:
     "@jahia/apollo-dx" featureBACKLOG10163
@@ -867,7 +867,7 @@
 
 "@jahia/registry@^1.0.0-beta.20190515122205":
   version "1.0.0-beta.20190613122952"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2fregistry/-/registry-1.0.0-beta.20190613122952.tgz#74d39c8b9e6c9d2bac809d8ca8feac53123d956c"
+  resolved "https://npm.jahia.com/@jahia%2fregistry/-/registry-1.0.0-beta.20190613122952.tgz#74d39c8b9e6c9d2bac809d8ca8feac53123d956c"
   integrity sha512-35R30/Vl97l6QToFA1NCVz4VPgQjuGYjoAW22ccBv5lRf7r+8bAXPpyP5xMgU7ZzZA7DRScT/WaupU4ruzVuyA==
   dependencies:
     lodash "^4.17.10"
