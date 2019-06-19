@@ -27,7 +27,7 @@
         "@jahia/i18next": "^1.0.0-beta.20190515122203",
         "@jahia/icons": "^1.0.0-beta.20190515122203",
         "@jahia/react-apollo": "^1.0.0-beta.20190619094311",
-        "@jahia/react-material": "^1.0.0-beta.20190619094306",
+        "@jahia/react-material": "^1.0.0-beta.20190619143104",
         "@jahia/registry": "^1.0.0-beta.20190515122205",
         "mdi-material-ui": "^5.10.0",
         "react": "^16.8.6",
