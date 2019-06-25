@@ -54,7 +54,7 @@
     </parent>
     <artifactId>dx-commons-webpack</artifactId>
     <name>dx-commons-webpack</name>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (dx-commons-webpack) for running on a Digital Experience Manager server.</description>
 
@@ -62,7 +62,7 @@
         <connection>scm:git:git@github.com:Jahia/dx-commons-webpack.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/dx-commons-webpack.git</developerConnection>
         <url>https://github.com/Jahia/dx-commons-webpack</url>
-        <tag>HEAD</tag>
+        <tag>1_0_1</tag>
     </scm>
 
     <properties>
