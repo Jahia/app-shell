@@ -826,10 +826,10 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/react-apollo@^1.0.0-beta.20190619094311":
-  version "1.0.0-beta.20190619094311"
-  resolved "https://npm.jahia.com/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190619094311.tgz#733cf9a3111c00bdb68d025ec0d573932b4d22fa"
-  integrity sha512-OcyodIQM/vuDmLn44C1uaPHcgP5Ep2HBvIAUXGQWlfcYMVvDQSExrVUHi402kPDprfw6B1a3efTrpARXvcWd1Q==
+"@jahia/react-apollo@^1.0.0-beta.20190626140326":
+  version "1.0.0-beta.20190626140326"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20190626140326.tgz#19619e126c199400280c5b3156ce9cd98cf75570"
+  integrity sha512-Og2ON2k+DAvXic7D8Nvvzj016x9EWCJ8FDNSmFmGcjwWkZmkGvocEcI9N8dpWRwFXWOSCKa0nGXdUWzBby9yRg==
   dependencies:
     "@jahia/apollo-dx" "^1.0.0-beta.1"
     apollo-client "^2.5.1"
@@ -837,10 +837,10 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20190619143104":
-  version "1.0.0-beta.20190619143104"
-  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190619143104.tgz#4df6333e58317083f0dde3cf77330f7e46612d52"
-  integrity sha512-soaPTPlPJoRLC3tb2wvW9BS4wqqEJvjzSal9fwJLG/Rvf0xs4UZfgH90zGARgufAEJ84ODwB0HUK7nbk7jqoTg==
+"@jahia/react-material@^1.0.0-beta.20190626140323":
+  version "1.0.0-beta.20190626140323"
+  resolved "http://npm.int.jahia.com:4873/@jahia%2freact-material/-/react-material-1.0.0-beta.20190626140323.tgz#b04c7389c7d0248fc2a85ebd86579b00a86fea61"
+  integrity sha512-FBUNPSTabADVs7OhHlOLAA/ckAIMMjLboJ0qoghCL5uhpn+N1ShgRLQSSHV3TpEz4vOX7VPn/BvYFr029DdpSQ==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.1"
