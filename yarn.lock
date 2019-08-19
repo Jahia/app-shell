@@ -798,15 +798,16 @@
     lodash "^4.17.13"
     zen-observable "^0.8.8"
 
-"@jahia/design-system-kit@^1.0.0-beta.20190724063717":
-  version "1.0.0-beta.20190724063717"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190724063717.tgz#97b73af4de6feec08a70eb80b72cb71e91a2b733"
-  integrity sha512-Im6C4oX0QufIY4NhnVW5aV+BhhDEfx/xycnDSh+L1LsDdrS7ubFv5VVwdt/nOeU0t3cpJ1WYN0b6eS1DNQdsVQ==
+"@jahia/design-system-kit@^1.0.0-beta.20190819140611":
+  version "1.0.0-beta.20190819140611"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20190819140611.tgz#dd37510767f56f5099937e810f546b67c63d267d"
+  integrity sha512-m4jlu6GFPl4BWcSUStXu+EbEUU5/Fa2jJNrNC7W+GaU6ca3FDV705cYrkjpo9xvsPTfs1g461AIdtp9J45uORQ==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
     lodash "^4.17.13"
     prop-types "^15.6.2"
+    react-i18next "^7.6.1"
 
 "@jahia/eslint-config@^1.0.0-beta.20190724063717":
   version "1.0.0-beta.20190724063717"
