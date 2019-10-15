@@ -23,7 +23,7 @@
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
         "@jahia/apollo-dx": "^1.0.0-beta.20190724063717",
-        "@jahia/design-system-kit": "^1.0.0-beta.20190926160326",
+        "@jahia/design-system-kit": "^1.0.0-beta.20191015154710",
         "@jahia/i18next": "^1.0.0-beta.20190724063717",
         "@jahia/icons": "^1.0.0-beta.20190724063718",
         "@jahia/react-apollo": "^1.0.0-beta.20190920132341",
