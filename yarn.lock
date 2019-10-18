@@ -798,10 +798,10 @@
     lodash "^4.17.13"
     zen-observable "^0.8.8"
 
-"@jahia/design-system-kit@^1.0.0-beta.20191016142224":
-  version "1.0.0-beta.20191016142224"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20191016142224.tgz#19a16d468d319274d490c48aa4dce25356df03ac"
-  integrity sha512-+J7Lv+xxzSopKUny41chtKufeDu6PmfmgInAfkafvaQbpPUCTBXEr+j5BVDBPI0DDzyl5lZ23O5sBX/LFZsP7Q==
+"@jahia/design-system-kit@^1.0.0-beta.20191018081947":
+  version "1.0.0-beta.20191018081947"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20191018081947.tgz#4604fa64adacd72494996db5c606cf1c3d3b9d8a"
+  integrity sha512-0N+TfPPP6ZUANN/I6ZkvMcCpE2SOEX0CcGSIEXzwGpzCz6cgNaOF/yE8v74Q28yC4Yo3BvYwIR+5eHm33smBEg==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
