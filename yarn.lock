@@ -798,10 +798,10 @@
     lodash "^4.17.13"
     zen-observable "^0.8.8"
 
-"@jahia/design-system-kit@^1.0.0-beta.20191024120025":
-  version "1.0.0-beta.20191024120025"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20191024120025.tgz#2618a2974814cad46644ade57cb34a18b493bb73"
-  integrity sha512-t1qvDblaR0TCpLr/azFqtsqXsBU9SjFWn5zA/3HUxP9oLPdafYPLCbbD2+qb2nQ2/FC1VSLMtzgWBo+vTRboMg==
+"@jahia/design-system-kit@^1.0.0-beta.20191029133938":
+  version "1.0.0-beta.20191029133938"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20191029133938.tgz#5d75403face71ec6b0ee5f64cb5f32049d950cb0"
+  integrity sha512-3lU4HWDO/IJtOnQHWFaAu+CRIS+ElDgGhFOANBvyLZ1HXQ+l5oytpDcYc/ksUN1vHGKK5q+HwKB1J8pWwzIv0g==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
@@ -852,10 +852,10 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20191024135845":
-  version "1.0.0-beta.20191024135845"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20191024135845.tgz#420d6b47b1d5afe83a86b409b5c70aecb13a9a51"
-  integrity sha512-sv38MDaXuK+Zgv+lGlxfKTSvVr1DRA2xBa/C1o9ZrQqLXoA/50HPkNd/82H5C+lyFdBDYJu8SllVx9K8l0fKOw==
+"@jahia/react-material@^1.0.0-beta.20191029133938":
+  version "1.0.0-beta.20191029133939"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20191029133939.tgz#f3974193f7527f84f3ff84ea691851132dbd4218"
+  integrity sha512-tLZ72xpQbxNhKhZax1iWkPsAYWMuIH0Ol951qJ1Qzue8efSiJSkCTjDFAlFvDmLgAdkV24g9mn7Do7YNz1SHKA==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
