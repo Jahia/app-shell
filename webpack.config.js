@@ -94,20 +94,6 @@ module.exports = (env, argv) => {
 
     config.devtool = (argv.mode === 'production') ? 'source-map' : 'eval-source-map';
 
-    if (argv.watch) {
-        config.module.rules.push({
-            test: /\.jsx?$/,
-            include: [path.join(__dirname, 'src')],
-            exclude: /node_modules/,
-            enforce: 'pre',
-            loader: 'eslint-loader',
-            options: {
-                quiet: true,
-                fix: true
-            }
-        });
-    }
-
     if (argv.analyze) {
         config.devtool = 'source-map';
         config.plugins.push(new BundleAnalyzerPlugin());

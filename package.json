@@ -2,18 +2,22 @@
     "name": "@jahia/dx-commons-webpack",
     "version": "1.2.0",
     "scripts": {
-        "build": "yarn test && yarn webpack && yarn webpack:manifest",
+        "build": "yarn lint && yarn webpack && yarn webpack:manifest",
         "webpack": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "webpack:manifest": "yarn webpack --manifest",
         "build:analyze": "yarn webpack --analyze",
-        "build:production": "yarn test && yarn webpack -p && yarn webpack:manifest -p",
+        "build:production": "yarn lint && yarn webpack -p && yarn webpack:manifest -p",
         "build:production-analyze": "yarn webpack -p --analyze",
         "watch": "yarn webpack --watch",
         "clean": "rimraf *.log src/main/resources/javascript/apps",
         "clean:all": "yarn clean && rimraf node_modules node target",
-        "test": "yarn lint",
         "lint": "eslint --ext js,jsx .",
         "lint:fix": "eslint --ext js,jsx --fix ."
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn lint"
+        }
     },
     "description": "DX Commons Javascript loader",
     "main": "index.js",
@@ -55,6 +59,7 @@
         "eslint": "^5.9.0",
         "eslint-loader": "2.1.2",
         "file-loader": "^3.0.1",
+        "husky": "^3.0.5",
         "null-loader": "^0.1.1",
         "rimraf": "^2.6.2",
         "style-loader": "^0.23.1",
