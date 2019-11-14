@@ -14,6 +14,7 @@ require('@jahia/icons');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
 require('@jahia/registry');
+require('@jahia/moonstone');
 
 // eslint-disable-next-line
 __webpack_public_path__ =

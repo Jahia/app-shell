@@ -30,6 +30,7 @@
         "@jahia/design-system-kit": "^1.0.0-beta.20191029133938",
         "@jahia/i18next": "^1.0.0-beta.20190724063717",
         "@jahia/icons": "^1.0.0-beta.20190724063718",
+        "@jahia/moonstone": "^0.2.0",
         "@jahia/react-apollo": "^1.0.0-beta.20190920132341",
         "@jahia/react-material": "^1.0.0-beta.20191029133938",
         "@jahia/registry": "^1.0.0-beta.20190724063719",
