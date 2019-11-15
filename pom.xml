@@ -54,7 +54,7 @@
     </parent>
     <artifactId>dx-commons-webpack</artifactId>
     <name>dx-commons-webpack</name>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.4.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (dx-commons-webpack) for running on a Digital Experience Manager server.</description>
 

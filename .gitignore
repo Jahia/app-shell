@@ -13,3 +13,7 @@ yarn-error.log
 /.externalToolBuilders
 graphql.config.json
 graphql.schema.json
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
