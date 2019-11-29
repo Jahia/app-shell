@@ -23,7 +23,7 @@
     "main": "index.js",
     "repository": "git@github.com:Jahia/dx-commons-webpack.git",
     "author": "Jahia Core Team <core@jahia.com>",
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE.txt FILE",
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
         "@jahia/apollo-dx": "^1.0.0-beta.20190724063717",
