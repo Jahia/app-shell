@@ -1,12 +1,12 @@
 /* Core dependencies */
-import 'react';
-import 'react-dom';
-import 'react-router';
-import 'react-router-dom';
-import 'react-apollo';
-import 'redux';
-import 'rxjs';
-import 'whatwg-fetch';
+require('react');
+require('react-dom');
+require('react-router');
+require('react-router-dom');
+require('react-apollo');
+require('redux');
+require('rxjs');
+require('whatwg-fetch');
 
 // Jahia packages
 require('@jahia/apollo-dx');
