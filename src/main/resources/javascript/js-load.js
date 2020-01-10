@@ -1,12 +1,9 @@
 /* eslint-disable */
 
 function bootstrap(js) {
-    console.log('Bootstrapping...');
-
     var scriptTag = document.createElement('script');
     scriptTag.src = window.contextJsParameters.contextPath + '/modules/dx-commons-webpack/javascript/apps/commons.bundle.js';
     scriptTag.onload = function () {
-        console.log('Common loaded');
         // this ID matches the export entry of 'init.js' in common.bundle.js (./src/javascript/init.js = c3442d1a6432b2a12854)
         dx_commons_export('c3442d1a6432b2a12854').default(js);
     };
