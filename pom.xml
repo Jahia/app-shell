@@ -173,6 +173,18 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <_dsannotations>
+                            org.jahia.modules.dxwebpack.Resources
+                        </_dsannotations>
+                    </instructions>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
