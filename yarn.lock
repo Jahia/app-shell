@@ -713,6 +713,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.3.1", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5":
+  version "7.7.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.7.tgz#194769ca8d6d7790ec23605af9ee3e42a0aa79cf"
+  integrity sha512-uCnC2JEVAu8AKB5do1WRIsvrdJ0flYx/A/9f/6chdacnEZ7LmavjdsDXr5ksYBegxtuTPR5Va9/+13QF/kFkCA==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.7.4.tgz#428a7d9eecffe27deac0a98e23bf8e3675d2a77b"
@@ -793,7 +800,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@jahia/apollo-dx@^1.0.0-beta.1", "@jahia/apollo-dx@^1.0.0-beta.20190724063717":
+"@jahia/apollo-dx@^1.0.0-beta.1":
   version "1.0.0-beta.20191108125240"
   resolved "https://npm.jahia.com/@jahia%2fapollo-dx/-/apollo-dx-1.0.0-beta.20191108125240.tgz#f412fcbc93880ddb58e4e968bff70d9ea25f7bd6"
   integrity sha512-KlhXwVq11PwDDcGLFzPEzQvKXA3Upi7lPB+nFxb3LZtirxaXBueRruZQhZGwe1uhJ724yxmZ9YNpdHD1fT4Qaw==
@@ -809,22 +816,37 @@
     lodash "^4.17.13"
     zen-observable "^0.8.8"
 
-"@jahia/design-system-kit@^1.0.0-beta.20191029133938":
-  version "1.0.0-beta.20191108125240"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.0.0-beta.20191108125240.tgz#1e5f27081934fc2e2aedf28829d4f1214081c270"
-  integrity sha512-aFrA3t6C4HKNA7yF6q3xmksorXBiIZj9HD5W3RYO/xzG1/zn1c2uZClB5BVpllRqKPsmMiA7tysaFYXEIAufNw==
+"@jahia/apollo-dx@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.jahia.com/@jahia%2fapollo-dx/-/apollo-dx-1.1.0.tgz#e791670895ad475b6816bc176546251c20ba7b6f"
+  integrity sha512-bVn5fR8xVpp8uctX9FsKpFA/kEeIzO8P8r4Osg+5xXpaNBhy3ZaZmK4gYhGbLxCJEjWZFRMhUGRYXtgfzPyjvQ==
+  dependencies:
+    apollo-cache-inmemory "^1.5.1"
+    apollo-client "^2.5.1"
+    apollo-link "^1.2.11"
+    apollo-link-batch-http "^1.2.11"
+    apollo-link-http "^1.5.14"
+    apollo-utilities "^1.0.13"
+    graphql "^14.0.2"
+    graphql-tag "^2.9.2"
+    lodash "^4.17.13"
+    zen-observable "^0.8.8"
+
+"@jahia/design-system-kit@^1.1.2":
+  version "1.1.2"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.1.2.tgz#8d18b4664c1230ec2f7cea9b3dfc99fabb7e59f3"
+  integrity sha512-ydPEmiQyZf4KwGLZP0qYVC0WZwVZ/+3/ZW65+NUeQodY3PC2Pwt9eTJPBj31DZVJUDVkXuiqzUpgqMF7qaWGYw==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
     lodash "^4.17.13"
     prop-types "^15.6.2"
-    react-i18next "^7.6.1"
     react-number-format "^4.2.0"
 
-"@jahia/eslint-config@^1.0.0-beta.20191108125240":
-  version "1.0.0-beta.20191108125240"
-  resolved "https://npm.jahia.com/@jahia%2feslint-config/-/eslint-config-1.0.0-beta.20191108125240.tgz#b8e1dd7ab9740e8de549ba200a5e73b730db5803"
-  integrity sha512-djcHGxAi9swm358jCjlG8gnGGfvMx/MRKRuVmOQHQBn35HZ/A9wdwWie9kEq4pWmhTymIH4yv02n71txwD+Sdw==
+"@jahia/eslint-config@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.jahia.com/@jahia%2feslint-config/-/eslint-config-1.1.0.tgz#1b5d8835b516f2ad572e66484b410fab23c29373"
+  integrity sha512-Be8Jgx9B/b4HS1KidUm2txWwqVvBFL/3sFuOAVy5MtDUpnVEQ/GSsRc3rXdNElMM5SoAvazCzLTTk4FAc9Ggqw==
   dependencies:
     babel-eslint "^10.0.1"
     eslint "^6.6.0"
@@ -834,28 +856,19 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.2.0"
 
-"@jahia/i18next@^1.0.0-beta.20190724063717":
-  version "1.0.0-beta.20191108125240"
-  resolved "https://npm.jahia.com/@jahia%2fi18next/-/i18next-1.0.0-beta.20191108125240.tgz#591c6e65a9c8783a3ef81895b6bc02fb9858f9e3"
-  integrity sha512-MQvgxZAWBCZaRvnh7KNHwDjQy74+RciLBTlFHBiOcxgIc1HNBO7GQGjblioUf1YWQE4h/ufEyjDLjib90MXjRQ==
-  dependencies:
-    i18next "^11.3.2"
-    i18next-chained-backend "^0.1.2"
-    i18next-xhr-backend "^1.5.1"
-
-"@jahia/icons@^1.0.0-beta.20190724063718":
-  version "1.0.0-beta.20191108125243"
-  resolved "https://npm.jahia.com/@jahia%2ficons/-/icons-1.0.0-beta.20191108125243.tgz#0a6c3b938166f8ecbc3428e1c56abb7a8f21e7d6"
-  integrity sha512-SqDvMu6DRF6BKBgal5Gn0HU+lFt5epB0J43cQSgU+cQhpNuVT7sMNB8iiO5K/swISUUHu8NgVh0ypsT54eLK9A==
+"@jahia/icons@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.jahia.com/@jahia%2ficons/-/icons-1.1.0.tgz#cc921c3bf685dfe212bb2afb9e4a697ff4820405"
+  integrity sha512-rPYFosnhtJk/XrJ9zdHxjA6DfxxehM3YScYepAtWojFxKYu76QFhrGeQKaAX9cUxOmHSz1qyZv3ZU18fNZcBCA==
   dependencies:
     "@material-ui/icons" "^3.0.2"
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/react-apollo@^1.0.0-beta.20190920132341":
-  version "1.0.0-beta.20191108125247"
-  resolved "https://npm.jahia.com/@jahia%2freact-apollo/-/react-apollo-1.0.0-beta.20191108125247.tgz#f9ab7797fb65b3d646b44198453f86c6ed5d365a"
-  integrity sha512-m1pB7V8OSldoX3aJDa5ey5i/AJC+PVQpE6WspOmmDySaXwe4O+r+8DtwnSIkBM35QR4Bhfji44q+mG/klCUyIQ==
+"@jahia/react-apollo@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.jahia.com/@jahia%2freact-apollo/-/react-apollo-1.1.0.tgz#5043ca512457dce831b1e692205b0583ada462f1"
+  integrity sha512-5/0B+fzg8VLnejQMnHWzVnBi8Lg0B89xf/ZY3ZIcOIiykVoEPkJNjUvoz2zJsyCOsMMbYJrbXK9YO9Vf0H6dpw==
   dependencies:
     "@jahia/apollo-dx" "^1.0.0-beta.1"
     apollo-client "^2.5.1"
@@ -863,14 +876,13 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.0.0-beta.20191213143803":
-  version "1.0.0-beta.20191213143803"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.0.0-beta.20191213143803.tgz#0e8c8004592839bfe8d78189352a6d9ca2fb7660"
-  integrity sha512-gILeUzpdCz1uPNQwDlRKSenI88i7kX/zbWei+lV1eZXzcXA1zv0xXOyQxBArMpV/nK8omoH/60jWbc8MPEyUiQ==
+"@jahia/react-material@^1.1.2":
+  version "1.1.2"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.1.2.tgz#9d2738e2b591d5ae20feb41d7aa2f1010c39c9a0"
+  integrity sha512-IBLYlnO2hWDp25jOewzjqeFbMVey1YCoJKWfL5TYKTq8RGChipRSlPlul9a/q/BDKD8DSELAov6zFCcWkP+xHA==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
-    react-i18next "^7.6.1"
     react-loadable "^5.5.0"
     react-select "^2.4.2"
     recompose "^0.30.0"
@@ -3495,20 +3507,26 @@ hyphenate-style-name@^1.0.2:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
-i18next-chained-backend@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/i18next-chained-backend/-/i18next-chained-backend-0.1.2.tgz#f7ea05c75a28dabd4b8664406b78509555508241"
-  integrity sha512-UdX1ZpFFchK3hvF9/BBh8+MlaLhTeg7rYeWs6yJjDGA2DyL91pWHf+adfyccP1IvFuVNti9f/Z+ABlDI4dnnXg==
+i18next-chained-backend@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/i18next-chained-backend/-/i18next-chained-backend-2.0.1.tgz#762f78b30aafc5cab9f85f520f8281172380d1a1"
+  integrity sha512-IKLRCJ767tPWd3nKQMbcqbjd/tHcv+DjFIkaNd1yJSdnS6PME4lvCRYx+gl3gMMMbCL0r+l1bvRVBkTkRRXGVQ==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
 
-i18next-xhr-backend@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-1.5.1.tgz#50282610780c6a696d880dfa7f4ac1d01e8c3ad5"
-  integrity sha512-9OLdC/9YxDvTFcgsH5t2BHCODHEotHCa6h7Ly0EUlUC7Y2GS09UeoHOGj3gWKQ3HCqXz8NlH4gOrK3NNc9vPuw==
+i18next-xhr-backend@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.2.2.tgz#769124441461b085291f539d91864e3691199178"
+  integrity sha512-OtRf2Vo3IqAxsttQbpjYnmMML12IMB5e0fc5B7qKJFLScitYaXa1OhMX0n0X/3vrfFlpHL9Ro/H+ps4Ej2j7QQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
 
-i18next@^11.3.2:
-  version "11.10.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.10.2.tgz#e5f10346f6320ecf15595419926c25255381a56c"
-  integrity sha512-1rowdX8PqrvsdFhYb3v0A/LlIHLQL1HTa4ia29IzhvNAg2fesNV7R1jXibWLmLQdz3FfTB8RuqSqDEjIawXruA==
+i18next@^19.0.3:
+  version "19.0.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.0.3.tgz#31fd3165762d9802e08a2a86932db4eff5c862e9"
+  integrity sha512-Ru4afr++b4cUApsIBifcMYyWG9Nx8wlFdq4DuOF+UuoPoQKfuh0iAVMekTjs6w1CZLUOVb5QZEuoYRLmu17EIA==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
@@ -5340,14 +5358,13 @@ react-file-viewer@^1.1.0:
     three "0.85.2"
     xlsx "^0.10.1"
 
-react-i18next@^7.6.1:
-  version "7.13.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.13.0.tgz#a6f64fd749215ec70400f90da6cbde2a9c5b1588"
-  integrity sha512-35M+MZFPqHwVIas7tXWQKFrf+ozCJukNplUTiGqL8mczSk+VRBsHxxXuuQKRkz/4CcWkONGWbp/AzxfM6wZncg==
+react-i18next@^11.2.7:
+  version "11.2.7"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.2.7.tgz#d0dd61ae6127589e316c6293fc948fe413c63580"
+  integrity sha512-BBm6/ch6jgvpIBwyitNd0G7Z49+wNeyJ6x0rZFcXX6NPrla2GuDGH+oKSjmYRg8IqtL6aG9CwWb06YJCrXbk6w==
   dependencies:
-    hoist-non-react-statics "^2.3.1"
+    "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
-    prop-types "^15.6.0"
 
 react-input-autosize@^2.2.1:
   version "2.2.2"

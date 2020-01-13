@@ -9,11 +9,11 @@ import 'whatwg-fetch';
 // Jahia packages
 require('@jahia/apollo-dx');
 require('@jahia/design-system-kit');
-require('@jahia/i18next');
 require('@jahia/icons');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
 require('@jahia/registry');
+require('./i18n');
 
 // eslint-disable-next-line
 __webpack_public_path__ =
@@ -22,7 +22,6 @@ __webpack_public_path__ =
 
 function jsload(path) {
     return new Promise(resolve => {
-        console.log(`Load ${path}`);
         var scriptTag = document.createElement('script');
         scriptTag.src = window.contextJsParameters.contextPath + path;
         scriptTag.onload = function () {
@@ -40,8 +39,7 @@ export default function (js) {
     let jsloads = js.slice(0, js.length - 1).map(path => {
         return jsload(path);
     });
-    Promise.all(jsloads).then(path => {
-        console.log(`${path} loaded`);
+    Promise.all(jsloads).then(() => {
         let appJs = js.slice(js.length - 1);
         jsload(appJs);
     });
