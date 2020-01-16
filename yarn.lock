@@ -1586,14 +1586,15 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone@^0.3.0":
-  version "0.3.0"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.3.0.tgz#e7ababbf0f07b0b0f610708dd362a584f8d4990d"
-  integrity sha512-Wc5PF5VClg0czAxAMqkDuP2SOHFTSaoAWF2FhOwJaPxQmtIal/oGUCWv2O8mvplGVbZFVwseEO2FN+LxxqWo3A==
+"@jahia/moonstone@^0.4.0":
+  version "0.4.1"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.4.1.tgz#5b8ba18fa525d799eebb3005d8cf0cba7a1de05b"
+  integrity sha512-JQL5EcOrTdT/ukY7KmGXMzc0lU0HTJxhDjlN3dTC/WWHlA6jzTOR26GvotEn+ry/g9SBLpz8cuspIjI1R5Rvgw==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
     prop-types "^15.7.2"
+    re-resizable "^6.1.0"
 
 "@jahia/react-apollo@^1.1.0":
   version "1.1.0"
@@ -3938,6 +3939,11 @@ fast-levenshtein@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
+
+fast-memoize@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/fast-memoize/-/fast-memoize-2.5.1.tgz#c3519241e80552ce395e1a32dcdde8d1fd680f5d"
+  integrity sha512-xdmw296PCL01tMOXx9mdJSmWY29jQgxyuZdq0rEHMu+Tpe1eOEtCycoG6chzlcrWsNgpZP7oL8RiQr7+G6Bl6g==
 
 fastparse@^1.1.1:
   version "1.1.2"
@@ -6429,6 +6435,13 @@ rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+re-resizable@^6.1.0:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.1.1.tgz#7ff7cfe92c0b9d8b0bceaa578aadaeeff8931eaf"
+  integrity sha512-ngzX5xbXi9LlIghJUYZaBDkJUIMLYqO3tQ2cJZoNprCRGhfHnbyufKm51MZRIOBlLigLzPPFKBxQE8ZLezKGfA==
+  dependencies:
+    fast-memoize "^2.5.1"
 
 react-apollo@^2.1.3, react-apollo@^2.5.3:
   version "2.5.8"

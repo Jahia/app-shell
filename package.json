@@ -31,7 +31,7 @@
         "@jahia/icons": "^1.1.0",
         "@jahia/react-apollo": "^1.1.0",
         "@jahia/react-material": "^1.1.2",
-        "@jahia/moonstone": "^0.3.0",
+        "@jahia/moonstone": "^0.4.0",
         "@jahia/registry": "^1.0.0-beta.20190724063719",
         "i18next": "^19.0.3",
         "i18next-chained-backend": "^2.0.1",
