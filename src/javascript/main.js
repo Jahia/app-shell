@@ -26,7 +26,7 @@ __webpack_public_path__ =
 
 function jsload(path) {
     return new Promise(resolve => {
-        console.log(`Load ${path}`);
+        console.debug(`Load ${path}`);
         var scriptTag = document.createElement('script');
         scriptTag.src = window.contextJsParameters.contextPath + path;
         scriptTag.onload = function () {
@@ -45,7 +45,7 @@ export default function (js) {
         return jsload(path);
     });
     Promise.all(jsloads).then(path => {
-        console.log(`${path} loaded`);
+        console.debug(`${path} loaded`);
         let appJs = js.slice(js.length - 1);
         jsload(appJs);
     });
