@@ -910,8 +910,8 @@
 
 "@jahia/moonstone@^0.5.0":
   version "0.5.0"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.5.0.tgz#8da8ed22304804bce89a9ce0d1d3b2047ff781ca"
-  integrity sha512-mNTpElr+ZCWC5ix9r99ig7KRB5xMnk6VIYBbLF4e0V5LM55RzoI/DrS2oga0JIbPJna3tp66hyzVciakszDm+w==
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.5.0.tgz#313f32b031e9c2a625c29f1c0a9b90189d1aee6c"
+  integrity sha512-2YcU5Hhnd2blLABk1aAqxdL08do6vvNs5i9Y1qO5HAPI2Zbr8o+vuwFCwfydVjG8g4prbHatuoQVJV8iw5HydQ==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
