@@ -930,10 +930,10 @@
     prop-types "^15.6.1"
     react-apollo "^2.5.3"
 
-"@jahia/react-material@^1.1.2":
-  version "1.1.2"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.1.2.tgz#9d2738e2b591d5ae20feb41d7aa2f1010c39c9a0"
-  integrity sha512-IBLYlnO2hWDp25jOewzjqeFbMVey1YCoJKWfL5TYKTq8RGChipRSlPlul9a/q/BDKD8DSELAov6zFCcWkP+xHA==
+"@jahia/react-material@^1.1.3":
+  version "1.1.3"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-1.1.3.tgz#4b3619eb04dd979ca027b84add8117e15f1bc6bd"
+  integrity sha512-R5jSKg9kuXK5IZtkevYIQGnj9VSE1TxnKfXpxZ6NlQA+XP873u6FjahxJDjiv90pXFQHjwoKrqjT9CPBv+1e5Q==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
