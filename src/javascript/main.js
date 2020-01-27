@@ -15,8 +15,8 @@ require('@jahia/design-system-kit');
 require('@jahia/icons');
 require('@jahia/react-apollo');
 require('@jahia/react-material');
-require('@jahia/registry');
 require('@jahia/moonstone');
+require('@jahia/ui-extender');
 require('./i18n');
 
 // eslint-disable-next-line
