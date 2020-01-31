@@ -5,6 +5,7 @@ require('react-router');
 require('react-router-dom');
 require('react-apollo');
 require('react-i18next');
+require('react-redux');
 require('redux');
 require('rxjs');
 require('whatwg-fetch');
