@@ -3,6 +3,7 @@ require('react');
 require('react-dom');
 require('react-router');
 require('react-router-dom');
+require('graphql-tag');
 require('react-apollo');
 require('react-i18next');
 require('react-redux');
@@ -11,14 +12,15 @@ require('rxjs');
 require('whatwg-fetch');
 
 // Jahia packages
-require('@jahia/apollo-dx');
-require('@jahia/design-system-kit');
-require('@jahia/icons');
-require('@jahia/react-apollo');
-require('@jahia/react-material');
-require('@jahia/moonstone');
 require('@jahia/ui-extender');
+require('@jahia/moonstone');
+require('@jahia/data-helper');
 require('./i18n');
+require('./apollo/register');
+// DEPRECATED JAHIA PACKAGES
+require('@jahia/design-system-kit');
+require('@jahia/react-material');
+require('@jahia/icons');
 
 // eslint-disable-next-line
 __webpack_public_path__ =

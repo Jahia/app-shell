@@ -1,0 +1,1 @@
+{"__schema":{"types":[{"kind":"INTERFACE","name":"JCRNode","possibleTypes":[{"name":"JCRSite"},{"name":"VanityUrl"},{"name":"GenericJCRNode"}]},{"kind":"INTERFACE","name":"JCRItemDefinition","possibleTypes":[{"name":"JCRPropertyDefinition"},{"name":"JCRNodeDefinition"}]}]}}
