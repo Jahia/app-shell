@@ -945,10 +945,10 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.2.0"
 
-"@jahia/icons@^1.1.0":
-  version "1.1.0"
-  resolved "https://npm.jahia.com/@jahia%2ficons/-/icons-1.1.0.tgz#cc921c3bf685dfe212bb2afb9e4a697ff4820405"
-  integrity sha512-rPYFosnhtJk/XrJ9zdHxjA6DfxxehM3YScYepAtWojFxKYu76QFhrGeQKaAX9cUxOmHSz1qyZv3ZU18fNZcBCA==
+"@jahia/icons@^1.1.1":
+  version "1.1.1"
+  resolved "https://npm.jahia.com/@jahia%2ficons/-/icons-1.1.1.tgz#751fa6af79108fe9813987ebd9887e711b2687cd"
+  integrity sha512-uZQ29+CvnuyXwRPoJHoDuuEwU0Y/hEtzAnO+x3m2TvuZwkBqFmJEbEiVHF9ZtZUN0hQs6j2EoTl7bMIK6Ef+ow==
   dependencies:
     "@material-ui/icons" "^3.0.2"
     mdi-material-ui "^5.10.0"
