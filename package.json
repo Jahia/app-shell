@@ -29,7 +29,7 @@
         "@jahia/data-helper": "^0.0.5",
         "@jahia/design-system-kit": "^1.1.4",
         "@jahia/icons": "^1.1.1",
-        "@jahia/moonstone": "^0.8.2",
+        "@jahia/moonstone": "^0.9.0",
         "@jahia/react-material": "^2.0.0",
         "@jahia/ui-extender": "^0.3.0",
         "apollo-cache-inmemory": "^1.6.5",
