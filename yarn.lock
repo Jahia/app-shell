@@ -965,10 +965,10 @@
     re-resizable "^6.1.0"
     react-is "^16.12.0"
 
-"@jahia/react-material@^2.0.0":
-  version "2.0.0"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.0.0.tgz#c94f160fd6354ac6a0afe6dc49f233cd89c35b85"
-  integrity sha512-bo311/tn+3KQ/alq9cOV60GiOvVdfoXZE0U58dgU5FtITdgWwrPDYodE4P5mLJIpTUYg2TOWrv+WUqf53NykMg==
+"@jahia/react-material@^2.1.0":
+  version "2.1.0"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.0.tgz#479b194444e72f26a021e91e64b44c6b7eed9ad9"
+  integrity sha512-WCvspQmaqU1n+ltmOQ1muX3s5iC8JE6FDM+SvNSvsJuLk/8p5JPB/TaMHrdFKuQkLfeSyz1l4MXnZsjyKurang==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
