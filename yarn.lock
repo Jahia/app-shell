@@ -954,10 +954,10 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone@^0.9.0":
-  version "0.9.0"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.9.0.tgz#b5b1dc02e4a68f4dbc6e855f811cf34f955783f9"
-  integrity sha512-+LWgZFfvZyPDYOtuSiXQIDp481W6I1tiHeaWW/JuQi52nnzscEoIrogb9dpbYQg/o6D7UI/Rs155VqveL9OciQ==
+"@jahia/moonstone@^0.10.0":
+  version "0.10.0"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.10.0.tgz#0eaaf00fcb4fc841fca213454d06cd66ad0498fc"
+  integrity sha512-373hAjbhkZZuIxmW4WeWDjHtRvpjFW++Z+oIqZr5CDTgtbHszsivLnTmkqcVrhGHF19a+VfWpJFo3VrBb/dS8g==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
@@ -976,10 +976,10 @@
     react-select "^2.4.2"
     recompose "^0.30.0"
 
-"@jahia/ui-extender@^0.3.1":
-  version "0.3.1"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.3.1.tgz#8437ea83b2399842dd85f041ae419e7f451e831d"
-  integrity sha512-9lJoRNzT4M00zWui66TILDuJX3+qnJmEqtWbNOHNChnfw/Zfj6Cy/s75G6N2xeODl1rjfXhBF3D9TPwJfShWUg==
+"@jahia/ui-extender@^0.3.2":
+  version "0.3.2"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.3.2.tgz#21740a762433d34b7fc3faf577ca64e021f5cc11"
+  integrity sha512-CKwN4yqqX1juRQShCNTl8H95iLVV1oxfhG0FGRwG/eAPo2KhA4Ss5Bge0azFnCcV+8zf2VsKY+artRwvnrUJPw==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
