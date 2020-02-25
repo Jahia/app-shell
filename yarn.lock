@@ -954,16 +954,17 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone@^0.10.0":
-  version "0.10.0"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.10.0.tgz#0eaaf00fcb4fc841fca213454d06cd66ad0498fc"
-  integrity sha512-373hAjbhkZZuIxmW4WeWDjHtRvpjFW++Z+oIqZr5CDTgtbHszsivLnTmkqcVrhGHF19a+VfWpJFo3VrBb/dS8g==
+"@jahia/moonstone@^0.11.0":
+  version "0.11.0"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.11.0.tgz#ee6ffa2255649e137e2ae117f1d8857ed353800b"
+  integrity sha512-ZthChOLH6TThj/9jKC4hy3mwpF+p8gdleRikR4IrsnJeo4IjzT6Ks6PyhS/EsZzPY2yu0wbM+9054MHd3CicWA==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     re-resizable "^6.1.0"
     react-is "^16.12.0"
+    to-px "^1.1.0"
 
 "@jahia/react-material@^2.1.0":
   version "2.1.0"
@@ -5207,6 +5208,11 @@ parse-passwd@^1.0.0:
   resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
   integrity sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=
 
+parse-unit@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/parse-unit/-/parse-unit-1.0.1.tgz#7e1bb6d5bef3874c28e392526a2541170291eecf"
+  integrity sha1-fhu21b7zh0wo45JSaiVBFwKR7s8=
+
 parseurl@~1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
@@ -6683,6 +6689,13 @@ to-object-path@^0.3.0:
   integrity sha1-KXWIt7Dn4KwI4E5nL4XB9JmeF68=
   dependencies:
     kind-of "^3.0.2"
+
+to-px@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/to-px/-/to-px-1.1.0.tgz#b6b269ed5db0cc9aefc15272a4c8bcb2ca1e99ca"
+  integrity sha512-bfg3GLYrGoEzrGoE05TAL/Uw+H/qrf2ptr9V3W7U0lkjjyYnIfgxmVLUfhQ1hZpIQwin81uxhDjvUkDYsC0xWw==
+  dependencies:
+    parse-unit "^1.0.1"
 
 to-regex-range@^2.1.0:
   version "2.1.1"
