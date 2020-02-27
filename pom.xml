@@ -179,9 +179,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_dsannotations>
-                            org.jahia.modules.dxwebpack.Resources
-                        </_dsannotations>
+                        <_dsannotations>*</_dsannotations>
                     </instructions>
                 </configuration>
             </plugin>
