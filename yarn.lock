@@ -966,10 +966,10 @@
     react-is "^16.12.0"
     to-px "^1.1.0"
 
-"@jahia/react-material@^2.1.0":
-  version "2.1.0"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.0.tgz#479b194444e72f26a021e91e64b44c6b7eed9ad9"
-  integrity sha512-WCvspQmaqU1n+ltmOQ1muX3s5iC8JE6FDM+SvNSvsJuLk/8p5JPB/TaMHrdFKuQkLfeSyz1l4MXnZsjyKurang==
+"@jahia/react-material@^2.1.1":
+  version "2.1.1"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.1.tgz#13ed32f6d3576ff55a40963222c960b21d17cf95"
+  integrity sha512-b8QRMeQyNlsTFzNS7PJ255tGnZurt8PPAz5i+h2ZjMCAsqEuNK4ZBTAQYVdu/NOXufWMz1zfamd/RP+9xyYtzQ==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
