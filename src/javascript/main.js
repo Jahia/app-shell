@@ -59,7 +59,7 @@ export default function (js, appshellmode) {
 
                 // Render
                 ReactDOM.render(render(), document.getElementById(window.contextJsParameters.targetId));
-            }).catch((err) => {
+            }).catch(err => {
                 console.error('Encountered error during callback handling:', err);
             });
         });

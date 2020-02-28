@@ -1,4 +1,4 @@
-<%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<%@ page import="org.jahia.bin.Jahia" %><%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="contextPath" type="java.lang.String"--%>
 <%--@elvariable id="currentUser" type="org.jahia.services.usermanager.JahiaUser"--%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -40,6 +40,7 @@
 
 <script type="text/javascript">
     Object.assign(window.contextJsParameters, {
+        version: '<%= Jahia.VERSION %>',
         targetId: '${targetId}',
         contextPath: '${contextPath}',
         locale: '${currentResource.locale}',
