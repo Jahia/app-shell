@@ -59,8 +59,8 @@ export default function (js, appshellmode) {
 
                 // Render
                 ReactDOM.render(render(), document.getElementById(window.contextJsParameters.targetId));
-            }).catch(() => {
-                console.error('Encountered error during callback handling:', promises);
+            }).catch((err) => {
+                console.error('Encountered error during callback handling:', err);
             });
         });
     } else {
