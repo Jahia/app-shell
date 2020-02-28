@@ -18,6 +18,9 @@
     <script src="${contextPath}/modules/dx-commons-webpack/javascript/js-load.js"></script>
     <js:loader target="jahia-extends"/>
 
+    <internal:gwtGenerateDictionary/>
+    <internal:gwtInit/>
+    <internal:gwtImport module="empty"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_V8_en.css'/>" />
     <script>
         var anthraciteV8 = true;
@@ -26,10 +29,6 @@
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
-
-<internal:gwtGenerateDictionary/>
-<internal:gwtInit/>
-<internal:gwtImport module="empty"/>
 
 <c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
 <div id="${targetId}">loading..</div>
