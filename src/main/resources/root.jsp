@@ -43,7 +43,6 @@
         version: '<%= Jahia.VERSION %>',
         targetId: '${targetId}',
         contextPath: '${contextPath}',
-        locale: '${currentResource.locale}',
         user: {
             username: '${currentUser.name}',
             fullname: '${user:fullName(currentUser)}',
