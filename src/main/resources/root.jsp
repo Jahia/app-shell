@@ -39,8 +39,7 @@
 
 
 <script type="text/javascript">
-    window.contextJsParameters = window.contextJsParameters || {};
-    window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
+    Object.assign(window.contextJsParameters, {
         targetId: '${targetId}',
         contextPath: '${contextPath}',
         locale: '${currentResource.locale}',
