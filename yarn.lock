@@ -908,10 +908,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@jahia/data-helper@^0.0.7":
-  version "0.0.7"
-  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.7.tgz#aa8fcd45f0ae7fd97fe4ef59ada299ee2b15f8cb"
-  integrity sha512-zkvv9IIgHxTgmvWNDjJlp84n5hYGITQdFzlDox1D1Rby1WwTs0eAB8B0BJ6oNoaVp1G0WZZHBrA+jZi67bm3lQ==
+"@jahia/data-helper@^0.0.8":
+  version "0.0.8"
+  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.8.tgz#d049e1b2bfc941a89edda580bb4ad6ef53a48b39"
+  integrity sha512-G7WzKRFc7nelhWpW3Teupc9drYkTKBzoljITBI9lZoHUTE0TCxudkCrod42bi3prV1q52q6KlYGEkcWNtpFUFg==
   dependencies:
     apollo-cache "^1.3.4"
     apollo-client "^2.6.8"
@@ -954,10 +954,10 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone@^0.11.1":
-  version "0.11.1"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.11.1.tgz#000620e86dcc27328f9b758371df1c4e059d6513"
-  integrity sha512-5kU0/4OerJkGtXBH4h+cG3aJayxB8V10buKsGWE8rOY5+m6ChTx3ot2Qkp703bbrbPRAZw7z6cpxSxAfE7Y5FA==
+"@jahia/moonstone@^0.11.2":
+  version "0.11.2"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.11.2.tgz#483a341c0f920a89194a7daf89be75333e7c9fdf"
+  integrity sha512-6BXgFN7hLDqos4QAHejln34LZbXs6x87popcpj91BuM+LhLk9Xrj72XHkxvbNrg6qhykBoAmlPSbNokMTohBQg==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
@@ -977,12 +977,11 @@
     react-select "^2.4.2"
     recompose "^0.30.0"
 
-"@jahia/ui-extender@^0.3.2":
-  version "0.3.2"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.3.2.tgz#21740a762433d34b7fc3faf577ca64e021f5cc11"
-  integrity sha512-CKwN4yqqX1juRQShCNTl8H95iLVV1oxfhG0FGRwG/eAPo2KhA4Ss5Bge0azFnCcV+8zf2VsKY+artRwvnrUJPw==
+"@jahia/ui-extender@^0.3.5":
+  version "0.3.5"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.3.5.tgz#13b755898ca1f3a02539bafc5fef3378835b1a78"
+  integrity sha512-TPd49d2ubA0megAlDMYJcjCEVtReGiRoTDymASF4h5hE6ZKRN5q4E5ZAmNcfBlLUEMk706qzaoyYCsHgd40Tbw==
   dependencies:
-    lodash "^4.17.13"
     prop-types "^15.6.1"
     react "^16.12.0"
     rxjs "^6.5.3"
