@@ -50,12 +50,9 @@ import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
 import org.jahia.services.content.JCRSessionFactory;
-import org.jahia.services.content.decorator.JCRUserNode;
-import org.jahia.services.preferences.user.UserPreferencesHelper;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
-import org.jahia.utils.LanguageCodeConverters;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osgi.framework.Bundle;
@@ -72,29 +69,25 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Component(service = {javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class}, property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"})
 public class Main extends HttpServlet {
+    private static Logger logger = LoggerFactory.getLogger(Main.class);
+
     private static final String PACKAGE_JSON = "javascript/apps/package.json";
+    private static final String JAHIA_JSON = "javascript/apps/jahia.json";
     private static final String JAHIA = "jahia";
     private static final String APPS = "apps";
-    private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int slashIndex = request.getPathInfo().indexOf('/', 1);
-            String app = slashIndex == -1 ? request.getPathInfo().substring(1) : request.getPathInfo().substring(1, slashIndex);
+            String appName = slashIndex == -1 ? request.getPathInfo().substring(1) : request.getPathInfo().substring(1, slashIndex);
 
             JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
-            Locale uiLocale;
-            JCRUserNode userNode;
-            if (!JahiaUserManagerService.isGuest(currentUser)) {
-                userNode = JahiaUserManagerService.getInstance().lookupUserByPath(currentUser.getLocalPath());
-                uiLocale = UserPreferencesHelper.getPreferredLocale(userNode, LanguageCodeConverters.resolveLocaleForGuest(request));
-            } else {
+            if (JahiaUserManagerService.isGuest(currentUser)) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return;
             }
@@ -105,10 +98,10 @@ public class Main extends HttpServlet {
                     return Jahia.getContextPath();
                 }
             };
-            wrapper.setAttribute("appName", app);
-            setCustomAttributes(currentUser, uiLocale, wrapper);
+            wrapper.setAttribute("appName", appName);
+            setCustomAttributes(currentUser, wrapper);
 
-            List<String> scripts = getApplicationScripts(app, null);
+            List<String> scripts = getApplicationScripts(appName);
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             wrapper.getRequestDispatcher("/modules/dx-commons-webpack/root.jsp").include(wrapper, response);
@@ -117,7 +110,7 @@ public class Main extends HttpServlet {
         }
     }
 
-    private void setCustomAttributes(JahiaUser currentUser, Locale uiLocale, HttpServletRequestWrapper wrapper) throws JSONException {
+    private void setCustomAttributes(JahiaUser currentUser, HttpServletRequestWrapper wrapper) throws JSONException {
         wrapper.setAttribute("contextPath", Jahia.getContextPath());
         wrapper.setAttribute("currentUser", currentUser);
 
@@ -143,11 +136,11 @@ public class Main extends HttpServlet {
     }
 
 
-    public LinkedList<String> getApplicationScripts(String name, String version) throws JSONException, IOException {
+    public List<String> getApplicationScripts(String appName) throws JSONException, IOException {
         LinkedList<String> resources = new LinkedList<>();
 
         for (Bundle bundle : getPackages()) {
-            String jsBundle = getBundleScript(bundle, name);
+            String jsBundle = getBundleScript(bundle, appName);
             if (jsBundle != null) {
                 resources.addFirst("\"" + jsBundle + "\"");
             }
@@ -156,14 +149,14 @@ public class Main extends HttpServlet {
     }
 
     private List<Bundle> getPackages() {
-        return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && bundle.getResource(PACKAGE_JSON) != null).collect(Collectors.toList());
+        return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && (bundle.getResource(PACKAGE_JSON) != null || bundle.getResource(JAHIA_JSON) != null )).collect(Collectors.toList());
     }
 
-    private String getBundleScript(Bundle bundle, String moduleName) throws IOException, JSONException {
-        JSONObject pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON)));
-        boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(APPS) && pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).has(moduleName);
+    private String getBundleScript(Bundle bundle, String appName) throws IOException, JSONException {
+        JSONObject pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
+        boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(APPS) && pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).has(appName);
         if (hasExtend) {
-            return "/modules/" + bundle.getSymbolicName() + "/" + pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).getString(moduleName);
+            return "/modules/" + bundle.getSymbolicName() + "/" + pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).getString(appName);
         }
         return null;
     }
