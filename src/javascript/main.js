@@ -15,7 +15,7 @@ require('whatwg-fetch');
 const uiExtender = require('@jahia/ui-extender');
 require('@jahia/moonstone');
 require('@jahia/data-helper');
-require('./i18n');
+import i18n from './i18n/i18n';
 require('./apollo/register');
 // DEPRECATED JAHIA PACKAGES
 require('@jahia/design-system-kit');
@@ -42,6 +42,10 @@ const jsload = path => new Promise(resolve => {
 });
 
 export default function (js, appshellmode) {
+    window.jahia = {
+        uiExtender: uiExtender,
+        i18n: i18n
+    };
     if (appshellmode) {
         // Load main scripts for each bundle
         let jsloads = js.map(path => {
