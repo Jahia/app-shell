@@ -13,7 +13,7 @@ require('whatwg-fetch');
 
 // Jahia packages
 const uiExtender = require('@jahia/ui-extender');
-require('@jahia/moonstone');
+const moonstone = require('@jahia/moonstone');
 require('@jahia/data-helper');
 import i18n from './i18n/i18n';
 require('./apollo/register');
@@ -44,7 +44,8 @@ const jsload = path => new Promise(resolve => {
 export default function (js, appshellmode) {
     window.jahia = {
         uiExtender: uiExtender,
-        i18n: i18n
+        i18n: i18n,
+        moonstone: moonstone
     };
     if (appshellmode) {
         // Load main scripts for each bundle
