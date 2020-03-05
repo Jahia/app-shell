@@ -978,10 +978,10 @@
     react-select "^2.4.2"
     recompose "^0.30.0"
 
-"@jahia/ui-extender@^0.4.1":
-  version "0.4.1"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.1.tgz#b6f0e83b6d138190f304ac552357113301a6e756"
-  integrity sha512-OPz0kOUuRfxocEu/2hr/ttj9FPTXIJzlQEPz5OFE94Op2StxbyEgjmT6HXUz5jiaOEmFzTolZJmBlaE8wHmfaA==
+"@jahia/ui-extender@^0.4.2":
+  version "0.4.2"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.2.tgz#cd8c177e6a1067f2a1ef68b7dab668eacbe9a19e"
+  integrity sha512-kl6zGGAS68VoWUPw0zxHJc95R3/trpIa5NUFKxiPPn3jL1ayTHBvOf4ycBdhVrTplP/+zJSd8Ii1jzF5onsA1A==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
