@@ -15,17 +15,12 @@
 <head>
     <meta charset="utf-8">
     <title>Jahia</title>
-    <script src="${contextPath}/modules/dx-commons-webpack/javascript/js-load.js"></script>
-    <js:loader target="jahia-extends"/>
 
     <internal:gwtGenerateDictionary/>
     <internal:gwtInit/>
     <internal:gwtImport module="empty"/>
+
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_V8_en.css'/>" />
-    <script>
-        var anthraciteV8 = true;
-    </script>
-    <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
@@ -36,11 +31,13 @@
 <div id="gwt-root"></div>
 
 
-
+<script>window.anthraciteV8 = true;</script>
+<script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
+<script src="${contextPath}/modules/dx-commons-webpack/javascript/commons/jahia-commons.dll.js"></script>
+<script src="${contextPath}/modules/dx-commons-webpack/javascript/apps/appshell.js"></script>
 <script type="text/javascript">
     Object.assign(window.contextJsParameters, {
         version: '<%= Jahia.VERSION %>',
-        targetId: '${targetId}',
         contextPath: '${contextPath}',
         user: {
             username: '${currentUser.name}',
@@ -52,7 +49,6 @@
         urlbase: '/modules/appshell/${appName}'
     });
 
-    bootstrap(${scripts}, true);
+    jahia.startAppShell(${scripts}, true, "${targetId}");
 </script>
-
 </body>

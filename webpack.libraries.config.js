@@ -1,27 +1,48 @@
 const path = require('path');
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
-    let config = {
+    const config = {
+        context: process.cwd(),
+        resolve: {
+            extensions: ['.js', '.jsx', '.json', '.less', '.css'],
+            modules: [__dirname, 'node_modules']
+        },
+
         entry: {
-            commons: [
-                path.resolve(__dirname, 'src/javascript/jahia')
+            library: [
+                '@babel/polyfill',
+                'react',
+                'react-dom',
+                'react-router',
+                'react-router-dom',
+                'react-i18next',
+                'i18next',
+                'i18next-xhr-backend',
+                'graphql-tag',
+                'react-apollo',
+                'react-redux',
+                'redux',
+                'rxjs',
+                'whatwg-fetch',
+
+                // JAHIA PACKAGES
+                '@jahia/ui-extender',
+                '@jahia/moonstone',
+                '@jahia/data-helper',
+
+                // DEPRECATED JAHIA PACKAGES
+                '@jahia/design-system-kit',
+                '@jahia/react-material',
+                '@jahia/icons'
             ]
         },
         output: {
-            path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-            filename: 'appshell.js',
-            library: 'jahia'
-        },
-        resolve: {
-            mainFields: ['module', 'main'],
-            extensions: ['.mjs', '.js', '.jsx', 'json']
-        },
-        optimization: {
-            usedExports: false,
-            concatenateModules: false
+            filename: 'jahia-commons.dll.js',
+            path: path.resolve(__dirname, 'src/main/resources/javascript/commons/'),
+            library: 'jahiaCommons'
         },
         module: {
             rules: [
@@ -81,16 +102,23 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|fr|de/),
-            new webpack.DllReferencePlugin({manifest: require('./target/manifests/jahia-commons.manifest.json')}),
+            new webpack.DllPlugin({
+                name: 'jahiaCommons',
+                path: 'target/manifests/jahia-commons.manifest.json'
+            }),
             new CleanWebpackPlugin(
-                path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}
-            )
-        ],
-        mode: 'development'
+                path.resolve(__dirname, 'target/manifests'), {verbose: false}
+            ),
+            new CleanWebpackPlugin(
+                path.resolve(__dirname, 'src/main/resources/javascript/commons/'), {verbose: false}
+            ),
+            new webpack.HashedModuleIdsPlugin({
+                hashFunction: 'sha256',
+                hashDigest: 'hex',
+                hashDigestLength: 20
+            })
+        ]
     };
-
-    config.devtool = (argv.mode === 'production') ? 'source-map' : 'eval-source-map';
 
     if (argv.analyze) {
         config.devtool = 'source-map';

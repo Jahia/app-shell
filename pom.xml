@@ -128,8 +128,8 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v8.11.3</nodeVersion>
-                            <yarnVersion>v1.12.3</yarnVersion>
+                            <nodeVersion>v11.14.0</nodeVersion>
+                            <yarnVersion>v1.21.1</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -164,7 +164,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${basedir}/target/manifests/commons.manifest.json</file>
+                                    <file>${basedir}/target/manifests/jahia-commons.manifest.json</file>
                                     <type>json</type>
                                     <classifier>manifest</classifier>
                                 </artifact>

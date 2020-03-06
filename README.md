@@ -17,21 +17,11 @@ This module provide shared dependencies using [dll](https://webpack.js.org/plugi
 
 To avoid dependency duplication into Jahia, this project reference all dependencies shared by all Jahia projects.
 
-Each dependency in `dependencies` section of the `package.json` _MUST_ be loaded in all apps.
+Each dependency in `dependencies` section of the `package.json` _MUST_ be registered in the entry part of webpack.libraries.config.js.
 
 <detail><summary><h2>Architecture</h2></summary>
 
-### Actual
-
-![Actual Jahia Acrhitecture](./docs/imgs/actual_jahia_architecture.svg)
-
-### Work in Progress
-
-![Work In Progress Jahia Acrhitecture](./docs/imgs/wip_jahia_architecture.svg)
-
-### Target
-
-![Target Jahia Acrhitecture](./docs/imgs/target_jahia_architecture.svg)
+![Jahia Acrhitecture](./docs/imgs/jahia_architecture.svg)
 
 </detail>
 
