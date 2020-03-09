@@ -955,10 +955,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@jahia/data-helper@^0.0.9":
-  version "0.0.9"
-  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.9.tgz#fa31e2491d9f721bb45e9c309e2402c1ffda9977"
-  integrity sha512-oMbN1ji8KA3n0xz1d7mQfMa/ZxaiCtt3XexhIgI4wnyFzxGxBvXSG5XtRhwz+uVEkApxx1Gm7bM0OF0a2YAIBg==
+"@jahia/data-helper@^0.0.11":
+  version "0.0.11"
+  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.11.tgz#77547d3a57c516b886f83f22f149df1cbf2643ef"
+  integrity sha512-NLmcAty4dxLjUZH/sDuPgIPe/MBdFaxF+faKN/sB0xbJM7bGhBMfGuzLVKKYOB86tRR4dr8/Q286hYU02SRGwQ==
   dependencies:
     apollo-cache "^1.3.4"
     apollo-client "^2.6.8"
@@ -1034,10 +1034,10 @@
     enzyme-adapter-react-16 "^1.12.1"
     identity-obj-proxy "^3.0.0"
 
-"@jahia/ui-extender@^0.4.2":
-  version "0.4.2"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.2.tgz#cd8c177e6a1067f2a1ef68b7dab668eacbe9a19e"
-  integrity sha512-kl6zGGAS68VoWUPw0zxHJc95R3/trpIa5NUFKxiPPn3jL1ayTHBvOf4ycBdhVrTplP/+zJSd8Ii1jzF5onsA1A==
+"@jahia/ui-extender@^0.4.4":
+  version "0.4.4"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.4.tgz#b9a098d1e6f1e117609feeb170ee3518fa768296"
+  integrity sha512-sDtLim5enAhv9uzrvn6/JdWneMXj8Yt75Pq/+Ucli+C+1Qdg9u+LpC/2PM9TXL7/MkQobwNU7qEe3UMmgZUdtw==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
