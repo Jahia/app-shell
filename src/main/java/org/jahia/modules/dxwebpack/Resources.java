@@ -52,7 +52,6 @@ import java.util.Arrays;
 public class Resources extends ModuleGWTResources {
     public Resources() {
         setJavascriptResources(Arrays.asList(
-                "/modules/dx-commons-webpack/javascript/polyfills.js",
                 "/modules/dx-commons-webpack/javascript/loader.js"
         ));
     }

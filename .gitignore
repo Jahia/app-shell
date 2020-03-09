@@ -10,6 +10,7 @@ node
 node_modules
 yarn-error.log
 /src/main/resources/javascript/apps
+/src/main/resources/javascript/commons
 /.externalToolBuilders
 graphql.config.json
 graphql.schema.json
@@ -19,3 +20,4 @@ pom.xml.versionsBackup
 pom.xml.next
 .yalc
 yalc.lock
+coverage
