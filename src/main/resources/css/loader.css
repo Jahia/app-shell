@@ -1,0 +1,70 @@
+@keyframes loadingBar{
+  0%{width:5%}
+  20%{width:62%}
+  44%{width:85%}
+  80%{width:90%}
+  100%{width:100%}
+}
+@keyframes ripple{
+  22%{opacity:0;transform:scale(1)}
+  78%{opacity:.15;transform:scale(160)}
+  100%{opacity:0;transform:scale(180)}
+}
+@keyframes bounceLogo{
+  60%{padding-top:2px}
+}
+body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+  box-sizing: border-box
+}
+
+.jahia-loader{
+  height:100vh;
+  width:100vw;
+  background-color:#1F262A;
+}
+
+.jahia-loader-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.jahia-logo{
+  height: 10vh;
+  margin:10vh;
+}
+.dx-logo svg {
+  margin:0 auto;
+  animation:bounceLogo 1.5s infinite
+}
+
+.jahia-loading{
+  width:300px;
+  height:4px;
+  background-color:#60717B;
+}
+.jahia-loading-progress{
+  display: block;
+  width: 4%;
+  height: 4px;
+  background-color:#E8EBED;
+  animation:loadingBar 12s infinite;
+}
+
+.jahia-loader-ripple{
+  margin-left:-1px;
+  width:10px;
+  height:10px;
+  left:50vw;
+  top:50vh;
+  opacity:0;
+  border-radius:50%;
+  animation: ripple 1.8s;
+  animation-delay:.4s;
+  position:absolute;
+  background-color:#60717B;
+}

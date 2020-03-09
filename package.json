@@ -2,9 +2,9 @@
     "name": "@jahia/dx-commons-webpack",
     "version": "1.4.0",
     "scripts": {
-        "build": "yarn webpack:library --mode development && yarn webpack:appshell --mode development",
+        "build": "yarn webpack:library --mode=development && yarn webpack:appshell --mode=development",
         "prebuild:production": "yarn lint && yarn test",
-        "build:production": " yarn webpack:library --mode production && yarn webpack:appshell --mode production",
+        "build:production": " yarn webpack:library --mode=production && yarn webpack:appshell --mode=production",
         "webpack:appshell": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "webpack:library": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js --config webpack.libraries.config.js",
         "watch": "yarn webpack --watch",
