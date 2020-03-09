@@ -11,8 +11,8 @@ i18n
     .init({
         lng: dxContext.uilang,
         fallbackLng: 'en',
-        ns: ['dx-commons-webpack'],
-        defaultNS: 'dx-commons-webpack',
+        ns: ['app-shell'],
+        defaultNS: 'app-shell',
 
         interpolation: {
             escapeValue: false // React already safes from xss

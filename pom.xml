@@ -52,16 +52,16 @@
         <version>7.3.0.0</version>
         <relativePath />
     </parent>
-    <artifactId>dx-commons-webpack</artifactId>
-    <name>dx-commons-webpack</name>
+    <artifactId>app-shell</artifactId>
+    <name>app-shell</name>
     <version>1.4.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <description>This is the custom module (dx-commons-webpack) for running on a Digital Experience Manager server.</description>
+    <description>This is the custom module (app-shell) for running Jahia javascript applications.</description>
 
     <scm>
-        <connection>scm:git:git@github.com:Jahia/dx-commons-webpack.git</connection>
-        <developerConnection>scm:git:git@github.com:Jahia/dx-commons-webpack.git</developerConnection>
-        <url>https://github.com/Jahia/dx-commons-webpack</url>
+        <connection>scm:git:git@github.com:Jahia/app-shell.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/app-shell.git</developerConnection>
+        <url>https://github.com/Jahia/app-shell</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -69,7 +69,7 @@
         <jahia-deploy-on-site>all</jahia-deploy-on-site>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
-        <export-package>org.jahia.modules.dxwebpack.loader</export-package>
+        <export-package>org.jahia.modules.appshell.loader</export-package>
     </properties>
 
     <repositories>

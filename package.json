@@ -1,5 +1,5 @@
 {
-    "name": "@jahia/dx-commons-webpack",
+    "name": "@jahia/app-shell",
     "version": "1.4.0",
     "scripts": {
         "build": "yarn webpack:library --mode=development && yarn webpack:appshell --mode=development",
@@ -20,9 +20,9 @@
             "pre-commit": "yarn lint"
         }
     },
-    "description": "DX Commons Javascript loader",
+    "description": "Jahia app-shell - the heart of modularization and micro-front-end",
     "main": "index.js",
-    "repository": "git@github.com:Jahia/dx-commons-webpack.git",
+    "repository": "git@github.com:Jahia/app-shell.git",
     "author": "Jahia Core Team <core@jahia.com>",
     "license": "SEE LICENSE IN LICENSE.txt FILE",
     "dependencies": {
