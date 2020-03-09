@@ -1034,10 +1034,10 @@
     enzyme-adapter-react-16 "^1.12.1"
     identity-obj-proxy "^3.0.0"
 
-"@jahia/ui-extender@^0.4.3":
-  version "0.4.3"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.3.tgz#221f141a01db456e227b286764c6d914368f55a4"
-  integrity sha512-uA577xIiZql1lviPs9esAKk2MGjbCFxMLU67XxPlToVkjewAGiyoGexxAFatvReaU61mUZlsyUiV/4Ia1yrLKA==
+"@jahia/ui-extender@^0.4.4":
+  version "0.4.4"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.4.4.tgz#b9a098d1e6f1e117609feeb170ee3518fa768296"
+  integrity sha512-sDtLim5enAhv9uzrvn6/JdWneMXj8Yt75Pq/+Ucli+C+1Qdg9u+LpC/2PM9TXL7/MkQobwNU7qEe3UMmgZUdtw==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
