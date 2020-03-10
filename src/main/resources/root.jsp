@@ -64,6 +64,7 @@
             path: '${currentUser.localPath}'
         },
         config: ${config},
+        siteKey: '${defaultSite.siteKey}',
         urlbase: '<c:url value="/modules/appshell/${appName}"/>'
     });
 
