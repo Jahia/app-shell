@@ -35,7 +35,7 @@ window.jahia.i18n.loadNamespaces('linkchecker');
 // Call the add method from the registry which is in uIExtender to add a menu entry to point to my module
 // `primary-nav-item` is the type I want to register and `linkcheckerRoute` is the key (must be unique), the last parameter is an object with the necessary options
 window.jahia.uiExtender.registry.add('primary-nav-item', 'linkcheckerRoute', {
-    targets: ['nav-root-top:21'],        // Which menu I want to extend, it can take multiple values, each value can be ordered `target:position`
+    targets: ['nav-root-top:21'],       // Which menu I want to extend, it can take multiple values, each value can be ordered `target:position`
     path: '/linkchecker',               // Path to call when clicking on my link
     label: 'linkchecker:label.title',   // RB to use to display the name of my link `namespace:key`
     icon: window.jahia.moonstone.toIconComponent('Feather', {size: 'big'})  // Icon to use with my link, we must use the `toIconComponent` function to make sure we return an Icon Component
@@ -69,6 +69,45 @@ We are using resource bundles but we need to create them in JSON files under the
   }
 }
 ```
+
+#### Server settings example
+Let's add the linkchecker module in the administration like a server settings:
+```js
+const routeId = 'linkchecker';
+let path = '/administration/linkchecker';
+
+// Register the resource bundles
+window.jahia.i18n.loadNamespaces(routeId);
+
+// Register the new entry in the menu
+window.jahia.uiExtender.registry.add('adminRoute', 'linkcheckerServerSettingsEntry', {
+    id: routeId,
+    targets: ['administration-server:100'],
+    routeId: routeId,
+    route: 'linkChecker',
+    path: path,
+    defaultPath: path,
+    label: 'linkchecker:label.title',
+    icon: window.jahia.moonstone.toIconComponent('Link'),
+    isSelectable: true,
+    level: 'site'
+});
+```
+
+We don't need to add a route here the rendering will be handled by the jahia-administration module,
+ but if we want to add our own rendering it's possible by adding a render function to our previous example, like:
+```js
+window.jahia.uiExtender.registry.add('adminRoute', 'linkcheckerServerSettingsEntry', {
+    // ...
+    render: function () {
+        return window.jahia.uiExtender.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/adminframe/default/sites/$site-key.linkChecker.html');
+    }
+    // ...
+});
+```
+
+Here we create a single entry in the menu which is selectable but we can also create a more complex menu with sub-entry,
+ in this case we can use the option `childrenTarget` with a value that feat our needs and use this value in the target of our sub-entry. 
 
 ## More complex modules
 #### Maven
