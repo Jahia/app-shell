@@ -64,7 +64,7 @@
             path: '${currentUser.localPath}'
         },
         config: ${config},
-        urlbase: '/modules/appshell/${appName}'
+        urlbase: '<c:url value="/modules/appshell/${appName}"/>'
     });
 
     jahia.startAppShell(${scripts}, true, "${targetId}");

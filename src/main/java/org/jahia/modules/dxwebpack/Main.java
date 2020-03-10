@@ -88,7 +88,7 @@ public class Main extends HttpServlet {
 
             JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                response.sendRedirect(Jahia.getContextPath() + "/cms/login?redirect=" + response.encodeRedirectURL(request.getRequestURI()));
                 return;
             }
 
