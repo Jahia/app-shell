@@ -49,6 +49,7 @@ import org.jahia.bin.Jahia;
 import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
+import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRSessionFactory;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
@@ -88,7 +89,7 @@ public class Main extends HttpServlet {
 
             JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                response.sendRedirect(Jahia.getContextPath() + "/cms/login?redirect=" + response.encodeRedirectURL(request.getRequestURI()));
                 return;
             }
 
@@ -98,6 +99,7 @@ public class Main extends HttpServlet {
                     return Jahia.getContextPath();
                 }
             };
+            wrapper.setAttribute("defaultSite", ServicesRegistry.getInstance().getJahiaSitesService().getDefaultSite());
             wrapper.setAttribute("appName", appName);
             setCustomAttributes(currentUser, wrapper);
 
