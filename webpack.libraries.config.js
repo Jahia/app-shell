@@ -120,6 +120,8 @@ module.exports = (env, argv) => {
         ]
     };
 
+    config.devtool = (argv.mode === 'production') ? 'source-map' : 'eval-source-map';
+
     if (argv.analyze) {
         config.devtool = 'source-map';
         config.plugins.push(new BundleAnalyzerPlugin());
