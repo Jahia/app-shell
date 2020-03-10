@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
                     loader: 'babel-loader',
                     query: {
                         presets: [
-                            ['@babel/preset-env', {modules: false, targets: {chrome: '58', ie: '11', firefox: '58'}}],
+                            ['@babel/preset-env', {modules: false, targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}}],
                             '@babel/preset-react'
                         ],
                         plugins: [
