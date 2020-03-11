@@ -2,7 +2,13 @@ import ReactDOM from 'react-dom';
 import {registry} from '@jahia/ui-extender';
 import {jsload} from './jsloader';
 
-export const load = (js, targetId) => {
+const promisifiedReactDomRender = (cmp, target) => {
+    return new Promise(resolve => {
+        ReactDOM.render(cmp, target, resolve);
+    });
+};
+
+export const startAppShell = (js, targetId) => {
     // Load main scripts for each bundle
     return Promise.all(js.map(path => jsload(path)))
         .then(async () => {
@@ -38,10 +44,20 @@ export const load = (js, targetId) => {
             const apps = registry.find({type: 'app', target: 'root'}).map(m => m.render);
             const render = apps.reduceRight((prevFn, nextFn) => (...args) => nextFn(prevFn(...args)), value => value);
 
-            // Render
-            ReactDOM.render(render(), document.getElementById(targetId));
+            return promisifiedReactDomRender(render(), document.getElementById(targetId));
         })
         .catch(err => {
             console.error('Encountered during loading and registering modules', err);
+            return promisifiedReactDomRender(`Fatal error, contact IT. ${err.message}`, document.getElementById(targetId));
+        })
+        .then(() => {
+            // Everything is load (or not)... let's remove the loader!
+            const loader = document.querySelector('.jahia-loader');
+            if (loader) {
+                loader.remove();
+            }
+        })
+        .catch(err => {
+            console.error('Error while render the error...', err);
         });
 };

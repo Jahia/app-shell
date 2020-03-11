@@ -47,7 +47,7 @@ const client = function (options) {
         return undefined;
     };
 
-    let cacheResolvers = {
+    let cacheRedirects = {
         JCRQuery: {
             nodeById: (_, args) => {
                 if (_.workspace) {
@@ -77,7 +77,7 @@ const client = function (options) {
 
     // Add JCRNode cache resolvers:
     for (let typeName of fragmentMatcher.possibleTypesMap.JCRNode) {
-        cacheResolvers[typeName] = {
+        cacheRedirects[typeName] = {
             nodeInWorkspace: (_, args) => {
                 if (_.uuid) {
                     return getId(args.workspace, _.uuid);
@@ -86,24 +86,24 @@ const client = function (options) {
         };
     }
 
-    if (options.cacheResolvers) {
-        Object.assign(cacheResolvers, options.cacheResolvers);
+    if (options.cacheRedirects) {
+        Object.assign(cacheRedirects, options.cacheRedirects);
     }
 
     let cache = new InMemoryCache({
         fragmentMatcher: fragmentMatcher,
         dataIdFromObject: dataIdFromObject,
-        cacheResolvers: cacheResolvers
+        cacheRedirects: cacheRedirects
     });
 
     cache.flushNodeEntryByPath = (path, workspace = 'EDIT') => {
-        let cacheKey = cacheResolvers.JCRQuery.nodeByPath({workspace}, {path});
+        let cacheKey = cacheRedirects.JCRQuery.nodeByPath({workspace}, {path});
 
         return flushNodeEntry(cacheKey);
     };
 
     cache.flushNodeEntryById = (uuid, workspace = 'EDIT') => {
-        let cacheKey = cacheResolvers.JCRQuery.nodeById({workspace}, {uuid});
+        let cacheKey = cacheRedirects.JCRQuery.nodeById({workspace}, {uuid});
 
         return flushNodeEntry(cacheKey);
     };
