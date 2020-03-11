@@ -10,21 +10,15 @@ jest.mock('@jahia/ui-extender', () => {
     };
 });
 
-jest.mock('./oldLoader', () => {
-    return {
-        load: jest.fn()
-    };
-});
 jest.mock('./appShell', () => {
     return {
-        load: jest.fn()
+        startAppShell: jest.fn()
     };
 });
 import * as uiExtender from '@jahia/ui-extender';
-import {load as oldLoader} from './oldLoader';
-import {load as newLoader} from './appShell';
+import {startAppShell} from './appShell';
 
-describe('jahia', () => {
+describe('jahia lib', () => {
     let jahia;
     beforeEach(() => {
         window.contextJsParameters = {
@@ -33,9 +27,6 @@ describe('jahia', () => {
         // eslint-disable-next-line camelcase
         global.__webpack_public_path__ = '';
         jahia = require('./jahia');
-
-        oldLoader.mockClear();
-        newLoader.mockClear();
     });
 
     it('should expose i18n in window', () => {
@@ -47,14 +38,6 @@ describe('jahia', () => {
     });
 
     it('should use the old loader when not in app shell mode', () => {
-        jahia.startAppShell([], false);
-        expect(oldLoader).toHaveBeenCalled();
-        expect(newLoader).not.toHaveBeenCalled();
-    });
-
-    it('should use the old loader when not in app shell mode', () => {
-        jahia.startAppShell([], true);
-        expect(oldLoader).not.toHaveBeenCalled();
-        expect(newLoader).toHaveBeenCalled();
+        expect(jahia.startAppShell).toBe(startAppShell);
     });
 });

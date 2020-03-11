@@ -68,6 +68,6 @@
         urlbase: '<c:url value="/modules/appshell/${appName}"/>'
     });
 
-    jahia.startAppShell(${scripts}, true, "${targetId}");
+    jahia.startAppShell(${scripts}, "${targetId}");
 </script>
 </body>
