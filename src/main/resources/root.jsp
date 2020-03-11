@@ -7,7 +7,6 @@
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
 <%@ taglib prefix="user" uri="http://www.jahia.org/tags/user" %>
-<%@ taglib prefix="js" uri="http://www.jahia.org/tags/dxwebpack" %>
 <%@ taglib prefix="internal" uri="http://www.jahia.org/tags/internalLib" %>
 
 <html>
