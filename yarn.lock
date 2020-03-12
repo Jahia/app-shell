@@ -1002,15 +1002,15 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone@^0.13.1":
-  version "0.13.1"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.13.1.tgz#dca86db04d2d17aa258cebf53a2ad34c832a0847"
-  integrity sha512-1AGCmav9lOht0kiOcOUGLh7c1+0lMiDU/Wm/rFBvqAIJ2i20tF9Myq/+G/dWMDt4eo9ynr+0dIvQkFtuRG+NZw==
+"@jahia/moonstone@^0.14.0":
+  version "0.14.2"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.14.2.tgz#ceafd6bf53e6c9ecf73f5477a11c8bcc5bf9ee38"
+  integrity sha512-E1YWH5rMxW38O5cEO3dVj0XKvicZuI9UaBunN2xxm2T0qWM033AItmU5/sJoU2Edmo9ySSvt6TSiDp7IVjAb9g==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
     prop-types "^15.7.2"
-    re-resizable "^6.1.0"
+    re-resizable "^6.2.0"
     react-is "^16.12.0"
     to-px "^1.1.0"
 
@@ -7234,9 +7234,9 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-re-resizable@^6.1.0:
+re-resizable@^6.2.0:
   version "6.2.0"
-  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.2.0.tgz#7b42aee4df6de4e1f602c78828052d41f642bc94"
+  resolved "https://registry.npmjs.org/re-resizable/-/re-resizable-6.2.0.tgz#7b42aee4df6de4e1f602c78828052d41f642bc94"
   integrity sha512-3bi0yTzub/obnqoTPs9C8A1ecrgt5OSWlKdHDJ6gBPiEiEIG5LO0PqbwWTpABfzAzdE4kldOG2MQDQEaJJNYkQ==
   dependencies:
     fast-memoize "^2.5.1"
