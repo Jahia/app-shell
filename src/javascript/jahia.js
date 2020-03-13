@@ -3,6 +3,7 @@ __webpack_public_path__ = `${window.contextJsParameters.contextPath}/modules/dx-
 
 // Configuration
 import './apollo/register';
+import './redux/register';
 
 // Global values to expose in Jahia library
 import {startAppShell} from './appShell';

@@ -80,7 +80,7 @@ describe('appShell', () => {
                             cbCallOrder.push(1);
                             return Promise.resolve();
                         },
-                        priority: 2
+                        targets: ['jahiaApp-init:2']
                     },
                     {
                         callback: () => {
@@ -94,7 +94,7 @@ describe('appShell', () => {
                             cbCallOrder.push(3);
                             return Promise.resolve();
                         },
-                        priority: '1'
+                        targets: ['jahiaApp-init:1']
                     }
                 ];
             }

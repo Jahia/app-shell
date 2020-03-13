@@ -16,10 +16,10 @@ export const startAppShell = (js, targetId) => {
 
             // Get the list of different priority
             const priorities = callbacks
-                .map(cb => Number(cb.priority))
+                .map(cb => Number(cb.targets.find(t => t.id === 'jahiaApp-init').priority))
                 // Supress duplicate
-                .filter((priority, i) => {
-                    return i === callbacks.findIndex(c => Number.isNaN(priority) ? Number.isNaN(Number(c.priority)) : Number(c.priority) === priority);
+                .filter((priority, i, prioritiesWithDuplicates) => {
+                    return i === prioritiesWithDuplicates.findIndex(c => Number.isNaN(priority) ? Number.isNaN(Number(c)) : Number(c) === priority);
                 })
                 .sort();
 
@@ -28,7 +28,7 @@ export const startAppShell = (js, targetId) => {
                 await Promise.all(
                     callbacks
                         .filter(entry => {
-                            const entryPriority = Number(entry.priority);
+                            const entryPriority = Number(entry.targets.find(t => t.id === 'jahiaApp-init').priority);
                             if (Number.isNaN(entryPriority) && Number.isNaN(priority)) {
                                 return true;
                             }
