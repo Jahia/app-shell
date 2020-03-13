@@ -55,9 +55,9 @@ describe('appShell', () => {
         registry.find.mockImplementation(search => {
             if (search.type === 'callback') {
                 return [
-                    {callback: () => Promise.resolve(cbCallOrder.push(1))},
-                    {callback: () => Promise.resolve(cbCallOrder.push(2))},
-                    {callback: () => Promise.resolve(cbCallOrder.push(3))}
+                    {callback: () => Promise.resolve(cbCallOrder.push(1)), targets: [{id: 'jahiaApp-init', priority: 0}]},
+                    {callback: () => Promise.resolve(cbCallOrder.push(2)), targets: [{id: 'jahiaApp-init', priority: 0}]},
+                    {callback: () => Promise.resolve(cbCallOrder.push(3)), targets: [{id: 'jahiaApp-init', priority: 0}]}
                 ];
             }
 
@@ -76,25 +76,26 @@ describe('appShell', () => {
                 return [
                     {
                         callback: () => {
+                            cbCallOrder.push(3);
+                            return Promise.resolve();
+                        },
+                        targets: [{id: 'jahiaApp-init', priority: '1'}]
+                    },
+                    {
+                        callback: () => {
                             expect(cbCallOrder).toEqual([3]);
                             cbCallOrder.push(1);
                             return Promise.resolve();
                         },
-                        priority: 2
+                        targets: [{id: 'jahiaApp-init', priority: '2'}]
                     },
                     {
                         callback: () => {
                             expect(cbCallOrder).toEqual([3, 1]);
                             cbCallOrder.push(2);
                             return Promise.resolve();
-                        }
-                    },
-                    {
-                        callback: () => {
-                            cbCallOrder.push(3);
-                            return Promise.resolve();
                         },
-                        priority: '1'
+                        targets: [{id: 'jahiaApp-init'}]
                     }
                 ];
             }
