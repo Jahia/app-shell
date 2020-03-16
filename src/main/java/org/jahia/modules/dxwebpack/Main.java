@@ -105,7 +105,7 @@ public class Main extends HttpServlet {
             List<String> scripts = getApplicationScripts(appName);
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
-            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
             wrapper.getRequestDispatcher("/modules/dx-commons-webpack/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
