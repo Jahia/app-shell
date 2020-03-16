@@ -74,12 +74,11 @@ import java.util.stream.Collectors;
 
 @Component(service = {javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class}, property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"})
 public class Main extends HttpServlet {
-    private static Logger logger = LoggerFactory.getLogger(Main.class);
-
     private static final String PACKAGE_JSON = "javascript/apps/package.json";
     private static final String JAHIA_JSON = "javascript/apps/jahia.json";
     private static final String JAHIA = "jahia";
     private static final String APPS = "apps";
+    private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -106,6 +105,7 @@ public class Main extends HttpServlet {
             List<String> scripts = getApplicationScripts(appName);
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
+            response.setHeader("Cache-Control", "no-cache");
             wrapper.getRequestDispatcher("/modules/dx-commons-webpack/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
@@ -151,7 +151,7 @@ public class Main extends HttpServlet {
     }
 
     private List<Bundle> getPackages() {
-        return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && (bundle.getResource(PACKAGE_JSON) != null || bundle.getResource(JAHIA_JSON) != null )).collect(Collectors.toList());
+        return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && (bundle.getResource(PACKAGE_JSON) != null || bundle.getResource(JAHIA_JSON) != null)).collect(Collectors.toList());
     }
 
     private String getBundleScript(Bundle bundle, String appName) throws IOException, JSONException {
