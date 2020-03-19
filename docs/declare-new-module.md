@@ -112,12 +112,12 @@ Here we create a single entry in the menu which is selectable but we can also cr
 ## More complex modules
 #### Maven
 
-add a maven dependency on `dx-commons-webpack` to your project with the classifier manifest:
+add a maven dependency on `app-shell` to your project with the classifier manifest:
 ```xml
 <dependency>
     <groupId>org.jahia.modules</groupId>
-    <artifactId>dx-commons-webpack</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>app-shell</artifactId>
+    <version>1.4.0-SNAPSHOT</version>
     <type>json</type>
     <classifier>manifest</classifier>
 </dependency>
@@ -141,7 +141,7 @@ And use copy plugin:
        <artifactItems>
            <artifactItem>
                <groupId>org.jahia.modules</groupId>
-               <artifactId>dx-commons-webpack</artifactId>
+               <artifactId>app-shell</artifactId>
                <type>json</type>
                <classifier>manifest</classifier>
            </artifactItem>
@@ -168,7 +168,7 @@ And the plugin configuration:
 {
     plugins: [
         new webpack.DllReferencePlugin({
-            manifest: require('./target/dependency/dx-commons-webpack-1.0.0-SNAPSHOT-manifest')
+            manifest: require('./target/dependency/app-shell-1.0.0-SNAPSHOT-manifest')
         }),
         new CopyWebpackPlugin([{ from: './package.json', to: '' }])
     ]

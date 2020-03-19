@@ -41,7 +41,7 @@
  *     If you are unsure which license is appropriate for your use,
  *     please contact the sales department at sales@jahia.com.
  */
-package org.jahia.modules.dxwebpack;
+package org.jahia.modules.appshell;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -106,7 +106,7 @@ public class Main extends HttpServlet {
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             response.setHeader("Cache-Control", "no-store");
-            wrapper.getRequestDispatcher("/modules/dx-commons-webpack/root.jsp").include(wrapper, response);
+            wrapper.getRequestDispatcher("/modules/app-shell/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
         }

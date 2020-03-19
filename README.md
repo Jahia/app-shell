@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to @jahia/dx-commons-webpack 👋</h1>
+<h1 align="center">Welcome to @jahia/app-shell 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.4.0-blue.svg?cacheSeconds=2592000" />
   <a href="./LICENSE.txt" target="_blank">
@@ -28,7 +28,6 @@ Each dependency in `dependencies` section of the `package.json` _MUST_ be regist
 ### FAQ
 
 - [How to declare a new module ?](./docs/declare-new-module.md)
-- [What is the execution sequence of JavaScript ?](./docs/execution-sequence.md)
 - [How to add a loading screen to the app ?](./docs/loading-screen.md)
 
 ## Author
