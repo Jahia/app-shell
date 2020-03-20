@@ -1,7 +1,6 @@
-/* global jahiaCommons */
 // eslint-disable-next-line no-undef, camelcase
 __webpack_public_path__ = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/apps/`;
-jahiaCommons.p = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/commons/`;
+window.jahiaCommons.p = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/commons/`;
 
 // Configuration
 import './apollo/register';
