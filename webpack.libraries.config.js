@@ -13,7 +13,6 @@ module.exports = (env, argv) => {
 
         entry: {
             library: [
-                path.resolve(__dirname, './src/javascript/publicPath.dll.js'),
                 '@babel/polyfill',
                 'react',
                 'react-dom',

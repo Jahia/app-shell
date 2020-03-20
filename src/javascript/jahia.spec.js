@@ -26,6 +26,7 @@ describe('jahia lib', () => {
         };
         // eslint-disable-next-line camelcase
         global.__webpack_public_path__ = '';
+        window.jahiaCommons = {};
         jahia = require('./jahia');
     });
 
