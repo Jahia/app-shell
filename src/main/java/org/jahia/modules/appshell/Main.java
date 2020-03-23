@@ -143,7 +143,11 @@ public class Main extends HttpServlet {
         for (Bundle bundle : getPackages()) {
             List<String> jsBundles = getBundleScripts(bundle, appName);
             for (String jsBundle : jsBundles) {
-                resources.add("\"/modules/" + bundle.getSymbolicName() + "/" + jsBundle + "\"");
+                if (jsBundle.startsWith("/")) {
+                    resources.add("\"" + jsBundle + "\"");
+                } else {
+                    resources.add("\"/modules/" + bundle.getSymbolicName() + "/" + jsBundle + "\"");
+                }
             }
         }
         return resources;
