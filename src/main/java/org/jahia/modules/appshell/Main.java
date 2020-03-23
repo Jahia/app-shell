@@ -54,6 +54,7 @@ import org.jahia.services.content.JCRSessionFactory;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osgi.framework.Bundle;
@@ -67,9 +68,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component(service = {javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class}, property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"})
@@ -142,9 +141,9 @@ public class Main extends HttpServlet {
         LinkedList<String> resources = new LinkedList<>();
 
         for (Bundle bundle : getPackages()) {
-            String jsBundle = getBundleScript(bundle, appName);
-            if (jsBundle != null) {
-                resources.addFirst("\"" + jsBundle + "\"");
+            List<String> jsBundles = getBundleScripts(bundle, appName);
+            for (String jsBundle : jsBundles) {
+                resources.add("\"/modules/" + bundle.getSymbolicName() + "/" + jsBundle + "\"");
             }
         }
         return resources;
@@ -154,13 +153,24 @@ public class Main extends HttpServlet {
         return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && (bundle.getResource(PACKAGE_JSON) != null || bundle.getResource(JAHIA_JSON) != null)).collect(Collectors.toList());
     }
 
-    private String getBundleScript(Bundle bundle, String appName) throws IOException, JSONException {
+    private List<String> getBundleScripts(Bundle bundle, String appName) throws IOException, JSONException {
         JSONObject pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
         boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(APPS) && pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).has(appName);
         if (hasExtend) {
-            return "/modules/" + bundle.getSymbolicName() + "/" + pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).getString(appName);
+            Object res = pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).get(appName);
+            if (res instanceof JSONArray) {
+                JSONArray jsonArray = (JSONArray) res;
+                List<String> l = new ArrayList<>();
+                int s = jsonArray.length();
+                for (int i = 0; i < s; i++) {
+                    l.add(jsonArray.getString(i));
+                }
+                return l;
+            } else {
+                return Collections.singletonList(res.toString());
+            }
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }
