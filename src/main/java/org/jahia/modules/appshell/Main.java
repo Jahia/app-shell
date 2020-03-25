@@ -51,6 +51,7 @@ import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRSessionFactory;
+import org.jahia.services.sites.JahiaSite;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
@@ -97,7 +98,13 @@ public class Main extends HttpServlet {
                     return Jahia.getContextPath();
                 }
             };
-            wrapper.setAttribute("defaultSite", ServicesRegistry.getInstance().getJahiaSitesService().getDefaultSite());
+            // lookup for site
+            JahiaSite site = ServicesRegistry.getInstance().getJahiaSitesService().getDefaultSite(JCRSessionFactory.getInstance().getCurrentUserSession());
+            // use system site if no site readable.
+            if (site == null) {
+                site = ServicesRegistry.getInstance().getJahiaSitesService().getSiteByKey("systemsite");
+            }
+            wrapper.setAttribute("defaultSite", site);
             wrapper.setAttribute("appName", appName);
             setCustomAttributes(currentUser, wrapper);
 

@@ -17,6 +17,23 @@
 
     <internal:gwtGenerateDictionary/>
     <internal:gwtInit/>
+
+    <script type="text/javascript">
+        Object.assign(window.contextJsParameters, {
+            version: '<%= Jahia.VERSION %>',
+            contextPath: '${contextPath}',
+            user: {
+                username: '${currentUser.name}',
+                fullname: '${user:fullName(currentUser)}',
+                email: '${currentUser.properties['j:email']}',
+                path: '${currentUser.localPath}'
+            },
+            config: ${config},
+            siteKey: '${defaultSite.siteKey}',
+            siteUuid: '${defaultSite.identifier}',
+            urlbase: '<c:url value="/modules/appshell/${appName}"/>'
+        });
+    </script>
     <internal:gwtImport module="empty"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_V8_en.css'/>" />
@@ -53,20 +70,6 @@
 <script src="${contextPath}/modules/app-shell/javascript/commons/jahia-commons.dll.js"></script>
 <script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 <script type="text/javascript">
-    Object.assign(window.contextJsParameters, {
-        version: '<%= Jahia.VERSION %>',
-        contextPath: '${contextPath}',
-        user: {
-            username: '${currentUser.name}',
-            fullname: '${user:fullName(currentUser)}',
-            email: '${currentUser.properties['j:email']}',
-            path: '${currentUser.localPath}'
-        },
-        config: ${config},
-        siteKey: '${defaultSite.siteKey}',
-        urlbase: '<c:url value="/modules/appshell/${appName}"/>'
-    });
-
     jahia.startAppShell(${scripts}, "${targetId}");
 </script>
 </body>
