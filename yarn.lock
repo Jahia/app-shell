@@ -955,10 +955,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@jahia/data-helper@^0.0.16":
-  version "0.0.16"
-  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.16.tgz#341be994544c98e191975fc61f0fa5fbce6b12a2"
-  integrity sha512-GTuMjKjHTvpe2S/6MEYrRKGzcE/Ur5UnVWrdZkAbMjOx5xIzEQDEb68PukRPena73EySJ9FA8n6bUn/V+vqiGQ==
+"@jahia/data-helper@^0.0.17":
+  version "0.0.17"
+  resolved "https://npm.jahia.com/@jahia%2fdata-helper/-/data-helper-0.0.17.tgz#8ae75ce0cb3af2c8d2b5384075c3d5516abe4008"
+  integrity sha512-ROKzwuyYStt1/Y8IPX8xOCMzgfYbly8CsKFmwqnewICeOX/CbGApp/HMGtIqY1ykf9F7JzRP1vS67pisfxvXRA==
   dependencies:
     apollo-cache "^1.3.4"
     apollo-client "^2.6.8"
