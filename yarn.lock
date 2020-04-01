@@ -1014,10 +1014,10 @@
     react-is "^16.12.0"
     to-px "^1.1.0"
 
-"@jahia/react-material@^2.1.1":
-  version "2.1.1"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.1.tgz#13ed32f6d3576ff55a40963222c960b21d17cf95"
-  integrity sha512-b8QRMeQyNlsTFzNS7PJ255tGnZurt8PPAz5i+h2ZjMCAsqEuNK4ZBTAQYVdu/NOXufWMz1zfamd/RP+9xyYtzQ==
+"@jahia/react-material@^2.1.2":
+  version "2.1.2"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.2.tgz#e36cb56dc3f76095c767d9d988f536405253252e"
+  integrity sha512-pUE+D3VvOQMMMHMWwsqY7HfEHfD8TmCCnjaEKpek5kHIt3gR/tsKiAOTUfGbAipgM3pipi7LHIIeStqZwY9Lqw==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
