@@ -20,6 +20,10 @@
 
     <script type="text/javascript">
         Object.assign(window.contextJsParameters, {
+            // Theses values are for GWT only
+            siteKey: '${defaultSite.siteKey}',
+            siteUuid: '${defaultSite.identifier}',
+
             version: '<%= Jahia.VERSION %>',
             contextPath: '${contextPath}',
             user: {
@@ -29,8 +33,7 @@
                 path: '${currentUser.localPath}'
             },
             config: ${config},
-            siteKey: '${defaultSite.siteKey}',
-            siteUuid: '${defaultSite.identifier}',
+            site: '${defaultSite.siteKey}',
             urlbase: '<c:url value="/modules/appshell/${appName}"/>'
         });
     </script>
