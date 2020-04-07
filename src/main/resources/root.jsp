@@ -29,6 +29,8 @@
             user: {
                 username: '${currentUser.name}',
                 fullname: '${user:fullName(currentUser)}',
+                firstName: '${currentUser.properties['j:firstName']}',
+                lastName: '${currentUser.properties['j:lastName']}',
                 email: '${currentUser.properties['j:email']}',
                 path: '${currentUser.localPath}'
             },
