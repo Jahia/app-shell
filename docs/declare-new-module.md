@@ -40,7 +40,7 @@ that will display a linkchecker (render) in the main area (target) :
   
 ```js
 window.jahia.uiExtender.registry.add('route', 'route-jcontent', {
-      targets: ['nav-root-top:2'],
+      targets: ['main:2'],
       path: `/linkchecker`, // Catch /linkchecker urls
       render: function () {           // The render function for my route in this example we want to display an iframe which contains our legacy site settings, to do that we pass the URL to the `getIframeRenderer` function
         return window.jahia.uiExtender.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/editframe/default/sites/$site-key.linkChecker.html');
