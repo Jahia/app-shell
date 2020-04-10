@@ -38,6 +38,7 @@
             valid: <%= !Jahia.isEnterpriseEdition() || LicenseCheckerService.Stub.isAllowed("org.jahia.core") %>,
             config: ${config},
             site: '${defaultSite.siteKey}',
+            language: '${language}',
             urlbase: '<c:url value="/modules/appshell/${appName}"/>'
         });
     </script>
