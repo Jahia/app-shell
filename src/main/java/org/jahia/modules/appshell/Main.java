@@ -100,6 +100,11 @@ public class Main extends HttpServlet {
             };
             // lookup for site
             JahiaSite site = ServicesRegistry.getInstance().getJahiaSitesService().getDefaultSite(JCRSessionFactory.getInstance().getCurrentUserSession());
+
+            if (site == null) {
+                site = ServicesRegistry.getInstance().getJahiaSitesService().getFirstSiteFound(JCRSessionFactory.getInstance().getCurrentUserSession(), "systemsite");
+            }
+
             // use system site if no site readable.
             if (site == null) {
                 site = ServicesRegistry.getInstance().getJahiaSitesService().getSiteByKey("systemsite");
