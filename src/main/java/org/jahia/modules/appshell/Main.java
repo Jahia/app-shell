@@ -110,6 +110,7 @@ public class Main extends HttpServlet {
                 site = ServicesRegistry.getInstance().getJahiaSitesService().getSiteByKey("systemsite");
             }
             wrapper.setAttribute("defaultSite", site);
+            wrapper.setAttribute("language", site.getDefaultLanguage());
             wrapper.setAttribute("appName", appName);
             setCustomAttributes(currentUser, wrapper);
 
