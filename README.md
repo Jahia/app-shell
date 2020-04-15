@@ -48,7 +48,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2019 [Jahia](https://github.com/Jahia).<br />
+Copyright © 2020 [Jahia](https://github.com/Jahia).<br />
 This project is [JAHIA'S DUAL LICENSING](./LICENSE.txt) licensed.
 
 ***
