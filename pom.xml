@@ -49,12 +49,12 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>7.3.0.0</version>
+        <version>7.5.0.0-SNAPSHOT</version>
         <relativePath />
     </parent>
     <artifactId>app-shell</artifactId>
-    <name>app-shell</name>
-    <version>1.4.0-SNAPSHOT</version>
+    <name>Jahia App-shell</name>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (app-shell) for running Jahia javascript applications.</description>
 
@@ -70,6 +70,7 @@
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
+        <jahia-module-signature>MCwCFC5/W6Y3wFV257wpyp8pIJ49nVYSAhQ9NqP2C59j5RkHsvpkGsGxLimkCA==</jahia-module-signature>
     </properties>
 
     <repositories>
