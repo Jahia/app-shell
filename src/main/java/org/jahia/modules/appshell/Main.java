@@ -118,6 +118,7 @@ public class Main extends HttpServlet {
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Content-Type", "text/html;charset=UTF-8");
             wrapper.getRequestDispatcher("/modules/app-shell/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
