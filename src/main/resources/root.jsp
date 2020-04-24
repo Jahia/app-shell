@@ -44,7 +44,7 @@
     </script>
     <internal:gwtImport module="empty"/>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_V8_en.css'/>" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_en.css'/>" />
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/modules/app-shell/css/loader.css'/>" />
 </head>
 
@@ -73,7 +73,6 @@
 <div id="gwt-root"></div>
 
 
-<script>window.anthraciteV8 = true;</script>
 <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
 <script src="${contextPath}/modules/app-shell/javascript/commons/jahia-commons.dll.js"></script>
 <script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
