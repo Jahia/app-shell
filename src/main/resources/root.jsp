@@ -44,7 +44,7 @@
     </script>
     <internal:gwtImport module="empty"/>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_${uiLocale}.css'/>" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_${anthraciteUiLocale}.css'/>" />
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/modules/app-shell/css/loader.css'/>" />
 </head>
 
