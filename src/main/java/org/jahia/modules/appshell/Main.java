@@ -51,7 +51,9 @@ import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRSessionFactory;
+import org.jahia.services.content.decorator.JCRUserNode;
 import org.jahia.services.sites.JahiaSite;
+import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
@@ -89,6 +91,13 @@ public class Main extends HttpServlet {
             JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
                 response.sendRedirect(Jahia.getContextPath() + "/cms/login?redirect=" + response.encodeRedirectURL(request.getRequestURI()));
+                return;
+            }
+
+            // Restrict access to privileged users
+            JCRUserNode userNode = JahiaUserManagerService.getInstance().lookupUserByPath(currentUser.getLocalPath());
+            if (!userNode.isMemberOfGroup(null, JahiaGroupManagerService.PRIVILEGED_GROUPNAME)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return;
             }
 
