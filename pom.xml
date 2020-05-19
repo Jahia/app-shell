@@ -70,9 +70,8 @@
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
-        <jahia-module-signature>MCwCFC5/W6Y3wFV257wpyp8pIJ49nVYSAhQ9NqP2C59j5RkHsvpkGsGxLimkCA==</jahia-module-signature>
+        <jahia-module-signature>MCwCFGIL8wNjqfLitNqSSrHPHCOplTlBAhQa8Lgf1c4A/1ICShtuOo6Ek/kS4A==</jahia-module-signature>
     </properties>
-
     <repositories>
         <repository>
             <id>jahia-public</id>
