@@ -90,6 +90,24 @@ module.exports = (env, argv) => {
                     }
                 },
                 {
+                    test: /\.scss$/i,
+                    sideEffects: true,
+                    use: [
+                        'style-loader',
+                        // Translates CSS into CommonJS
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    mode: 'local'
+                                }
+                            }
+                        },
+                        // Compiles Sass to CSS
+                        'sass-loader'
+                    ]
+                },
+                {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                     use: [{
                         loader: 'file-loader',
