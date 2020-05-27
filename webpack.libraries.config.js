@@ -90,6 +90,11 @@ module.exports = (env, argv) => {
                     }
                 },
                 {
+                    test: /\.jsx?$/,
+                    use: ['source-map-loader'],
+                    enforce: "pre"
+                },
+                {
                     test: /\.scss$/i,
                     sideEffects: true,
                     use: [
