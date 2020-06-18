@@ -28,12 +28,12 @@
             version: '<%= Jahia.VERSION %>',
             contextPath: '${contextPath}',
             user: {
-                username: '${currentUser.name}',
-                fullname: '${user:fullName(currentUser)}',
-                firstName: '${currentUser.properties['j:firstName']}',
-                lastName: '${currentUser.properties['j:lastName']}',
-                email: '${currentUser.properties['j:email']}',
-                path: '${currentUser.localPath}'
+                username: '${functions:escapeJavaScript(currentUser.name)}',
+                fullname: '${functions:escapeJavaScript(user:fullName(currentUser))}',
+                firstName: '${functions:escapeJavaScript(currentUser.properties['j:firstName'])}',
+                lastName: '${functions:escapeJavaScript(currentUser.properties['j:lastName'])}',
+                email: '${functions:escapeJavaScript(currentUser.properties['j:email'])}',
+                path: '${functions:escapeJavaScript(currentUser.localPath)}'
             },
             valid: <%= !Jahia.isEnterpriseEdition() || LicenseCheckerService.Stub.isAllowed("org.jahia.core") %>,
             config: ${config},
