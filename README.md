@@ -1,12 +1,13 @@
-<h1 align="center">Welcome to @jahia/app-shell 👋</h1>
-<p>
-  <a href="./LICENSE.txt" target="_blank">
-    <img alt="License: JAHIA'S DUAL LICENSING" src="https://img.shields.io/badge/License-JAHIA'S DUAL LICENSING-yellow.svg" />
-  </a>
-  <a href="https://twitter.com/Jahia" target="_blank">
-    <img alt="Twitter: Jahia" src="https://img.shields.io/twitter/follow/Jahia.svg?style=social" />
-  </a>
-</p>
+![License](https://img.shields.io/github/license/jahia/jcontent)
+![Twitter: Jahia](https://img.shields.io/twitter/follow/Jahia.svg?style=social)
+
+
+<a href="https://www.jahia.com/">
+    <img src="https://www.jahia.com/modules/jahiacom-templates/images/jahia-3x.png" alt="Jahia logo" title="Jahia" align="right" height="60" />
+</a>
+
+@jahia/app-shell
+======================
 
 > Root Jahia app
 
@@ -64,10 +65,6 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 Give a ⭐️ if this project helped you!
 
-## 📝 License
+## Open-Source
 
-Copyright © 2020 [Jahia](https://github.com/Jahia).<br />
-This project is [JAHIA'S DUAL LICENSING](./LICENSE.txt) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+This is an Open-Source module, you can find more details about Open-Source @ Jahia [in this repository](https://github.com/Jahia/open-source).
