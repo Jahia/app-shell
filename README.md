@@ -1,4 +1,4 @@
-![License](https://img.shields.io/github/license/jahia/jcontent)
+![License](https://img.shields.io/github/license/jahia/app-shell)
 ![Twitter: Jahia](https://img.shields.io/twitter/follow/Jahia.svg?style=social)
 
 
