@@ -6,7 +6,7 @@ import {client} from './client';
 const apolloClient = client({
     contextPath: window.contextJsParameters.contextPath,
     useBatch: true,
-    httpOptions: {batchMax: 50}
+    httpOptions: {batchMax: 20}
 });
 
 registry.add('app', 'apollo-provider', {
