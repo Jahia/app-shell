@@ -28,7 +28,7 @@
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
         "@jahia/data-helper": "^0.0.23",
-        "@jahia/design-system-kit": "^1.1.5",
+        "@jahia/design-system-kit": "^1.1.6",
         "@jahia/icons": "^1.1.1",
         "@jahia/moonstone": "^0.16.0",
         "@jahia/react-material": "^2.1.2",
