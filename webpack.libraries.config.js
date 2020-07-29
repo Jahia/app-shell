@@ -42,7 +42,8 @@ module.exports = (env, argv) => {
         output: {
             filename: 'jahia-commons.dll.js',
             path: path.resolve(__dirname, 'src/main/resources/javascript/commons/'),
-            library: 'jahiaCommons'
+            library: 'jahiaCommons',
+            publicPath: '/modules/app-shell/javascript/commons/'
         },
         module: {
             rules: [
