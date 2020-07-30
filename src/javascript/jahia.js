@@ -3,14 +3,14 @@ __webpack_public_path__ = `${window.contextJsParameters.contextPath}/modules/app
 window.jahiaCommons.p = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/commons/`;
 
 // Configuration
-import './apollo/register';
-import './redux/register';
+require('./apollo/register');
+require('./redux/register');
 
 // Global values to expose in Jahia library
-import {startAppShell} from './appShell';
-import * as uiExtender from '@jahia/ui-extender';
-import i18n from './i18n/i18n';
-import * as moonstone from '@jahia/moonstone';
+const startAppShell = require('./appShell').startAppShell;
+const uiExtender = require('@jahia/ui-extender');
+const i18n = require('./i18n/i18n').default;
+const moonstone = require('@jahia/moonstone');
 
 // Theses value will be exposed in window.jahia
 export {
