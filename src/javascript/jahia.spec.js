@@ -1,5 +1,7 @@
 jest.mock('./i18n/i18n', () => {
-    return {i18next: true};
+    return {
+        default: {i18next: true}
+    };
 });
 
 jest.mock('@jahia/ui-extender', () => {
@@ -15,8 +17,9 @@ jest.mock('./appShell', () => {
         startAppShell: jest.fn()
     };
 });
-import * as uiExtender from '@jahia/ui-extender';
-import {startAppShell} from './appShell';
+
+const uiExtender = require('@jahia/ui-extender');
+const startAppShell = require('./appShell').startAppShell;
 
 describe('jahia lib', () => {
     let jahia;
