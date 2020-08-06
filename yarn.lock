@@ -1029,10 +1029,10 @@
     lodash "^4.17.13"
     react-apollo "^3.1.3"
 
-"@jahia/design-system-kit@^1.1.6":
-  version "1.1.6"
-  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.1.6.tgz#a261776742af395f81a2a7c7f68ff3ad04f078f3"
-  integrity sha512-CUg1BrWcJNdnI6tNe7MAIvSlOe2RWfi3aEGFSAPElcS/QDU6aK+HQKA5b/i3r61c6ItcCJzlGDX9W57WHQR3BQ==
+"@jahia/design-system-kit@^1.1.7":
+  version "1.1.7"
+  resolved "https://npm.jahia.com/@jahia%2fdesign-system-kit/-/design-system-kit-1.1.7.tgz#33bf0cf1c406f0bcca7ce62117c3c6c92f591a59"
+  integrity sha512-NuHvDxbz5hIhA0LOJhBZTSKmfvECmvdvrGHMCwSKE/UWZo3XtaQpPDS/lCt88TjFuy9greK2UhnYHK4oTmTkhA==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
