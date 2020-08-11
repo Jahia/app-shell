@@ -67,7 +67,7 @@
     <div class="jahia-loader-ripple"></div>
   </div>
 
-<c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
+<c:set var="targetId" value="reactComponent"/>
 <div id="${targetId}"></div>
 
 <div id="gwt-root"></div>
