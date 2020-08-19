@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+
+    <rule>
+        <name>js resources (inbound)</name>
+        <note>Handles checksum for the resources of the js bundles for the proper cache support</note>
+        <from>^/modules/(.*)/javascript/(.*)\.v[0-9a-f]+\.bundle\.js$</from>
+        <to last="true">/modules/$1/javascript/$2.bundle.js</to>
+    </rule>
+
+    <outbound-rule>
+        <name>js resources (outbound)</name>
+        <note>Handles checksum for the resources of the js bundle for the proper cache support</note>
+        <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/javascript/(.*)\.bundle\.js)$</from>
+        <run class="org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator" method="calculateChecksum(HttpServletRequest, String, String)"/>
+        <to last="true" encode="false">$1/modules/$3/javascript/$4.v%{attribute:ResourceChecksumCalculator.checksum}.bundle.js</to>
+    </outbound-rule>
+
+    <rule>
+        <name>js config (inbound)</name>
+        <note>Handles checksum for the resources of the js configs for the proper cache support</note>
+        <from>^/modules/(.*)/configs/(.*)\.v[0-9a-f]+\.js$</from>
+        <to last="true">/modules/$1/configs/$2.jsp</to>
+    </rule>
+
+    <outbound-rule>
+        <name>js config (outbound)</name>
+        <note>Handles checksum for the resources of the js configs for the proper cache support</note>
+        <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/configs/(.*)\.jsp)$</from>
+        <run class="org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator" method="calculateChecksum(HttpServletRequest, String, String)"/>
+        <to last="true" encode="false">$1/modules/$3/configs/$4.v%{attribute:ResourceChecksumCalculator.checksum}.js</to>
+    </outbound-rule>
+
+</urlrewrite>
