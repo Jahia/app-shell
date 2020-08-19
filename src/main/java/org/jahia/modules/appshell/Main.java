@@ -52,6 +52,7 @@ import org.jahia.osgi.FrameworkService;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRSessionFactory;
 import org.jahia.services.content.decorator.JCRUserNode;
+import org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator;
 import org.jahia.services.sites.JahiaSite;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
@@ -124,6 +125,7 @@ public class Main extends HttpServlet {
             setCustomAttributes(currentUser, wrapper);
 
             List<String> scripts = getApplicationScripts(appName);
+            scripts = scripts.stream().map(f -> "\"" + response.encodeURL(f) + "\"").collect(Collectors.toList());
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             response.setHeader("Cache-Control", "no-store");
@@ -167,9 +169,9 @@ public class Main extends HttpServlet {
             List<String> jsBundles = getBundleScripts(bundle, appName);
             for (String jsBundle : jsBundles) {
                 if (jsBundle.startsWith("/")) {
-                    resources.add("\"" + jsBundle + "\"");
+                    resources.add(jsBundle);
                 } else {
-                    resources.add("\"/modules/" + bundle.getSymbolicName() + "/" + jsBundle + "\"");
+                    resources.add("/modules/" + bundle.getSymbolicName() + "/" + jsBundle);
                 }
             }
         }
