@@ -27,7 +27,7 @@
     "license": "SEE LICENSE IN LICENSE.txt FILE",
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
-        "@jahia/data-helper": "^0.0.24",
+        "@jahia/data-helper": "^0.0.25",
         "@jahia/design-system-kit": "^1.1.7",
         "@jahia/icons": "^1.1.1",
         "@jahia/moonstone": "^0.16.2-canary.0e01963",
