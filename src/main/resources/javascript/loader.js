@@ -58,6 +58,53 @@ window.displayDXLoadingScreen = function (loadingMessages) {
     document.firstElementChild.appendChild(body);
     body.appendChild(loader);
 
+    /**
+     * This method will at first try to remove the loader with child.remove(), where child is the loader element
+     * but as IE doesn't support it, we will try to remove the loader with parent.removeChild(child)
+     * but here again IE seams to fail in some cases. so in the worst possible outcome we will just hide the loader
+     *
+     * @param {object} parent       The parent of the element to remove
+     * @param {object} child        The element to remove
+     * @param {string} [message]    Optional message to log
+     */
+    var removeElement = function (parent, child, message) {
+        if (message) {
+            console.log(message);
+        }
+
+        if (child.remove && typeof child.remove === 'function') {
+            child.remove();
+        } else if (parent.removeChild && typeof parent.removeChild === 'function') {
+            parent.removeChild(child);
+        } else {
+            child.style.display = 'none';
+        }
+    };
+
+    var timeout = setTimeout(function () {
+        removeLoader(document.querySelector('IFRAME.gwt-Frame').parentElement, loader, body, observer);
+    }, 15000);
+
+    /**
+     * This method remove the loader from the page, disconnect the observer
+     * and remove the temporary body created to hold the loader if it's still present
+     *
+     * @param {object} iframeParent         The parent of the iframe
+     * @param {object} loaderElement        The loader element
+     * @param {object|undefined} tempBody   The temporary body element
+     * @param {object} obs                  The observer to disconnect
+     */
+    var removeLoader = function (iframeParent, loaderElement, tempBody, obs) {
+        removeElement(iframeParent, loaderElement, 'iframe[className="gwt-Frame"] loaded');
+        obs.disconnect();
+        clearTimeout(timeout);
+
+        // Let's make sure the body created for the loader has been removed
+        if (tempBody) {
+            removeElement(tempBody.parentElement, tempBody);
+        }
+    };
+
     var observer = new MutationObserver(function (mutations, o) {
         /**
          * This method try to find the desired node from in mutations object
@@ -81,48 +128,6 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             return element;
         }
 
-        /**
-         * This method will at first try to remove the loader with child.remove(), where child is the loader element
-         * but as IE doesn't support it, we will try to remove the loader with parent.removeChild(child)
-         * but here again IE seams to fail in some cases. so in the worst possible outcome we will just hide the loader
-         *
-         * @param {object} parent       The parent of the element to remove
-         * @param {object} child        The element to remove
-         * @param {string} [message]    Optional message to log
-         */
-        var removeElement = function (parent, child, message) {
-            if (message) {
-                console.log(message);
-            }
-
-            if (child.remove && typeof child.remove === 'function') {
-                child.remove();
-            } else if (parent.removeChild && typeof parent.removeChild === 'function') {
-                parent.removeChild(child);
-            } else {
-                child.style.display = 'none';
-            }
-        };
-
-        /**
-         * This method remove the loader from the page, disconnect the observer
-         * and remove the temporary body created to hold the loader if it's still present
-         *
-         * @param {object} iframeParent         The parent of the iframe
-         * @param {object} loaderElement        The loader element
-         * @param {object|undefined} tempBody   The temporary body element
-         * @param {object} obs                  The observer to disconnect
-         */
-        var removeLoader = function (iframeParent, loaderElement, tempBody, obs) {
-            removeElement(iframeParent, loaderElement, 'iframe[className="gwt-Frame"] loaded');
-            obs.disconnect();
-
-            // Let's make sure the body created for the loader has been removed
-            if (tempBody) {
-                removeElement(tempBody.parentElement, tempBody);
-            }
-        };
-
         var newbody = getNewNode('BODY');
         if (newbody) {
             newbody.appendChild(loader);
@@ -139,7 +144,7 @@ window.displayDXLoadingScreen = function (loadingMessages) {
             // Also IE seems to have some issue with the load event so we will use the timeout here as well
             var userAgent = window.navigator.userAgent;
             if (iframe.contentDocument.readyState === 'complete' ||
-                userAgent.indexOf('MSIE ') || Boolean(userAgent.match(/Trident.*rv\:11\./))) {
+                userAgent.indexOf('MSIE ') > -1 || Boolean(userAgent.match(/Trident.*rv\:11\./))) {
                 setTimeout(function () {
                     removeLoader(iframe.parentElement, loader, body, o);
                 }, 3000);
