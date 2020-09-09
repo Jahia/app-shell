@@ -6,6 +6,7 @@
 *.ipr
 target
 src/main/resources/javascript/bundles
+src/main/resources/javascript/commons
 node
 node_modules
 yarn-error.log
