@@ -1073,10 +1073,10 @@
     react-is "^16.12.0"
     to-px "^1.1.0"
 
-"@jahia/react-material@^2.1.2":
-  version "2.1.2"
-  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-2.1.2.tgz#e36cb56dc3f76095c767d9d988f536405253252e"
-  integrity sha512-pUE+D3VvOQMMMHMWwsqY7HfEHfD8TmCCnjaEKpek5kHIt3gR/tsKiAOTUfGbAipgM3pipi7LHIIeStqZwY9Lqw==
+"@jahia/react-material@^3.0.1":
+  version "3.0.1"
+  resolved "https://npm.jahia.com/@jahia%2freact-material/-/react-material-3.0.1.tgz#d3078581e5000deb9879152c8928ad3d3c83ae29"
+  integrity sha512-0JamWsQXrXoHfUSjMApOl1m1aBhcWukWG1Yf/hyBs21tWm7dfI6zPYXet+fDbLiLwsJirvR+t4viiiIazYEOjg==
   dependencies:
     lodash "^4.17.13"
     prop-types "^15.6.1"
@@ -1093,10 +1093,10 @@
     enzyme-adapter-react-16 "^1.12.1"
     identity-obj-proxy "^3.0.0"
 
-"@jahia/ui-extender@^0.5.2":
-  version "0.5.2"
-  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.5.2.tgz#da0fc30f23af486f09277b68b6a88fa140001fa6"
-  integrity sha512-B93zH9jADvNlmYPqYY/LeorwD/RJamd0DQwziFReKuteovHcZQOMIPAz5MZGWykm0bHMOE1nEdsJNqdWtJiCpg==
+"@jahia/ui-extender@^0.5.3":
+  version "0.5.3"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-0.5.3.tgz#7bcb8e08f52ea0f1152302695349c6dd0ec15095"
+  integrity sha512-KUIAIXvzJYd/SpK6bPZzuyq0/sHMKtm2z7MZPf4N0THrzAuJNlmKILLZYL1AzMEbvYg/k2PcQ9lZX7UKuKHrEw==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
