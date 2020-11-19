@@ -32,7 +32,7 @@
         "@jahia/icons": "^1.1.1",
         "@jahia/moonstone": "^0.17.0",
         "@jahia/react-material": "^3.0.1",
-        "@jahia/ui-extender": "^0.5.3",
+        "@jahia/ui-extender": "^0.5.4",
         "apollo-cache-inmemory": "^1.6.5",
         "apollo-client": "^2.6.8",
         "apollo-link": "^1.2.13",
