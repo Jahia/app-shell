@@ -27,10 +27,12 @@ module.exports = (env, argv) => {
                 'redux',
                 'rxjs',
                 'whatwg-fetch',
+                'dayjs',
 
                 // JAHIA PACKAGES
                 '@jahia/ui-extender',
                 '@jahia/moonstone',
+                '@jahia/moonstone-alpha',
                 '@jahia/data-helper',
 
                 // DEPRECATED JAHIA PACKAGES
