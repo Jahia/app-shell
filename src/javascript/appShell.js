@@ -1,6 +1,22 @@
 import ReactDOM from 'react-dom';
 import {registry} from '@jahia/ui-extender';
-import {jsload} from './jsloader';
+
+function loadComponent(container, module) {
+    return async () => {
+        // Initializes the shared scope. Fills it with known provided modules from this build and all remotes
+        await __webpack_init_sharing__('default');
+        // const container = window[scope]; // or get the container somewhere else
+        // Initialize the container, it may provide shared modules
+        await container.init(__webpack_share_scopes__.default);
+        try {
+            const factory = await container.get(module);
+            const Module = factory();
+            return Module;
+        } catch (e) {
+            console.log("No init() found in container", container);
+        }
+    };
+}
 
 const promisifiedReactDomRender = (cmp, target) => {
     return new Promise(resolve => {
@@ -8,15 +24,15 @@ const promisifiedReactDomRender = (cmp, target) => {
     });
 };
 
-export const startAppShell = (js, targetId) => {
+export const startAppShell = (remotes, targetId) => {
     // Load main scripts for each bundle
-    return Promise.all(js.map(path => jsload(path)))
-        .then(async () => {
-            const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});
+    return Promise.all(Object.values(remotes).map(r => loadComponent(r, './init')()))
+        .then(async (registers) => {
+            const callbacks = registers.filter(r => r).map(r => r.default);
 
             // Get the list of different priority
             const priorities = callbacks
-                .map(cb => Number(cb.targets.find(t => t.id === 'jahiaApp-init').priority))
+                .map(cb => cb.priority)
                 // Supress duplicate
                 .filter((priority, i, prioritiesWithDuplicates) => {
                     return i === prioritiesWithDuplicates.findIndex(c => Number.isNaN(priority) ? Number.isNaN(Number(c)) : Number(c) === priority);
@@ -27,19 +43,13 @@ export const startAppShell = (js, targetId) => {
                 // eslint-disable-next-line no-await-in-loop
                 await Promise.all(
                     callbacks
-                        .filter(entry => {
-                            const entryPriority = Number(entry.targets.find(t => t.id === 'jahiaApp-init').priority);
-                            if (Number.isNaN(entryPriority) && Number.isNaN(priority)) {
-                                return true;
-                            }
-
-                            return entryPriority === priority;
-                        })
+                        .filter(entry => entry.priority === priority)
                         .map(entry => entry.callback())
                 );
             }
         })
         .then(() => {
+            console.log(registry);
             // Create application
             const apps = registry.find({type: 'app', target: 'root'}).map(m => m.render);
             const render = apps.reduceRight((prevFn, nextFn) => (...args) => nextFn(prevFn(...args)), value => value);

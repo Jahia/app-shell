@@ -74,9 +74,14 @@
 
 
 <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
-<script src="${contextPath}/modules/app-shell/javascript/commons/jahia-commons.dll.js"></script>
-<script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 <script type="text/javascript">
-    jahia.startAppShell(${scripts}, "${targetId}");
+    window.appShell = {
+        remotes: {},
+        targetId: "${targetId}"
+    };
 </script>
+
+  <script src="${contextPath}/modules/jahia-ui-root/javascript/apps/remoteEntry.js"></script>
+
+<script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 </body>
