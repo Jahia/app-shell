@@ -6,7 +6,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const deps = require("./package.json").dependencies;
 
-const singletonDeps = ['react', 'react-dom', 'redux', 'react-redux'];
+const singletonDeps = Object.keys(deps);//['react', 'react-dom', 'redux', 'react-redux'];
 
 module.exports = (env, argv) => {
     let config = {

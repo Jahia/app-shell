@@ -25,6 +25,10 @@
     "author": "Jahia Core Team <core@jahia.com>",
     "license": "SEE LICENSE IN LICENSE.txt FILE",
     "dependencies": {
+        "@apollo/react-common": "^3.1.4",
+        "@apollo/react-components": "^3.1.5",
+        "@apollo/react-hoc": "^3.1.5",
+        "@apollo/react-hooks": "^3.1.5",
         "@babel/polyfill": "^7.2.5",
         "@babel/runtime": "^7.12.5",
         "@jahia/data-helper": "^0.0.26",

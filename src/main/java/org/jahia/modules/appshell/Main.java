@@ -125,8 +125,8 @@ public class Main extends HttpServlet {
             setCustomAttributes(currentUser, wrapper);
 
             List<String> scripts = getApplicationScripts(appName);
-            scripts = scripts.stream().map(f -> "\"" + response.encodeURL(f) + "\"").collect(Collectors.toList());
-            wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
+            scripts = scripts.stream().map(f -> response.encodeURL(f)).collect(Collectors.toList());
+            wrapper.setAttribute("scripts", scripts);
 
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Content-Type", "text/html;charset=UTF-8");
