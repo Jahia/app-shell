@@ -27,12 +27,14 @@ const promisifiedReactDomRender = (cmp, target) => {
 export const startAppShell = (remotes, targetId) => {
     // Load main scripts for each bundle
     return Promise.all(Object.values(remotes).map(r => loadComponent(r, './init')()))
-        .then(async (registers) => {
-            const callbacks = registers.filter(r => r).map(r => r.default);
+        .then(async (inits) => {
+            inits.forEach(init => init.default());
+
+            const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});
 
             // Get the list of different priority
             const priorities = callbacks
-                .map(cb => cb.priority)
+                .map(cb => Number(cb.targets.find(t => t.id === 'jahiaApp-init').priority))
                 // Supress duplicate
                 .filter((priority, i, prioritiesWithDuplicates) => {
                     return i === prioritiesWithDuplicates.findIndex(c => Number.isNaN(priority) ? Number.isNaN(Number(c)) : Number(c) === priority);
@@ -43,7 +45,14 @@ export const startAppShell = (remotes, targetId) => {
                 // eslint-disable-next-line no-await-in-loop
                 await Promise.all(
                     callbacks
-                        .filter(entry => entry.priority === priority)
+                        .filter(entry => {
+                            const entryPriority = Number(entry.targets.find(t => t.id === 'jahiaApp-init').priority);
+                            if (Number.isNaN(entryPriority) && Number.isNaN(priority)) {
+                                return true;
+                            }
+
+                            return entryPriority === priority;
+                        })
                         .map(entry => entry.callback())
                 );
             }
