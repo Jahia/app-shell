@@ -6,7 +6,23 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const deps = require("./package.json").dependencies;
 
-const singletonDeps = Object.keys(deps);//['react', 'react-dom', 'redux', 'react-redux'];
+const singletonDeps = [
+    '@apollo/react-common',
+    '@apollo/react-components',
+    '@apollo/react-hoc',
+    '@apollo/react-hooks',
+    'apollo-cache-inmemory',
+    'apollo-client',
+    'apollo-link',
+    'i18next',
+    'react',
+    'react-apollo',
+    'react-router',
+    'react-router-dom',
+    'react-dom',
+    'redux',
+    'react-redux',
+];
 
 module.exports = (env, argv) => {
     let config = {
@@ -113,19 +129,16 @@ module.exports = (env, argv) => {
                 exposes: {
                     './bootstrap': './src/javascript/bootstrap'
                 },
-                shared: [
-                    {
-                        ...deps,
-                        ...singletonDeps.reduce((acc, item) => ({
-                            ...acc,
-                            [item]: {
-                                singleton:true,
-                                requiredVersion:deps[item]
-                            }
-                        }), {})
-                    }
-
-                ]
+                shared: {
+                    ...deps,
+                    ...singletonDeps.reduce((acc, item) => ({
+                        ...acc,
+                        [item]: {
+                            singleton:true,
+                            requiredVersion:deps[item]
+                        }
+                    }), {})
+                }
             }),
             new CleanWebpackPlugin(
                 path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}
