@@ -4,16 +4,19 @@ import {registry} from '@jahia/ui-extender';
 function loadComponent(container, module) {
     return async () => {
         // Initializes the shared scope. Fills it with known provided modules from this build and all remotes
+
+        // eslint-disable-next-line no-undef, camelcase
         await __webpack_init_sharing__('default');
-        // const container = window[scope]; // or get the container somewhere else
+
         // Initialize the container, it may provide shared modules
+        // eslint-disable-next-line no-undef, camelcase
         await container.init(__webpack_share_scopes__.default);
         try {
             const factory = await container.get(module);
             const Module = factory();
             return Module;
         } catch (e) {
-            console.log("No init() found in container", container);
+            console.log('No init() found in container {}', container, e);
         }
     };
 }
@@ -27,7 +30,7 @@ const promisifiedReactDomRender = (cmp, target) => {
 export const startAppShell = (remotes, targetId) => {
     // Load main scripts for each bundle
     return Promise.all(Object.values(remotes).map(r => loadComponent(r, './init')()))
-        .then(async (inits) => {
+        .then(async inits => {
             inits.forEach(init => init.default());
 
             const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});

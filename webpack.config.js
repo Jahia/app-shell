@@ -1,10 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const deps = require("./package.json").dependencies;
+const deps = require('./package.json').dependencies;
 
 const singletonDeps = [
     '@apollo/react-common',
@@ -21,7 +20,7 @@ const singletonDeps = [
     'react-router-dom',
     'react-dom',
     'redux',
-    'react-redux',
+    'react-redux'
 ];
 
 module.exports = (env, argv) => {
@@ -33,7 +32,7 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-            filename: 'appshell.js',
+            filename: 'appshell.js'
         },
         resolve: {
             mainFields: ['module', 'main'],
@@ -123,9 +122,9 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new ModuleFederationPlugin({
-                name: "appShell",
-                library: { type: "var", name: "appShellRemote" },
-                filename: "remoteEntry.js",
+                name: 'appShell',
+                library: {type: 'var', name: 'appShellRemote'},
+                filename: 'remoteEntry.js',
                 exposes: {
                     './bootstrap': './src/javascript/bootstrap'
                 },
@@ -134,8 +133,8 @@ module.exports = (env, argv) => {
                     ...singletonDeps.reduce((acc, item) => ({
                         ...acc,
                         [item]: {
-                            singleton:true,
-                            requiredVersion:deps[item]
+                            singleton: true,
+                            requiredVersion: deps[item]
                         }
                     }), {})
                 }

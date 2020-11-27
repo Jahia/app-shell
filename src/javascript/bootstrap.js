@@ -1,7 +1,3 @@
-// eslint-disable-next-line no-undef, camelcase
-// __webpack_public_path__ = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/apps/`;
-// window.jahiaCommons.p = `${window.contextJsParameters.contextPath}/modules/app-shell/javascript/commons/`;
-
 // Configuration
 require('./apollo/register');
 require('./redux/register');
