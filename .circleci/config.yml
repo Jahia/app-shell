@@ -47,8 +47,8 @@ references:
 jobs:
   initialize:
     <<: *workdir
-    docker: # run the steps with Docker
-      - image: circleci/openjdk:8-jdk-stretch
+    docker:
+      - image: cimg/node:14.15
     steps:
       - checkout
       - run:
