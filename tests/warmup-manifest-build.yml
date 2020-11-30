@@ -4,5 +4,5 @@ jobs:
     source: prepackaged
     sitekey: digitall  
   - type: module
-    id: personal-api-tokens
-    filepath: /tmp/artifacts/personal-api-tokens-SNAPSHOT.jar
+    id: app-shell
+    filepath: /tmp/artifacts/app-shell-SNAPSHOT.jar
