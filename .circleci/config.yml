@@ -507,27 +507,27 @@ workflows:
   # Monthly, we run the integration testing suite with older (but still supported) versions of Jahia and set versions of the module:
   # This provides a reference point (when was the latest time this was tested)
   # In this section we want to see set Jahia versions (not aliases)
-  monthly:
-    triggers:
-      - schedule:
-          cron: '0 0 1 * *'
-          filters:
-            branches:
-              only:
-                - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
-    jobs:
-      - initialize
-      # - integration_tests:
-      #     matrix:
-      #       parameters:
-      #         JAHIA_IMAGE: ["jahia/jahia-dev:8.0.1.0"]
-      #         RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
-      #         MANIFEST: ["warmup-manifest-snapshot.yml"]
-      #         JAHIA_CONTEXT: [""]
-      #         TESTRAIL_MILESTONE: ["<< matrix.JAHIA_IMAGE >>"]
-      #         TOOLS_USER: ["root"]
-      #         TOOLS_PWD: ["root"]
-      #     name: Monthly-<< matrix.JAHIA_IMAGE >>-with-ES-<< matrix.ELASTICSEARCH_VERSION >>
-      #     context: QA_ENVIRONMENT
-      #     requires:
-      #       - initialize
+  # monthly:
+  #   triggers:
+  #     - schedule:
+  #         cron: '0 0 1 * *'
+  #         filters:
+  #           branches:
+  #             only:
+  #               - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
+  #   jobs:
+  #     - initialize
+  #     - integration_tests:
+  #         matrix:
+  #           parameters:
+  #             JAHIA_IMAGE: ["jahia/jahia-dev:8.0.1.0"]
+  #             RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
+  #             MANIFEST: ["warmup-manifest-snapshot.yml"]
+  #             JAHIA_CONTEXT: [""]
+  #             TESTRAIL_MILESTONE: ["<< matrix.JAHIA_IMAGE >>"]
+  #             TOOLS_USER: ["root"]
+  #             TOOLS_PWD: ["root"]
+  #         name: Monthly-<< matrix.JAHIA_IMAGE >>-with-ES-<< matrix.ELASTICSEARCH_VERSION >>
+  #         context: QA_ENVIRONMENT
+  #         requires:
+  #           - initialize
