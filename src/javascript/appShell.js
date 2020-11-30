@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import {registry} from '@jahia/ui-extender';
+import {jsload} from './jsloader';
 
 function loadComponent(container, module) {
     return async () => {
@@ -27,9 +28,12 @@ const promisifiedReactDomRender = (cmp, target) => {
     });
 };
 
-export const startAppShell = (remotes, targetId) => {
+export const startAppShell = ({remotes, targetId, oldScripts}) => {
     // Load main scripts for each bundle
-    return Promise.all(Object.values(remotes).map(r => loadComponent(r, './init')()))
+    return Promise.all([
+        ...Object.values(remotes).map(r => loadComponent(r, './init')()),
+        Promise.all(oldScripts.map(path => jsload(path))).then(() => ({default:() => {}}))
+    ])
         .then(async inits => {
             inits.forEach(init => init.default());
 

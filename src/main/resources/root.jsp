@@ -77,11 +77,15 @@
 <script type="text/javascript">
     window.appShell = {
         remotes: {},
-        targetId: "${targetId}"
+        oldScripts: ${oldScripts},
+        targetId: "${targetId}",
     };
+    window.jahiaCommons = function(module) {
+        return(jahia.modules[module]);
+    }
 </script>
-<c:forEach items="${scripts}" var="script">
-<script src="${script}"></script>
+<c:forEach items="${remotes}" var="remote">
+<script src="${remote}"></script>
 </c:forEach>
 <script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 </body>

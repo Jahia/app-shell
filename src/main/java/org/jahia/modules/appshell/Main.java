@@ -52,7 +52,6 @@ import org.jahia.osgi.FrameworkService;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRSessionFactory;
 import org.jahia.services.content.decorator.JCRUserNode;
-import org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator;
 import org.jahia.services.sites.JahiaSite;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
@@ -81,6 +80,7 @@ public class Main extends HttpServlet {
     private static final String JAHIA_JSON = "javascript/apps/jahia.json";
     private static final String JAHIA = "jahia";
     private static final String APPS = "apps";
+    private static final String REMOTES = "remotes";
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
@@ -124,9 +124,13 @@ public class Main extends HttpServlet {
             wrapper.setAttribute("appName", appName);
             setCustomAttributes(currentUser, wrapper);
 
-            List<String> scripts = getApplicationScripts(appName);
-            scripts = scripts.stream().map(f -> response.encodeURL(f)).collect(Collectors.toList());
-            wrapper.setAttribute("scripts", scripts);
+            List<String> scripts = getApplicationScripts(appName, APPS);
+            scripts = scripts.stream().map(f -> "\"" + response.encodeURL(f) + "\"").collect(Collectors.toList());
+            wrapper.setAttribute("oldScripts", "[" + StringUtils.join(scripts, ",") + "]");
+
+            List<String> remotes = getApplicationScripts(appName, REMOTES);
+            remotes = remotes.stream().map(f -> response.encodeURL(f)).collect(Collectors.toList());
+            wrapper.setAttribute("remotes", remotes);
 
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Content-Type", "text/html;charset=UTF-8");
@@ -162,11 +166,11 @@ public class Main extends HttpServlet {
     }
 
 
-    public List<String> getApplicationScripts(String appName) throws JSONException, IOException {
+    public List<String> getApplicationScripts(String appName, String key) throws JSONException, IOException {
         LinkedList<String> resources = new LinkedList<>();
 
         for (Bundle bundle : getPackages()) {
-            List<String> jsBundles = getBundleScripts(bundle, appName);
+            List<String> jsBundles = getBundleScripts(bundle, appName, key);
             for (String jsBundle : jsBundles) {
                 if (jsBundle.startsWith("/")) {
                     resources.add(jsBundle);
@@ -182,11 +186,11 @@ public class Main extends HttpServlet {
         return Arrays.stream(FrameworkService.getBundleContext().getBundles()).filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() && BundleUtils.isJahiaModuleBundle(bundle) && (bundle.getResource(PACKAGE_JSON) != null || bundle.getResource(JAHIA_JSON) != null)).collect(Collectors.toList());
     }
 
-    private List<String> getBundleScripts(Bundle bundle, String appName) throws IOException, JSONException {
+    private List<String> getBundleScripts(Bundle bundle, String appName, String key) throws IOException, JSONException {
         JSONObject pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
-        boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(APPS) && pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).has(appName);
+        boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(key) && pkgJson.getJSONObject(JAHIA).getJSONObject(key).has(appName);
         if (hasExtend) {
-            Object res = pkgJson.getJSONObject(JAHIA).getJSONObject(APPS).get(appName);
+            Object res = pkgJson.getJSONObject(JAHIA).getJSONObject(key).get(appName);
             if (res instanceof JSONArray) {
                 JSONArray jsonArray = (JSONArray) res;
                 List<String> l = new ArrayList<>();
