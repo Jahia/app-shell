@@ -1,5 +1,35 @@
 version: 2.1
 
+orbs:
+  docker: circleci/docker@0.5.20
+
+# Parameters are available across the entire config file and can be used with this syntax: << pipeline.parameters.THE_PARAMETER >>
+# Avoid using project-specific variables in the jobs or steps.
+# Instead, declare those as pipeline parameters (At the top of the config file).
+# This eases portability of the config file across different modules
+parameters:
+  AUDITCI_LEVEL:
+    type: string
+    default: 'moderate'
+  TESTS_PATH:
+    type: string
+    default: 'tests/'
+  TESTS_IMAGE:
+    type: string
+    default: 'jahia/app-shell'
+  MODULE_ID:
+    type: string
+    default: 'app-shell'    
+  TESTRAIL_PROJECTNAME:
+    type: string
+    default: 'App Shell Module'    
+  GITHUB_SLUG:
+    type: string
+    default: 'jahia/app-shell'    
+  PRIMARY_RELEASE_BRANCH:
+    type: string
+    default: 'master' # main or master ? set the branch for the main release 
+
 references:
   workdir: &workdir
     working_directory: ~/source
@@ -15,13 +45,55 @@ references:
       at: .
 
 jobs:
-  checkout:
+  initialize:
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
-      - checkout
+      - checkout    
       - *persist-workspace
+
+  # Lint the project or any other static code analysis
+  # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
+  # Ideally this should lint both the module codebase and the test codebase, we want to fail on warning (it is up the the 
+  # team to either fix the warning, ignore the warning, or modify the ruleset so that this warnning doesn't happen again)
+  lint:
+    <<: *workdir
+    docker:
+      - image: cimg/node:14.15
+    steps:
+      - *attach-workspace
+      - run:
+          name: Yarn lint tests
+          command: |
+            cd << pipeline.parameters.TESTS_PATH >>
+            yarn run lint --max-warnings 1
+      - run:
+          name: Yarn lint module
+          command: |
+            yarn run lint --max-warnings 1
+
+  # Run security checks
+  # Security checks on the project are used to validate that we don't use any problematic javascript libraries
+  # It is using audit-ci by IBM (https://github.com/IBM/audit-ci)
+  security:
+    <<: *workdir
+    docker:
+      - image: cimg/node:14.15
+    steps:
+      - *attach-workspace
+      - run:
+          name: Install dependencies
+          command: sudo npm install -g audit-ci
+      - run:
+          name: Run Audit-ci on tests
+          command: |
+            cd << pipeline.parameters.TESTS_PATH >>
+            audit-ci --<< pipeline.parameters.AUDITCI_LEVEL >>
+      - run:
+          name: Run Audit-ci on module
+          command: |
+            audit-ci --<< pipeline.parameters.AUDITCI_LEVEL >>
 
   build:
     parameters:
@@ -39,18 +111,7 @@ jobs:
             - v2-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
-      - when:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: mvn clean install
-                command: mvn -s .circleci/.circleci.settings.xml clean install
-      - unless:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: mvn clean deploy
-                command: mvn -s .circleci/.circleci.settings.xml clean deploy
+      - run: mvn -s .circleci/.circleci.settings.xml clean install
       - save_cache:
           paths:
             - ~/.m2
@@ -59,106 +120,408 @@ jobs:
           name: Copy artifacts
           command: |
             mkdir /tmp/artifacts/
+            cp /home/circleci/source/target/*SNAPSHOT.jar /home/circleci/source/target/<< pipeline.parameters.MODULE_ID >>-SNAPSHOT.jar
             cp /home/circleci/source/target/*.jar /tmp/artifacts/
       - store_artifacts:
           path: /tmp/artifacts/
       - *persist-workspace
 
-  sonar:
-    parameters:
-      is_pull_request:
-        type: boolean
-        default: false
+  # This job publish the artifact to nexus by calling the deploy command
+  # It is only executed when merging into master (after successful PR execution)
+  publish:
     <<: *workdir
-    docker: # run the steps with Docker
+    docker: 
       - image: circleci/openjdk:8-jdk-stretch
-    resource_class: large
     steps:
       - *attach-workspace
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "pom.xml" }}
+            - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
-      - when:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: Analyze pull request with sonar
-                command: |
-                  mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.pullrequest.branch=$CIRCLE_BRANCH \
-                  -Dsonar.pullrequest.key=<< pipeline.parameters.pull_request_number >> \
-                  -Dsonar.pullrequest.base=<< pipeline.parameters.target_branch >> \
-                  -Dsonar.pullrequest.github.repository=<< pipeline.parameters.github_repository >>
-      - unless:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: Sonar analysis
-                command: |
-                  if [[ "${CIRCLE_BRANCH}" == "master" ]];
-                  then
-                    mvn -s .circleci/.circleci.settings.xml sonar:sonar
-                  else
-                    mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.branch.name=$CIRCLE_BRANCH
-                  fi
+            - v1-dependencies-
+      - run: mvn -s .circleci/.circleci.settings.xml deploy
+
+  sonar:
+    <<: *workdir
+    docker: # run the steps with Docker
+      - image: circleci/openjdk:11-jdk-stretch
+    resource_class: medium
+    steps:
+      - *attach-workspace
+      - checkout
+      - restore_cache:
+          keys:
+            - sonar-dependencies-{{ checksum "pom.xml" }}
+            # Fallback if no exact match found
+            - sonar-dependencies-
+      # We're executing different actions depending fi the job was triggered by a PR or if it was triggered on branch
+      # If the branch was not triggered by a PR, the CIRCLE_PULL_REQUEST variable will be empty
+      - run:
+          name: Sonar Release branch analysis
+          command: |
+            if [[ ! -z "$CIRCLE_PULL_REQUEST" ]]; then
+              # echo "Git custom command to fix circle-ci checkout for sonar analysis"
+              git fetch --all
+              git branch -D main
+              git rev-parse origin/main
+              echo "Executing a PR based analysis"
+              mvn -s .circleci/.circleci.settings.xml sonar:sonar \
+                  -Dsonar.projectKey=<< pipeline.parameters.MODULE_ID >> \
+                  -Dsonar.pullrequest.branch=$CIRCLE_BRANCH \
+                  -Dsonar.pullrequest.key=${CIRCLE_PULL_REQUEST##*/} \
+                  -Dsonar.pullrequest.base=<< pipeline.parameters.PRIMARY_RELEASE_BRANCH >> \
+                  -Dsonar.pullrequest.github.repository=<< pipeline.parameters.GITHUB_SLUG >>
+            elif [[ "$CIRCLE_BRANCH" == << pipeline.parameters.PRIMARY_RELEASE_BRANCH >> ]]; then
+              echo "Executing an analysis on the main branch"
+              mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.projectKey=<< pipeline.parameters.MODULE_ID >>
+            else
+              echo "Executing an analysis on branch: $CIRCLE_BRANCH"
+              mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.branch.name=$CIRCLE_BRANCH
+            fi               
       - save_cache:
           paths:
             - ~/.m2
-          key: v2-dependencies-{{ checksum "pom.xml" }}
+          key: sonar-dependencies-{{ checksum "pom.xml" }}
 
-# Pipeline parameter must be declared
-parameters:
-  run_pull_request:
-    type: boolean
-    default: false
-  target_branch:
-    type: string
-    default: ""
-  pull_request_number:
-    type: string
-    default: ""
-  github_repository:
-    type: string
-    default: ""
+  # This job runs the integration tests
+  # It is fully containerized.
+  # Node that we might want to migrate it to Docker executor down the road
+  # It is aimed at being called by matrix jobs (in the workflow section)
+  integration_tests:
+    <<: *workdir
+    machine: true
+    # Available types: medium, large, xlarge, 2xlarge https://circleci.com/docs/2.0/configuration-reference/#machine-executor-linux
+    resource_class: xlarge
+    parameters:
+      TESTRAIL_MILESTONE:
+        type: string
+        default: Default
+      JAHIA_IMAGE:
+        type: string
+      JAHIA_CONTEXT:
+        type: string
+      MANIFEST:
+        type: string
+      TOOLS_USER:
+        type: string
+        default: jahia
+      TOOLS_PWD:
+        type: string
+        default: password
+      # Why this is not a boolean, see: https://discuss.circleci.com/t/run-job-within-workflow-conditionally/34125/2        
+      SKIP_TESTRAIL:
+        type: string 
+        default: "" 
+      SKIP_ARTIFACTS:
+        type: boolean
+        default: true
+      RUN_TESTSIMAGE:
+        type: string
+        default: << pipeline.parameters.TESTS_IMAGE >>:latest        
+      BUILD_TESTSIMAGE:
+        type: boolean
+        default: false
+    steps:
+      - *attach-workspace
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Prepare artifacts
+            # This command copy the various build artifacts into the /tests/ folder to be later
+            # used by jahia-cli to provision Jahia for testing
+          command: |
+            if [ ! -d << pipeline.parameters.TESTS_PATH >>artifacts ]; then
+              mkdir -p << pipeline.parameters.TESTS_PATH >>artifacts
+              mkdir << pipeline.parameters.TESTS_PATH >>artifacts/results
+              mkdir << pipeline.parameters.TESTS_PATH >>build-dependencies
+            fi          
+            if [ << parameters.SKIP_ARTIFACTS >> == false ]; then
+              if [[ -e /home/circleci/source/build-dependencies ]]; then
+                sudo cp -r /home/circleci/source/build-dependencies/* << pipeline.parameters.TESTS_PATH >>build-dependencies/
+              fi
+              sudo cp -r /home/circleci/source/target/*.jar << pipeline.parameters.TESTS_PATH >>artifacts/
+            fi         
+      - run:
+          name: Docker login
+          # This is needed to fetch private docker images (such as Jahia snapshot)
+          command: |
+            echo "$DOCKERHUB_LOGIN"
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
+      - run:
+          name: Spin-up dockerized jahia
+          # At that point we're only sprinning up Jahia and its runtime dependencies, 
+          # We are not starting the tests yet since we first want to build the test container (or run from a previously built container) \
+          # Checking the presence of the .env file is there because it's needed by the tests, but to not break ci/cd if variables
+          #   are added to the compose file but not to the environment variables in circleci config.yml
+          command: |
+            set -e
+            cd << pipeline.parameters.TESTS_PATH >>
+            if [[ ! -e .env ]]; then
+              mv .env.example .env
+            fi            
+            docker-compose -f docker-compose.yml up -d jahia
+          no_output_timeout: 2h
+          environment:
+            MANIFEST: << parameters.MANIFEST >>
+            JAHIA_IMAGE: << parameters.JAHIA_IMAGE >>
+            TESTS_IMAGE: << parameters.RUN_TESTSIMAGE >>
+            JAHIA_HOST: jahia
+            JAHIA_PORT: 8080
+            JAHIA_CONTEXT:
+            JAHIA_USERNAME: root
+            JAHIA_PASSWORD: root
+      - run:
+          # We want to build the test image from scratch with any code change (since that code change could be in the tests themselves)
+          name: Build << pipeline.parameters.TESTS_IMAGE >> image
+          command: |
+            if [ << parameters.BUILD_TESTSIMAGE >> == true ]; then
+              cd << pipeline.parameters.TESTS_PATH >>
+              docker build -t << pipeline.parameters.TESTS_IMAGE >> .
+              docker save -o tests_image.tar << pipeline.parameters.TESTS_IMAGE >>
+            fi
+      - run:
+          name: Execute tests
+          # Running the tests, note that the reports are copied at the end of execution
+          # We don't need (nor want) this actual step to fail
+          # Failure is determined by counting the number of failed tests in the output report
+          # Note: the timeout env vars are added to address this: https://github.com/docker/compose/issues/3927
+          command: |
+            set -e
+            cd << pipeline.parameters.TESTS_PATH >>
+            export DOCKER_CLIENT_TIMEOUT=120
+            export COMPOSE_HTTP_TIMEOUT=120            
+            docker-compose -f docker-compose.yml up cypress
+            docker cp e2e-tests:/tmp/results ./artifacts
+          no_output_timeout: 2h
+          environment:
+            MANIFEST: << parameters.MANIFEST >>
+            JAHIA_IMAGE: << parameters.JAHIA_IMAGE >>
+            TESTS_IMAGE: << parameters.RUN_TESTSIMAGE >>
+            JAHIA_HOST: jahia
+            JAHIA_PORT: 8080
+            JAHIA_CONTEXT:
+            JAHIA_USERNAME: root
+            JAHIA_PASSWORD: root
+      - run:
+          name: Export jahia logs
+          when: always
+          command: |
+            set -e
+            cd << pipeline.parameters.TESTS_PATH >>
+            docker logs jahia > ./artifacts/results/jahia.log
+            docker logs e2e-tests > ./artifacts/results/cypress.log
+      # This fetches data about the running Jahia (jahia versions, module version, ...)
+      # This is useful as an artifact but also used by the slack and zencrepes reporters to
+      # populate the data they're sending
+      - run:
+          name: Fetch module dependencies
+          when: always
+          command: |
+            set +e
+            cd << pipeline.parameters.TESTS_PATH >>
+            export NVM_DIR="/opt/circleci/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v12
+            nvm alias default v12
+            npm install -g jahia-reporter
+            echo "Fetching modules"
+            jahia-reporter utils:modules \
+              --moduleId="<< pipeline.parameters.MODULE_ID >>" \
+              --filepath="artifacts/results/installed-jahia-modules.json"            
+      # This is not needed since cypress is going to terminat on failure with exit code 1
+      - run:
+          name: Analyze Test results
+          when: always
+          # This looks at the report and fail the job if one of the test has failed
+          command: |
+            cd << pipeline.parameters.TESTS_PATH >>
+            if [[ -e ./artifacts/results/test_failure ]]; then
+              echo "More than one failure found, sending exit signal"
+              exit 1
+            fi
+      - store_test_results:
+          path: << pipeline.parameters.TESTS_PATH >>artifacts/results/reports
+      - store_artifacts:
+          path: << pipeline.parameters.TESTS_PATH >>artifacts/results
+      # Once all is executed, results are submitted to external platforms
+      # Testrail report and Slack (failure only) notifications are sent during scheduled executions or merged into the main branch
+      # jahia-reporter can be executed either in docker or through node directly. 
+      - run:
+          name: Publish test results with Jahia Reporter
+          when: always
+          command: |
+            set +e
+            if [ "<< parameters.SKIP_TESTRAIL >>" != "true" ] || [ "$CIRCLE_BRANCH" = "<< pipeline.parameters.PRIMARY_RELEASE_BRANCH >>" ]; then            
+              cd << pipeline.parameters.TESTS_PATH >>
+              export NVM_DIR="/opt/circleci/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+              nvm alias default v12                    
+              echo "Sending slack message"
+              jahia-reporter slack \
+                --webhook=$SLACK_WEBHOOK_QA_NOTIFICATIONS \
+                --sourcePath="artifacts/results/reports" \
+                --sourceType="json" \
+                --moduleFilepath="artifacts/results/installed-jahia-modules.json" \
+                --msgAuthor="CircleCI ($CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME)" \
+                --runUrl=$CIRCLE_BUILD_URL
+              echo "Sending Zencrepes matrix"
+              jahia-reporter zencrepes \
+                --webhook="https://zencrepes.jahia.com/zqueue/testing/webhook" \
+                --webhookSecret=$ZENCREPES_WEBHOOK_SECRET \
+                --sourcePath="artifacts/results/reports" \
+                --sourceType="json" \
+                --moduleFilepath="artifacts/results/installed-jahia-modules.json" \
+                --name="<< pipeline.parameters.MODULE_ID >>" \
+                --runUrl=$CIRCLE_BUILD_URL
+              echo "Sending testrail report"
+              jahia-reporter testrail \
+                --testrailUsername=$TESTRAIL_USERNAME \
+                --testrailPassword=$TESTRAIL_PASSWORD \
+                --sourcePath="artifacts/results/reports" \
+                --sourceType="json" \
+                --projectName="<< pipeline.parameters.TESTRAIL_PROJECTNAME >>" \
+                --milestone="<< parameters.TESTRAIL_MILESTONE >>" \
+                --defaultRunDescription="This test was executed on circleci, $CIRCLE_BUILD_URL"
+            fi
+      - *persist-workspace
+
+  # We also want the test image to be versioned and published to Docker Hub whenever a new tag is created 
+  # This would allow us to re-use a test image whenever we want to test with an earlier version of the module
+  docker-publish:
+    <<: *workdir
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch-browsers
+    steps:
+      - *attach-workspace
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Push << pipeline.parameters.TESTS_IMAGE >> image to docker hub
+          command: |
+            cd << pipeline.parameters.TESTS_PATH >>
+            docker load -i tests_image.tar
+            if [ "$CIRCLE_BRANCH" = "<< pipeline.parameters.PRIMARY_RELEASE_BRANCH >>" ]; then
+                IMAGE_TAG=latest
+            else
+                IMAGE_TAG=${CIRCLE_TAG/''}
+            fi
+            echo "Image tag is: $IMAGE_TAG"
+            docker tag << pipeline.parameters.TESTS_IMAGE >>:latest << pipeline.parameters.TESTS_IMAGE >>:$IMAGE_TAG
+            docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASSWORD
+            echo "Tagged the image"
+            docker push << pipeline.parameters.TESTS_IMAGE >>:$IMAGE_TAG
+            echo "Pushed tag"
 
 workflows:
   version: 2
-  # This one is run only when triggered with the API, using a GitHub action
-  pull_request:
-    when: << pipeline.parameters.run_pull_request >>
-    jobs:
-      - checkout:
-          name: PR Checkout
-      - build:
-          name: PR Build
-          is_pull_request: true
-          context: QA_ENVIRONMENT
-          requires:
-            - PR Checkout
-      - sonar:
-          name: PR Sonar analysis
-          is_pull_request: true
-          context: QA_ENVIRONMENT
-          requires:
-            - PR Build
   on-code-change:
     jobs:
-      - checkout:
-          filters:
-            branches:
-              only:
-                - master
-                - /feature-.*/
-                - /[0-9]_[0-9]_x/
+      - initialize
+      - lint:
+          requires:
+            - initialize
+      - security:
+          requires:
+            - initialize
       - build:
-          is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
-            - checkout
+            - initialize
       - sonar:
-          name: Sonar analysis
-          is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
             - build
+      - publish:
+          context: QA_ENVIRONMENT
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>                
+      # Verifies that the new code works with the latest released version of Jahia
+      - integration_tests:
+          name: 'Int. Tests - Jahia Latest - Built modules'
+          requires:
+            - build
+          context: QA_ENVIRONMENT
+          #Using Aliases here (8 is the latest of the 8 tree, 8.1 is the latest of the tree, ...)
+          JAHIA_IMAGE: jahia/jahia-dev:8.0 
+          RUN_TESTSIMAGE: << pipeline.parameters.TESTS_IMAGE >>:latest
+          JAHIA_CONTEXT:
+          TOOLS_USER: root
+          TOOLS_PWD: root
+          MANIFEST: warmup-manifest-build.yml
+          TESTRAIL_MILESTONE: Jahia-Latest
+          SKIP_TESTRAIL: "true"
+          SKIP_ARTIFACTS: false
+          BUILD_TESTSIMAGE: true
+      - docker-publish:
+          context: QA_ENVIRONMENT
+          requires:
+            - Int. Tests - Jahia Latest - Built modules
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only:
+                - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
+
+  # The objective of nightly runs is to ensure the codebase still passes tests:
+  # - With the latest releases version of Jahia
+  # - With the current snapshot of Jahia
+  nightly:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
+    jobs:
+      - initialize
+      - integration_tests:
+          matrix:
+            parameters:
+              JAHIA_IMAGE: ["jahia/jahia-private:snapshot", "jahia/jahia-dev:8.0"]
+              RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
+              MANIFEST: ["warmup-manifest-snapshot.yml"]
+              JAHIA_CONTEXT: [""]
+              TESTRAIL_MILESTONE: ["<< matrix.JAHIA_IMAGE >>"]
+              TOOLS_USER: ["root"]
+              TOOLS_PWD: ["root"]
+          name: Nightly-<< matrix.JAHIA_IMAGE >>
+          context: QA_ENVIRONMENT
+          requires:
+            - initialize
+
+  # Monthly, we run the integration testing suite with older (but still supported) versions of Jahia and set versions of the module:
+  # This provides a reference point (when was the latest time this was tested)
+  # In this section we want to see set Jahia versions (not aliases)
+  monthly:
+    triggers:
+      - schedule:
+          cron: '0 0 1 * *'
+          filters:
+            branches:
+              only:
+                - << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
+    jobs:
+      - initialize
+      # - integration_tests:
+      #     matrix:
+      #       parameters:
+      #         JAHIA_IMAGE: ["jahia/jahia-dev:8.0.1.0"]
+      #         RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
+      #         MANIFEST: ["warmup-manifest-snapshot.yml"]
+      #         JAHIA_CONTEXT: [""]
+      #         TESTRAIL_MILESTONE: ["<< matrix.JAHIA_IMAGE >>"]
+      #         TOOLS_USER: ["root"]
+      #         TOOLS_PWD: ["root"]
+      #     name: Monthly-<< matrix.JAHIA_IMAGE >>-with-ES-<< matrix.ELASTICSEARCH_VERSION >>
+      #     context: QA_ENVIRONMENT
+      #     requires:
+      #       - initialize
