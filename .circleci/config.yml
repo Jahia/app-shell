@@ -168,8 +168,8 @@ jobs:
             if [[ ! -z "$CIRCLE_PULL_REQUEST" ]]; then
               # echo "Git custom command to fix circle-ci checkout for sonar analysis"
               git fetch --all
-              git branch -D main
-              git rev-parse origin/main
+              git branch -D << pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
+              git rev-parse origin/<< pipeline.parameters.PRIMARY_RELEASE_BRANCH >>
               echo "Executing a PR based analysis"
               mvn -s .circleci/.circleci.settings.xml sonar:sonar \
                   -Dsonar.projectKey=<< pipeline.parameters.MODULE_ID >> \
@@ -178,7 +178,7 @@ jobs:
                   -Dsonar.pullrequest.base=<< pipeline.parameters.PRIMARY_RELEASE_BRANCH >> \
                   -Dsonar.pullrequest.github.repository=<< pipeline.parameters.GITHUB_SLUG >>
             elif [[ "$CIRCLE_BRANCH" == << pipeline.parameters.PRIMARY_RELEASE_BRANCH >> ]]; then
-              echo "Executing an analysis on the main branch"
+              echo "Executing an analysis on the << pipeline.parameters.PRIMARY_RELEASE_BRANCH >> branch"
               mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.projectKey=<< pipeline.parameters.MODULE_ID >>
             else
               echo "Executing an analysis on branch: $CIRCLE_BRANCH"
