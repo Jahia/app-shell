@@ -50,7 +50,13 @@ jobs:
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
-      - checkout    
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+            cd << pipeline.parameters.TESTS_PATH >>
+            yarn      
       - *persist-workspace
 
   # Lint the project or any other static code analysis
