@@ -20,6 +20,9 @@
             "pre-commit": "yarn lint"
         }
     },
+    "jest": {
+        "rootDir": "src"
+    },    
     "description": "Jahia app-shell - the heart of modularization and micro-front-end",
     "main": "index.js",
     "repository": "git@github.com:Jahia/app-shell.git",
