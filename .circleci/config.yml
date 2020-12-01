@@ -369,7 +369,7 @@ jobs:
               jahia-reporter slack \
                 --webhook=$SLACK_WEBHOOK_QA_NOTIFICATIONS \
                 --webhookAll=$SLACK_WEBHOOK_QA_NOTIFICATIONS_ALL \
-                --skipSuccessful
+                --skipSuccessful \
                 --sourcePath="artifacts/results/reports" \
                 --sourceType="json" \
                 --moduleFilepath="artifacts/results/installed-jahia-modules.json" \
