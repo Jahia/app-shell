@@ -494,7 +494,7 @@ workflows:
       - integration_tests:
           matrix:
             parameters:
-              JAHIA_IMAGE: ["jahia/jahia-private:snapshot", "jahia/jahia-dev:8.0"]
+              JAHIA_IMAGE: ["jahia/jahia-private:snapshot"]
               RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
               MANIFEST: ["warmup-manifest-snapshot.yml"]
               JAHIA_CONTEXT: [""]
