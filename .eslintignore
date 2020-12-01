@@ -1,5 +1,6 @@
 node
 node_modules
+tests
 target
 coverage
 src/main/resources/javascript/apps

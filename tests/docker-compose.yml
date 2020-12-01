@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  jahia:
+    image: "${JAHIA_IMAGE}"
+    container_name: jahia
+    ports:
+      - "${JAHIA_PORT}:8080"
+    extra_hosts:
+      - jahia:127.0.0.1
+    networks:
+      - stack        
+  # Cypress container
+  cypress:
+    image: "${TESTS_IMAGE}"
+    container_name: e2e-tests
+    depends_on:
+      - jahia
+    environment:
+      # pass base url to test pointing at the web application
+      - MANIFEST=${MANIFEST}
+      - JAHIA_CONTEXT=${JAHIA_CONTEXT}
+      - JAHIA_USERNAME=${JAHIA_USERNAME}
+      - JAHIA_PASSWORD=${JAHIA_PASSWORD}
+      - JAHIA_HOST=${JAHIA_HOST}
+      - JAHIA_PORT=${JAHIA_PORT}
+      - NEXUS_USERNAME=${NEXUS_USERNAME}
+      - NEXUS_PASSWORD=${NEXUS_PASSWORD}
+    volumes: 
+      - type: bind
+        source: ./results
+        target: /tmp/results
+    networks:
+      - stack
+networks:
+  stack:        

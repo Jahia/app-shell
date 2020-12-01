@@ -1,0 +1,8 @@
+version: 1.0
+jobs:
+  - type: webproject
+    source: prepackaged
+    sitekey: digitall  
+  - type: module
+    id: app-shell
+    filepath: /tmp/artifacts/app-shell-SNAPSHOT.jar

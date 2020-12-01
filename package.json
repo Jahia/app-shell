@@ -12,14 +12,14 @@
         "clean:all": "yarn clean && rimraf node_modules node target",
         "lint": "eslint --ext js,jsx .",
         "lint:fix": "eslint --ext js,jsx --fix .",
-        "test": "jest --ci --run-in-band --coverage",
+        "test": "jest --ci --run-in-band --coverage --roots=src/",
         "tdd": "jest --watch"
     },
     "husky": {
         "hooks": {
             "pre-commit": "yarn lint"
         }
-    },
+    },  
     "description": "Jahia app-shell - the heart of modularization and micro-front-end",
     "main": "index.js",
     "repository": "git@github.com:Jahia/app-shell.git",
@@ -82,6 +82,7 @@
         "css-loader": "^1.0.1",
         "eslint": "^6.6.0",
         "eslint-loader": "^3.0.2",
+        "eslint-plugin-cypress": "^2.11.2",
         "file-loader": "^3.0.1",
         "husky": "^3.0.5",
         "jest": "^25.1.0",

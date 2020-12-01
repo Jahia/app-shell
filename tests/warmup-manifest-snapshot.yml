@@ -1,0 +1,15 @@
+version: 1.0
+jobs:
+  - type: webproject
+    source: prepackaged
+    sitekey: digitall  
+  - type: asset
+    fetch: http
+    username: NEXUS_USERNAME
+    password: NEXUS_PASSWORD
+    source: https://devtools.jahia.com/nexus/service/local/artifact/maven/redirect?r=jahia-snapshots&g=org.jahia.modules&a=app-shell&v=LATEST
+    filepath: /tmp/app-shell-LATEST.jar
+  - type: module
+    id: app-shell
+    filepath: /tmp/app-shell-LATEST.jar
+

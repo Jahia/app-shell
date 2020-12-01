@@ -1,0 +1,18 @@
+{
+    "baseUrl": "http://localhost:8080",
+    "chromeWebSecurity": false,
+    "failOnStatusCode": false,
+    "defaultCommandTimeout": 30000,
+    "videoUploadOnPasses": false,
+    "reporter": "reporter/json.js",
+    "reporterOptions": { "reportsPath": "./results/reports/" },
+    "screenshotsFolder": "./results/screenshots",
+    "videosFolder": "./results/videos",
+    "ignoreTestFiles": "*.example.ts",
+    "env": {
+        "JAHIA_USERNAME": "root",
+        "JAHIA_PASSWORD": "root"
+    },
+    "viewportWidth": 1366,
+    "viewportHeight": 768
+}
