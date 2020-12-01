@@ -32,10 +32,10 @@ export const startAppShell = ({remotes, targetId, oldScripts}) => {
     // Load main scripts for each bundle
     return Promise.all([
         ...Object.values(remotes).map(r => loadComponent(r, './init')()),
-        Promise.all(oldScripts.map(path => jsload(path))).then(() => ({default:() => {}}))
+        ...oldScripts.map(path => jsload(path))
     ])
         .then(async inits => {
-            inits.forEach(init => init.default());
+            inits.forEach(init => init?.default());
 
             const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});
 
@@ -60,7 +60,9 @@ export const startAppShell = ({remotes, targetId, oldScripts}) => {
 
                             return entryPriority === priority;
                         })
-                        .map(entry => entry.callback())
+                        .map(entry => entry.callback()?.catch(err => {
+                            console.error('Encountered during executing callbackloading and registering module entry {}', entry, err);
+                        }))
                 );
             }
         })

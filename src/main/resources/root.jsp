@@ -81,7 +81,11 @@
         targetId: "${targetId}",
     };
     window.jahiaCommons = function(module) {
-        return(jahia.modules[module]);
+        if (jahia.modules[module]) {
+            return (jahia.modules[module]);
+        } else {
+            console.error("Cannot find module", module)
+        }
     }
 </script>
 <c:forEach items="${remotes}" var="remote">

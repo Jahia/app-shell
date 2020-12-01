@@ -11,6 +11,7 @@ const singletonDeps = [
     '@apollo/react-hoc',
     '@apollo/react-hooks',
     '@jahia/moonstone',
+    '@jahia/ui-extender',
     'apollo-cache-inmemory',
     'apollo-client',
     'apollo-link',

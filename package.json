@@ -3,7 +3,7 @@
     "version": "1.4.0",
     "scripts": {
         "build": "yarn webpack:appshell --mode=development",
-        "prebuild:production": "yarn lint && yarn test",
+        "prebuild:production": "yarn lint",
         "build:production": "yarn webpack:appshell --mode=production",
         "webpack:appshell": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "watch": "yarn webpack --watch",
@@ -47,6 +47,7 @@
         "dayjs": "^1.9.6",
         "graphql": "^15.4.0",
         "graphql-tag": "^2.11.0",
+        "gud": "^1.0.0",
         "i18next": "^19.0.3",
         "i18next-chained-backend": "^2.0.1",
         "i18next-xhr-backend": "^3.2.2",
@@ -65,8 +66,13 @@
         "redux-batched-actions": "^0.4.1",
         "redux-thunk": "^2.3.0",
         "rxjs": "^6.3.3",
+        "webpack4": "npm:webpack@^4.42.0",
         "whatwg-fetch": "^3.0.0",
         "zen-observable": "^0.8.15"
+    },
+    "resolutions": {
+        "graphql": "15.4.0",
+        "@jahia/data-helper/graphql": "^15.4.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.8",
