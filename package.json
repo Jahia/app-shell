@@ -3,7 +3,7 @@
     "version": "1.4.0",
     "scripts": {
         "build": "yarn webpack:appshell --mode=development",
-        "prebuild:production": "yarn lint",
+        "prebuild:production": "yarn lint && yarn test",
         "build:production": "yarn webpack:appshell --mode=production",
         "webpack:appshell": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "watch": "yarn webpack --watch",
