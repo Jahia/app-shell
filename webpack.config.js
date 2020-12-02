@@ -5,25 +5,71 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 
 const deps = require('./package.json').dependencies;
 
-const singletonDeps = [
-    '@apollo/react-common',
-    '@apollo/react-components',
-    '@apollo/react-hoc',
-    '@apollo/react-hooks',
-    '@jahia/moonstone',
-    '@jahia/ui-extender',
-    'apollo-cache-inmemory',
-    'apollo-client',
-    'apollo-link',
-    'i18next',
+const sharedDeps = [
+    '@babel/polyfill',
     'react',
-    'react-apollo',
+    'react-dom',
     'react-router',
     'react-router-dom',
-    'react-dom',
+    'react-i18next',
+    'i18next',
+    'i18next-xhr-backend',
+    'graphql-tag',
+    'react-apollo',
+    'react-redux',
     'redux',
-    'react-redux'
+    'rxjs',
+    'whatwg-fetch',
+    'dayjs',
+
+    // JAHIA PACKAGES
+    '@jahia/ui-extender',
+    '@jahia/moonstone',
+    '@jahia/moonstone-alpha',
+    '@jahia/data-helper',
+
+    // Apollo
+    '@apollo/react-common',
+    '@apollo/react-components',
+
+    // DEPRECATED JAHIA PACKAGES
+    '@jahia/design-system-kit',
+    '@jahia/react-material',
+    '@jahia/icons'
 ];
+
+const singletonDeps = [
+    'react',
+    'react-dom',
+    'react-router',
+    'react-router-dom',
+    'react-i18next',
+    'i18next',
+    'react-apollo',
+    'react-redux',
+    'redux',
+    '@jahia/ui-extender',
+    '@apollo/react-common',
+    '@apollo/react-components'
+];
+
+const shared = {
+    ...sharedDeps.reduce((acc, item) => ({
+        ...acc,
+        [item]: {
+            requiredVersion: deps[item]
+        }
+    }), {}),
+    ...singletonDeps.reduce((acc, item) => ({
+        ...acc,
+        [item]: {
+            singleton: true,
+            requiredVersion: deps[item]
+        }
+    }), {})
+};
+
+console.log('Shared modules configuration', shared);
 
 module.exports = (env, argv) => {
     let config = {
@@ -34,7 +80,8 @@ module.exports = (env, argv) => {
         },
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-            filename: 'appshell.js'
+            filename: 'appshell.js',
+            chunkFilename: 'appshell.[id].[contenthash].js'
         },
         resolve: {
             mainFields: ['module', 'main'],
@@ -130,16 +177,7 @@ module.exports = (env, argv) => {
                 exposes: {
                     './bootstrap': './src/javascript/bootstrap'
                 },
-                shared: {
-                    ...deps,
-                    ...singletonDeps.reduce((acc, item) => ({
-                        ...acc,
-                        [item]: {
-                            singleton: true,
-                            requiredVersion: deps[item]
-                        }
-                    }), {})
-                }
+                shared: shared
             }),
             new CleanWebpackPlugin(
                 path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}

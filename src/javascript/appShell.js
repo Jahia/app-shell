@@ -67,7 +67,6 @@ export const startAppShell = ({remotes, targetId, oldScripts}) => {
             }
         })
         .then(() => {
-            console.log(registry);
             // Create application
             const apps = registry.find({type: 'app', target: 'root'}).map(m => m.render);
             const render = apps.reduceRight((prevFn, nextFn) => (...args) => nextFn(prevFn(...args)), value => value);
