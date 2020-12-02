@@ -77,7 +77,7 @@
 <script type="text/javascript">
     window.appShell = {
         remotes: {},
-        oldScripts: ${oldScripts},
+        scripts: ${scripts},
         targetId: "${targetId}",
     };
     window.jahiaCommons = function(module) {

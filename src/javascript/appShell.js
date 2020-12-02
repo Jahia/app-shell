@@ -28,11 +28,11 @@ const promisifiedReactDomRender = (cmp, target) => {
     });
 };
 
-export const startAppShell = ({remotes, targetId, oldScripts}) => {
+export const startAppShell = ({remotes, scripts, targetId}) => {
     // Load main scripts for each bundle
     return Promise.all([
-        ...Object.values(remotes).map(r => loadComponent(r, './init')()),
-        ...oldScripts.map(path => jsload(path))
+        ...Object.values(remotes || {}).map(r => loadComponent(r, './init')()),
+        ...(scripts || []).map(path => jsload(path))
     ])
         .then(async inits => {
             inits.forEach(init => init?.default());

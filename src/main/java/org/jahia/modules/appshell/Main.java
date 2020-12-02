@@ -126,7 +126,7 @@ public class Main extends HttpServlet {
 
             List<String> scripts = getApplicationScripts(appName, APPS);
             scripts = scripts.stream().map(f -> "\"" + response.encodeURL(f) + "\"").collect(Collectors.toList());
-            wrapper.setAttribute("oldScripts", "[" + StringUtils.join(scripts, ",") + "]");
+            wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             List<String> remotes = getApplicationScripts(appName, REMOTES);
             remotes = remotes.stream().map(f -> response.encodeURL(f)).collect(Collectors.toList());

@@ -1162,10 +1162,11 @@
     react-select "^2.4.2"
     recompose "^0.30.0"
 
+
 "@jahia/test-framework@^1.1.5":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@jahia/test-framework/-/test-framework-1.2.0.tgz#768ed8b4a2eadf7a3f00d5c5dedcd571402b3cca"
-  integrity sha512-hXTVIuvLARpmBlLReYuHrublyRDPo54n1hZlX6O2TJPBXZYZ9pozKrlcvHyW5L1NVmHokQtBRWgXrEloUuSzSQ==
+  version "1.1.5"
+  resolved "https://npm.jahia.com/@jahia%2ftest-framework/-/test-framework-1.1.5.tgz#ae6d252d9b619c4d0e30ef4807ffaa2e7637ac52"
+  integrity sha512-x1HglLPYv048wr+YOJz8UCx+v7imehpQvGxRHz+chFuALfXn03FXHff7lBgBLLmFujn/JMxUF1QDM4CHRJmeOg==
   dependencies:
     enzyme "^3.9.0"
     enzyme-adapter-react-16 "^1.12.1"
