@@ -74,9 +74,22 @@
 
 
 <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
-<script src="${contextPath}/modules/app-shell/javascript/commons/jahia-commons.dll.js"></script>
-<script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 <script type="text/javascript">
-    jahia.startAppShell(${scripts}, "${targetId}");
+    window.appShell = {
+        remotes: {},
+        scripts: ${scripts},
+        targetId: "${targetId}",
+    };
+    window.jahiaCommons = function(module) {
+        if (jahia.modules[module]) {
+            return (jahia.modules[module]);
+        } else {
+            console.error("Cannot find module", module)
+        }
+    }
 </script>
+<c:forEach items="${remotes}" var="remote">
+<script src="${remote}"></script>
+</c:forEach>
+<script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
 </body>

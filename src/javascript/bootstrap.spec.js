@@ -18,6 +18,10 @@ jest.mock('./appShell', () => {
     };
 });
 
+jest.mock('./compat', () => ({
+    default: () => {}
+}));
+
 const uiExtender = require('@jahia/ui-extender');
 const startAppShell = require('./appShell').startAppShell;
 
@@ -30,7 +34,7 @@ describe('jahia lib', () => {
         // eslint-disable-next-line camelcase
         global.__webpack_public_path__ = '';
         window.jahiaCommons = {};
-        jahia = require('./jahia');
+        jahia = require('./bootstrap');
     });
 
     it('should expose i18n in window', () => {

@@ -39,14 +39,14 @@ describe('appShell', () => {
     });
 
     it('should load all file in params', async () => {
-        await startAppShell(['./apollo/matcher', 'tata.js'], 'targetId');
+        await startAppShell({scripts: ['./apollo/matcher', 'tata.js'], targetId: 'targetId'});
         expect(jsload).toHaveBeenCalledWith('./apollo/matcher');
         expect(jsload).toHaveBeenCalledWith('tata.js');
     });
 
     it('should display an error when a loader is faling', async () => {
         jsload.mockImplementation(() => Promise.reject(new Error('file not exist')));
-        await startAppShell(['./fileThatDontExist.js'], 'targetId');
+        await startAppShell({scripts: ['./fileThatDontExist.js'], targetId: 'targetId'});
         expect(console.error).toHaveBeenCalled();
     });
 
@@ -64,7 +64,7 @@ describe('appShell', () => {
             return [];
         });
 
-        await startAppShell(['./apollo/matcher'], 'targetId');
+        await startAppShell({scripts: ['./apollo/matcher'], targetId: 'targetId'});
 
         expect(cbCallOrder).toEqual([1, 2, 3]);
     });
@@ -103,20 +103,20 @@ describe('appShell', () => {
             return [];
         });
 
-        await startAppShell(['./apollo/matcher'], 'targetId');
+        await startAppShell({scripts: ['./apollo/matcher'], targetId: 'targetId'});
 
         expect(cbCallOrder).toEqual([3, 1, 2]);
         expect(console.error).not.toHaveBeenCalled();
     });
 
     it('should remove the loading when Everything is loaded', async () => {
-        await startAppShell([], 'targetId');
+        await startAppShell({scripts: [], targetId: 'targetId'});
 
         expect(document.querySelector('.jahia-loader')).not.toBeTruthy();
     });
 
     it('should remove the loading when error occur', async () => {
-        await startAppShell([], 'targetId');
+        await startAppShell({scripts: [], targetId: 'targetId'});
         jsload.mockImplementation(() => Promise.reject(new Error('file not exist')));
 
         expect(document.querySelector('.jahia-loader')).not.toBeTruthy();

@@ -2,16 +2,41 @@ import ReactDOM from 'react-dom';
 import {registry} from '@jahia/ui-extender';
 import {jsload} from './jsloader';
 
+function loadComponent(container, module) {
+    return async () => {
+        // Initializes the shared scope. Fills it with known provided modules from this build and all remotes
+
+        // eslint-disable-next-line no-undef, camelcase
+        await __webpack_init_sharing__('default');
+
+        // Initialize the container, it may provide shared modules
+        // eslint-disable-next-line no-undef, camelcase
+        await container.init(__webpack_share_scopes__.default);
+        try {
+            const factory = await container.get(module);
+            const Module = factory();
+            return Module;
+        } catch (e) {
+            console.log('No init() found in container {}', container, e);
+        }
+    };
+}
+
 const promisifiedReactDomRender = (cmp, target) => {
     return new Promise(resolve => {
         ReactDOM.render(cmp, target, resolve);
     });
 };
 
-export const startAppShell = (js, targetId) => {
+export const startAppShell = ({remotes, scripts, targetId}) => {
     // Load main scripts for each bundle
-    return Promise.all(js.map(path => jsload(path)))
-        .then(async () => {
+    return Promise.all([
+        ...Object.values(remotes || {}).map(r => loadComponent(r, './init')()),
+        ...(scripts || []).map(path => jsload(path))
+    ])
+        .then(async inits => {
+            inits.forEach(init => init?.default());
+
             const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});
 
             // Get the list of different priority
@@ -35,7 +60,9 @@ export const startAppShell = (js, targetId) => {
 
                             return entryPriority === priority;
                         })
-                        .map(entry => entry.callback())
+                        .map(entry => entry.callback()?.catch(err => {
+                            console.error('Encountered during executing callbackloading and registering module entry {}', entry, err);
+                        }))
                 );
             }
         })
