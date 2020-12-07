@@ -1676,6 +1676,7 @@ export default function (jahiaCommons) {
     jahiaCommons['f43904a899168c070246'] = require('path-to-regexp/index');
     jahiaCommons['bc077c60933933ca389d'] = require('performance-now/lib/performance-now');
     jahiaCommons['05951c2f2bda4691bed3'] = require('popper.js/dist/esm/popper');
+    jahiaCommons['26d59f808dff3e83c741'] = require('process/browser');
     jahiaCommons['d5aa26791992324990d2'] = require('prop-types/checkPropTypes');
     jahiaCommons['2e1d5004a01df935693d'] = require('prop-types/factoryWithTypeCheckers');
     jahiaCommons['8a2d1b95e05b6a321e74'] = require('prop-types/index');
