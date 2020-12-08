@@ -1128,27 +1128,27 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone-alpha@^0.1.0":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@jahia/moonstone-alpha/-/moonstone-alpha-0.1.2.tgz#f97f9d06225a7a787fcae161cb067397fbb0ce2a"
-  integrity sha512-yBiYDjmYQwG6zPHzi9NPDxuh6a4DfE7LfqeBgRBmIN/hhfr+U1PXlEo8on23wMmvnvxhKIN+6QjTseg4FB4Waw==
+"@jahia/moonstone-alpha@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@jahia/moonstone-alpha/-/moonstone-alpha-0.1.3.tgz#77d46dd7148f5b6c7da6c173156451c665b29fda"
+  integrity sha512-IIEcfSNroaLiRmg+z3uDmr8iFhdpUVUf3uNHgbH6O6mpZ15WMYdN1Q8biKmTc5QYT4Ya4btrtyExtE8DQWDoCQ==
   dependencies:
-    "@jahia/moonstone" "^0.17.0"
+    "@jahia/moonstone" "^0.17.4"
     clsx "^1.1.1"
     dayjs "^1.9.6"
     prop-types "^15.7.2"
     react-day-picker "^7.4.8"
     webpack-node-externals "^2.5.2"
 
-"@jahia/moonstone@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-0.17.0.tgz#67a3f6cf0c75f20aef60c69201b7d230e8ec3dbe"
-  integrity sha512-Z0PzuMirTF6ProJhZHjUwmb9yR9/1bS/cFZJxr5C5xiBydhZyBebGnpy4Xrawlz4G/d6TiqLjkMK3FebOyyxPA==
+"@jahia/moonstone@^0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-0.17.4.tgz#225cb8d6550a3184ac774893a2a96a747dd3ea28"
+  integrity sha512-d4FwIpBZ3UCZfri+r23qqoKtx+iqz0vwPTC24VzdHjRvgEzj8QMnM8I1oeUdZ4C7XX5laDXe3F1GX4nWk/y7Xg==
   dependencies:
-    clsx "^1.0.4"
+    clsx "^1.1.1"
     prop-types "^15.7.2"
-    re-resizable "^6.2.0"
-    react-is "^16.12.0"
+    re-resizable "^6.9.0"
+    react-is "^17.0.1"
     to-px "^1.1.0"
 
 "@jahia/react-material@^3.0.1":
@@ -2950,7 +2950,7 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
-clsx@^1.0.4, clsx@^1.1.1:
+clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -7488,7 +7488,7 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-re-resizable@^6.2.0:
+re-resizable@^6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.9.0.tgz#9c3059b389ced6ade602234cc5bb1e12d231cd47"
   integrity sha512-3cUDG81ylyqI0Pdgle/RHwwRYq0ORZzsUaySOCO8IbEtNyaRtrIHYm/jMQ5pjcNiKCxR3vsSymIQZHwJq4gg2Q==
@@ -7558,6 +7558,11 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.6.3, react-
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-is@^17.0.1:
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
+  integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
