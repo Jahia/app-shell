@@ -89,7 +89,7 @@
     }
 </script>
 <c:forEach items="${remotes}" var="remote">
-<script src="${remote}"></script>
+<script src="<c:url value="${remote}"/>"></script>
 </c:forEach>
-<script src="${contextPath}/modules/app-shell/javascript/apps/appshell.js"></script>
+<script src="<c:url value="/modules/app-shell/javascript/apps/appshell.js"/>"></script>
 </body>
