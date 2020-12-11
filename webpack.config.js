@@ -31,6 +31,7 @@ const sharedDeps = [
     // Apollo
     '@apollo/react-common',
     '@apollo/react-components',
+    '@apollo/react-hooks',
 
     // DEPRECATED JAHIA PACKAGES
     '@jahia/design-system-kit',
@@ -48,9 +49,11 @@ const singletonDeps = [
     'react-apollo',
     'react-redux',
     'redux',
+    '@jahia/moonstone',
     '@jahia/ui-extender',
     '@apollo/react-common',
-    '@apollo/react-components'
+    '@apollo/react-components',
+    '@apollo/react-hooks'
 ];
 
 const shared = {
@@ -175,7 +178,7 @@ module.exports = (env, argv) => {
                 library: {type: 'var', name: 'appShellRemote'},
                 filename: 'remoteEntry.js',
                 exposes: {
-                    './bootstrap': './src/javascript/bootstrap'
+                    './src/javascript/bootstrap': './src/javascript/bootstrap'
                 },
                 shared: shared
             }),
