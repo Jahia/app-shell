@@ -31,6 +31,7 @@ const sharedDeps = [
     // Apollo
     '@apollo/react-common',
     '@apollo/react-components',
+    '@apollo/react-hooks',
 
     // DEPRECATED JAHIA PACKAGES
     '@jahia/design-system-kit',
@@ -48,9 +49,11 @@ const singletonDeps = [
     'react-apollo',
     'react-redux',
     'redux',
+    '@jahia/moonstone',
     '@jahia/ui-extender',
     '@apollo/react-common',
-    '@apollo/react-components'
+    '@apollo/react-components',
+    '@apollo/react-hooks'
 ];
 
 const shared = {
