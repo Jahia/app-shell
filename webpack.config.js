@@ -178,7 +178,7 @@ module.exports = (env, argv) => {
                 library: {type: 'var', name: 'appShellRemote'},
                 filename: 'remoteEntry.js',
                 exposes: {
-                    './src/javascript/bootstrap': './src/javascript/bootstrap'
+                    './bootstrap': './src/javascript/bootstrap'
                 },
                 shared: shared
             }),
