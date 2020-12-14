@@ -1081,17 +1081,17 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@jahia/data-helper@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@jahia/data-helper/-/data-helper-0.0.26.tgz#56417a15eb59a0dbf395cbae18bc02f16c29d55f"
-  integrity sha512-Yg6al+PG3uMFGqcb6Czc2BjOFS/Pw7id92gpaCcsYSbpvoNTqmvxNCWtetQcikiWVyi2W25Q5vf5U0bAU97XYA==
+"@jahia/data-helper@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jahia/data-helper/-/data-helper-1.0.0.tgz#3b4938e8023a3878d503e3b8b3297f3c42c92f84"
+  integrity sha512-Wm2hYXx6Y8aqRPZgFJtsbSBWz1EcgO2n0ix0h/2KvpHlHHQOWgPJU02/bZVbEUaS/RG3fLppt7DAQV97GV88CQ==
   dependencies:
     apollo-cache "^1.3.4"
     apollo-client "^2.6.8"
     apollo-utilities "^1.3.3"
     fast-deep-equal "^3.1.1"
-    graphql "^14.6.0"
-    graphql-tag "^2.10.3"
+    graphql "^15.4.0"
+    graphql-tag "^2.11.0"
     lodash "^4.17.13"
     react-apollo "^3.1.3"
 
@@ -1171,10 +1171,10 @@
     enzyme-adapter-react-16 "^1.12.1"
     identity-obj-proxy "^3.0.0"
 
-"@jahia/ui-extender@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@jahia/ui-extender/-/ui-extender-0.5.4.tgz#2a8d8798acb998f2b3111693e36dec8e8416650b"
-  integrity sha512-aMQpZwtEjEkSZ+/P6Wr4aPreqs/mv1XYeJY8aSwB+adjlNB79c/eKGNomF4TwvQsLiS6oOVdetTNiiSIQsPHIQ==
+"@jahia/ui-extender@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jahia/ui-extender/-/ui-extender-1.0.0.tgz#2a5ff8d63f200c00ffe437c39241d7bf5e6493df"
+  integrity sha512-9d6sM/j/CaBcxUPIJm/IAyOehJ/ZxOpIhvYooysM75czWHPZVCbaMCE+VHzdP2UztINw3ezr0DYKcxm7oDnfNQ==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
@@ -4676,12 +4676,12 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graphql-tag@^2.10.3, graphql-tag@^2.11.0:
+graphql-tag@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.11.0.tgz#1deb53a01c46a7eb401d6cb59dec86fa1cccbffd"
   integrity sha512-VmsD5pJqWJnQZMUeRwrDhfgoyqcfwEkvtpANqcoUG8/tOLkwNgU9mzub/Mc78OJMhHjx7gfAMTxzdG43VGg3bA==
 
-graphql@15.4.0, graphql@^14.6.0, graphql@^15.4.0:
+graphql@15.4.0, graphql@^15.4.0:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.4.0.tgz#e459dea1150da5a106486ba7276518b5295a4347"
   integrity sha512-EB3zgGchcabbsU9cFe1j+yxdzKQKAbGUWRb13DsrsMN1yyfmmIq+2+L5MqVWcDCE4V89R5AyUOi7sMOGxdsYtA==
