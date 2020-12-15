@@ -2,75 +2,7 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-
-const deps = require('./package.json').dependencies;
-
-const sharedDeps = [
-    '@babel/polyfill',
-    'react',
-    'react-dom',
-    'react-router',
-    'react-router-dom',
-    'react-i18next',
-    'i18next',
-    'i18next-xhr-backend',
-    'graphql-tag',
-    'react-apollo',
-    'react-redux',
-    'redux',
-    'rxjs',
-    'whatwg-fetch',
-    'dayjs',
-
-    // JAHIA PACKAGES
-    '@jahia/ui-extender',
-    '@jahia/moonstone',
-    '@jahia/moonstone-alpha',
-    '@jahia/data-helper',
-
-    // Apollo
-    '@apollo/react-common',
-    '@apollo/react-components',
-    '@apollo/react-hooks',
-
-    // DEPRECATED JAHIA PACKAGES
-    '@jahia/design-system-kit',
-    '@jahia/react-material',
-    '@jahia/icons'
-];
-
-const singletonDeps = [
-    'react',
-    'react-dom',
-    'react-router',
-    'react-router-dom',
-    'react-i18next',
-    'i18next',
-    'react-apollo',
-    'react-redux',
-    'redux',
-    '@jahia/moonstone',
-    '@jahia/ui-extender',
-    '@apollo/react-common',
-    '@apollo/react-components',
-    '@apollo/react-hooks'
-];
-
-const shared = {
-    ...sharedDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            requiredVersion: deps[item]
-        }
-    }), {}),
-    ...singletonDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            singleton: true,
-            requiredVersion: deps[item]
-        }
-    }), {})
-};
+const shared = require('./webpack.shared');
 
 console.log('Shared modules configuration', shared);
 
@@ -180,7 +112,7 @@ module.exports = (env, argv) => {
                 exposes: {
                     './bootstrap': './src/javascript/bootstrap'
                 },
-                shared: shared
+                shared
             }),
             new CleanWebpackPlugin(
                 path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}
