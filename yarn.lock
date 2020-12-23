@@ -1151,6 +1151,18 @@
     react-is "^17.0.1"
     to-px "^1.1.0"
 
+"@jahia/moonstone@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-1.0.0.tgz#17c276579a8b53690cf59e53227c431b532b3fbd"
+  integrity sha512-e3/eZSjHgqDxtxIQQuBlbhOUCRa9wplN1SKEIorE/lMpieeT51hzwoR7rVNlirHw6ZDQhIZgdD938xq9VNigHQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    re-resizable "^6.9.0"
+    react-is "^17.0.1"
+    to-px "^1.1.0"
+
 "@jahia/react-material@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@jahia/react-material/-/react-material-3.0.1.tgz#d3078581e5000deb9879152c8928ad3d3c83ae29"
