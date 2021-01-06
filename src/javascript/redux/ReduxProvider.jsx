@@ -16,6 +16,8 @@ export const ReduxProvider = ({reducers, middlewares, listeners, children}) => {
     const enhancer = composeEnhancers(applyMiddleware.apply(this, middlewares.map(m => m.middleware)));
     const store = createStore(rootReducer, enhancer);
 
+    window.jahia.reduxStore = store;
+
     listeners.map(l => l.createListener(store)).forEach(l => store.subscribe(l));
 
     return (
