@@ -1095,10 +1095,10 @@
     lodash "^4.17.13"
     react-apollo "^3.1.3"
 
-"@jahia/design-system-kit@^1.1.8":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@jahia/design-system-kit/-/design-system-kit-1.1.9.tgz#78979db9df8c64247becf0632fe73f3efca094e5"
-  integrity sha512-YNO7t9GxvcXy3gIoINIHonxNErt/RfewqBD8UFCxZHZVVkk0vjBCZmBykneCsC26hQgZg2fYKDVvQKII78sy3w==
+"@jahia/design-system-kit@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@jahia/design-system-kit/-/design-system-kit-1.1.10.tgz#5f1d8791df5cb7b29c7e1ddb3c0bf9864733b18c"
+  integrity sha512-SIXFYc0q2dOrJUnXQq8v+2O4ipW3Ow7y6tFw39wORSbvygeP6s0ms0WN0C2pxXjcpO+2ZIH5Lxj9KbUDy01sVQ==
   dependencies:
     "@material-ui/core" "^3.9.3"
     classnames "^2.2.6"
@@ -1128,28 +1128,17 @@
     mdi-material-ui "^5.10.0"
     recompose "^0.30.0"
 
-"@jahia/moonstone-alpha@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@jahia/moonstone-alpha/-/moonstone-alpha-0.1.3.tgz#77d46dd7148f5b6c7da6c173156451c665b29fda"
-  integrity sha512-IIEcfSNroaLiRmg+z3uDmr8iFhdpUVUf3uNHgbH6O6mpZ15WMYdN1Q8biKmTc5QYT4Ya4btrtyExtE8DQWDoCQ==
+"@jahia/moonstone-alpha@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jahia/moonstone-alpha/-/moonstone-alpha-1.0.0.tgz#852a2b5a5fede7e49885a9a40a82722343bfbde1"
+  integrity sha512-+5vU+wJB3uA/gHoQZu3BxMEgh4+sQexwiM7UyDffjPtu92B3oQjDdR1UV2fZxqPGE3fSQtf4t/qaDxM3Oz5u5Q==
   dependencies:
-    "@jahia/moonstone" "^0.17.4"
+    "@jahia/moonstone" "^1.0.0"
     clsx "^1.1.1"
     dayjs "^1.9.6"
     prop-types "^15.7.2"
     react-day-picker "^7.4.8"
     webpack-node-externals "^2.5.2"
-
-"@jahia/moonstone@^0.17.4":
-  version "0.17.4"
-  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-0.17.4.tgz#225cb8d6550a3184ac774893a2a96a747dd3ea28"
-  integrity sha512-d4FwIpBZ3UCZfri+r23qqoKtx+iqz0vwPTC24VzdHjRvgEzj8QMnM8I1oeUdZ4C7XX5laDXe3F1GX4nWk/y7Xg==
-  dependencies:
-    clsx "^1.1.1"
-    prop-types "^15.7.2"
-    re-resizable "^6.9.0"
-    react-is "^17.0.1"
-    to-px "^1.1.0"
 
 "@jahia/moonstone@^1.0.0":
   version "1.0.0"
