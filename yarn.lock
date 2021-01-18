@@ -1173,9 +1173,9 @@
     identity-obj-proxy "^3.0.0"
 
 "@jahia/ui-extender@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@jahia/ui-extender/-/ui-extender-1.0.0.tgz#2a5ff8d63f200c00ffe437c39241d7bf5e6493df"
-  integrity sha512-9d6sM/j/CaBcxUPIJm/IAyOehJ/ZxOpIhvYooysM75czWHPZVCbaMCE+VHzdP2UztINw3ezr0DYKcxm7oDnfNQ==
+  version "1.0.1"
+  resolved "https://npm.jahia.com/@jahia%2fui-extender/-/ui-extender-1.0.1.tgz#248398b05f3a64d220f959b7d8af044e28b6b556"
+  integrity sha512-6KsWdOHovtfvOYpsSoaK3o186ao6MFAyxmUGvokIP/XhWYmRtk/o57mMBTcdp6f6yfri9mBtVoxc1Ppkzy5HmQ==
   dependencies:
     prop-types "^15.6.1"
     react "^16.12.0"
