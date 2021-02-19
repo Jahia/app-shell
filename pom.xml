@@ -69,8 +69,10 @@
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
-        <jahia-module-signature>MCwCFD0nddYO6rgk2pIn9KP+QzqkjqAuAhQBNrvlVVLs2olnOpwRe6CsQVFBoA==</jahia-module-signature>
+        <jahia-module-signature>MCwCFF1GooVOk6X58CQaFqKmk1anBKezAhR2bmOwjf9Cm3Z6Dv1H505M5kdaxg==</jahia-module-signature>
+        <jahia-plugin-version>5.11</jahia-plugin-version>
     </properties>
+
     <repositories>
         <repository>
             <id>jahia-public</id>
@@ -100,6 +102,15 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jahia.server</groupId>
+                    <artifactId>jahia-maven-plugin</artifactId>
+                    <version>${jahia-plugin-version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
