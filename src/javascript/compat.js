@@ -274,9 +274,9 @@ export default function (jahiaCommons) {
     jahiaCommons['4ea912277bb8352bf9f9'] = require('@jahia/moonstone/dist/components/Tab/Tab.css');
     jahiaCommons['6a29e22050d047120205'] = require('@jahia/moonstone/dist/components/Tab/Tab');
     jahiaCommons['0ce9201ce2d0106182df'] = require('@jahia/moonstone/dist/components/Tab/index');
-    jahiaCommons['bfeb21ad33ca1d415a98'] = require('@jahia/moonstone/dist/components/TabItem/TabItem.css');
-    jahiaCommons['0c0468d40d8e043dbdf7'] = require('@jahia/moonstone/dist/components/TabItem/TabItem');
-    jahiaCommons['5cb11776e556a5fff7ff'] = require('@jahia/moonstone/dist/components/TabItem/index');
+    jahiaCommons['bfeb21ad33ca1d415a98'] = require('@jahia/moonstone/dist/components/Tab/TabItem/TabItem.css');
+    jahiaCommons['0c0468d40d8e043dbdf7'] = require('@jahia/moonstone/dist/components/Tab/TabItem/TabItem');
+    jahiaCommons['5cb11776e556a5fff7ff'] = require('@jahia/moonstone/dist/components/Tab/TabItem/index');
     jahiaCommons['0e316a9b284b41ec43e0'] = require('@jahia/moonstone/dist/components/TreeView/ControlledTreeView');
     jahiaCommons['0c38be0a845c5868c5da'] = require('@jahia/moonstone/dist/components/TreeView/TreeView.css');
     jahiaCommons['c1f92759553e8cd55958'] = require('@jahia/moonstone/dist/components/TreeView/TreeView');

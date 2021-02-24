@@ -1140,10 +1140,10 @@
     react-day-picker "^7.4.8"
     webpack-node-externals "^2.5.2"
 
-"@jahia/moonstone@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-1.0.0.tgz#17c276579a8b53690cf59e53227c431b532b3fbd"
-  integrity sha512-e3/eZSjHgqDxtxIQQuBlbhOUCRa9wplN1SKEIorE/lMpieeT51hzwoR7rVNlirHw6ZDQhIZgdD938xq9VNigHQ==
+"@jahia/moonstone@^1.0.0", "@jahia/moonstone@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@jahia/moonstone/-/moonstone-1.1.0.tgz#5ca03a6ca55dec859033a0517b598f1a9d7e60d1"
+  integrity sha512-amBYoWF/cbxzxeAlZ+egf1bQIJhQaXSHqCFKBJRm1oXlPconTYDL0vfA8u8Ua/vU3WeZl8F4iQZ5tRvSzoVBCg==
   dependencies:
     "@babel/runtime" "^7.12.5"
     clsx "^1.1.1"
