@@ -300,7 +300,7 @@ jobs:
             export DOCKER_CLIENT_TIMEOUT=120
             export COMPOSE_HTTP_TIMEOUT=120            
             docker-compose -f docker-compose.yml up cypress
-            docker cp e2e-tests:/tmp/results ./artifacts
+            docker cp cypress:/tmp/results ./artifacts
           no_output_timeout: 2h
           environment:
             MANIFEST: << parameters.MANIFEST >>
@@ -318,7 +318,7 @@ jobs:
             set -e
             cd << pipeline.parameters.TESTS_PATH >>
             docker logs jahia > ./artifacts/results/jahia.log
-            docker logs e2e-tests > ./artifacts/results/cypress.log
+            docker logs cypress > ./artifacts/results/cypress.log
       # This fetches data about the running Jahia (jahia versions, module version, ...)
       # This is useful as an artifact but also used by the slack and zencrepes reporters to
       # populate the data they're sending
@@ -457,7 +457,7 @@ workflows:
             - build
           context: QA_ENVIRONMENT
           #Using Aliases here (8 is the latest of the 8 tree, 8.1 is the latest of the tree, ...)
-          JAHIA_IMAGE: jahia/jahia-private:snapshot 
+          JAHIA_IMAGE: jahia/jahia-private:snapshot-dev 
           RUN_TESTSIMAGE: << pipeline.parameters.TESTS_IMAGE >>:latest
           JAHIA_CONTEXT:
           TOOLS_USER: root
@@ -494,7 +494,7 @@ workflows:
       - integration_tests:
           matrix:
             parameters:
-              JAHIA_IMAGE: ["jahia/jahia-private:snapshot"]
+              JAHIA_IMAGE: ["jahia/jahia-private:snapshot-dev"]
               RUN_TESTSIMAGE: ["<< pipeline.parameters.TESTS_IMAGE >>:latest"]
               MANIFEST: ["warmup-manifest-snapshot.yml"]
               JAHIA_CONTEXT: [""]
