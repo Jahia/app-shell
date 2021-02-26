@@ -12,7 +12,7 @@ services:
   # Cypress container
   cypress:
     image: "${TESTS_IMAGE}"
-    container_name: e2e-tests
+    container_name: cypress
     depends_on:
       - jahia
     environment:
