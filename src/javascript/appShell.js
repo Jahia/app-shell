@@ -4,14 +4,6 @@ import {jsload} from './jsloader';
 
 function loadComponent(container, module) {
     return async () => {
-        // Initializes the shared scope. Fills it with known provided modules from this build and all remotes
-
-        // eslint-disable-next-line no-undef, camelcase
-        await __webpack_init_sharing__('default');
-
-        // Initialize the container, it may provide shared modules
-        // eslint-disable-next-line no-undef, camelcase
-        await container.init(__webpack_share_scopes__.default);
         try {
             const factory = await container.get(module);
             const Module = factory();
