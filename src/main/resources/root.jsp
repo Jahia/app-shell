@@ -1,5 +1,5 @@
 <%@ page import="org.jahia.bin.Jahia" %>
-<%@ page import="org.jahia.security.license.LicenseCheckerService" %><%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<%@ page import="org.jahia.security.spi.LicenseCheckUtil" %><%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="contextPath" type="java.lang.String"--%>
 <%--@elvariable id="currentUser" type="org.jahia.services.usermanager.JahiaUser"--%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -35,7 +35,7 @@
                 email: '${functions:escapeJavaScript(currentUser.properties['j:email'])}',
                 path: '${functions:escapeJavaScript(currentUser.localPath)}'
             },
-            valid: <%= !Jahia.isEnterpriseEdition() || LicenseCheckerService.Stub.isAllowed("org.jahia.core") %>,
+            valid: <%= !Jahia.isEnterpriseEdition() || LicenseCheckUtil.isAllowed("org.jahia.core") %>,
             config: ${config},
             site: '${defaultSite.siteKey}',
             language: '${language}',
