@@ -69,7 +69,7 @@
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
-        <jahia-module-signature>MCwCFF1GooVOk6X58CQaFqKmk1anBKezAhR2bmOwjf9Cm3Z6Dv1H505M5kdaxg==</jahia-module-signature>
+        <jahia-module-signature>MCwCFCYfq6al2vOazlzSMLUBLo9yY2OIAhREQmx1cDQlU5DH+8cvJ9l0Keu2VA==</jahia-module-signature>
         <jahia-plugin-version>5.11</jahia-plugin-version>
     </properties>
 
