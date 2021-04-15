@@ -72,8 +72,10 @@ public class License {
     private static Class<?> getLicenseClass() throws ClassNotFoundException {
         Class<?> c;
         try {
+            // Use this class for >= 8.0.3.0
             c = Class.forName("org.jahia.security.spi.LicenseCheckUtil");
         } catch (ClassNotFoundException e) {
+            // Otherwise this one before 8.0.3.0
             c = Class.forName("org.jahia.security.license.LicenseCheckerService$Stub");
         }
         return c;
