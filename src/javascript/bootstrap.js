@@ -1,5 +1,5 @@
 // Configuration
-const apolloClient = require('./apollo/register');
+const apolloClient = require('./apollo/register').apolloClient;
 require('./redux/register');
 
 // Global values to expose in Jahia library
