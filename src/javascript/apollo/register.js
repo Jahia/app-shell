@@ -3,7 +3,7 @@ import {registry} from '@jahia/ui-extender';
 import {ApolloProvider} from 'react-apollo';
 import {client} from './client';
 
-const apolloClient = client({
+export const apolloClient = client({
     contextPath: window.contextJsParameters.contextPath,
     useBatch: true,
     httpOptions: {batchMax: 20}

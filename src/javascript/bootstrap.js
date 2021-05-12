@@ -1,5 +1,5 @@
 // Configuration
-require('./apollo/register');
+const apolloClient = require('./apollo/register');
 require('./redux/register');
 
 // Global values to expose in Jahia library
@@ -17,5 +17,6 @@ export {
     i18n,
     uiExtender,
     moonstone,
-    modules
+    modules,
+    apolloClient
 };
