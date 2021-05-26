@@ -129,8 +129,6 @@ public class Main extends HttpServlet {
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
             List<String> remotes = getApplicationScripts(appName, REMOTES);
-//            remotes = remotes.stream().map(response::encodeURL).collect(Collectors.toList());
-
             wrapper.setAttribute(REMOTES, remotes);
 
             response.setHeader("Cache-Control", "no-store");
