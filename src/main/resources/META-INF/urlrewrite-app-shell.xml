@@ -7,16 +7,16 @@
     <rule>
         <name>js resources (inbound)</name>
         <note>Handles checksum for the resources of the js bundles for the proper cache support</note>
-        <from>^/modules/(.*)/javascript/(.*)\.v[0-9a-f]+\.bundle\.js$</from>
-        <to last="true">/modules/$1/javascript/$2.bundle.js</to>
+        <from>^/modules/(.*)/javascript/(.*)(\.bundle|remoteEntry|appshell)\.v[0-9a-f]+\.js$</from>
+        <to last="true">/modules/$1/javascript/$2$3.js</to>
     </rule>
 
     <outbound-rule>
         <name>js resources (outbound)</name>
         <note>Handles checksum for the resources of the js bundle for the proper cache support</note>
-        <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/javascript/(.*)\.bundle\.js)$</from>
+        <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/javascript/(.*)(\.bundle|remoteEntry|appshell)\.js)$</from>
         <run class="org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator" method="calculateChecksum(HttpServletRequest, String, String)"/>
-        <to last="true" encode="false">$1/modules/$3/javascript/$4.v%{attribute:ResourceChecksumCalculator.checksum}.bundle.js</to>
+        <to last="true" encode="false">$1/modules/$3/javascript/$4$5.v%{attribute:ResourceChecksumCalculator.checksum}.js</to>
     </outbound-rule>
 
     <rule>
