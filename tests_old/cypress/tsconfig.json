@@ -8,9 +8,7 @@
     "noEmit": false,
     "isolatedModules": false,
     "types": [
-      "cypress",
-      "node"
-    ],
-    "lib": [ "es2015" ]    
+      "cypress"
+    ]
   }
 }

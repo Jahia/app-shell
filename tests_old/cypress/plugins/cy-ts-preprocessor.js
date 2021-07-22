@@ -15,11 +15,6 @@ const webpackOptions = {
                     },
                 ],
             },
-            {
-                test: /\.mjs$/,
-                include: /node_modules/,
-                type: 'javascript/auto',
-            },
         ],
     },
 };
