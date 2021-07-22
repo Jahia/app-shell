@@ -1,3 +1,4 @@
 {
-  "extends": "@jahia"
+  "extends": "@jahia",
+  "ignorePatterns": [ "tests/*" ] 
 }
