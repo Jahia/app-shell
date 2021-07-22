@@ -3,7 +3,7 @@ instrumented/
 cypress/videos
 coverage
 node_modules
-
+run-artifacts
 .env
 artifacts
 build-dependencies
