@@ -3,8 +3,9 @@ import {from, split} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {getMainDefinition, toIdValue} from 'apollo-utilities';
 
-import {dxHttpLink, dxSseLink, dxUploadLink, ssrLink} from './links';
+import {dxHttpLink, dxUploadLink, ssrLink} from './links';
 import {fragmentMatcher} from './matcher';
+import {WebSocketLink} from 'apollo-link-ws';
 
 const client = function (options) {
     options = options || {};
@@ -120,8 +121,18 @@ const client = function (options) {
         return 0;
     };
 
-    let sseLink = dxSseLink((options.contextPath ? options.contextPath : '') + '/modules/graphql');
+    // Websocket link for subscriptions
+    const wsLink = new WebSocketLink({
+        uri: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
+            location.host +
+            (options.contextPath ? options.contextPath : '') +
+            '/modules/graphql',
+        options: {
+            reconnect: true
+        }
+    });
 
+    // Http link
     let httpLink = from([dxUploadLink, dxHttpLink(options.contextPath ? options.contextPath : '', options.useBatch, options.httpOptions)]);
 
     let link = split(
@@ -130,7 +141,7 @@ const client = function (options) {
             const {kind, operation} = getMainDefinition(query);
             return kind === 'OperationDefinition' && operation === 'subscription';
         },
-        sseLink,
+        wsLink,
         httpLink
     );
     return new ApolloClient({

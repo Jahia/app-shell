@@ -56,42 +56,6 @@ export const dxHttpLink = (contextPath, batch, httpOptions) => {
     });
 };
 
-export const dxSseLink = contextPath => {
-    class Link extends ApolloLink {
-        constructor(url) {
-            super();
-            this.url = url;
-        }
-
-        request(operation) {
-            return new Observable(observer => {
-                let options = Object.assign(operation, {query: print(operation.query)});
-                const {query} = options;
-                if (!query) {
-                    throw new Error('Must provide `query` to subscribe.');
-                }
-
-                let subscribeUrl = this.url + '?query=' + encodeURIComponent(options.query) + '&operationName=' + encodeURIComponent(options.operationName) + '&variables=' + encodeURIComponent(JSON.stringify(options.variables));
-                let evtSource = new EventSource(subscribeUrl);
-                evtSource.onmessage = e => {
-                    const message = JSON.parse(e.data);
-                    observer.next(message);
-                };
-
-                evtSource.onerror = () => {
-                    console.error('EventSource connection failed for subscription. Retry.');
-                    if (evtSource) {
-                        evtSource.close();
-                    }
-                };
-
-                return () => evtSource.close();
-            });
-        }
-    }
-    return new Link(contextPath);
-};
-
 export const ssrLink = new ApolloLink(
     operation => {
         let {operationName, variables, query} = operation;
