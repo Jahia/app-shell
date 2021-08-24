@@ -20,7 +20,10 @@ module.exports = (env, argv) => {
         },
         resolve: {
             mainFields: ['module', 'main'],
-            extensions: ['.mjs', '.js', '.jsx', 'json']
+            extensions: ['.mjs', '.js', '.jsx', 'json'],
+            alias: {
+                'subscriptions-transport-ws': 'subscriptions-transport-ws/dist/client' // This is done to avoid packaging all server nodeJS library because we only need client side
+            }
         },
         optimization: {
             usedExports: false,

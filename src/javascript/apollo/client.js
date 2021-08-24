@@ -3,8 +3,9 @@ import {from, split} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {getMainDefinition, toIdValue} from 'apollo-utilities';
 
-import {dxHttpLink, dxSseLink, dxUploadLink, ssrLink} from './links';
+import {dxHttpLink, dxUploadLink, ssrLink} from './links';
 import {fragmentMatcher} from './matcher';
+import {WebSocketLink} from 'apollo-link-ws';
 
 const client = function (options) {
     options = options || {};
@@ -110,6 +111,13 @@ const client = function (options) {
 
     cache.idByPath = idByPath;
 
+    const wsLink = new WebSocketLink({
+        uri: 'ws://' + location.host + (options.contextPath ? options.contextPath : '') + '/modules/graphql',
+        options: {
+            reconnect: true
+        }
+    });
+
     const flushNodeEntry = cacheKey => {
         if (cacheKey) {
             let strings = Object.keys(cache.data.data).filter(key => key.match(new RegExp('.*' + cacheKey.id + '.*')));
@@ -120,8 +128,6 @@ const client = function (options) {
         return 0;
     };
 
-    let sseLink = dxSseLink((options.contextPath ? options.contextPath : '') + '/modules/graphql');
-
     let httpLink = from([dxUploadLink, dxHttpLink(options.contextPath ? options.contextPath : '', options.useBatch, options.httpOptions)]);
 
     let link = split(
@@ -130,7 +136,7 @@ const client = function (options) {
             const {kind, operation} = getMainDefinition(query);
             return kind === 'OperationDefinition' && operation === 'subscription';
         },
-        sseLink,
+        wsLink,
         httpLink
     );
     return new ApolloClient({
