@@ -111,13 +111,6 @@ const client = function (options) {
 
     cache.idByPath = idByPath;
 
-    const wsLink = new WebSocketLink({
-        uri: 'ws://' + location.host + (options.contextPath ? options.contextPath : '') + '/modules/graphql',
-        options: {
-            reconnect: true
-        }
-    });
-
     const flushNodeEntry = cacheKey => {
         if (cacheKey) {
             let strings = Object.keys(cache.data.data).filter(key => key.match(new RegExp('.*' + cacheKey.id + '.*')));
@@ -128,6 +121,18 @@ const client = function (options) {
         return 0;
     };
 
+    // Websocket link for subscriptions
+    const wsLink = new WebSocketLink({
+        uri: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
+            location.host +
+            (options.contextPath ? options.contextPath : '') +
+            '/modules/graphql',
+        options: {
+            reconnect: true
+        }
+    });
+
+    // Http link
     let httpLink = from([dxUploadLink, dxHttpLink(options.contextPath ? options.contextPath : '', options.useBatch, options.httpOptions)]);
 
     let link = split(
