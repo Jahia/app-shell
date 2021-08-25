@@ -29,7 +29,7 @@ parameters:
     default: "jahia/app-shell"
   PRIMARY_RELEASE_BRANCH:
     type: string
-    default: "main" # main or master ? set the branch for the main release
+    default: "master" # main or master ? set the branch for the main release
   JAHIA_IMAGE:
     type: string
     default: "jahia/jahia-ee-dev:8-SNAPSHOT"
