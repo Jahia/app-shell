@@ -126,7 +126,7 @@ const client = function (options) {
         uri: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
             location.host +
             (options.contextPath ? options.contextPath : '') +
-            '/modules/graphql',
+            '/modules/graphqlws',
         options: {
             reconnect: true
         }
