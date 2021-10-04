@@ -98,7 +98,6 @@ workflows:
             - jahia-modules-orb/initialize
             # - jahia-modules-orb/static-analysis
             - jahia-modules-orb/update-signature
-          docker_image: circleci/openjdk:8-jdk-stretch
       - jahia-modules-orb/sonar-analysis:
           context: QA_ENVIRONMENT
           requires:
