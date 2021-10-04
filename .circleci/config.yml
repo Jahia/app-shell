@@ -5,7 +5,7 @@ orbs:
   jq: circleci/jq@2.2.0
   # IMPORTANT: When creating a module, use a fix version of the orb, not dev:alpha
   # Find orbs release versions here: https://circleci.com/developer/orbs/orb/jahia/jahia-modules-orb
-  jahia-modules-orb: jahia/jahia-modules-orb@0.3.2
+  jahia-modules-orb: jahia/jahia-modules-orb@0.5.4
 
 # Parameters are available across the entire config file and can be used with this syntax: << pipeline.parameters.THE_PARAMETER >>
 # Avoid using project-specific variables in the jobs or steps.
@@ -89,16 +89,15 @@ workflows:
       - jahia-modules-orb/static-analysis:
           requires:
             - jahia-modules-orb/initialize
-          auditci_level: high
+          auditci_level: critical
           # Trick to still run static analysis on the tests without being impacted by the fact that the module itself does not have a package.json
-          module_path: 'tests/'
+          module_path: './'
       - jahia-modules-orb/build:
           context: QA_ENVIRONMENT
           requires:
             - jahia-modules-orb/initialize
             # - jahia-modules-orb/static-analysis
             - jahia-modules-orb/update-signature
-          docker_image: circleci/openjdk:8-jdk-stretch
       - jahia-modules-orb/sonar-analysis:
           context: QA_ENVIRONMENT
           requires:
