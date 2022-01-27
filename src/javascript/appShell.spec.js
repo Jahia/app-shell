@@ -16,7 +16,7 @@ jest.mock('react-dom', () => {
 
 jest.mock('./jsloader', () => {
     return {
-        jsload: jest.fn()
+        jsload: jest.fn().mockResolvedValue({name: 'mock', factory: {default: () => {}}})
     };
 });
 
@@ -28,7 +28,7 @@ describe('appShell', () => {
     let consoleError;
     beforeEach(() => {
         console.error = jest.fn();
-        jsload.mockReset();
+        jsload.mockReset().mockResolvedValue({name: 'mock', factory: {default: () => {}}});
         const loader = document.createElement('div');
         loader.classList.add('jahia-loader');
         document.body.appendChild(loader);
@@ -44,20 +44,20 @@ describe('appShell', () => {
         expect(jsload).toHaveBeenCalledWith('tata.js');
     });
 
-    it('should display an error when a loader is faling', async () => {
-        jsload.mockImplementation(() => Promise.reject(new Error('file not exist')));
+    it('should display an error when a loader is failing', async () => {
+        jsload.mockReset().mockRejectedValue(new Error('file not exist'));
         await startAppShell({scripts: ['./fileThatDontExist.js'], targetId: 'targetId'});
         expect(console.error).toHaveBeenCalled();
     });
 
     it('should call each callback in the same order when no priority is set', async () => {
-        const cbCallOrder = [];
+        const callbackCallOrder = [];
         registry.find.mockImplementation(search => {
             if (search.type === 'callback') {
                 return [
-                    {callback: () => Promise.resolve(cbCallOrder.push(1)), targets: [{id: 'jahiaApp-init', priority: 0}]},
-                    {callback: () => Promise.resolve(cbCallOrder.push(2)), targets: [{id: 'jahiaApp-init', priority: 0}]},
-                    {callback: () => Promise.resolve(cbCallOrder.push(3)), targets: [{id: 'jahiaApp-init', priority: 0}]}
+                    {callback: () => Promise.resolve(callbackCallOrder.push(1)), targets: [{id: 'jahiaApp-init', priority: 0}]},
+                    {callback: () => Promise.resolve(callbackCallOrder.push(2)), targets: [{id: 'jahiaApp-init', priority: 0}]},
+                    {callback: () => Promise.resolve(callbackCallOrder.push(3)), targets: [{id: 'jahiaApp-init', priority: 0}]}
                 ];
             }
 
@@ -66,33 +66,33 @@ describe('appShell', () => {
 
         await startAppShell({scripts: ['./apollo/matcher'], targetId: 'targetId'});
 
-        expect(cbCallOrder).toEqual([1, 2, 3]);
+        expect(callbackCallOrder).toEqual([1, 2, 3]);
     });
 
-    it('should call fail if priorty is not respected', async () => {
-        const cbCallOrder = [];
+    it('should call fail if priority is not respected', async () => {
+        const callbackCallOrder = [];
         registry.find.mockImplementation(search => {
             if (search.type === 'callback') {
                 return [
                     {
                         callback: () => {
-                            cbCallOrder.push(3);
+                            callbackCallOrder.push(3);
                             return Promise.resolve();
                         },
                         targets: [{id: 'jahiaApp-init', priority: '1'}]
                     },
                     {
                         callback: () => {
-                            expect(cbCallOrder).toEqual([3]);
-                            cbCallOrder.push(1);
+                            expect(callbackCallOrder).toEqual([3]);
+                            callbackCallOrder.push(1);
                             return Promise.resolve();
                         },
                         targets: [{id: 'jahiaApp-init', priority: '2'}]
                     },
                     {
                         callback: () => {
-                            expect(cbCallOrder).toEqual([3, 1]);
-                            cbCallOrder.push(2);
+                            expect(callbackCallOrder).toEqual([3, 1]);
+                            callbackCallOrder.push(2);
                             return Promise.resolve();
                         },
                         targets: [{id: 'jahiaApp-init'}]
@@ -105,7 +105,7 @@ describe('appShell', () => {
 
         await startAppShell({scripts: ['./apollo/matcher'], targetId: 'targetId'});
 
-        expect(cbCallOrder).toEqual([3, 1, 2]);
+        expect(callbackCallOrder).toEqual([3, 1, 2]);
         expect(console.error).not.toHaveBeenCalled();
     });
 
