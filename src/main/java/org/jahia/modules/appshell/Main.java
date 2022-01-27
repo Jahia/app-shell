@@ -171,6 +171,10 @@ public class Main extends HttpServlet {
         for (Bundle bundle : getPackages()) {
             List<String> jsBundles = getBundleScripts(bundle, appName, key);
             for (String jsBundle : jsBundles) {
+                if(bundle.getResource(jsBundle) == null) {
+                    logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}",bundle.getSymbolicName(), jsBundle, key);
+                    continue;
+                }
                 if (jsBundle.startsWith("/")) {
                     resources.add(jsBundle);
                 } else {

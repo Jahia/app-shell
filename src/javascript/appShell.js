@@ -6,8 +6,7 @@ function loadComponent(container, module) {
     return async () => {
         try {
             const factory = await container.get(module);
-            const Module = factory();
-            return Module;
+            return {name: container.name, factory: factory()};
         } catch (e) {
             console.log('No init() found in container {}', container, e);
         }
@@ -21,13 +20,37 @@ const promisifiedReactDomRender = (cmp, target) => {
 };
 
 export const startAppShell = ({remotes, scripts, targetId}) => {
+    if (remotes !== undefined) {
+        for (const [key, value] of Object.entries(remotes)) {
+            value.name = key;
+        }
+    }
+
     // Load main scripts for each bundle
     return Promise.all([
-        ...Object.values(remotes || {}).map(r => loadComponent(r, './init')()),
-        ...(scripts || []).map(path => jsload(path))
+        ...Object.values(remotes || {}).map(r => loadComponent(r, './init')().catch(error => {
+            registry.add('modules-error', r, {message: error.message});
+            return error;
+        })),
+        ...(scripts || []).map(path => jsload(path).catch(error => {
+            registry.add('scripts-error', path, {message: error.message});
+            return error;
+        }))
     ])
         .then(async inits => {
-            inits.forEach(init => init?.default());
+            console.log(inits);
+            const errors = inits.filter(value => value instanceof Error);
+            errors.forEach(error => console.error(error.message));
+            inits.filter(value => !(value instanceof Error) && value !== undefined).forEach(init => {
+                if (typeof init.factory.default === undefined || typeof init.factory.default !== 'function') {
+                    let message = `Module ${init.name} does not expose/contain a default function`;
+                    console.error(message);
+                    registry.add('modules-error', init.name, {message: message});
+                    return;
+                }
+
+                return init.factory.default();
+            });
 
             const callbacks = registry.find({type: 'callback', target: 'jahiaApp-init'});
 
@@ -53,7 +76,7 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
                             return entryPriority === priority;
                         })
                         .map(entry => entry.callback()?.catch(err => {
-                            console.error('Encountered during executing callbackloading and registering module entry {}', entry, err);
+                            console.error('Encountered during executing callback loading and registering module entry {}', entry, err);
                         }))
                 );
             }

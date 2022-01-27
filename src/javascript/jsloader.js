@@ -5,8 +5,8 @@ export const jsload = path => new Promise((resolve, reject) => {
         resolve();
     };
 
-    scriptTag.onerror = function (e) {
-        reject(new Error(e));
+    scriptTag.onerror = function () {
+        reject(new Error('Error while loading ' + path));
     };
 
     document
