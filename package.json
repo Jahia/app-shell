@@ -95,7 +95,7 @@
         "file-loader": "^3.0.1",
         "husky": "^3.0.5",
         "jest": "^27.2.4",
-        "node-sass": "^6.0.1",
+        "node-sass": "^7.0.0",
         "rimraf": "^2.6.2",
         "source-map-loader": "^1.0.0",
         "style-loader": "^0.23.1",
