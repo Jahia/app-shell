@@ -11,5 +11,5 @@ Promise.all([
     import('./bootstrap').then(res => {
         window.jahia = res;
         res.startAppShell(window.appShell);
-    });
-});
+    }).catch(e => console.error('Your network may be too slow, some files could not be loaded!', e));
+}).catch(e => console.error('There was an error while loading remote entries. Your network may be too slow.', e));
