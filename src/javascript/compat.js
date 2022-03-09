@@ -1,6 +1,8 @@
 /* eslint dot-notation:0 */
 export default function (jahiaCommons) {
-    jahiaCommons['8e06b8f56b5e7d4871fb'] = require('@apollo/react-hooks');
+    jahiaCommons['bff6d2beaf52e5eeda4f'] = require('@apollo/client');
+    jahiaCommons['e7bec4b0d77dcbc8076b'] = require('@apollo/client/react');
+    jahiaCommons['8e06b8f56b5e7d4871fb'] = require('@apollo/client/react/hooks');
     jahiaCommons['31ffa001e1d0724a622b'] = require('@babel/runtime/helpers/arrayWithHoles');
     jahiaCommons['27f61890603953b946f7'] = require('@babel/runtime/helpers/assertThisInitialized');
     jahiaCommons['19e15e7ca84589004246'] = require('@babel/runtime/helpers/classCallCheck');
@@ -208,7 +210,6 @@ export default function (jahiaCommons) {
     jahiaCommons['77cf2a9b8bcb0d91d608'] = require('@material-ui/icons/KeyboardArrowRight');
     jahiaCommons['8f601483c73c603f5044'] = require('@material-ui/icons/LastPage');
     jahiaCommons['15b2c8e9540fb838bfd0'] = require('@material-ui/icons/utils/createSvgIcon');
-    jahiaCommons['bff6d2beaf52e5eeda4f'] = require('apollo-client');
     jahiaCommons['b912ecc4473ae8a2ff0b'] = require('classnames');
     jahiaCommons['bc52778aa4babd5538cf'] = require('clsx');
     jahiaCommons['7d8545d2807e9743ca01'] = require('dayjs');
@@ -282,7 +283,6 @@ export default function (jahiaCommons) {
     jahiaCommons['26d59f808dff3e83c741'] = require('process');
     jahiaCommons['8a2d1b95e05b6a321e74'] = require('prop-types');
     jahiaCommons['a7fe8d66448a62154e6f'] = require('raf');
-    jahiaCommons['e7bec4b0d77dcbc8076b'] = require('react-apollo');
     jahiaCommons['11d9d5e32abc7e348c2b'] = require('react-day-picker/build/Caption');
     jahiaCommons['acbfb2253b8594554a59'] = require('react-day-picker/build/DateUtils');
     jahiaCommons['bdf1516baefc98378226'] = require('react-day-picker/build/Day');

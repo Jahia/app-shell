@@ -1,139 +1,110 @@
-import {ApolloClient} from 'apollo-client';
-import {from, split} from 'apollo-link';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import {getMainDefinition, toIdValue} from 'apollo-utilities';
-
+import {ApolloClient, from, InMemoryCache, split} from '@apollo/client';
+import {getMainDefinition} from '@apollo/client/utilities';
 import {dxHttpLink, dxUploadLink, ssrLink} from './links';
-import {fragmentMatcher} from './matcher';
-import {WebSocketLink} from 'apollo-link-ws';
+import {GraphQLWsLink} from '@apollo/client/link/subscriptions';
+import {createClient} from 'graphql-ws';
 
-const client = function (options) {
-    options = options || {};
+const possibleTypes = {
+    JCRNode: ['JCRNode', 'GenericJCRNode', 'JCRSite', 'VanityUrl'],
+    JCRItemDefinition: ['JCRItemDefinition', 'JCRPropertyDefinition', 'JCRNodeDefinition']
+};
 
+function getNodeKey(uuid, workspace) {
+    return 'JCRNode:' + workspace + ':' + uuid;
+    // Return {__typename: 'JCRNode', workspace, uuid};
+}
+
+const client = function () {
     let ssrMode = (typeof window === 'undefined');
 
     // Map of path/uuid to be able to resolve cache key when we only have the path during cache resolving
     let idByPath = {};
 
     // Get final cacke Key
-    let getId = (workspace, uuid) => toIdValue(normalizeId(workspace, uuid));
+    // let getId = (workspace, uuid) => toIdValue(workspace + ':' + uuid);
 
     // Get formated cache key
-    let normalizeId = (workspace, uuid) => workspace + ':' + uuid;
-
     let dataIdFromObject = data => {
-        // Use dataIdFromObject() from the options if provided
-        if (options.dataIdFromObject) {
-            let r = options.dataIdFromObject(data);
-            if (r) {
-                return r;
-            }
-        }
-
         // In order to cache JCR node we need at least uuid and workspace fields
-        if (data.uuid && data.workspace) {
-            if (data.path) {
-                // Store key for path, in case queryNodeByPath is used in the future we can resolve the appropriate ID
-                idByPath[data.path] = data.uuid;
+
+        if (possibleTypes.JCRNode.find(s => s === data.__typename)) {
+            if (data.uuid && data.workspace) {
+                if (data.path) {
+                    // Store key for path, in case queryNodeByPath is used in the future we can resolve the appropriate ID
+                    idByPath[data.path] = data.uuid;
+                }
+
+                return 'JCRNode:' + data.workspace + ':' + data.uuid;
             }
 
-            return normalizeId(data.workspace, data.uuid);
-        }
-
-        // Use default apollo cache key
-        if (data.__typename && data.id) {
-            return normalizeId(data.__typename, data.id);
+            console.error('Missing field \'uuid\' or \'workspace\' while extracting key from JCRNode', data);
         }
 
         return undefined;
     };
 
-    let cacheRedirects = {
-        JCRQuery: {
-            nodeById: (_, args) => {
-                if (_.workspace) {
-                    return getId(_.workspace, args.uuid);
+    let currentWs;
+    const cache = new InMemoryCache({
+        dataIdFromObject,
+        possibleTypes,
+        typePolicies: {
+            ROOT_QUERY: {
+                queryType: true,
+                fields: {
+                    jcr: (existingData, {args, toReference}) => {
+                        // Field function is only here to set the current workspace
+                        currentWs = ((args && args.workspace) || 'EDIT');
+                        return existingData || toReference({__typename: 'JCRQuery'});
+                    }
                 }
             },
-            nodesById: (_, args) => {
-                if (_.workspace) {
-                    return args.uuids.map(function (uuid) {
-                        return getId(_.workspace, uuid);
-                    });
+            JCRQuery: {
+                keyFields: [],
+                fields: {
+                    nodeById: (existingData, {args, toReference}) =>
+                        existingData || toReference(getNodeKey(args.uuid, currentWs)),
+                    nodesById: (existingData, {args, toReference}) =>
+                        existingData || args.uuids.map(uuid => toReference(getNodeKey(uuid, currentWs))),
+                    nodeByPath: (existingData, {args, toReference}) =>
+                        existingData || (idByPath[args.path] && toReference(getNodeKey(idByPath[args.path], currentWs))),
+                    nodesByPath: (existingData, {args, toReference}) =>
+                        existingData || (args.paths.every(path => idByPath[path]) && args.paths.map(path => toReference(getNodeKey(idByPath[path], currentWs))))
                 }
             },
-            nodeByPath: (_, args) => {
-                if (_.workspace && idByPath[args.path]) {
-                    return getId(_.workspace, idByPath[args.path]);
-                }
-            },
-            nodesByPath: (_, args) => {
-                if (_.workspace) {
-                    let f = args.paths.map(path => (idByPath[path] ? getId(_.workspace, idByPath[path]) : undefined));
-                    return f.indexOf(undefined) === -1 ? f : undefined;
-                }
+            JCRNodeType: {
+                keyFields: ['name']
             }
         }
-    };
-
-    // Add JCRNode cache resolvers:
-    for (let typeName of fragmentMatcher.possibleTypesMap.JCRNode) {
-        cacheRedirects[typeName] = {
-            nodeInWorkspace: (_, args) => {
-                if (_.uuid) {
-                    return getId(args.workspace, _.uuid);
-                }
-            }
-        };
-    }
-
-    if (options.cacheRedirects) {
-        Object.assign(cacheRedirects, options.cacheRedirects);
-    }
-
-    let cache = new InMemoryCache({
-        fragmentMatcher: fragmentMatcher,
-        dataIdFromObject: dataIdFromObject,
-        cacheRedirects: cacheRedirects
     });
 
     cache.flushNodeEntryByPath = (path, workspace = 'EDIT') => {
-        let cacheKey = cacheRedirects.JCRQuery.nodeByPath({workspace}, {path});
-
-        return flushNodeEntry(cacheKey);
+        console.log('flushNodeEntryByPath', workspace);
+        if (idByPath[path]) {
+            cache.evict({id: getNodeKey(idByPath[path], workspace)});
+        }
     };
 
     cache.flushNodeEntryById = (uuid, workspace = 'EDIT') => {
-        let cacheKey = cacheRedirects.JCRQuery.nodeById({workspace}, {uuid});
-
-        return flushNodeEntry(cacheKey);
+        console.log('flushNodeEntryByPath', workspace);
+        cache.evict({id: getNodeKey(uuid, workspace)});
     };
 
     cache.idByPath = idByPath;
 
-    const flushNodeEntry = cacheKey => {
-        if (cacheKey) {
-            let strings = Object.keys(cache.data.data).filter(key => key.match(new RegExp('.*' + cacheKey.id + '.*')));
-            strings.forEach(key => cache.data.delete(key));
-            return strings.length;
-        }
+    if (ssrMode) {
+        return new ApolloClient({
+            link: ssrLink,
+            cache,
+            ssrMode
+        });
+    }
 
-        return 0;
-    };
-
-    // Websocket link for subscriptions
-    const wsLink = new WebSocketLink({
-        uri: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
-            location.host +
-            (options.contextPath ? options.contextPath : '') +
-            '/modules/graphqlws',
-        options: {
-            reconnect: true
-        }
-    });
-
-    // Http link
-    let httpLink = from([dxUploadLink, dxHttpLink(options.contextPath ? options.contextPath : '', options.useBatch, options.httpOptions)]);
+    const wsLink = new GraphQLWsLink(createClient({
+        url: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
+                location.host +
+                (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
+                '/modules/graphqlws'
+    }));
 
     let link = split(
         // Split based on operation type
@@ -142,13 +113,10 @@ const client = function (options) {
             return kind === 'OperationDefinition' && operation === 'subscription';
         },
         wsLink,
-        httpLink
+        from([dxUploadLink, dxHttpLink])
     );
-    return new ApolloClient({
-        link: ssrMode ? ssrLink : (options.link ? options.link : link),
-        cache: cache,
-        ssrMode: ssrMode
-    });
+
+    return new ApolloClient({link, cache, ssrMode});
 };
 
 export {client};
