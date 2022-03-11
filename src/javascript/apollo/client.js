@@ -11,7 +11,6 @@ const possibleTypes = {
 
 function getNodeKey(uuid, workspace) {
     return 'JCRNode:' + workspace + ':' + uuid;
-    // Return {__typename: 'JCRNode', workspace, uuid};
 }
 
 const client = function () {
@@ -70,12 +69,16 @@ const client = function () {
                     nodesByPath: (existingData, {args, toReference}) =>
                         existingData || (args.paths.every(path => idByPath[path]) && args.paths.map(path => toReference(getNodeKey(idByPath[path], currentWs))))
                 }
-            },
-            JCRNodeType: {
-                keyFields: ['name']
             }
+            // JCRNodeType: {
+            //     keyFields: ['name']
+            // }
         }
     });
+
+    // Cache.transformDocument = document => {
+    //     return addTypenameToDocument(document)
+    // }
 
     cache.flushNodeEntryByPath = (path, workspace = 'EDIT') => {
         console.log('flushNodeEntryByPath', workspace);
@@ -101,9 +104,9 @@ const client = function () {
 
     const wsLink = new GraphQLWsLink(createClient({
         url: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
-                location.host +
-                (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
-                '/modules/graphqlws'
+            location.host +
+            (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
+            '/modules/graphqlws'
     }));
 
     let link = split(
