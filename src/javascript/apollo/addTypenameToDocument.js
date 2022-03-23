@@ -2,12 +2,16 @@ import {visit} from 'graphql';
 import {checkDocument, isField} from '@apollo/client/utilities';
 
 const autoAddedFields = {
+    jcr: ['workspace'],
     primaryNodeType: ['name'],
     mixinType: ['name'],
+    nodeType: ['name'],
     nodeByUuid: ['uuid', 'workspace'],
     nodesByUuid: ['uuid', 'workspace'],
     nodeByPath: ['uuid', 'workspace'],
     nodesByPath: ['uuid', 'workspace'],
+    parent: ['uuid', 'workspace'],
+    displayableNode: ['uuid', 'workspace'],
     site: ['uuid', 'workspace']
 };
 
