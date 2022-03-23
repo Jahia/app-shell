@@ -38,7 +38,6 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
         }))
     ])
         .then(async inits => {
-            console.log(inits);
             const errors = inits.filter(value => value instanceof Error);
             errors.forEach(error => console.error(error.message));
             inits.filter(value => !(value instanceof Error) && value !== undefined).forEach(init => {
