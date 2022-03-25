@@ -3,7 +3,7 @@ import {getMainDefinition} from '@apollo/client/utilities';
 import {dxHttpLink, dxUploadLink, ssrLink} from './links';
 import {GraphQLWsLink} from '@apollo/client/link/subscriptions';
 import {createClient} from 'graphql-ws';
-import {addTypenameToDocument} from './addTypenameToDocument';
+import {addMissingFields} from './addMissingFields';
 
 const possibleTypes = {
     JCRNode: ['JCRNode', 'GenericJCRNode', 'JCRSite', 'VanityUrl'],
@@ -33,6 +33,9 @@ let typePolicies = {
             }
         }
     },
+    GqlPublicationInfo: {
+        merge: true
+    },
     JCRQuery: {
         fields: {
             nodeById: (existingData, {args, toReference}) =>
@@ -56,11 +59,15 @@ let customTypePolicies = {
     },
     JCRNodeType: {
         keyFields: ['name']
+    },
+    GqlEditorForms: {
+        keyFields: []
     }
+
 };
 
 function getNodeKey(uuid, workspace) {
-    return 'JCRNode:' + workspace + ':' + uuid;
+    return 'JCRNode:' + JSON.stringify({uuid, workspace});
 }
 
 const client = function () {
@@ -87,7 +94,7 @@ const client = function () {
                 }), {}));
             }
 
-            console.error('X Missing fields ' + keyFields + ' while extracting key from ' + data.__typename, data);
+            console.error('Missing fields ' + keyFields + ' while extracting key from ' + data.__typename, data);
         }
 
         return undefined;
@@ -100,7 +107,7 @@ const client = function () {
     });
 
     cache.transformDocument = document => {
-        return addTypenameToDocument(document);
+        return addMissingFields(document);
     };
 
     cache.flushNodeEntryByPath = (path, workspace = 'EDIT') => {
