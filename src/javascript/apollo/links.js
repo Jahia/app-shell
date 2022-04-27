@@ -1,7 +1,6 @@
 import {print} from 'graphql';
-import {ApolloLink} from 'apollo-link';
-import {HttpLink} from 'apollo-link-http';
-import {BatchHttpLink} from 'apollo-link-batch-http';
+import {ApolloLink} from '@apollo/client';
+import {BatchHttpLink} from '@apollo/client/link/batch-http';
 import * as Observable from 'zen-observable';
 
 export const dxUploadLink = new ApolloLink(
@@ -30,31 +29,29 @@ export const dxUploadLink = new ApolloLink(
     }
 );
 
-export const dxHttpLink = (contextPath, batch, httpOptions) => {
-    let Link = batch ? BatchHttpLink : HttpLink;
-    return new Link({
-        uri: contextPath + '/modules/graphql',
-        credentials: 'same-origin',
-        fetch: (uri, fetcherOptions) => {
-            if (fetcherOptions.formData) {
-                let formData = fetcherOptions.formData;
-                let body = JSON.parse(fetcherOptions.body);
-                if (Array.isArray(body)) {
-                    formData.append('query', fetcherOptions.body);
-                } else {
-                    Object.keys(body).forEach(k => formData.append(k, typeof body[k] === 'string' ? body[k] : JSON.stringify(body[k])));
-                }
-
-                fetcherOptions.body = formData;
-                delete fetcherOptions.headers['content-type'];
-                return fetch(uri, fetcherOptions);
+export const dxHttpLink = new BatchHttpLink({
+    uri: window.contextJsParameters.contextPath + '/modules/graphql',
+    batchMax: 20,
+    batchInterval: 20,
+    credentials: 'same-origin',
+    fetch: (uri, fetcherOptions) => {
+        if (fetcherOptions.formData) {
+            let formData = fetcherOptions.formData;
+            let body = JSON.parse(fetcherOptions.body);
+            if (Array.isArray(body)) {
+                formData.append('query', fetcherOptions.body);
+            } else {
+                Object.keys(body).forEach(k => formData.append(k, typeof body[k] === 'string' ? body[k] : JSON.stringify(body[k])));
             }
 
+            fetcherOptions.body = formData;
+            delete fetcherOptions.headers['content-type'];
             return fetch(uri, fetcherOptions);
-        },
-        ...httpOptions
-    });
-};
+        }
+
+        return fetch(uri, fetcherOptions);
+    }
+});
 
 export const ssrLink = new ApolloLink(
     operation => {
