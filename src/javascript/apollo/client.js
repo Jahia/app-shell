@@ -77,7 +77,7 @@ const client = function () {
     // let getId = (workspace, uuid) => toIdValue(workspace + ':' + uuid);
 
     // Get formated cache key
-    let dataIdFromObject = data => {
+    let dataIdFromObject = (data, context) => {
         // In order to cache JCR node we need at least uuid and workspace fields
         const type = mainType[data.__typename] ? mainType[data.__typename] : data.__typename;
         if (type === 'JCRNode' && data.path && data.uuid) {
@@ -94,7 +94,7 @@ const client = function () {
                 }), {}));
             }
 
-            console.error('Missing fields ' + keyFields + ' while extracting key from ' + data.__typename, data);
+            console.error('Missing fields ' + keyFields + ' while extracting key from ' + data.__typename + ', data:', data, 'context:', context);
         }
 
         return undefined;
