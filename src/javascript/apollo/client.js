@@ -111,14 +111,12 @@ const client = function () {
     };
 
     cache.flushNodeEntryByPath = (path, workspace = 'EDIT') => {
-        console.log('flushNodeEntryByPath', workspace);
         if (idByPath[path]) {
             cache.evict({id: getNodeKey(idByPath[path], workspace)});
         }
     };
 
     cache.flushNodeEntryById = (uuid, workspace = 'EDIT') => {
-        console.log('flushNodeEntryByPath', workspace);
         cache.evict({id: getNodeKey(uuid, workspace)});
     };
 
