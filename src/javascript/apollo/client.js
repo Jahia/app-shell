@@ -1,8 +1,8 @@
 import {ApolloClient, from, InMemoryCache, split} from '@apollo/client';
 import {getMainDefinition} from '@apollo/client/utilities';
 import {dxHttpLink, dxUploadLink, ssrLink} from './links';
-import {GraphQLWsLink} from '@apollo/client/link/subscriptions';
-import {createClient} from 'graphql-ws';
+import {WebSocketLink} from '@apollo/client/link/ws';
+import {SubscriptionClient} from 'subscriptions-transport-ws';
 import {addMissingFields} from './addMissingFields';
 
 const possibleTypes = {
@@ -130,12 +130,14 @@ const client = function () {
         });
     }
 
-    const wsLink = new GraphQLWsLink(createClient({
-        url: (location.protocol === 'https:' ? 'wss://' : 'ws://') +
-            location.host +
-            (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
-            '/modules/graphqlws'
-    }));
+    const wsLink = new WebSocketLink(
+        new SubscriptionClient(
+            (location.protocol === 'https:' ? 'wss://' : 'ws://') +
+                location.host +
+                (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
+                '/modules/graphqlws'
+        )
+    );
 
     let link = split(
         // Split based on operation type
