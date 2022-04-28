@@ -12,7 +12,7 @@
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "cross-fetch": "^3.1.4",
+    "cross-fetch": "^3.1.5",
     "cypress": "^7.4.0",
     "cypress-file-upload": "^5.0.2",
     "cypress-multi-reporters": "^1.4.0",
