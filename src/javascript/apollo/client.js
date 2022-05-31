@@ -22,6 +22,13 @@ let currentWs;
 // Map of path/uuid to be able to resolve cache key when we only have the path during cache resolving
 let idByPath = {};
 
+function readNodeFromCache(uuid, toReference, cache) {
+    if (uuid) {
+        const value = toReference(getNodeKey(uuid, currentWs));
+        return cache.data.canRead(value) ? value : undefined;
+    }
+}
+
 let typePolicies = {
     ROOT_QUERY: {
         queryType: true,
@@ -38,14 +45,26 @@ let typePolicies = {
     },
     JCRQuery: {
         fields: {
-            nodeById: (existingData, {args, toReference}) =>
-                existingData || toReference(getNodeKey(args.uuid, currentWs)),
-            nodesById: (existingData, {args, toReference}) =>
-                existingData || args.uuids.map(uuid => toReference(getNodeKey(uuid, currentWs))),
-            nodeByPath: (existingData, {args, toReference}) =>
-                existingData || (idByPath[args.path] && toReference(getNodeKey(idByPath[args.path], currentWs))),
-            nodesByPath: (existingData, {args, toReference}) =>
-                existingData || (args.paths.every(path => idByPath[path]) && args.paths.map(path => toReference(getNodeKey(idByPath[path], currentWs))))
+            nodeById: (existingData, {args, toReference, cache}) =>
+                existingData || readNodeFromCache(args.uuid, toReference, cache),
+            nodeByPath: (existingData, {args, toReference, cache}) =>
+                existingData || readNodeFromCache(idByPath[args.path], toReference, cache),
+            nodesById: (existingData, {args, toReference, cache}) => {
+                if (!existingData) {
+                    const res = args.uuids.map(uuid => readNodeFromCache(uuid, toReference, cache));
+                    return res.every(v => Boolean(v)) ? res : existingData;
+                }
+
+                return existingData;
+            },
+            nodesByPath: (existingData, {args, toReference, cache}) => {
+                if (!existingData) {
+                    const res = args.paths.map(path => readNodeFromCache(idByPath[path], toReference, cache));
+                    return res.every(v => Boolean(v)) ? res : existingData;
+                }
+
+                return existingData;
+            }
         }
     }
 };
@@ -133,9 +152,9 @@ const client = function () {
     const wsLink = new WebSocketLink(
         new SubscriptionClient(
             (location.protocol === 'https:' ? 'wss://' : 'ws://') +
-                location.host +
-                (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
-                '/modules/graphqlws'
+            location.host +
+            (window.contextJsParameters.contextPath ? window.contextJsParameters.contextPath : '') +
+            '/modules/graphqlws'
         )
     );
 
