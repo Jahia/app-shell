@@ -1,13 +1,28 @@
 {
-  "name": "tokens-cypress",
+  "name": "appshell-tests",
   "version": "1.0.0",
-  "description": "cypress",
+  "scripts": {
+    "e2e:ci": "cypress run",
+    "e2e:debug": "cypress open",
+    "lint": "eslint . -c .eslintrc.json --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jahia/app-shell.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/Jahia/app-shell/issues"
+  },
+  "homepage": "https://github.com/Jahia/app-shell#readme",
+  "dependencies": {},
   "devDependencies": {
     "@apollo/client": "^3.3.11",
-    "@bahmutov/add-typescript-to-cypress": "^2.1.2",
     "@cypress/code-coverage": "^3.9.5",
     "@cypress/webpack-preprocessor": "^5.4.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@jahia/cypress": "^1.1.2",
     "@types/node": "^15.12.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
@@ -40,26 +55,10 @@
     "ts-node": "^8.10.2",
     "typescript": "^4.0.5",
     "util": "^0.12.3",
-    "webpack": "4.46.0",
     "yarn": "^1.22.4"
   },
   "resolutions": {
     "*/**/elliptic": "6.5.4"
-  },
-  "scripts": {
-    "instrument": "nyc instrument --compact=false cypress instrumented",
-    "e2e:coverage": "yarn instrument && yarn cypress run --config integrationFolder=./instrumented/integration && yarn nyc report --reporter=html --report-dir=./results/coverage && yarn nyc report",
-    "e2e:ci": "cypress run",
-    "e2e:debug": "cypress open",
-    "lint": "eslint . -c .eslintrc.json --ext .ts"
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "all": true,
-    "include": [
-      "cypress/integration",
-      "cypress/page-object"
-    ]
   },
   "husky": {
     "hooks": {
@@ -70,16 +69,5 @@
     "*.{ts,tsx}": [
       "eslint --fix"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jahia/app-shell.git"
-  },
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE.txt",
-  "bugs": {
-    "url": "https://github.com/Jahia/app-shell/issues"
-  },
-  "homepage": "https://github.com/Jahia/app-shell#readme",
-  "dependencies": {}
+  }
 }

@@ -1,10 +1,8 @@
-import { BasePage } from './base.page'
+import { BasePage } from '@jahia/cypress'
 
-class DashboardPage extends BasePage {
-    goTo() {
-        cy.goTo('/jahia/dashboard')
-        return this
+export class DashboardPage extends BasePage {
+    static visit(): DashboardPage {
+        cy.visit('/jahia/dashboard')
+        return new DashboardPage()
     }
 }
-
-export const dashboard = new DashboardPage()
