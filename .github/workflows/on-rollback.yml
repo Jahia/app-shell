@@ -1,4 +1,4 @@
- This workflow is triggered when someone deletes a release from GitHub UI
+# This workflow is triggered when someone deletes a release from GitHub UI
 name: Trigger Release rollback
 
 on:

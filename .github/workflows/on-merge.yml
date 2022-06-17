@@ -38,7 +38,6 @@ jobs:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
           module_id: app-shell
-          mvn_settings_filepath: '.github/maven.settings.xml'
 
   integration-tests-standalone:
     name: Integration Tests (Standalone)
@@ -95,4 +94,3 @@ jobs:
         with:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          mvn_settings_filepath: '.github/maven.settings.xml'
