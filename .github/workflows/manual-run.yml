@@ -37,7 +37,7 @@ jobs:
           should_skip_notifications: true
           should_skip_testrail: true
           should_skip_zencrepes: false
-          github_artifact_name: app-shell-standalone-artifacts-${{ github.run_number }}
+          github_artifact_name: app-shell-artifacts-${{ github.run_number }}
           bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           tests_manifest: ${{ github.event.inputs.manifest }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
