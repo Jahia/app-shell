@@ -47,7 +47,60 @@ window.jahia.uiExtender.registry.add('route', 'route-jcontent', {
       }
   });
 ```
-  
+
+#### Handling site logins properly
+
+As sites may create their own users, it is important to properly handle URL generation and URL patterns to make sure that site users can login properly when directly accessing your application.
+
+The easiest way to do this is to make sure the siteKey is always included in the URLs that your application generates, so that if someone sends an URL to another user, they can also login with a site user (server users will always work). You will also need to setup a URL pattern so that the appshell know where to find the site. See the next section for more information about URL patterns.
+
+There is an alternative way to handle site logins, by appending a `?site=` parameter to the URL. Let's take an example with the following URL:
+
+    http://localhost:8080/jahia/administration
+
+If you use this URL, only server users and users of the default site will be able to login. However, if you use instead:
+
+    http://localhost:8080/jahia/administration?site=MYSITEKEY
+
+It will work for server users and users of the site that has a key called `MYSITEKEY`. Your application could also choose this method to generate URLs that will always work properly.
+
+#### URL Patterns
+
+If you are adding routes in your application, you might also need to add URL patterns to your application's descriptor. The appshell needs this information to know how to resolve the site on which your application is working, so that site users can be properly authenticated. There are two ways the appshell can resolve a site from an URL:
+
+- The URL contains a site key 
+- The URL contains a node UUID
+
+URL patterns can be very flexible. They can be either declared in the `package.json` file or the `jahia.json` file in the `jahia` section, here is an example: 
+
+````json
+"urlPatterns" : [
+    "/(?<appName>\\S*?)/content-editor/(?<language>\\S*?)/(?<operation>\\S*?)/(?<nodeUUID>\\S*?)"
+        ]
+````
+
+You can find the file for this example here: https://github.com/Jahia/content-editor/blob/master/package.json
+
+In this example, the URL contains a nodeUUID, which will be used to load a node, and upon which we will resolve the site. The URL pattern uses regular expression group names. The following group names are recognized by the appshell:
+
+| Group Name | Description | Default value |
+| ---------- | ----------- | ------------- |
+| appName    | The name of the app for your application, usually "jahia" | n/a |
+| siteKey    | The site identifier, it must exist (it is checked) | n/a |
+| nodeUUID   | A valid node UUID identifier | n/a |
+| workspace  | The workspace to use to load the node | default |
+| language   | The language to use to load the node | site default |
+
+Here is an example of using the site key : 
+
+```json
+    "urlPatterns" : [
+      "/(?<appName>\\S*?)/jcontent/(?<siteKey>\\S*?)/(?<language>\\S*?)/(?<contentPath>\\S*)"
+    ]
+```
+
+You have a choice between using a `siteKey` or a `nodeUUID` but you must provide one or the other or the site resolution for the app might not work.
+
 #### Primary nav items
 
 Item in the primary nav bar can be added as `primary-nav-item` - Here, add a link to `/linkchecker` (path) into the main primary nav (target) with a label and an icon. 
