@@ -279,7 +279,18 @@ public class Main extends HttpServlet implements BundleListener {
         }
     }
 
+    /**
+     * A value processor interface to offer a customizable way of processing app descriptor values
+     */
     interface ValueProcessor {
+
+        /**
+         * This method should be implemented to provide a way to process a list of values that is passed as
+         * input into the AppInfo object that is passed as the second parameter (meaning that we are writing
+         * to it)
+         * @param values the list of string values to be processed
+         * @param appInfo the AppInfo object we want to modify based on the input values
+         */
         void processValues(List<String> values, AppInfo appInfo);
     }
 
@@ -297,26 +308,22 @@ public class Main extends HttpServlet implements BundleListener {
         JSONObject scriptObj = pkgJson.getJSONObject(JAHIA).getJSONObject(key);
         processAppValues(newAppInfos, scriptObj, (values, appInfo) -> {
             for (String script : values) {
-                validateScript(bundle, appInfo, script, key);
+                if(bundle.getResource(script) == null) {
+                    logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}", bundle.getSymbolicName(), script, key);
+                    return;
+                }
+                List<String> scripts = appInfo.getScripts().get(key);
+                if (scripts == null) {
+                    scripts = new ArrayList<>();
+                }
+                if (script.startsWith("/")) {
+                    scripts.add(script);
+                } else {
+                    scripts.add("/modules/" + bundle.getSymbolicName() + "/" + script);
+                }
+                appInfo.getScripts().put(key, scripts);
             }
         });
-    }
-
-    private void validateScript(Bundle bundle, AppInfo appInfo, String script, String key) {
-        if(bundle.getResource(script) == null) {
-            logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}", bundle.getSymbolicName(), script, key);
-            return;
-        }
-        List<String> scripts = appInfo.getScripts().get(key);
-        if (scripts == null) {
-            scripts = new ArrayList<>();
-        }
-        if (script.startsWith("/")) {
-            scripts.add(script);
-        } else {
-            scripts.add("/modules/" + bundle.getSymbolicName() + "/" + script);
-        }
-        appInfo.getScripts().put(key, scripts);
     }
 
     private void processAppValues(Map<String, AppInfo> newAppInfos, JSONObject appValues, ValueProcessor valueProcessor) throws JSONException {
