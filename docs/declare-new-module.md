@@ -74,18 +74,19 @@ If you are adding routes in your application, you might also need to add URL pat
 URL patterns can be very flexible. They can be either declared in the `package.json` file or the `jahia.json` file in the `jahia` section, here is an example: 
 
 ````json
-"urlPatterns" : [
-    "/(?<appName>\\S*?)/content-editor/(?<language>\\S*?)/(?<operation>\\S*?)/(?<nodeUUID>\\S*?)"
-        ]
+"urlPatterns": {
+  "jahia" : "/content-editor/(?<language>\\S*?)/(?<operation>\\S*?)/(?<nodeUUID>\\S*?)"    
+}
 ````
 
 You can find the file for this example here: https://github.com/Jahia/content-editor/blob/master/package.json
+
+It is also possible to pass an array of patterns instead of a single string, in case it is needed. 
 
 In this example, the URL contains a nodeUUID, which will be used to load a node, and upon which we will resolve the site. The URL pattern uses regular expression group names. The following group names are recognized by the appshell:
 
 | Group Name | Description | Default value |
 | ---------- | ----------- | ------------- |
-| appName    | The name of the app for your application, usually "jahia" | n/a |
 | siteKey    | The site identifier, it must exist (it is checked) | n/a |
 | nodeUUID   | A valid node UUID identifier | n/a |
 | workspace  | The workspace to use to load the node | default |
@@ -94,9 +95,9 @@ In this example, the URL contains a nodeUUID, which will be used to load a node,
 Here is an example of using the site key : 
 
 ```json
-    "urlPatterns" : [
-      "/(?<appName>\\S*?)/jcontent/(?<siteKey>\\S*?)/(?<language>\\S*?)/(?<contentPath>\\S*)"
-    ]
+    "urlPatterns" : {
+      "jahia" : "/jcontent/(?<siteKey>\\S*?)/(?<language>\\S*?)/(?<contentPath>\\S*)"
+}
 ```
 
 You have a choice between using a `siteKey` or a `nodeUUID` but you must provide one or the other or the site resolution for the app might not work.

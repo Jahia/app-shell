@@ -31,11 +31,11 @@ import org.jahia.exceptions.JahiaException;
 import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
-import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.*;
 import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.decorator.JCRUserNode;
 import org.jahia.services.sites.JahiaSite;
+import org.jahia.services.sites.JahiaSitesService;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
@@ -51,6 +51,7 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +68,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component(service = {javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class},
-    property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"})
+    property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"}, immediate = true)
 public class Main extends HttpServlet implements BundleListener {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
@@ -79,12 +80,36 @@ public class Main extends HttpServlet implements BundleListener {
     private static final String REMOTES = "remotes";
     private static final String URLPATTERNS = "urlPatterns";
 
-    private Map<Bundle, JSONObject> bundleDescriptors;
-    private List<Pattern> urlPatterns;
+    private Map<String, AppInfo> appInfos;
+
+    private JahiaUserManagerService jahiaUserManagerService;
+    private JCRSessionFactory jcrSessionFactory;
+    private JahiaSitesService jahiaSitesService;
+    private JCRTemplate jcrTemplate;
+
+    @Reference
+    public void setJahiaUserManagerService(JahiaUserManagerService jahiaUserManagerService) {
+        this.jahiaUserManagerService = jahiaUserManagerService;
+    }
+
+    @Reference
+    public void setJcrSessionFactory(JCRSessionFactory jcrSessionFactory) {
+        this.jcrSessionFactory = jcrSessionFactory;
+    }
+
+    @Reference
+    public void setJahiaSitesService(JahiaSitesService jahiaSitesService) {
+        this.jahiaSitesService = jahiaSitesService;
+    }
+
+    @Reference
+    public void setJcrTemplate(JCRTemplate jcrTemplate) {
+        this.jcrTemplate = jcrTemplate;
+    }
 
     @Activate
     public void activate(ComponentContext componentContext) {
-        updateBundleInfos();
+        updateAppInfos();
         componentContext.getBundleContext().addBundleListener(this);
     }
 
@@ -98,9 +123,11 @@ public class Main extends HttpServlet implements BundleListener {
         try {
             int slashIndex = request.getPathInfo().indexOf('/', 1);
             String appName = slashIndex == -1 ? request.getPathInfo().substring(1) : request.getPathInfo().substring(1, slashIndex);
-            String siteKey = getSiteKey(request);
+            AppInfo appInfo = appInfos.get(appName);
+            String appPathInfo = slashIndex == -1 ? "" : request.getPathInfo().substring(slashIndex);
+            String siteKey = getSiteKey(request, appPathInfo, appInfo);
 
-            JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
+            JahiaUser currentUser = jcrSessionFactory.getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
                 response.sendRedirect(Jahia.getContextPath() + "/cms/login" +
                     (siteKey != null ? "?site=" + siteKey + "&" : "?") +
@@ -109,22 +136,22 @@ public class Main extends HttpServlet implements BundleListener {
             }
 
             // Restrict access to privileged users
-            JCRUserNode userNode = JahiaUserManagerService.getInstance().lookupUserByPath(currentUser.getLocalPath());
+            JCRUserNode userNode = jahiaUserManagerService.lookupUserByPath(currentUser.getLocalPath());
             if (!userNode.isMemberOfGroup(null, JahiaGroupManagerService.PRIVILEGED_GROUPNAME)) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return;
             }
 
             // lookup for site
-            JahiaSite site = ServicesRegistry.getInstance().getJahiaSitesService().getDefaultSite(JCRSessionFactory.getInstance().getCurrentUserSession());
+            JahiaSite site = jahiaSitesService.getDefaultSite(jcrSessionFactory.getCurrentUserSession());
 
             if (site == null) {
-                site = ServicesRegistry.getInstance().getJahiaSitesService().getFirstSiteFound(JCRSessionFactory.getInstance().getCurrentUserSession(), "systemsite");
+                site = jahiaSitesService.getFirstSiteFound(jcrSessionFactory.getCurrentUserSession(), "systemsite");
             }
 
             // use system site if no site readable.
             if (site == null) {
-                site = ServicesRegistry.getInstance().getJahiaSitesService().getSiteByKey("systemsite");
+                site = jahiaSitesService.getSiteByKey("systemsite");
             }
 
             HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request) {
@@ -138,11 +165,11 @@ public class Main extends HttpServlet implements BundleListener {
             wrapper.setAttribute("appName", appName);
             setCustomAttributes(currentUser, wrapper);
 
-            List<String> scripts = getApplicationScripts(appName, APPS);
+            List<String> scripts = (appInfo != null && appInfo.getScripts().get(APPS) != null) ? appInfo.getScripts().get(APPS) : new ArrayList<>();
             scripts = scripts.stream().map(f -> "\"" + response.encodeURL(f) + "\"").collect(Collectors.toList());
             wrapper.setAttribute("scripts", "[" + StringUtils.join(scripts, ",") + "]");
 
-            List<String> remotes = getApplicationScripts(appName, REMOTES);
+            List<String> remotes = (appInfo != null && appInfo.getScripts().get(REMOTES) != null) ? appInfo.getScripts().get(REMOTES) : new ArrayList<>();
             wrapper.setAttribute(REMOTES, remotes);
 
             response.setHeader("Cache-Control", "no-store");
@@ -153,15 +180,14 @@ public class Main extends HttpServlet implements BundleListener {
         }
     }
 
-    private String getSiteKey(HttpServletRequest request) {
+    private String getSiteKey(HttpServletRequest request, String appPathInfo, AppInfo appInfo) {
 
-        String siteKey = null;
+        String siteKey = request.getParameter("site");;
 
         // first let's try to resolve the site from a request parameter if it exists
-        if (request.getParameter("site") != null && request.getParameter("site").length() < 100) {
-            siteKey = request.getParameter("site");
+        if (siteKey != null && siteKey.length() < 100) {
             // we validate the site parameter to protect against attacks.
-            if (ServicesRegistry.getInstance().getJahiaSitesService().getSitesNames().contains(siteKey)) {
+            if (jahiaSitesService.getSitesNames().contains(siteKey)) {
                 return siteKey;
             }
         }
@@ -169,7 +195,7 @@ public class Main extends HttpServlet implements BundleListener {
         // now let's try to resolve it from the domain
         if (!Url.isLocalhost(request.getServerName())) {
             try {
-                siteKey = ServicesRegistry.getInstance().getJahiaSitesService().getSitenameByServerName(request.getServerName());
+                siteKey = jahiaSitesService.getSitenameByServerName(request.getServerName());
                 if (siteKey != null) {
                     return siteKey;
                 }
@@ -179,14 +205,19 @@ public class Main extends HttpServlet implements BundleListener {
         }
 
         // finally let's try to resolve it from URL patterns configured in the applications.
-        for (Pattern urlPattern : urlPatterns) {
-            Matcher urlMatcher = urlPattern.matcher(request.getPathInfo());
-            if (urlMatcher.matches()) {
-                siteKey = getGroupValue(urlMatcher, "siteKey");
-                if (siteKey == null || siteKey.trim().isEmpty()) {
-                    String workspace = getGroupValue(urlMatcher,"workspace");
-                    Locale locale = LocaleUtils.toLocale(getGroupValue(urlMatcher,"language"));
-                    siteKey = getSiteFromNode(getGroupValue(urlMatcher,"nodeUUID"), workspace, locale);
+        if (appInfo != null && appInfo.getCompiledUrlPatterns().size() > 0) {
+            for (Pattern urlPattern : appInfo.getCompiledUrlPatterns()) {
+                Matcher urlMatcher = urlPattern.matcher(appPathInfo);
+                if (urlMatcher.matches()) {
+                    siteKey = getGroupValue(urlMatcher, "siteKey");
+                    if (StringUtils.isBlank(siteKey)) {
+                        String workspace = getGroupValue(urlMatcher, "workspace");
+                        Locale locale = LocaleUtils.toLocale(getGroupValue(urlMatcher, "language"));
+                        siteKey = getSiteFromNode(getGroupValue(urlMatcher, "nodeUUID"), workspace, locale);
+                    }
+                    if (siteKey != null) {
+                        return siteKey;
+                    }
                 }
             }
         }
@@ -218,58 +249,93 @@ public class Main extends HttpServlet implements BundleListener {
         wrapper.setAttribute("config", config.toString());
     }
 
-    public void updateBundleInfos() {
-        List<Bundle> packages = getPackages();
+    public void updateAppInfos() {
+        List<Bundle> packages = getBundlesWithPackages();
 
-        List<Pattern> newUrlPatterns = new ArrayList<>();
-        Map<Bundle, JSONObject> newBundleDescriptors = new LinkedHashMap<>();
-
+        Map<String,AppInfo> newAppInfos = new LinkedHashMap<>();
         for (Bundle bundle : packages) {
-            JSONObject pkgJson = null;
-            try {
-                pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
-                if (pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(URLPATTERNS)) {
-                    Object urlPatternsObj = pkgJson.getJSONObject(JAHIA).get(URLPATTERNS);
-                    List<String> urlPatternArray = getStringList(urlPatternsObj);
-                    for (String urlPattern : urlPatternArray) {
-                        Pattern compiledUrlPattern = Pattern.compile(urlPattern);
-                        newUrlPatterns.add(compiledUrlPattern);
-                    }
-
-                }
-                newBundleDescriptors.put(bundle, pkgJson);
-            } catch (JSONException | IOException e) {
-                logger.warn("Error processing bundle JSON descriptor for bundle {}", bundle, e);
-            }
+            updateBundleInfo(newAppInfos, bundle);
         }
-
-        urlPatterns = newUrlPatterns;
-        bundleDescriptors = newBundleDescriptors;
-
+        appInfos = newAppInfos;
     }
 
-
-    public List<String> getApplicationScripts(String appName, String key) throws JSONException, IOException {
-        LinkedList<String> resources = new LinkedList<>();
-
-        for (Map.Entry<Bundle, JSONObject> bundleDescriptor : bundleDescriptors.entrySet()) {
-            List<String> jsBundles = getBundleScripts(bundleDescriptor.getValue(), appName, key);
-            for (String jsBundle : jsBundles) {
-                if(bundleDescriptor.getKey().getResource(jsBundle) == null) {
-                    logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}",bundleDescriptor.getKey().getSymbolicName(), jsBundle, key);
-                    continue;
+    private void updateBundleInfo(Map<String,AppInfo> newAppInfos, Bundle bundle) {
+        JSONObject pkgJson = null;
+        try {
+            pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
+            if (pkgJson.has(JAHIA)) {
+                if (pkgJson.getJSONObject(JAHIA).has(URLPATTERNS)) {
+                    processUrlPatterns(newAppInfos, pkgJson);
                 }
-                if (jsBundle.startsWith("/")) {
-                    resources.add(jsBundle);
-                } else {
-                    resources.add("/modules/" + bundleDescriptor.getKey().getSymbolicName() + "/" + jsBundle);
+                if (pkgJson.getJSONObject(JAHIA).has(REMOTES)) {
+                    processKeyScripts(newAppInfos, pkgJson, bundle, REMOTES);
+                }
+                if (pkgJson.getJSONObject(JAHIA).has(APPS)) {
+                    processKeyScripts(newAppInfos, pkgJson, bundle, APPS);
                 }
             }
+        } catch (JSONException | IOException e) {
+            logger.error("Error processing bundle JSON descriptor for bundle {}", bundle.getSymbolicName(), e);
         }
-        return resources;
     }
 
-    private List<Bundle> getPackages() {
+    interface ValueProcessor {
+        void processValues(List<String> values, AppInfo appInfo);
+    }
+
+    private void processUrlPatterns(Map<String, AppInfo> newAppInfos, JSONObject pkgJson) throws JSONException {
+        JSONObject appsUrlPatterns = pkgJson.getJSONObject(JAHIA).getJSONObject(URLPATTERNS);
+        processAppValues(newAppInfos, appsUrlPatterns, (values, appInfo) -> {
+            for (String urlPattern : values) {
+                Pattern compiledUrlPattern = Pattern.compile(urlPattern);
+                appInfo.getCompiledUrlPatterns().add(compiledUrlPattern);
+            }
+        });
+    }
+
+    private void processKeyScripts(Map<String, AppInfo> newAppInfos, JSONObject pkgJson, Bundle bundle, String key) throws JSONException {
+        JSONObject scriptObj = pkgJson.getJSONObject(JAHIA).getJSONObject(key);
+        processAppValues(newAppInfos, scriptObj, (values, appInfo) -> {
+            for (String script : values) {
+                validateScript(bundle, appInfo, script, key);
+            }
+        });
+    }
+
+    private void validateScript(Bundle bundle, AppInfo appInfo, String script, String key) {
+        if(bundle.getResource(script) == null) {
+            logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}", bundle.getSymbolicName(), script, key);
+            return;
+        }
+        List<String> scripts = appInfo.getScripts().get(key);
+        if (scripts == null) {
+            scripts = new ArrayList<>();
+        }
+        if (script.startsWith("/")) {
+            scripts.add(script);
+        } else {
+            scripts.add("/modules/" + bundle.getSymbolicName() + "/" + script);
+        }
+        appInfo.getScripts().put(key, scripts);
+    }
+
+    private void processAppValues(Map<String, AppInfo> newAppInfos, JSONObject appValues, ValueProcessor valueProcessor) throws JSONException {
+        Iterator<String> appNameIter = appValues.keys();
+        while (appNameIter.hasNext()) {
+            String appName = appNameIter.next();
+            AppInfo appInfo = newAppInfos.get(appName);
+            if (appInfo == null) {
+                appInfo = new AppInfo();
+                appInfo.setAppName(appName);
+            }
+            Object appValuesObj = appValues.get(appName);
+            List<String> appValuesList = getArrayOrStringValues(appValuesObj);
+            valueProcessor.processValues(appValuesList, appInfo);
+            newAppInfos.put(appName, appInfo);
+        }
+    }
+
+    private List<Bundle> getBundlesWithPackages() {
         return Arrays.stream(FrameworkService.getBundleContext().getBundles())
             .filter(bundle -> bundle.getState() == BundleState.ACTIVE.toInt() &&
                 BundleUtils.isJahiaModuleBundle(bundle) &&
@@ -277,16 +343,7 @@ public class Main extends HttpServlet implements BundleListener {
             .collect(Collectors.toList());
     }
 
-    private List<String> getBundleScripts(JSONObject pkgJson, String appName, String key) throws IOException, JSONException {
-        boolean hasExtend = pkgJson.has(JAHIA) && pkgJson.getJSONObject(JAHIA).has(key) && pkgJson.getJSONObject(JAHIA).getJSONObject(key).has(appName);
-        if (hasExtend) {
-            Object res = pkgJson.getJSONObject(JAHIA).getJSONObject(key).get(appName);
-            return getStringList(res);
-        }
-        return Collections.emptyList();
-    }
-
-    private List<String> getStringList(Object jsonObject) throws JSONException {
+    private List<String> getArrayOrStringValues(Object jsonObject) throws JSONException {
         if (jsonObject instanceof JSONArray) {
             JSONArray jsonArray = (JSONArray) jsonObject;
             List<String> stringList = new ArrayList<>();
@@ -304,7 +361,7 @@ public class Main extends HttpServlet implements BundleListener {
             return null;
         }
         try {
-            return JCRTemplate.getInstance().doExecuteWithSystemSessionAsUser(null, workspace, locale, new JCRCallback<String>() {
+            return jcrTemplate.doExecuteWithSystemSessionAsUser(null, workspace, locale, new JCRCallback<String>() {
                 @Override
                 public String doInJCR(JCRSessionWrapper session) throws RepositoryException {
                     JCRNodeWrapper node = session.getNodeByUUID(nodeUUID);
@@ -323,7 +380,7 @@ public class Main extends HttpServlet implements BundleListener {
 
     @Override
     public void bundleChanged(BundleEvent bundleEvent) {
-        updateBundleInfos();
+        updateAppInfos();
     }
 
     private String getGroupValue(Matcher matcher, String groupName) {
