@@ -357,7 +357,7 @@ public class Main extends HttpServlet implements BundleListener {
     }
 
     private String getSiteFromNode(String nodeUUID, String workspace, Locale locale) {
-        if (nodeUUID == null || nodeUUID.trim().isEmpty()) {
+        if (StringUtils.isBlank(nodeUUID)) {
             return null;
         }
         try {
