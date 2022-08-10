@@ -11,7 +11,10 @@ export const ReduxProvider = ({reducers, middlewares, listeners, children}) => {
 
     const rootReducer = combineReducers(reducerObj);
 
-    const composeEnhancers = window.top.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        trace: true,
+        traceLimit: 25
+    }) || compose;
 
     const enhancer = composeEnhancers(applyMiddleware.apply(this, middlewares.map(m => m.middleware)));
     const store = createStore(rootReducer, enhancer);
