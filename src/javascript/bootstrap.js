@@ -7,6 +7,10 @@ const startAppShell = require('./appShell').startAppShell;
 const uiExtender = require('@jahia/ui-extender');
 const i18n = require('./i18n/i18n').default;
 const moonstone = require('@jahia/moonstone');
+const graphqlTag = require('graphql-tag').default;
+
+// eslint-disable-next-line no-undef, camelcase
+const webpackShareScopes = __webpack_share_scopes__;
 
 const modules = {};
 require('./compat').default(modules);
@@ -18,5 +22,7 @@ export {
     uiExtender,
     moonstone,
     modules,
-    apolloClient
+    apolloClient,
+    graphqlTag,
+    webpackShareScopes
 };
