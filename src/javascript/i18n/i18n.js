@@ -25,7 +25,14 @@ i18n
 
         // XHR plugin Section
         backend: {
-            loadPath: `${dxContext.contextPath || ''}/modules/{{ns}}/javascript/locales/{{lng}}.json`
+            loadPath: (lngs, namespaces) => {
+                const hash = window.jahia?.localeFiles?.[namespaces[0]]?.[lngs[0] + '.json'];
+                if (hash) {
+                    return `${dxContext.contextPath || ''}/modules/${namespaces}/javascript/locales/${lngs}.v${hash}.json`;
+                }
+
+                return `${dxContext.contextPath || ''}/modules/${namespaces}/javascript/locales/${lngs}.json`;
+            }
         }
     });
 
