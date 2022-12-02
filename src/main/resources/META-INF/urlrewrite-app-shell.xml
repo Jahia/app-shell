@@ -20,6 +20,21 @@
     </outbound-rule>
 
     <rule>
+        <name>locale resources (inbound)</name>
+        <note>Handles checksum for the resources of the json bundles for the proper cache support</note>
+        <from>^/modules/(.*)/javascript/locales/(.*)\.v[0-9a-f]+\.json$</from>
+        <to last="true">/modules/$1/javascript/locales/$2.json</to>
+    </rule>
+
+    <outbound-rule>
+        <name>locale resources (outbound)</name>
+        <note>Handles checksum for the resources of the json bundle for the proper cache support</note>
+        <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/javascript/locales/(.*)\.json)$</from>
+        <run class="org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator" method="calculateChecksum(HttpServletRequest, String, String)"/>
+        <to last="true" encode="false">$1/modules/$3/javascript/locales/$4.v%{attribute:ResourceChecksumCalculator.checksum}.json</to>
+    </outbound-rule>
+
+    <rule>
         <name>js config (inbound)</name>
         <note>Handles checksum for the resources of the js configs for the proper cache support</note>
         <from>^/modules/(.*)/configs/(.*)\.v[0-9a-f]+\.js$</from>
