@@ -1,17 +1,10 @@
 {
+    "extends": ["@jahia", "plugin:cypress/recommended", "plugin:@typescript-eslint/recommended"],
+    "plugins": ["cypress"],
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint",
-        "cypress"
-    ],
-    "extends": [
-        "plugin:cypress/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
-    ],
     "rules": {
-        "cypress/no-async-tests": "off"
-    },    
+        "react/boolean-prop-naming": ["error", { "rule": "^((is|has)[A-Z]([A-Za-z0-9]?)+|disabled|readOnly|autoFocus)"}],
+        "@typescript-eslint/no-shadow": ["error"]
+    },
     "root": true
 }
