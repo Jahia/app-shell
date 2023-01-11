@@ -27,6 +27,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jahia.bin.Jahia;
+import org.jahia.commons.Version;
 import org.jahia.exceptions.JahiaException;
 import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
@@ -66,6 +67,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
+import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 
 @Component(service = {javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class},
     property = {"alias=/appshell", "osgi.http.whiteboard.servlet.asyncSupported=true"}, immediate = true)
@@ -129,16 +133,23 @@ public class Main extends HttpServlet implements BundleListener {
 
             JahiaUser currentUser = jcrSessionFactory.getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
-                response.sendRedirect(Jahia.getContextPath() + "/cms/login" +
-                    (siteKey != null ? "?site=" + siteKey + "&" : "?") +
-                    "redirect=" + response.encodeRedirectURL(request.getRequestURI()));
+                // Keep compatibility with jahia 8.0.0.0 (Change happen in 8.1.4.0)
+                if (new Version("8.1.4.0").compareTo(new Version(Jahia.VERSION)) < 0) {
+                    // use old way of redirect
+                    response.sendRedirect(Jahia.getContextPath() + "/cms/login" +
+                        (siteKey != null ? "?site=" + siteKey + "&" : "?") +
+                        "redirect=" + response.encodeRedirectURL(request.getRequestURI()));
+                    return;
+                }
+                request.setAttribute("siteKey", siteKey);
+                response.sendError(SC_UNAUTHORIZED);
                 return;
             }
-
-            // Restrict access to privileged users
             JCRUserNode userNode = jahiaUserManagerService.lookupUserByPath(currentUser.getLocalPath());
+            // Restrict access to privileged users
             if (!userNode.isMemberOfGroup(null, JahiaGroupManagerService.PRIVILEGED_GROUPNAME)) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                request.setAttribute("siteKey", siteKey);
+                response.sendError(SC_FORBIDDEN);
                 return;
             }
 
@@ -182,7 +193,8 @@ public class Main extends HttpServlet implements BundleListener {
 
     private String getSiteKey(HttpServletRequest request, String appPathInfo, AppInfo appInfo) {
 
-        String siteKey = request.getParameter("site");;
+        String siteKey = request.getParameter("site");
+        ;
 
         // first let's try to resolve the site from a request parameter if it exists
         if (siteKey != null && siteKey.length() < 100) {
@@ -252,14 +264,14 @@ public class Main extends HttpServlet implements BundleListener {
     public void updateAppInfos() {
         List<Bundle> packages = getBundlesWithPackages();
 
-        Map<String,AppInfo> newAppInfos = new LinkedHashMap<>();
+        Map<String, AppInfo> newAppInfos = new LinkedHashMap<>();
         for (Bundle bundle : packages) {
             updateBundleInfo(newAppInfos, bundle);
         }
         appInfos = newAppInfos;
     }
 
-    private void updateBundleInfo(Map<String,AppInfo> newAppInfos, Bundle bundle) {
+    private void updateBundleInfo(Map<String, AppInfo> newAppInfos, Bundle bundle) {
         JSONObject pkgJson = null;
         try {
             pkgJson = new JSONObject(IOUtils.toString(bundle.getResource(PACKAGE_JSON) != null ? bundle.getResource(PACKAGE_JSON) : bundle.getResource(JAHIA_JSON)));
@@ -288,7 +300,8 @@ public class Main extends HttpServlet implements BundleListener {
          * This method should be implemented to provide a way to process a list of values that is passed as
          * input into the AppInfo object that is passed as the second parameter (meaning that we are writing
          * to it)
-         * @param values the list of string values to be processed
+         *
+         * @param values  the list of string values to be processed
          * @param appInfo the AppInfo object we want to modify based on the input values
          */
         void processValues(List<String> values, AppInfo appInfo);
@@ -308,7 +321,7 @@ public class Main extends HttpServlet implements BundleListener {
         JSONObject scriptObj = pkgJson.getJSONObject(JAHIA).getJSONObject(key);
         processAppValues(newAppInfos, scriptObj, (values, appInfo) -> {
             for (String script : values) {
-                if(bundle.getResource(script) == null) {
+                if (bundle.getResource(script) == null) {
                     logger.error("Application {} declared {} has entry point but file is not found, skipping it from {}", bundle.getSymbolicName(), script, key);
                     return;
                 }
