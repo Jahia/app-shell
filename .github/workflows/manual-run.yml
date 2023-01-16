@@ -20,11 +20,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: jahia/jahia-modules-action/helper@v2
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: KengoTODA/actions-setup-docker-compose@main
         with:
           version: '1.29.2'
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
       - uses: jahia/jahia-modules-action/integration-tests@v2
