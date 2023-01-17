@@ -10,8 +10,6 @@
 <%@ taglib prefix="user" uri="http://www.jahia.org/tags/user" %>
 <%@ taglib prefix="internal" uri="http://www.jahia.org/tags/internalLib" %>
 
-<!DOCTYPE html>
-
 <html>
 
 <head>
