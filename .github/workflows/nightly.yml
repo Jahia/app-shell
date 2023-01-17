@@ -19,10 +19,10 @@ jobs:
       - uses: KengoTODA/actions-setup-docker-compose@main
         with:
           version: '1.29.2'
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: jahia/jahia-modules-action/integration-tests@v2
         with:
           module_id: app-shell
