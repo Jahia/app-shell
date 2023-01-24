@@ -37,7 +37,7 @@ jobs:
         name: Release Module
         with:
           github_slug: Jahia/app-shell
-          primary_release_branch: master
+          primary_release_branch: 2_7_x
           release_id: ${{ github.event.release.id }}
           release_version: ${{ github.event.release.tag_name }}
           github_api_token: ${{ secrets.GH_API_TOKEN }}
