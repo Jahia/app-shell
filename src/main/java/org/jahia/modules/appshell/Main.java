@@ -133,8 +133,8 @@ public class Main extends HttpServlet implements BundleListener {
 
             JahiaUser currentUser = jcrSessionFactory.getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
-                // Keep compatibility with jahia 8.0.0.0 (Change happen in 8.1.4.0)
-                if (new Version("8.1.4.0").compareTo(new Version(Jahia.VERSION)) < 0) {
+                // Keep compatibility with jahia 8.0.0.0 (Change happen in 8.1.3.1)
+                if (new Version("8.1.3.1").compareTo(new Version(Jahia.VERSION)) > 0) {
                     // use old way of redirect
                     response.sendRedirect(Jahia.getContextPath() + "/cms/login" +
                         (siteKey != null ? "?site=" + siteKey + "&" : "?") +
