@@ -50,7 +50,7 @@
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
-        <jahia-module-signature>MCwCFDJXe2ElxatwPb8u5V0FzkSp13a4AhQ49aQ8O/eFI56tEnk+PRyRrOAe5g==</jahia-module-signature>
+        <jahia-module-signature>MCwCFGyDMCB4ooZUzAHdGq7wVnQ+zmw7AhR85RpvTHLiamupRhLsXnGtAnUyQQ==</jahia-module-signature>
         <jahia-plugin-version>5.11</jahia-plugin-version>
     </properties>
 
