@@ -34,7 +34,7 @@
     </parent>
     <artifactId>app-shell</artifactId>
     <name>Jahia App-shell</name>
-    <version>2.9.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (app-shell) for running Jahia javascript applications.</description>
 
@@ -50,7 +50,7 @@
         <yarn.arguments>build:production</yarn.arguments>
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
-        <jahia-module-signature>MCwCFGyDMCB4ooZUzAHdGq7wVnQ+zmw7AhR85RpvTHLiamupRhLsXnGtAnUyQQ==</jahia-module-signature>
+        <jahia-module-signature>MC0CFDcRaC64GboN4JUl+bvcMTkXfytaAhUAlDgSFc7DWQWV6xOQyyKISzXFDOU=</jahia-module-signature>
         <jahia-plugin-version>5.11</jahia-plugin-version>
     </properties>
 
