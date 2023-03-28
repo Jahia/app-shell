@@ -6,8 +6,7 @@ name: On merge to master
 on:
   push:
     branches:
-      - 'master'
-      - /[0-9]_[0-9]_[Xx]/
+      - '2_8_x'
     tags-ignore:
       - '**'
 
