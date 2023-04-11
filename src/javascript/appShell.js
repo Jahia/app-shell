@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom';
 import {registry} from '@jahia/ui-extender';
 import {jsload} from './jsloader';
+import {createRoot} from 'react-dom/client';
 
 function loadComponent(container, module) {
     return async () => {
@@ -15,7 +15,9 @@ function loadComponent(container, module) {
 
 const promisifiedReactDomRender = (cmp, target) => {
     return new Promise(resolve => {
-        ReactDOM.render(cmp, target, resolve);
+        const root = createRoot(target);
+        root.render(cmp);
+        setTimeout(resolve, 1000);
     });
 };
 

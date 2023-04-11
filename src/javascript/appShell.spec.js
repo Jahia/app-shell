@@ -8,11 +8,11 @@ jest.mock('@jahia/ui-extender', () => {
     };
 });
 
-jest.mock('react-dom', () => {
-    return {
-        render: jest.fn((cmp, target, cb) => cb())
-    };
-});
+jest.mock('react-dom/client', () => ({
+    createRoot: jest.fn().mockImplementation(() => ({
+        render: jest.fn()
+    }))
+}));
 
 jest.mock('./jsloader', () => {
     return {
