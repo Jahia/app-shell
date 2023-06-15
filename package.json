@@ -12,7 +12,8 @@
         "lint": "eslint --ext js,jsx .",
         "lint:fix": "eslint --ext js,jsx --fix .",
         "test": "jest --ci --run-in-band --coverage --roots=src/",
-        "tdd": "jest --watch"
+        "tdd": "jest --watch",
+        "sync-pom": "sync-pom-version --use-yarn"
     },
     "husky": {
         "hooks": {
@@ -99,6 +100,7 @@
         "sass": "^1.52.1",
         "source-map-loader": "^1.0.0",
         "style-loader": "^0.23.1",
+        "sync-pom-version-to-package": "^1.6.1",
         "transform-imports": "^2.0.0",
         "webpack": "^5.6.0",
         "webpack-bundle-analyzer": "^4.2.0",
