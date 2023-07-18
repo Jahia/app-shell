@@ -103,7 +103,7 @@
         "style-loader": "^0.23.1",
         "sync-pom-version-to-package": "^1.6.1",
         "transform-imports": "^2.0.0",
-        "webpack": "^5.6.0",
+        "webpack": "^5.88.2",
         "webpack-bundle-analyzer": "^4.2.0",
         "webpack-cli": "^4.2.0",
         "webpack-node-externals": "^1.7.2"
