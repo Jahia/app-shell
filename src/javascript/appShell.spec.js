@@ -10,7 +10,7 @@ jest.mock('@jahia/ui-extender', () => {
 
 jest.mock('react-dom/client', () => ({
     createRoot: jest.fn().mockImplementation(() => ({
-        render: jest.fn()
+        render: jest.fn(children => children.props.callback())
     }))
 }));
 
