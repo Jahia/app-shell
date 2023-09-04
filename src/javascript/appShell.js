@@ -1,6 +1,8 @@
 import {registry} from '@jahia/ui-extender';
 import {jsload} from './jsloader';
 import {createRoot} from 'react-dom/client';
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 function loadComponent(container, module) {
     return async () => {
@@ -13,11 +15,27 @@ function loadComponent(container, module) {
     };
 }
 
+const Root = ({callback, children}) => {
+    useEffect(() => {
+        callback();
+    }, [callback]);
+
+    return children;
+};
+
+Root.propTypes = {
+    callback: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired
+};
+
 const promisifiedReactDomRender = (cmp, target) => {
     return new Promise(resolve => {
         const root = createRoot(target);
-        root.render(cmp);
-        setTimeout(resolve, 1000);
+        root.render(
+            <Root callback={resolve}>
+                {cmp}
+            </Root>
+        );
     });
 };
 
