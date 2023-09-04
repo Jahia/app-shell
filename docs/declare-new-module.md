@@ -33,6 +33,7 @@ To ease this process when doing simple JS, we expose a few things in the window.
  - uiExtender, which contains the registry
  - moonstone, which contains React components and utility functions from the moonstone design system
  - i18n, which contains all the necessary function to handle translations
+ - ui, contains reusable components from the application
 
 #### Routes
 React routes can be added in the application as extension. For example the following can be used to declare a new route /linkchecker (path) 
@@ -43,7 +44,7 @@ window.jahia.uiExtender.registry.add('route', 'route-jcontent', {
       targets: ['main:2'],
       path: `/linkchecker`, // Catch /linkchecker urls
       render: function () {           // The render function for my route in this example we want to display an iframe which contains our legacy site settings, to do that we pass the URL to the `getIframeRenderer` function
-        return window.jahia.uiExtender.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/editframe/default/sites/$site-key.linkChecker.html');
+        return window.jahia.ui.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/editframe/default/sites/$site-key.linkChecker.html');
       }
   });
 ```
@@ -137,7 +138,7 @@ If you want to add under an existing item, you can use `<main-target>-<parent-it
 - iframeUrl is a shortcut for : 
 ```    
 render: function () {
-    return window.jahia.uiExtender.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/adminframe/default/sites/$site-key.linkChecker.html');
+    return window.jahia.ui.getIframeRenderer(window.contextJsParameters.contextPath + '/cms/adminframe/default/sites/$site-key.linkChecker.html');
 }
 ```
 If you need to render something else than an iframe, use the render field instead.

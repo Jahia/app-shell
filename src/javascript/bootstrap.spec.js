@@ -25,7 +25,7 @@ jest.mock('./compat', () => ({
 const uiExtender = require('@jahia/ui-extender');
 const startAppShell = require('./appShell').startAppShell;
 
-// eslint-disable-next-line no-undef, camelcase
+// eslint-disable-next-line camelcase
 global.__webpack_share_scopes__ = {};
 
 describe('jahia lib', () => {
