@@ -127,6 +127,10 @@ public class Main extends HttpServlet implements BundleListener {
         try {
             int slashIndex = request.getPathInfo().indexOf('/', 1);
             String appName = slashIndex == -1 ? request.getPathInfo().substring(1) : request.getPathInfo().substring(1, slashIndex);
+            if (appInfos == null) {
+                // appInfos should have been initialized, but we observe that sometimes it's not (QA-14904)
+                updateAppInfos();
+            }
             AppInfo appInfo = appInfos.get(appName);
             String appPathInfo = slashIndex == -1 ? "" : request.getPathInfo().substring(slashIndex);
             String siteKey = getSiteKey(request, appPathInfo, appInfo);
