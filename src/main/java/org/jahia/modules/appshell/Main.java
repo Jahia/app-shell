@@ -111,11 +111,13 @@ public class Main extends HttpServlet implements BundleListener {
     public void activate(ComponentContext componentContext) {
         updateAppInfos();
         componentContext.getBundleContext().addBundleListener(this);
+        logger.info("AppShell servlet activated");
     }
 
     @Deactivate
     public void deactivate(ComponentContext componentContext) {
         componentContext.getBundleContext().removeBundleListener(this);
+        logger.info("AppShell servlet deactivated");
     }
 
     @Override
@@ -123,6 +125,11 @@ public class Main extends HttpServlet implements BundleListener {
         try {
             int slashIndex = request.getPathInfo().indexOf('/', 1);
             String appName = slashIndex == -1 ? request.getPathInfo().substring(1) : request.getPathInfo().substring(1, slashIndex);
+            if (appInfos == null) {
+                // appInfos should have been initialized, but we observe that sometimes it's not (QA-14904)
+                logger.warn("AppShell servlet app infos not initialized, forcing reload of app infos");
+                updateAppInfos();
+            }
             AppInfo appInfo = appInfos.get(appName);
             String appPathInfo = slashIndex == -1 ? "" : request.getPathInfo().substring(slashIndex);
             String siteKey = getSiteKey(request, appPathInfo, appInfo);
@@ -250,6 +257,7 @@ public class Main extends HttpServlet implements BundleListener {
     }
 
     public void updateAppInfos() {
+        logger.info("AppShell servlet reloading app infos");
         List<Bundle> packages = getBundlesWithPackages();
 
         Map<String,AppInfo> newAppInfos = new LinkedHashMap<>();
