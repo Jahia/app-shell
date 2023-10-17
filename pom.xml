@@ -42,7 +42,7 @@
         <connection>scm:git:git@github.com:Jahia/app-shell.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/app-shell.git</developerConnection>
         <url>https://github.com/Jahia/app-shell</url>
-        <tag>2_8_1</tag>
+        <tag>2_x</tag>
     </scm>
 
     <properties>
