@@ -1,6 +1,6 @@
 {
     "name": "@jahia/app-shell",
-    "version": "2.2.0",
+    "version": "2.9.0",
     "scripts": {
         "build": "yarn webpack:appshell --mode=development",
         "prebuild:production": "yarn lint && yarn test",
