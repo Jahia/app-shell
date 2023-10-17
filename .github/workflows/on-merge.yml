@@ -1,12 +1,12 @@
 # This workflow is triggered every time a change is pushed to any branches
 # Github actions command reference: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
-name: On merge to 2_8_x
+name: On merge to 2_x
 
 # The workflow could also be triggered on PRs
 on:
   push:
     branches:
-      - '2_8_x'
+      - '2_x'
     tags-ignore:
       - '**'
 
@@ -89,7 +89,7 @@ jobs:
   publish:
     name: Publish module
     needs: [integration-tests-standalone]
-    if: github.ref == 'refs/heads/2_8_x'
+    if: github.ref == 'refs/heads/2_x'
     runs-on: ubuntu-latest
     container:
       image: jahia/cimg-mvn-cache:ga_cimg_openjdk_8.0.312-node
