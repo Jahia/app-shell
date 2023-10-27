@@ -150,7 +150,11 @@ public class Main extends HttpServlet implements BundleListener {
             }
 
             // lookup for site
-            JahiaSite site = jahiaSitesService.getDefaultSite(jcrSessionFactory.getCurrentUserSession());
+            JahiaSite site = jahiaSitesService.getSiteByKey(siteKey);
+
+            if (site == null)  {
+                site = jahiaSitesService.getDefaultSite(jcrSessionFactory.getCurrentUserSession());
+            }
 
             if (site == null) {
                 site = jahiaSitesService.getFirstSiteFound(jcrSessionFactory.getCurrentUserSession(), "systemsite");

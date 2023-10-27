@@ -17,7 +17,7 @@
     <title>Jahia</title>
 
     <internal:gwtGenerateDictionary/>
-    <internal:gwtInit/>
+    <internal:gwtInit locale="${language}"/>
 
     <script type="text/javascript">
         Object.assign(window.contextJsParameters, {
