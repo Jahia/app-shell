@@ -19,6 +19,12 @@ curl -i https://jahia.cloud/cms/render/live/en/sites/cloud/home.createJahiaEnv.d
     -H "Cookie: DISTRIBUTED_JSESSIONID=${CLOUD_JSESSIONID}" \
     -d "envName=${CLOUD_ENVNAME}&shortDomain=${CLOUD_ENVNAME}-${CLOUD_DOMAINSUFFIX}&productVersion=${CLOUD_JAHIA_VERSION}&rootPassword=${SUPER_USER_PASSWORD}&subscriptionItemId=${CLOUD_SUBSCRIPTIONITEMID}&regionId=${CLOUD_REGIONID}&bandId=${CLOUD_BANDID}"
 
+echo " == Waiting for Jahia to startup"
+while [[ "$(curl -v -s -o /dev/null -w ''%{http_code}'' ${JAHIA_URL}/cms/login)" != "200" ]];
+  do sleep 5;
+  echo "---"
+done
+
 echo "Sleeping for 60s"
 # To be removed
 sleep 60 
