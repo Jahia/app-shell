@@ -19,4 +19,8 @@ curl -i https://jahia.cloud/cms/render/live/en/sites/cloud/home.createJahiaEnv.d
     -H "Cookie: DISTRIBUTED_JSESSIONID=${CLOUD_JSESSIONID}" \
     -d "envName=${CLOUD_ENVNAME}&shortDomain=${CLOUD_ENVNAME}-${CLOUD_DOMAINSUFFIX}&productVersion=${CLOUD_JAHIA_VERSION}&rootPassword=${SUPER_USER_PASSWORD}&subscriptionItemId=${CLOUD_SUBSCRIPTIONITEMID}&regionId=${CLOUD_REGIONID}&bandId=${CLOUD_BANDID}"
 
+echo "Sleeping for 60s"
+# To be removed
+sleep 60 
+
 docker run --name cypress -e MANIFEST=${MANIFEST} -e SUPER_USER_PASSWORD=${SUPER_USER_PASSWORD} -e JAHIA_URL=${JAHIA_URL} -e NEXUS_USERNAME=${NEXUS_USERNAME} -e NEXUS_PASSWORD=${NEXUS_PASSWORD} ${TESTS_IMAGE}
