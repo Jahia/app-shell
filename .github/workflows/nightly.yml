@@ -24,8 +24,8 @@ jobs:
       - name: Set additional environment variables
         shell: bash
         run: |
-          CURRENT_DATE=$(date +"%Y%m%d_%H%M%S")
-          CLOUD_ENVNAME=app-shell_${CURRENT_DATE}
+          CURRENT_DATE=$(date +"%Y%m%d%H%M%S")
+          CLOUD_ENVNAME=app-shell-${CURRENT_DATE}
           CLOUD_JAHIA_VERSION=8.1.6.0
 
           echo "CLOUD_JSESSIONID=${{ secrets.CLOUD_JSESSIONID }}" >> $GITHUB_ENV
