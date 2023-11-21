@@ -26,14 +26,14 @@ while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' ${JAHIA_URL}/cms/login)" !=
 done
 
 echo " == CURL CMS LOGIN before sleep"
-curl -i ${JAHIA_URL}/cms/login)
+curl -i ${JAHIA_URL}/cms/login
 
 echo "Sleeping for 60s"
 # To be removed
 sleep 60 
 
 echo " == CURL CMS LOGIN after sleep"
-curl -i ${JAHIA_URL}/cms/login)
+curl -i ${JAHIA_URL}/cms/login
 
 
 docker run --name cypress -e MANIFEST=${MANIFEST} -e SUPER_USER_PASSWORD=${SUPER_USER_PASSWORD} -e JAHIA_URL=${JAHIA_URL} -e NEXUS_USERNAME=${NEXUS_USERNAME} -e NEXUS_PASSWORD=${NEXUS_PASSWORD} ${TESTS_IMAGE}
