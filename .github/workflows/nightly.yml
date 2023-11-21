@@ -29,13 +29,13 @@ jobs:
           CLOUD_JAHIA_VERSION=8.1.6.0
 
           echo "CLOUD_JSESSIONID=${{ secrets.CLOUD_JSESSIONID }}" >> $GITHUB_ENV
-          echo "CLOUD_BANDID=${{ secrets.CLOUD_BANDID }}" >> $GITHUB_ENV
-          echo "CLOUD_REGIONID=${{ secrets.CLOUD_REGIONID }}" >> $GITHUB_ENV
-          echo "CLOUD_SUBSCRIPTIONITEMID=${{ secrets.CLOUD_SUBSCRIPTIONITEMID }}" >> $GITHUB_ENV
-          echo "CLOUD_DOMAINSUFFIX=${{ secrets.CLOUD_DOMAINSUFFIX }}" >> $GITHUB_ENV
+          echo "CLOUD_BANDID=${{ vars.CLOUD_BANDID }}" >> $GITHUB_ENV
+          echo "CLOUD_REGIONID=${{ vars.CLOUD_REGIONID }}" >> $GITHUB_ENV
+          echo "CLOUD_SUBSCRIPTIONITEMID=${{ vars.CLOUD_SUBSCRIPTIONITEMID }}" >> $GITHUB_ENV
+          echo "CLOUD_DOMAINSUFFIX=${{ vars.CLOUD_DOMAINSUFFIX }}" >> $GITHUB_ENV
           echo "CLOUD_ENVNAME=${CLOUD_ENVNAME}" >> $GITHUB_ENV
           echo "CLOUD_JAHIA_VERSION=${CLOUD_JAHIA_VERSION}" >> $GITHUB_ENV
-          echo "JAHIA_URL=https://${CLOUD_ENVNAME}-${{ secrets.CLOUD_DOMAINSUFFIX }}.internal.cloud.jahia.com/" >> $GITHUB_ENV
+          echo "JAHIA_URL=https://${CLOUD_ENVNAME}-${{ vars.CLOUD_DOMAINSUFFIX }}.internal.cloud.jahia.com/" >> $GITHUB_ENV
       - name: Display additional environment variables
         shell: bash
         run: |
