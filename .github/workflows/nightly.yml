@@ -1,4 +1,4 @@
-name: Nightly Test run
+name: Nightly Test run (Cloud)
 
 on:
   workflow_dispatch:
@@ -11,8 +11,6 @@ jobs:
     runs-on: self-hosted
     strategy:
       fail-fast: false
-      matrix:
-        jahia_image: ["jahia/jahia-ee:8", "jahia/jahia-ee-dev:8-SNAPSHOT"]
     timeout-minutes: 45
     steps:
       - uses: jahia/jahia-modules-action/helper@v2
@@ -23,19 +21,42 @@ jobs:
         with:
           node-version: 'lts/*'
       - uses: actions/checkout@v3
+      - name: Set additional environment variables
+        shell: bash
+        run: |
+          CURRENT_DATE=$(date +"%Y%m%d_%H%M%S")
+          CLOUD_ENVNAME=app-shell_${CURRENT_DATE}
+          CLOUD_JAHIA_VERSION=8.1.6.0
+
+          echo "CLOUD_JSESSIONID=${{ secrets.CLOUD_JSESSIONID }}" >> $GITHUB_ENV
+          echo "CLOUD_BANDID=${{ secrets.CLOUD_BANDID }}" >> $GITHUB_ENV
+          echo "CLOUD_REGIONID=${{ secrets.CLOUD_REGIONID }}" >> $GITHUB_ENV
+          echo "CLOUD_SUBSCRIPTIONITEMID=${{ secrets.CLOUD_SUBSCRIPTIONITEMID }}" >> $GITHUB_ENV
+          echo "CLOUD_DOMAINSUFFIX=${{ secrets.CLOUD_DOMAINSUFFIX }}" >> $GITHUB_ENV
+          echo "CLOUD_ENVNAME=${CLOUD_ENVNAME}" >> $GITHUB_ENV
+          echo "CLOUD_JAHIA_VERSION=${CLOUD_JAHIA_VERSION}" >> $GITHUB_ENV
+          echo "JAHIA_URL=https://${CLOUD_ENVNAME}-${{ secrets.CLOUD_DOMAINSUFFIX }}.internal.cloud.jahia.com/" >> $GITHUB_ENV
+      - name: Display additional environment variables
+        shell: bash
+        run: |
+          echo "JCUSTOMER_CLUSTER_ENABLED=${JAHIA_CLUSTER_ENABLED}"    
+          echo "JAHIA_URL=${JAHIA_URL}"
+          echo "CLOUD_JAHIA_VERSION=${CLOUD_JAHIA_VERSION}"
       - uses: jahia/jahia-modules-action/integration-tests@v2
         with:
           module_id: app-shell
           timeout_minutes: 20
           testrail_project: App Shell Module
           tests_manifest: provisioning-manifest-snapshot.yml
-          jahia_image: ${{ matrix.jahia_image }}
+          jahia_image: ${{ env.CLOUD_JAHIA_VERSION }}
           should_use_build_artifacts: false
           should_skip_artifacts: true
           should_skip_notifications: false
           should_skip_testrail: false
           should_skip_zencrepes: false
           github_artifact_name: app-shell-artifacts-${{ strategy.job-index }}-${{ github.run_number }}
+          ci_startup_script: ci.startup.cloud.sh
+          ci_postrun_script: ci.postrun.cloud.sh
           bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
           docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
