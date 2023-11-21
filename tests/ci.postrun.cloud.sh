@@ -12,7 +12,7 @@ echo " CLOUD_ENVNAME: ${CLOUD_ENVNAME}"
 echo " JAHIA_URL: ${JAHIA_URL}"
 
 echo " == Shutting down environment in Jahia Cloud"
-curl https://jahia.cloud/cms/render/live/en/sites/cloud/home.deleteEnv.do \
+curl -I https://jahia.cloud/cms/render/live/en/sites/cloud/home.deleteEnv.do \
     -X POST \
     -H "Accept: application/json" \
     -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
