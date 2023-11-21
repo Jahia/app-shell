@@ -1,4 +1,4 @@
-name: Nightly Test run (Cloud)
+name: Nightly Test run
 
 on:
   workflow_dispatch:
