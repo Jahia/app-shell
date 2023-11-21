@@ -24,7 +24,7 @@ jobs:
       - name: Set additional environment variables
         shell: bash
         run: |
-          CURRENT_DATE=$(date +"%Y%m%d%H%M%S")
+          CURRENT_DATE=$(date +"%M%S")
           CLOUD_ENVNAME=app-shell-${CURRENT_DATE}
           CLOUD_JAHIA_VERSION=8.1.6.0
 
