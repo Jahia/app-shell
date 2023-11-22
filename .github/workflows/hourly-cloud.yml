@@ -8,10 +8,10 @@ on:
 jobs:
   integration-tests-standalone:
     name: Integration Tests (Standalone)
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: jahia/jahia-modules-action/helper@v2
       - uses: KengoTODA/actions-setup-docker-compose@main
