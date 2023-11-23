@@ -11,6 +11,10 @@ echo " TESTS_IMAGE: ${TESTS_IMAGE}"
 echo " CLOUD_ENVNAME: ${CLOUD_ENVNAME}"
 echo " JAHIA_URL: ${JAHIA_URL}"
 
+echo " == Renewing cookie validity by connecting to Jahia cloud home "
+curl -i https://jahia.cloud/home.html \
+    -H "Cookie: DISTRIBUTED_JSESSIONID=${CLOUD_JSESSIONID}"
+
 echo " == Starting environment in Jahia Cloud"
 curl -i https://jahia.cloud/cms/render/live/en/sites/cloud/home.createJahiaEnv.do \
     -X POST \
