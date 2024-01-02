@@ -2,8 +2,9 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const shared = require('./webpack.shared');
 const {CycloneDxWebpackPlugin} = require('@cyclonedx/webpack-plugin');
+const getModuleFederationConfig = require('@jahia/webpack-config/getModuleFederationConfig');
+const packageJson = require('./package.json');
 
 /** @type {import('@cyclonedx/webpack-plugin').CycloneDxWebpackPluginOptions} */
 const cycloneDxWebpackPluginOptions = {
@@ -12,8 +13,6 @@ const cycloneDxWebpackPluginOptions = {
     outputLocation: './bom',
     validateResults: false
 };
-
-console.log('Shared modules configuration', shared);
 
 module.exports = (env, argv) => {
     let config = {
@@ -118,15 +117,14 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new ModuleFederationPlugin({
-                name: 'appShell',
-                library: {type: 'var', name: 'appShellRemote'},
-                filename: 'remoteEntry.js',
+            new ModuleFederationPlugin(getModuleFederationConfig(packageJson, {
+                library: {
+                    type: 'var', name: 'appShellRemote'
+                },
                 exposes: {
                     './bootstrap': './src/javascript/bootstrap'
-                },
-                shared
-            }),
+                }
+            }, Object.keys(packageJson.dependencies))),
             new CleanWebpackPlugin(
                 path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}
             ),
@@ -134,7 +132,6 @@ module.exports = (env, argv) => {
         ],
         mode: 'development'
     };
-
     config.devtool = (argv.mode === 'production') ? 'source-map' : 'eval-source-map';
 
     if (argv.analyze) {

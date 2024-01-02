@@ -36,6 +36,7 @@
         "@jahia/moonstone-alpha": "^1.0.0",
         "@jahia/react-material": "^3.0.3",
         "@jahia/ui-extender": "^1.0.3",
+        "@jahia/webpack-config": "^1.1.0",
         "dayjs": "^1.9.6",
         "graphql": "^15.4.0",
         "graphql-tag": "^2.11.0",
