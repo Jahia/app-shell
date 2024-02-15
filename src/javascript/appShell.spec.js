@@ -27,6 +27,7 @@ import {jsload} from './jsloader';
 describe('appShell', () => {
     let consoleError;
     beforeEach(() => {
+        window.jahiaLoading = {jahiaLoadedCallback: jest.fn()};
         console.error = jest.fn();
         jsload.mockReset().mockResolvedValue({name: 'mock', factory: {default: () => {}}});
         const loader = document.createElement('div');

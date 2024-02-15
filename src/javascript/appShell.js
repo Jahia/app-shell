@@ -109,13 +109,20 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
         })
         .catch(err => {
             console.error('Encountered during loading and registering modules', err);
-            return promisifiedReactDomRender(`Fatal error, contact IT. ${err.message}`, document.getElementById(targetId));
+            document.querySelector('.jahia-loader').remove();
+            document.querySelector('.page-error').classList.remove('is-hidden');
+            if (window.contextJsParameters.config.operatingMode === 'development') {
+                document.querySelector('.page-error-log').innerHTML = err;
+            }
+
+            window.jahiaLoading.jahiaLoadedCallback();
         })
         .then(() => {
             // Everything is load (or not)... let's remove the loader!
             const loader = document.querySelector('.jahia-loader');
             if (loader) {
                 loader.remove();
+                window.jahiaLoading.jahiaLoadedCallback();
             }
         })
         .catch(err => {
