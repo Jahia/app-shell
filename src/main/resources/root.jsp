@@ -306,7 +306,7 @@
     setTimeout(() => {
         // in case loader still present after 1 minute, display reload message
         document.querySelector('.jahia-loading_timeout').classList.remove('is-hidden');
-    }, 90000)
+    }, 60000)
     window.appShell = {
         remotes: {},
         scripts: ${scripts},
