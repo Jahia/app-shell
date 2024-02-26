@@ -130,7 +130,7 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
             // Everything is load (or not)... let's remove the loader!
             const loader = document.querySelector('.jahia-loader');
             if (loader) {
-                //  Loader.remove();
+                loader.remove();
             }
         })
         .catch(err => {
