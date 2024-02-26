@@ -33,12 +33,12 @@ import org.jahia.exceptions.JahiaException;
 import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
-import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.*;
 import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.decorator.JCRUserNode;
 import org.jahia.services.sites.JahiaSite;
 import org.jahia.services.sites.JahiaSitesService;
+import org.jahia.services.templates.JahiaTemplateManagerService;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
@@ -90,10 +90,17 @@ public class Main extends HttpServlet implements BundleListener {
 
     private Map<String, AppInfo> appInfos;
 
+    private JahiaTemplateManagerService jahiaTemplateManagerService;
+
     private JahiaUserManagerService jahiaUserManagerService;
     private JCRSessionFactory jcrSessionFactory;
     private JahiaSitesService jahiaSitesService;
     private JCRTemplate jcrTemplate;
+
+    @Reference
+    public void setJahiaTemplateManagerService(JahiaTemplateManagerService jahiaTemplateManagerService) {
+        this.jahiaTemplateManagerService = jahiaTemplateManagerService;
+    }
 
     @Reference
     public void setJahiaUserManagerService(JahiaUserManagerService jahiaUserManagerService) {
@@ -189,10 +196,10 @@ public class Main extends HttpServlet implements BundleListener {
             wrapper.setAttribute("language", site.getDefaultLanguage());
             wrapper.setAttribute("appName", appName);
             // Resolve bundle context
-            JahiaTemplatesPackage appShell = ServicesRegistry.getInstance().getJahiaTemplateManagerService().getTemplatePackageById("app-shell");
+            JahiaTemplatesPackage appShell = jahiaTemplateManagerService.getTemplatePackageById("app-shell");
             ResourceBundle rb = ResourceBundles.get(appShell, new Locale(site.getDefaultLanguage()));
             LocalizationContext ctx = new LocalizationContext(rb);
-            wrapper.setAttribute("bundle", ctx);
+            wrapper.setAttribute("resourceBundleContext", ctx);
 
             setCustomAttributes(currentUser, wrapper);
 

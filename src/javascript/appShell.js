@@ -4,10 +4,21 @@ import {createRoot} from 'react-dom/client';
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-function loadComponent(container, module) {
+let remotesLoaded = [];
+function loadComponent(container, module, totalSize) {
     return async () => {
         try {
             const factory = await container.get(module);
+            remotesLoaded.push(container.name);
+            // Show counter in the page
+            try {
+                document.querySelector('.jahia-loading-loaded').innerHTML = `${container.name}`;
+                document.querySelector('.jahia-loading-count').innerHTML = `${remotesLoaded.length} / ${totalSize}`;
+                document.querySelector('.jahia-loading_count').classList?.remove('is-hidden');
+            } catch (e) {
+                console.warn('Not able to update the loading screen', e);
+            }
+
             return {name: container.name, factory: factory()};
         } catch (e) {
             console.log('No init() found in container {}', container, e);
@@ -48,7 +59,7 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
 
     // Load main scripts for each bundle
     return Promise.all([
-        ...Object.values(remotes || {}).map(r => loadComponent(r, './init')().catch(error => {
+        ...Object.values(remotes || {}).map((r, index, values) => loadComponent(r, './init', values.length)().catch(error => {
             registry.add('modules-error', r, {message: error.message});
             return error;
         })),
@@ -114,15 +125,12 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
             if (window.contextJsParameters.config.operatingMode === 'development') {
                 document.querySelector('.page-error-log').innerHTML = err;
             }
-
-            window.jahiaLoading.jahiaLoadedCallback();
         })
         .then(() => {
             // Everything is load (or not)... let's remove the loader!
             const loader = document.querySelector('.jahia-loader');
             if (loader) {
-                loader.remove();
-                window.jahiaLoading.jahiaLoadedCallback();
+                //  Loader.remove();
             }
         })
         .catch(err => {

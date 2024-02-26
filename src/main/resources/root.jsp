@@ -2,6 +2,7 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="contextPath" type="java.lang.String"--%>
 <%--@elvariable id="currentUser" type="org.jahia.services.usermanager.JahiaUser"--%>
+<%--@elvariable id="resourceBundleContext" type="javax.servlet.jsp.jstl.fmt.LocalizationContext"--%>
 <%@ taglib prefix="internal" uri="http://www.jahia.org/tags/internalLib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
@@ -38,29 +39,6 @@
             language: '${language}',
             urlbase: '<c:url value="/modules/appshell/${appName}"/>'
         });
-        // Loader resource listener
-        const bundlesLoaded = [];
-        const loaderResourceListener = e => {
-            if (e.target.nodeName === "SCRIPT") {
-                // Count script tag in the page
-                const totalScripts = document.querySelectorAll('script').length;
-                const b = e.target.getAttribute("data-webpack")?.split(':')[0];
-
-                if (b && !bundlesLoaded.includes(b)) {
-                    bundlesLoaded.push(b);
-                    document.querySelector('.jahia-loading_text').innerHTML = '<fmt:message bundle="${bundle}" key="label.loading"/> (' + b + ' ' + bundlesLoaded.length +  ' / ${remotes.size() + 1})';
-                }
-            }
-        };
-
-
-        const removeLoaderResourceListener = () => {
-            document.removeEventListener("load", loaderResourceListener, true);
-        };
-        // Register callback function to execute when loading is done.
-        window.jahiaLoading = {jahiaLoadedCallback: () => removeLoaderResourceListener()};
-        // Register listener for loader resource
-        document.addEventListener("load", loaderResourceListener, true);
     </script>
     <internal:gwtImport module="empty"/>
 
@@ -149,8 +127,13 @@
             animation: loadingBar 12s infinite;
         }
 
-        .jahia-loading_text {
+        .jahia-loading_text, .jahia-loading_started {
             font-size: 14px;
+        }
+
+        .jahia-loading_count {
+            width: 300px;
+            position: relative;
         }
 
         .jahia-loading_timeout {
@@ -158,10 +141,6 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-        }
-
-        .jahia-loading_timeout_title {
-            margin-top: 0;
         }
 
         .jahia-loading_timeout p {
@@ -274,21 +253,25 @@
     <!-- Loading in progress -->
     <div class="jahia-loading">
         <div class="jahia-loading_progress"></div>
-        <span class="jahia-loading_text"><fmt:message key="label.loading" bundle="${bundle}"/></span>
+        <span class="jahia-loading_text"><fmt:message key="label.loading" bundle="${resourceBundleContext}"/></span>
+    </div>
+    <!-- Loading count -->
+    <div class="jahia-loading_count is-hidden">
+        <span class="jahia-loading_started"><fmt:message key="label.loading.started" bundle="${resourceBundleContext}"/></span>
     </div>
     <!-- Loading Timeout -->
     <div class="jahia-loading_timeout is-hidden">
-        <fmt:message key="label.loading.timeout" bundle="${bundle}"/>
+        <fmt:message key="label.loading.timeout" bundle="${resourceBundleContext}"/>
         <button class="jahia-button" onClick="window.location.reload()">
-            <fmt:message key="label.loading.reload" bundle="${bundle}"/></button>
+            <fmt:message key="label.loading.reload" bundle="${resourceBundleContext}"/></button>
     </div>
 
     <div class="jahia-loader-ripple"></div>
 </div>
 <div class="page-error is-hidden">
     <main class="page-error-wrapper">
-        <h1 class="page-error-title"><fmt:message bundle="${bundle}" key="label.error.title"/></h1>
-        <fmt:message bundle="${bundle}" key="label.error.desc"/>
+        <h1 class="page-error-title"><fmt:message bundle="${resourceBundleContext}" key="label.error.title"/></h1>
+        <fmt:message bundle="${resourceBundleContext}" key="label.error.desc"/>
         <pre class="page-error-log">
         </pre>
     </main>
@@ -306,7 +289,7 @@
     setTimeout(() => {
         // in case loader still present after 1 minute, display reload message
         document.querySelector('.jahia-loading_timeout').classList.remove('is-hidden');
-    }, 60000)
+    }, 100000)
     window.appShell = {
         remotes: {},
         scripts: ${scripts},
