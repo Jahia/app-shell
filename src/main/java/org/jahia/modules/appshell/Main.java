@@ -28,6 +28,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jahia.bin.Jahia;
 import org.jahia.commons.Version;
+import org.jahia.data.templates.JahiaTemplatesPackage;
 import org.jahia.exceptions.JahiaException;
 import org.jahia.osgi.BundleState;
 import org.jahia.osgi.BundleUtils;
@@ -37,11 +38,13 @@ import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.decorator.JCRUserNode;
 import org.jahia.services.sites.JahiaSite;
 import org.jahia.services.sites.JahiaSitesService;
+import org.jahia.services.templates.JahiaTemplateManagerService;
 import org.jahia.services.usermanager.JahiaGroupManagerService;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
 import org.jahia.utils.Url;
+import org.jahia.utils.i18n.ResourceBundles;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +65,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.fmt.LocalizationContext;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -86,10 +90,17 @@ public class Main extends HttpServlet implements BundleListener {
 
     private Map<String, AppInfo> appInfos;
 
+    private JahiaTemplateManagerService jahiaTemplateManagerService;
+
     private JahiaUserManagerService jahiaUserManagerService;
     private JCRSessionFactory jcrSessionFactory;
     private JahiaSitesService jahiaSitesService;
     private JCRTemplate jcrTemplate;
+
+    @Reference
+    public void setJahiaTemplateManagerService(JahiaTemplateManagerService jahiaTemplateManagerService) {
+        this.jahiaTemplateManagerService = jahiaTemplateManagerService;
+    }
 
     @Reference
     public void setJahiaUserManagerService(JahiaUserManagerService jahiaUserManagerService) {
@@ -137,7 +148,6 @@ public class Main extends HttpServlet implements BundleListener {
             AppInfo appInfo = appInfos.get(appName);
             String appPathInfo = slashIndex == -1 ? "" : request.getPathInfo().substring(slashIndex);
             String siteKey = getSiteKey(request, appPathInfo, appInfo);
-
             JahiaUser currentUser = jcrSessionFactory.getCurrentUser();
             if (JahiaUserManagerService.isGuest(currentUser)) {
                 // Keep compatibility with jahia 8.0.0.0 (Change happen in 8.1.3.1)
@@ -185,6 +195,12 @@ public class Main extends HttpServlet implements BundleListener {
             wrapper.setAttribute("defaultSite", site);
             wrapper.setAttribute("language", site.getDefaultLanguage());
             wrapper.setAttribute("appName", appName);
+            // Resolve bundle context
+            JahiaTemplatesPackage appShell = jahiaTemplateManagerService.getTemplatePackageById("app-shell");
+            ResourceBundle rb = ResourceBundles.get(appShell, new Locale(site.getDefaultLanguage()));
+            LocalizationContext ctx = new LocalizationContext(rb);
+            wrapper.setAttribute("resourceBundleContext", ctx);
+
             setCustomAttributes(currentUser, wrapper);
 
             List<String> scripts = (appInfo != null && appInfo.getScripts().get(APPS) != null) ? appInfo.getScripts().get(APPS) : new ArrayList<>();
@@ -199,6 +215,7 @@ public class Main extends HttpServlet implements BundleListener {
             wrapper.getRequestDispatcher("/modules/app-shell/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
