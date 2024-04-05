@@ -201,6 +201,7 @@ public class Main extends HttpServlet implements BundleListener {
             LocalizationContext ctx = new LocalizationContext(rb);
             wrapper.setAttribute("resourceBundleContext", ctx);
 
+            wrapper.setAttribute("appShellScriptsTimestamp", System.currentTimeMillis());
             setCustomAttributes(currentUser, wrapper);
 
             List<String> scripts = (appInfo != null && appInfo.getScripts().get(APPS) != null) ? appInfo.getScripts().get(APPS) : new ArrayList<>();

@@ -37,7 +37,7 @@
     <rule>
         <name>js config (inbound)</name>
         <note>Handles checksum for the resources of the js configs for the proper cache support</note>
-        <from>^/modules/(.*)/configs/(.*)\.v[0-9a-f]+\.js$</from>
+        <from>^/modules/(.*)/configs/(.*)\.js(\?v=.*){0,1}$</from>
         <to last="true">/modules/$1/configs/$2.jsp</to>
     </rule>
 
@@ -45,8 +45,7 @@
         <name>js config (outbound)</name>
         <note>Handles checksum for the resources of the js configs for the proper cache support</note>
         <from>^(/[\p{Alnum}\-_]*)?(/modules/(.*)/configs/(.*)\.jsp)$</from>
-        <run class="org.jahia.services.seo.urlrewrite.ResourceChecksumCalculator" method="calculateChecksum(HttpServletRequest, String, String)"/>
-        <to last="true" encode="false">$1/modules/$3/configs/$4.v%{attribute:ResourceChecksumCalculator.checksum}.js</to>
+        <to last="true" encode="false">$1/modules/$3/configs/$4.js?v=%{attribute:appShellScriptsTimestamp}</to>
     </outbound-rule>
 
 </urlrewrite>
