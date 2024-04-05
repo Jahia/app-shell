@@ -37,7 +37,7 @@
     <rule>
         <name>js config (inbound)</name>
         <note>Handles checksum for the resources of the js configs for the proper cache support</note>
-        <from>^/modules/(.*)/configs/(.*)\.js(\?.*){0,1}$</from>
+        <from>^/modules/(.*)/configs/(.*)\.js(\?v=.*){0,1}$</from>
         <to last="true">/modules/$1/configs/$2.jsp</to>
     </rule>
 
