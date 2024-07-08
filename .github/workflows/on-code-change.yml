@@ -82,6 +82,7 @@ jobs:
           should_use_build_artifacts: true
           should_skip_testrail: true
           github_artifact_name: app-shell-artifacts-${{ github.run_number }}
+          bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
           docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
           docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
