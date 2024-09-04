@@ -28,7 +28,7 @@
         "@apollo/client": "^3.5.10",
         "@babel/polyfill": "^7.2.5",
         "@babel/runtime": "^7.12.5",
-        "@jahia/data-helper": "^1.0.4",
+        "@jahia/data-helper": "1.0.12",
         "@jahia/design-system-kit": "^1.1.11",
         "@jahia/icons": "^1.1.1",
         "@jahia/moonstone": "^1.0.0",
