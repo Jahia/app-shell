@@ -43,6 +43,7 @@ jobs:
           github_api_token: ${{ secrets.GH_API_TOKEN }}
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+          slack-webhook-qa: ${{ secrets.SLACK_WEBHOOK_URL_RC_FOR_QA }}
 
       - uses: jahia/jahia-modules-action/update-signature@v2
         with:
