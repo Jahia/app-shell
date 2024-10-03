@@ -95,16 +95,22 @@
         }
 
         .jahia-loader {
-            height: 100vh;
             width: 100vw;
+            height: 100vh;
+            background-color: #1f262a;
             padding-top: 30vh;
             font-size: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 56px;
-            background-color: #293136;
             color: #fefefe;
+        }
+
+        .jahia-loading {
+            width: 300px;
+            height: 4px;
+            background-color: #60717b;
         }
 
         .jahia-loading_progress {
@@ -288,7 +294,9 @@
 <script type="text/javascript">
     setTimeout(() => {
         // in case loader still present after 1 minute, display reload message
-        document.querySelector('.jahia-loading_timeout').classList.remove('is-hidden');
+        if (document.querySelector('.jahia-loading_timeout')) {
+            document.querySelector('.jahia-loading_timeout').classList.remove('is-hidden');
+        }
     }, 60000)
     window.appShell = {
         remotes: {},
