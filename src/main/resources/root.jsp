@@ -18,6 +18,11 @@
     <internal:gwtInit locale="${language}"/>
 
     <script type="text/javascript">
+        const userFirstname = '${functions:escapeJavaScript(currentUser.properties['j:firstName'])}';
+        const userLastName = '${functions:escapeJavaScript(currentUser.properties['j:lastName'])}';
+        const currentUsername = '${functions:escapeJavaScript(currentUser.name)}';
+        const userFullname = userFirstname || userLastName ? userFirstname + ' ' + userLastName: currentUsername;
+
         Object.assign(window.contextJsParameters, {
             // Theses values are for GWT only
             siteKey: '${defaultSite.siteKey}',
@@ -26,10 +31,10 @@
             version: '<%= Jahia.VERSION %>',
             contextPath: '${contextPath}',
             user: {
-                username: '${functions:escapeJavaScript(currentUser.name)}',
-                fullname: '${functions:escapeJavaScript(user:fullName(currentUser))}',
-                firstName: '${functions:escapeJavaScript(currentUser.properties['j:firstName'])}',
-                lastName: '${functions:escapeJavaScript(currentUser.properties['j:lastName'])}',
+                username: currentUsername,
+                fullname: userFullname,
+                firstName: userFirstname,
+                lastName: userLastName,
                 email: '${functions:escapeJavaScript(currentUser.properties['j:email'])}',
                 path: '${functions:escapeJavaScript(currentUser.localPath)}'
             },
