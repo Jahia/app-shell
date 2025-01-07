@@ -1,0 +1,25 @@
+# Change management procedure documentation: https://jahia-confluence.atlassian.net/wiki/x/rwkH
+---
+name: Cloud Change Request
+description: Change management procedure.
+title: ''
+projects: ["Jahia/33"]
+body:
+  - type: textarea
+    attributes:
+      label: Description of the change request
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reason for the change to be implemented
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Risk assessment
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Rollback procedure
