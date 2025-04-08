@@ -21,3 +21,5 @@ jobs:
       provisioning_manifest: provisioning-manifest-build.yml
       module_branch: ${{ github.head_ref }}
       container_image: jahia/cimg-mvn-cache:ga_cimg_openjdk_8.0.312-node
+      node_version: 14
+      static_analysis_auditci_level: critcal
