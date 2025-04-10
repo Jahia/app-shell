@@ -13,13 +13,13 @@ jobs:
     secrets: inherit
     with:
       module_id: app-shell
-      jahia_image: jahia/jahia-ee-dev:8-SNAPSHOT
-      should_use_build_artifacts: true
-      should_skip_testrail: true
-      testrail_project: App Shell Module
-      tests_standalone: true
-      provisioning_manifest: provisioning-manifest-build.yml
+      integration_tests_jahia_image: jahia/jahia-ee-dev:8-SNAPSHOT
+      integration_tests_should_use_build_artifacts: true
+      integration_tests_should_skip_testrail: true
+      integration_tests_testrail_project: App Shell Module
+      integration_tests_standalone_execute: true
+      integration_tests_provisioning_manifest: provisioning-manifest-build.yml
       module_branch: ${{ github.head_ref }}
-      container_image: jahia/cimg-mvn-cache:ga_cimg_openjdk_8.0.312-node
-      node_version: 14
+      build_container_image: jahia/cimg-mvn-cache:ga_cimg_openjdk_8.0.312-node
+      static_analysis_node_version: 14
       static_analysis_auditci_level: critcal
