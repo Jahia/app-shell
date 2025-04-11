@@ -12,16 +12,12 @@ const graphqlTag = require('graphql-tag').default;
 // eslint-disable-next-line no-undef, camelcase
 const webpackShareScopes = __webpack_share_scopes__;
 
-const modules = {};
-require('./compat').default(modules);
-
 // Theses value will be exposed in window.jahia
 export {
     startAppShell,
     i18n,
     uiExtender,
     moonstone,
-    modules,
     apolloClient,
     graphqlTag,
     webpackShareScopes

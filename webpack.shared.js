@@ -20,7 +20,6 @@ const sharedDeps = [
     // JAHIA PACKAGES
     '@jahia/ui-extender',
     '@jahia/moonstone',
-    '@jahia/moonstone-alpha',
     '@jahia/data-helper',
 
     // Apollo

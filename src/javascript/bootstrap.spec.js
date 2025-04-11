@@ -18,10 +18,6 @@ jest.mock('./appShell', () => {
     };
 });
 
-jest.mock('./compat', () => ({
-    default: () => {}
-}));
-
 const uiExtender = require('@jahia/ui-extender');
 const startAppShell = require('./appShell').startAppShell;
 

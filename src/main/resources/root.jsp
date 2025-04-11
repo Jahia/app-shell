@@ -308,13 +308,6 @@
         scripts: ${scripts},
         targetId: "${targetId}",
     };
-    window.jahiaCommons = function (module) {
-        if (jahia.modules[module]) {
-            return (jahia.modules[module]);
-        } else {
-            console.error("Cannot find module", module)
-        }
-    }
 </script>
 <c:forEach items="${remotes}" var="remote">
     <script src="<c:url value="${remote}"/>"></script>
