@@ -68,32 +68,6 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.jsx?$/,
-                    type: 'javascript/auto',
-                    include: [path.join(__dirname, 'node_modules/@jahia')],
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            plugins: [
-                                'lodash',
-                                ['transform-imports', {
-                                    '@material-ui/icons': {
-                                        // eslint-disable-next-line no-template-curly-in-string
-                                        transform: '@material-ui/icons/${member}',
-                                        preventFullImport: true
-                                    },
-                                    'mdi-material-ui': {
-                                        // eslint-disable-next-line no-template-curly-in-string
-                                        transform: 'mdi-material-ui/${member}',
-                                        preventFullImport: true
-                                    }
-                                }],
-                                '@babel/plugin-syntax-dynamic-import'
-                            ]
-                        }
-                    }
-                },
-                {
-                    test: /\.jsx?$/,
                     use: ['source-map-loader'],
                     enforce: 'pre'
                 },
