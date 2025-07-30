@@ -1,4 +1,4 @@
-FROM cypress/base:16.5.0
+FROM cypress/base:22.17.1
 
 RUN apt-get update && apt-get install -y jq
 
