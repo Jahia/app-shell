@@ -53,10 +53,12 @@ jobs:
           incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
           zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: phoenix-actions/test-reporting@v15
+        id: test-report
         if: success() || failure()
         with:
-          name: Tests Report (Standalone)
-          path: tests/artifacts/results/xml_reports/*.xml
+          name: Nightly ${{ matrix.config_file }}
+          path: tests/artifacts/results/xml_reports/**/*.xml
           reporter: java-junit
           fail-on-error: 'false'
+          output-to: 'step-summary'
