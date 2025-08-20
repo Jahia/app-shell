@@ -29,6 +29,8 @@ jobs:
           timeout_minutes: 20
           testrail_project: App Shell Module
           tests_manifest: provisioning-manifest-snapshot.yml
+          tests_profile: ${{ matrix.config_file }}
+          incident_service: jcontent-${{ matrix.config_file }}
           jahia_image: ${{ matrix.jahia_image }}
           should_use_build_artifacts: false
           should_skip_artifacts: true
