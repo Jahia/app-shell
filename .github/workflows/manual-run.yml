@@ -8,7 +8,7 @@ on:
       jahia_image:
         description: 'Jahia Image'
         required: true
-        default: 'jahia/jahia-ee-dev:8-SNAPSHOT'
+        default: 'ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT'
       manifest:
         description: 'Provisioning manifest. Can be a local repository file in the tests folder or a publicly accessible link'
         required: true
@@ -41,8 +41,18 @@ jobs:
           bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           tests_manifest: ${{ github.event.inputs.manifest }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
-          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          docker_registries: |
+            [
+              {
+                "registry": "ghcr.io",
+                "username": "${{ secrets.GH_PACKAGES_USERNAME }}",
+                "password": "${{ secrets.GH_PACKAGES_TOKEN }}"
+              },
+              {
+                "username": "${{ secrets.DOCKERHUB_USERNAME }}",
+                "password": "${{ secrets.DOCKERHUB_PASSWORD }}"
+              }
+            ]
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
           testrail_username: ${{ secrets.TESTRAIL_USERNAME }}
