@@ -28,7 +28,7 @@ jobs:
     needs: update-signature
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-node-base
+      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-mvn-loaded
       credentials:
         username: ${{ secrets.GH_PACKAGES_USERNAME }}
         password: ${{ secrets.GH_PACKAGES_TOKEN }}
@@ -116,7 +116,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-node-base
+      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-mvn-loaded
       credentials:
         username: ${{ secrets.GH_PACKAGES_USERNAME }}
         password: ${{ secrets.GH_PACKAGES_TOKEN }}

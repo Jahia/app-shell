@@ -19,7 +19,7 @@ jobs:
       matrix:
          supported_branches: ["${{ github.event.repository.default_branch }}"]
     container:
-      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-node-base
+      image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-mvn-loaded
       credentials:
         username: ${{ secrets.GH_PACKAGES_USERNAME }}
         password: ${{ secrets.GH_PACKAGES_TOKEN }}
