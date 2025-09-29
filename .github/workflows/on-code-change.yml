@@ -36,8 +36,8 @@ jobs:
     container:
       image: ghcr.io/jahia/jahia-docker-mvn-cache:8-jdk-noble-node-base
       credentials:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        username: ${{ secrets.GH_PACKAGES_USERNAME }}
+        password: ${{ secrets.GH_PACKAGES_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: jahia/jahia-modules-action/build@v2
