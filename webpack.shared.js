@@ -8,7 +8,7 @@ const sharedDeps = [
     'react-router-dom',
     'react-i18next',
     'i18next',
-    'i18next-xhr-backend',
+    'i18next-http-backend',
     'graphql-tag',
     'react-apollo',
     'react-redux',
