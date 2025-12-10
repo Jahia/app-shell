@@ -1,12 +1,12 @@
 // Config i18n : https://react.i18next.com/guides/quick-start
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import XHR from 'i18next-xhr-backend';
+import I18NextHttpBackend from 'i18next-http-backend';
 
 const dxContext = window.contextJsParameters;
 
 i18n
-    .use(XHR)
+    .use(I18NextHttpBackend)
     .use(initReactI18next) // Passes i18n down to react-i18next
     .init({
         lng: dxContext.uilang,
@@ -33,7 +33,8 @@ i18n
 
                 return `${dxContext.contextPath || ''}/modules/${namespaces}/javascript/locales/${lngs}.json`;
             }
-        }
+        },
+        compatibilityJSON: 'v3'
     });
 
 export default i18n;
