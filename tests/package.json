@@ -2,7 +2,7 @@
   "name": "appshell-tests",
   "version": "1.0.0",
   "scripts": {
-    "e2e:ci": "cypress run",
+    "e2e:ci": "cypress run --browser chrome",
     "e2e:debug": "cypress open",
     "lint": "eslint . -c .eslintrc.json --ext .ts"
   },
@@ -10,7 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/Jahia/app-shell.git"
   },
-  "author": "",
   "license": "SEE LICENSE IN LICENSE.txt",
   "bugs": {
     "url": "https://github.com/Jahia/app-shell/issues"
@@ -18,56 +17,26 @@
   "homepage": "https://github.com/Jahia/app-shell#readme",
   "dependencies": {},
   "devDependencies": {
-    "@apollo/client": "^3.3.11",
-    "@cypress/code-coverage": "^3.9.5",
-    "@cypress/webpack-preprocessor": "^5.4.1",
-    "@istanbuljs/nyc-config-typescript": "^1.0.1",
-    "@jahia/cypress": "^1.1.2",
-    "@types/node": "^15.12.0",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "babel-plugin-istanbul": "^6.0.0",
-    "cross-fetch": "^3.1.4",
-    "cypress": "^7.4.0",
-    "cypress-file-upload": "^5.0.2",
-    "cypress-multi-reporters": "^1.4.0",
-    "cypress-terminal-report": "^3.0.3",
-    "diff": "^4.0.2",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.3.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-cypress": "^2.11.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "graphql": "^15.5.0",
-    "graphql-tag": "^2.11.0",
-    "he": "^1.2.0",
-    "husky": "^4.2.5",
-    "istanbul-lib-coverage": "^3.0.0",
-    "jahia-reporter": "^0.2.25",
-    "lint-staged": "^10.2.11",
-    "mocha-junit-reporter": "^2.0.0",
-    "ms": "^2.1.2",
-    "nyc": "^15.1.0",
-    "path": "^0.12.7",
-    "prettier": "^2.0.5",
-    "source-map-support": "^0.5.19",
-    "supports-color": "^7.1.0",
-    "ts-node": "^8.10.2",
-    "typescript": "^4.0.5",
-    "util": "^0.12.3",
-    "yarn": "^1.22.4"
-  },
-  "resolutions": {
-    "*/**/elliptic": "6.5.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix"
-    ]
+    "@jahia/cypress": "^6.4.5",
+    "@jahia/jahia-reporter": "^1.5.0",
+    "@types/node": "^25.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "cypress": "^15.8.2",
+    "cypress-multi-reporters": "^2.0.5",
+    "cypress-terminal-report": "^7.3.3",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-chai-friendly": "^1.1.0",
+    "eslint-plugin-cypress": "^5.2.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "graphql": "^16.12.0",
+    "graphql-tag": "^2.12.6",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
   }
 }
