@@ -23,7 +23,6 @@ if (typeof window !== 'undefined' && window.fetch) {
     globalThis.fetch = window.fetch.bind(window);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('cypress-terminal-report/src/installLogsCollector')({
     xhr: {
         printHeaderData: true,
@@ -33,7 +32,6 @@ require('cypress-terminal-report/src/installLogsCollector')({
     collectTypes: ['cons:log', 'cons:info', 'cons:warn', 'cons:error', 'cy:log', 'cy:xhr', 'cy:request', 'cy:intercept', 'cy:command']
 });
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('@jahia/cypress/dist/support/registerSupport').registerSupport();
 
 Cypress.on('uncaught:exception', () => {

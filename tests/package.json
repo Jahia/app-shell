@@ -4,7 +4,7 @@
   "scripts": {
     "e2e:ci": "cypress run --browser chrome",
     "e2e:debug": "cypress open",
-    "lint": "eslint . -c .eslintrc.json --ext .ts"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
