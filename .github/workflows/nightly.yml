@@ -32,7 +32,6 @@ jobs:
           tests_profile: ${{ matrix.config_file }}
           incident_service: app-shell-${{ matrix.config_file }}
           jahia_image: ${{ matrix.jahia_image }}
-          should_use_build_artifacts: false
           should_skip_artifacts: true
           should_skip_notifications: false
           should_skip_testrail: false

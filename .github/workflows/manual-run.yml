@@ -32,7 +32,6 @@ jobs:
           module_id: app-shell
           testrail_project: App Shell Module
           jahia_image: ${{ github.event.inputs.jahia_image }}
-          should_use_build_artifacts: false
           should_skip_artifacts: true
           should_skip_notifications: true
           should_skip_testrail: true
