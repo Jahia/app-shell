@@ -60,7 +60,7 @@ jobs:
       - uses: jahia/jahia-modules-action/helper@v2
       - uses: KengoTODA/actions-setup-docker-compose@main
         with:
-          version: '1.29.2'
+          version: '2.24.5'
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -99,13 +99,14 @@ jobs:
           incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
           zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: phoenix-actions/test-reporting@v15
         if: success() || failure()
         with:
-          name: Tests Report (Standalone)
-          path: tests/artifacts/results/xml_reports/*.xml
+          name: Tests Report
+          path: tests/artifacts/results/xml_reports/**/*.xml
           reporter: java-junit
           fail-on-error: 'false'
+          output-to: 'step-summary'
 
   publish:
     name: Publish module
