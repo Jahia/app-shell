@@ -1,16 +1,15 @@
 {
   "extends": "../tsconfig.json",
-  "include": [
-    "**/*/*.ts", "support/index.js"
-  ],
+  "include": ["**/*/*.ts", "support/index.js"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noEmit": false,
     "isolatedModules": false,
     "types": [
       "cypress",
-      "node"
+      "node",
+      "@jahia/cypress"
     ],
-    "lib": [ "es2015" ]    
+    "lib": [ "es2015" ]
   }
 }

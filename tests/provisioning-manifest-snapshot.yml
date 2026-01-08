@@ -1,5 +1,5 @@
 - addMavenRepository: "https://NEXUS_USERNAME:NEXUS_PASSWORD@devtools.jahia.com/nexus/content/groups/enterprise@id=jahia-enterprise@snapshots"
-# - installBundle:
-#   - 'mvn:org.jahia.modules/app-shell'
-#   autoStart: true
-#   uninstallPreviousVersion: true
+- installBundle:
+    - 'mvn:org.jahia.modules/app-shell'
+  autoStart: true
+  uninstallPreviousVersion: true

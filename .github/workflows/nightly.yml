@@ -18,7 +18,7 @@ jobs:
       - uses: jahia/jahia-modules-action/helper@v2
       - uses: KengoTODA/actions-setup-docker-compose@main
         with:
-          version: '1.29.2'
+          version: '2.24.5'
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -32,7 +32,6 @@ jobs:
           tests_profile: ${{ matrix.config_file }}
           incident_service: app-shell-${{ matrix.config_file }}
           jahia_image: ${{ matrix.jahia_image }}
-          should_use_build_artifacts: false
           should_skip_artifacts: true
           should_skip_notifications: false
           should_skip_testrail: false

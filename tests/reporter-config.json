@@ -1,9 +1,13 @@
 {
-  "reporterEnabled": "reporter/json.js, mocha-junit-reporter",
-  "mochaJunitReporterReporterOptions": {
-    "mochaFile": "./results/xml_reports/results-[hash].xml"
+  "reporterEnabled": "mochawesome, mocha-junit-reporter",
+  "mochawesomeReporterOptions": {
+    "reportDir": "./results/reports/",
+    "overwrite": false,
+    "html": false,
+    "json": true,
+    "charts": true
   },
-  "reporterJsonJsReporterOptions": {
-    "reportsPath": "./results/reports/"
+  "mochaJunitReporterReporterOptions": {
+    "mochaFile": "./results/xml_reports/[suiteFilename].xml"
   }
 }

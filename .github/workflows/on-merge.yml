@@ -21,7 +21,6 @@ jobs:
         with:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          nexus_enterprise_releases_url: ${{ secrets.NEXUS_ENTERPRISE_RELEASES_URL }}
 
   build:
     name: Build Module
@@ -38,7 +37,6 @@ jobs:
         with:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          module_id: app-shell
           
   sbom:
     name: SBOM processing
@@ -62,7 +60,7 @@ jobs:
       - uses: jahia/jahia-modules-action/helper@v2
       - uses: KengoTODA/actions-setup-docker-compose@main
         with:
-          version: '1.29.2'
+          version: '2.24.5'
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -73,7 +71,6 @@ jobs:
           testrail_project: App Shell Module
           tests_manifest: provisioning-manifest-build.yml
           jahia_image: ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
-          should_use_build_artifacts: true
           github_artifact_name: app-shell-artifacts-${{ github.run_number }}
           bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
@@ -102,17 +99,18 @@ jobs:
           incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
           zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: phoenix-actions/test-reporting@v15
         if: success() || failure()
         with:
-          name: Tests Report (Standalone)
-          path: tests/artifacts/results/xml_reports/*.xml
+          name: Tests Report
+          path: tests/artifacts/results/xml_reports/**/*.xml
           reporter: java-junit
           fail-on-error: 'false'
+          output-to: 'step-summary'
 
   publish:
     name: Publish module
-    needs: [integration-tests-standalone]
+    needs: [build]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     container:
