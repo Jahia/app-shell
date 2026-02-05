@@ -71,6 +71,7 @@ jobs:
           testrail_project: App Shell Module
           tests_manifest: provisioning-manifest-build.yml
           jahia_image: ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
+          github_token: ${{ secrets.GH_ISSUES_PRS_CHORES }}
           github_artifact_name: app-shell-artifacts-${{ github.run_number }}
           bastion_ssh_private_key: ${{ secrets.BASTION_SSH_PRIVATE_KEY_JAHIACI }}
           jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
