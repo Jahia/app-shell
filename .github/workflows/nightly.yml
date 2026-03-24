@@ -18,6 +18,7 @@ jobs:
       module_id: app-shell
       testrail_project: App Shell Module
       jahia_image: ${{ matrix.jahia_image }}
+      incident_service: app-shell-${{ matrix.jahia_image }}
       provisioning_manifest: provisioning-manifest-snapshot.yml
       artifact_prefix: app-shell-artifacts
       timeout_job: 45

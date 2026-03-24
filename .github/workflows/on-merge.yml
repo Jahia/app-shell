@@ -59,6 +59,7 @@ jobs:
     with:
       module_id: app-shell
       testrail_project: App Shell Module
+      incident_service: app-shell-ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
       jahia_image: ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
       provisioning_manifest: provisioning-manifest-build.yml
       artifact_prefix: app-shell-artifacts
