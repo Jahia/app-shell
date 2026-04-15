@@ -68,4 +68,4 @@ All target available will be documented soon.
 
 ## API
 
-[See specific documentation here](https://github.com/Jahia/javascript-components/tree/master/packages/ui-extender)
+[See specific documentation here](https://github.com/Jahia/javascript-components/tree/main/packages/ui-extender)

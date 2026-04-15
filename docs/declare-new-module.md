@@ -80,7 +80,7 @@ URL patterns can be very flexible. They can be either declared in the `package.j
 }
 ````
 
-You can find the file for this example here: https://github.com/Jahia/content-editor/blob/master/package.json
+You can find the file for this example here: https://github.com/Jahia/content-editor/blob/main/package.json
 
 It is also possible to pass an array of patterns instead of a single string, in case it is needed. 
 
