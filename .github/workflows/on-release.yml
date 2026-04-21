@@ -11,4 +11,4 @@ jobs:
     uses: Jahia/jahia-modules-action/.github/workflows/reusable-release-module.yml@v2
     secrets: inherit
     with:
-      primary_release_branch: "master"
+      primary_release_branch: "main"
