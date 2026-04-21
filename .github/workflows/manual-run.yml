@@ -21,6 +21,7 @@ jobs:
     uses: Jahia/jahia-modules-action/.github/workflows/reusable-integration-tests.yml@v2
     with:
       module_id: app-shell
+      module_branch: ${{ github.ref }}
       testrail_project: App Shell Module
       jahia_image: ${{ github.event.inputs.jahia_image }}
       provisioning_manifest: ${{ github.event.inputs.manifest }}
