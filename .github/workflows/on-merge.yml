@@ -58,6 +58,7 @@ jobs:
     uses: Jahia/jahia-modules-action/.github/workflows/reusable-integration-tests.yml@v2
     with:
       module_id: app-shell
+      module_branch: main
       testrail_project: App Shell Module
       incident_service: app-shell-ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
       jahia_image: ghcr.io/jahia/jahia-ee-dev:8-SNAPSHOT
