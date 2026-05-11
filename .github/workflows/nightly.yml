@@ -16,6 +16,7 @@ jobs:
     uses: Jahia/jahia-modules-action/.github/workflows/reusable-integration-tests.yml@v2
     with:
       module_id: app-shell
+      module_branch: main
       testrail_project: App Shell Module
       jahia_image: ${{ matrix.jahia_image }}
       incident_service: app-shell-${{ matrix.jahia_image }}
