@@ -2,6 +2,7 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const shared = require('./webpack.shared');
 const {CycloneDxWebpackPlugin} = require('@cyclonedx/webpack-plugin');
 
@@ -60,7 +61,6 @@ module.exports = (env, argv) => {
                                 '@babel/preset-react'
                             ],
                             plugins: [
-                                'lodash',
                                 '@babel/plugin-syntax-dynamic-import'
                             ]
                         }
@@ -92,6 +92,11 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
+            // Apollo Client >= 3.8 only disables its dev-only behaviour (deep-freezing cache
+            // results, verbose invariant messages) when globalThis.__DEV__ is explicitly false.
+            new DefinePlugin({
+                'globalThis.__DEV__': JSON.stringify(argv.mode !== 'production')
+            }),
             new ModuleFederationPlugin({
                 name: 'appShell',
                 library: {type: 'var', name: 'appShellRemote'},
