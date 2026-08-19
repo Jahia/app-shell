@@ -9,16 +9,11 @@
         "watch": "yarn webpack --watch",
         "clean": "rimraf *.log src/main/resources/javascript/apps",
         "clean:all": "yarn clean && rimraf node_modules node target",
-        "lint": "eslint --ext js,jsx .",
-        "lint:fix": "eslint --ext js,jsx --fix .",
+        "lint": "oxlint --ignore-pattern 'tests/**'",
+        "lint:fix": "oxlint --fix --ignore-pattern 'tests/**'",
         "test": "jest --ci --run-in-band --coverage --roots=src/",
         "tdd": "jest --watch",
         "sync-pom": "sync-pom-version --use-yarn"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn lint"
-        }
     },
     "description": "Jahia app-shell - the heart of modularization and micro-front-end",
     "main": "index.js",
@@ -29,17 +24,14 @@
         "@apollo/client": "^3.14.1",
         "@jahia/data-helper": "^1.2.0",
         "@jahia/design-system-kit": "^1.2.1",
-        "@jahia/icons": "^1.1.2",
         "@jahia/moonstone": "2.20.3",
         "@jahia/ui-extender": "^1.3.0",
         "dayjs": "^1.11.21",
         "graphql": "^15.10.2",
         "graphql-tag": "^2.12.7",
-        "gud": "^1.0.0",
         "i18next": "^19.9.2",
         "i18next-xhr-backend": "^3.2.2",
-        "lodash": "^4.18.1",
-        "process": "^0.11.10",
+        "prop-types": "^15.8.1",
         "react": "^18.3.1",
         "react-apollo": "^3.1.5",
         "react-dom": "^18.3.1",
@@ -56,13 +48,10 @@
         "zen-observable": "^0.8.15"
     },
     "resolutions": {
-        "graphql": "^15.10.2",
-        "node-fetch": "^2.7.0"
+        "cheerio": "1.0.0-rc.12"
     },
     "devDependencies": {
-        "@babel/cli": "^7.29.7",
         "@babel/core": "^7.29.7",
-        "@babel/plugin-external-helpers": "^7.29.7",
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/plugin-transform-runtime": "^7.29.7",
         "@babel/polyfill": "^7.12.1",
@@ -70,33 +59,21 @@
         "@babel/preset-react": "^7.29.7",
         "@babel/runtime": "^7.29.7",
         "@cyclonedx/webpack-plugin": "^3.17.0",
-        "@jahia/eslint-config": "^1.1.0",
         "@jahia/test-framework": "^1.3.2",
         "babel-jest": "^28.1.3",
         "babel-loader": "^8.4.1",
-        "babel-plugin-lodash": "^3.3.4",
-        "babel-plugin-transform-imports": "^1.5.1",
         "clean-webpack-plugin": "^1.0.1",
         "css-loader": "^3.6.0",
-        "eslint": "^7.32.0",
-        "eslint-loader": "^3.0.4",
-        "eslint-plugin-cypress": "^2.15.2",
-        "eslint-plugin-jest": "^26.9.0",
-        "eslint-plugin-react": "^7.37.5",
-        "eslint-plugin-react-hooks": "^4.6.2",
         "file-loader": "^3.0.1",
-        "husky": "^3.1.0",
         "jest": "^28.1.3",
         "jest-environment-jsdom": "^29.7.0",
+        "oxlint": "^1.78.0",
         "rimraf": "^2.7.1",
-        "sass": "^1.102.0",
         "source-map-loader": "^1.1.3",
         "style-loader": "^0.23.1",
         "sync-pom-version-to-package": "^1.6.1",
-        "transform-imports": "^2.2.0",
         "webpack": "^5.109.2",
         "webpack-bundle-analyzer": "^4.10.2",
-        "webpack-cli": "^4.10.0",
-        "webpack-node-externals": "^1.7.2"
+        "webpack-cli": "^4.10.0"
     }
 }

@@ -61,7 +61,6 @@ module.exports = (env, argv) => {
                                 '@babel/preset-react'
                             ],
                             plugins: [
-                                'lodash',
                                 '@babel/plugin-syntax-dynamic-import'
                             ]
                         }
