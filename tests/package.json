@@ -17,7 +17,6 @@
     "url": "https://github.com/Jahia/app-shell/issues"
   },
   "homepage": "https://github.com/Jahia/app-shell#readme",
-  "dependencies": {},
   "devDependencies": {
     "@jahia/cypress": "^6.4.5",
     "@jahia/jahia-reporter": "^1.5.0",
@@ -40,5 +39,6 @@
     "mochawesome-report-generator": "^6.3.2",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3"
-  }
+  },
+  "packageManager": "yarn@4.18.0"
 }
