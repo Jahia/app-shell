@@ -16,6 +16,7 @@ const sharedDeps = [
     'rxjs',
     'whatwg-fetch',
     'dayjs',
+    'formik',
 
     // JAHIA PACKAGES
     '@jahia/ui-extender',
@@ -43,6 +44,7 @@ const singletonDeps = [
     'react-apollo',
     'react-redux',
     'redux',
+    'formik',
     '@jahia/moonstone',
     '@jahia/ui-extender',
     '@apollo/react-common',
