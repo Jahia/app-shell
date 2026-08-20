@@ -1,11 +1,9 @@
 const deps = require('./package.json').dependencies;
 
 const sharedDeps = [
-    '@babel/polyfill',
     'react',
     'react-dom',
     'react-router',
-    'react-router-dom',
     'react-i18next',
     'i18next',
     'i18next-xhr-backend',
@@ -13,21 +11,15 @@ const sharedDeps = [
     'react-apollo',
     'react-redux',
     'redux',
-    'rxjs',
-    'whatwg-fetch',
-    'dayjs',
     'formik',
 
     // JAHIA PACKAGES
     '@jahia/ui-extender',
     '@jahia/moonstone',
-    '@jahia/data-helper',
 
     // Apollo
     '@apollo/client',
-    '@apollo/react-common',
     '@apollo/react-components',
-    '@apollo/react-hooks',
 
     // DEPRECATED JAHIA PACKAGES (since 2019)
     // @jahia/design-system-kit is required to provide the 1.2.1 version that fixes an issue with firefox 130 on windows.
@@ -45,9 +37,7 @@ const singletonDeps = [
     'redux',
     'formik',
     '@jahia/ui-extender',
-    '@apollo/react-common',
     '@apollo/react-components',
-    '@apollo/react-hooks'
 ];
 
 const notImported = [];
