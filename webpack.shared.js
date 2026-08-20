@@ -53,24 +53,31 @@ const singletonDeps = [
 const notImported = [];
 
 module.exports = {
-    ...sharedDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            requiredVersion: deps[item]
-        }
-    }), {}),
-    ...singletonDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            singleton: true,
-            requiredVersion: deps[item]
-        }
-    }), {}),
-    ...notImported.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            import: false,
-            requiredVersion: deps[item]
-        }
-    }), {})
+    ...Object.fromEntries(sharedDeps.map(item => [item, {
+        requiredVersion: deps[item]
+    }])),
+    ...Object.fromEntries(singletonDeps.map(item => [item, {
+        singleton: true,
+        requiredVersion: deps[item]
+    }])),
+
+    // Vite remotes add these subpath keys implicitly and inherit
+    // react's `import: false`, so the host has to provide them.
+    'react/jsx-runtime': {
+        singleton: true,
+        requiredVersion: deps.react
+    },
+    'react/jsx-dev-runtime': {
+        singleton: true,
+        requiredVersion: deps.react
+    },
+    'react-dom/client': {
+        singleton: true,
+        requiredVersion: deps['react-dom']
+    },
+
+    ...Object.fromEntries(notImported.map(item => [item, {
+        import: false,
+        requiredVersion: deps[item]
+    }]))
 };
