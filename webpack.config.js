@@ -75,7 +75,14 @@ module.exports = (env, argv) => {
                     test: /\.css$/i,
                     sideEffects: true,
                     use: [
-                        'style-loader',
+                        {
+                            loader: 'style-loader',
+                            options: {
+                                attributes: {
+                                    styleloader: true
+                                }
+                            }
+                        },
                         'css-loader'
                     ]
                 },
