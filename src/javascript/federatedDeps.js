@@ -13,6 +13,7 @@ import * as reactRedux from 'react-redux';
 import * as redux from 'redux';
 import * as apolloClient from '@apollo/client';
 import * as uiExtender from '@jahia/ui-extender';
+import * as formik from 'formik';
 
 // Not singletons but still federated
 import * as moonstone from '@jahia/moonstone';
@@ -33,6 +34,7 @@ export default [
     redux,
     apolloClient,
     uiExtender,
+    formik,
     moonstone,
     graphqlTag
 ];
