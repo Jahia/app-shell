@@ -6,7 +6,6 @@ import * as reactJsxDevRuntime from 'react/jsx-dev-runtime';
 import * as reactDom from 'react-dom';
 import * as reactDomClient from 'react-dom/client';
 import * as reactRouter from 'react-router';
-import * as reactRouterDom from 'react-router-dom';
 import * as i18next from 'i18next';
 import * as reactI18next from 'react-i18next';
 import * as reactRedux from 'react-redux';
@@ -27,7 +26,6 @@ export default [
     reactDom,
     reactDomClient,
     reactRouter,
-    reactRouterDom,
     i18next,
     reactI18next,
     reactRedux,
