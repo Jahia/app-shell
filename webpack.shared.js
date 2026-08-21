@@ -19,11 +19,7 @@ const sharedDeps = [
 
     // Apollo
     '@apollo/client',
-    '@apollo/react-components',
-
-    // DEPRECATED JAHIA PACKAGES (since 2019)
-    // @jahia/design-system-kit is required to provide the 1.2.1 version that fixes an issue with firefox 130 on windows.
-    '@jahia/design-system-kit'
+    '@apollo/react-components'
 ];
 
 const singletonDeps = [
