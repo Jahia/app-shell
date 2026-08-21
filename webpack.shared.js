@@ -1,4 +1,5 @@
 const deps = require('./package.json').dependencies;
+const reactVersion = require('react/package.json').version;
 
 const sharedDeps = [
     'react',
@@ -58,7 +59,9 @@ module.exports = {
     },
     'react/jsx-dev-runtime': {
         singleton: true,
-        requiredVersion: deps.react
+        requiredVersion: deps.react,
+        // Required because resolves to ./reactJsxDevRuntime.js in production builds, with no package.json nearby
+        version: reactVersion
     },
     'react-dom/client': {
         singleton: true,
