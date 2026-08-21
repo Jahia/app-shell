@@ -1972,7 +1972,6 @@ __metadata:
     webpack: "npm:^5.109.2"
     webpack-bundle-analyzer: "npm:^5.3.1"
     webpack-cli: "npm:^7.2.2"
-    zen-observable: "npm:^0.10.0"
   languageName: unknown
   linkType: soft
 
@@ -8076,12 +8075,5 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: 10c0/71cc2f2bbb537300c3f569e25693d37b3bc91f225cefce251a71c30bc6bb3e7f8e9420ca0eb57f2ac9e492b085b8dfa075fd1e8195c40b83c951dd59c6e4fbf8
-  languageName: node
-  linkType: hard
-
-"zen-observable@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "zen-observable@npm:0.10.0"
-  checksum: 10c0/f97e97bfaa1dbe0033761d4860368120c1b69ee12dd1fa649c902f3f740c6cac3470a07e3dd00e2d41598dd9f17a97c80f69652b851ba1a73802f30748eb4260
   languageName: node
   linkType: hard
