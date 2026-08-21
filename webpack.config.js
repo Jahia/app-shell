@@ -58,11 +58,9 @@ module.exports = (env, argv) => {
                     use: {
                         loader: 'babel-loader',
                         options: {
+                            // No @babel/preset-env: the app-shell targets evergreen browsers,
+                            // Babel is kept solely to compile JSX.
                             presets: [
-                                ['@babel/preset-env', {
-                                    modules: false,
-                                    targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}
-                                }],
                                 ['@babel/preset-react', {
                                     runtime: 'automatic',
                                     development: argv.mode !== 'production' // Uses NODE_ENV by default, not set here
@@ -123,6 +121,8 @@ module.exports = (env, argv) => {
             }),
             new CycloneDxWebpackPlugin(cycloneDxWebpackPluginOptions)
         ],
+        // Evergreen browsers only -- keeps webpack from downgrading its own runtime helpers.
+        target: ['web', 'es2022'],
         mode: 'development'
     };
 
