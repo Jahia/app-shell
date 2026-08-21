@@ -16,6 +16,8 @@ const cycloneDxWebpackPluginOptions = {
 console.log('Shared modules configuration', shared);
 
 module.exports = (env, argv) => {
+    const isProduction = argv.mode === 'production';
+
     let config = {
         entry: {
             commons: [
@@ -36,7 +38,7 @@ module.exports = (env, argv) => {
                 'apollo-client': '@apollo/client',
                 // Expose a simple shim for `react/jsx-dev-runtime` EVEN IN PROD BUILDS
                 // so that remotes compiled with dev JSX still work
-                ...(argv.mode === 'production' ? {
+                ...(isProduction ? {
                     'react/jsx-dev-runtime$': path.resolve(__dirname, 'src/javascript/reactJsxDevRuntime.js')
                 } : {})
             }
@@ -110,7 +112,7 @@ module.exports = (env, argv) => {
             // Apollo Client >= 3.8 only disables its dev-only behaviour (deep-freezing cache
             // results, verbose invariant messages) when globalThis.__DEV__ is explicitly false.
             new DefinePlugin({
-                'globalThis.__DEV__': JSON.stringify(argv.mode !== 'production')
+                'globalThis.__DEV__': JSON.stringify(!isProduction)
             }),
             new ModuleFederationPlugin({
                 name: 'appShell',
@@ -123,13 +125,20 @@ module.exports = (env, argv) => {
             }),
             new CycloneDxWebpackPlugin(cycloneDxWebpackPluginOptions)
         ],
-        mode: 'development'
+        // Derived from --mode so this never contradicts the flag the CLI was given.
+        mode: isProduction ? 'production' : 'development'
     };
 
-    config.devtool = (argv.mode === 'production') ? 'source-map' : 'eval-source-map';
+    // Always emit a real .map file, in every mode. Every `eval-*` devtool inlines its
+    // mappings inside each eval()'d module and writes no .js.map at all, which leaves
+    // webpack's own runtime unmapped -- and that runtime is where the module-federation
+    // `consumes` / `sharing` / `ensure chunk` helpers live. Those are precisely the frames
+    // a browser reports when a remote fails to resolve a shared module, so they have to stay
+    // readable in dev too. Pass `--devtool eval-source-map` for a faster watch loop when
+    // you don't need them.
+    config.devtool = 'source-map';
 
     if (argv.analyze) {
-        config.devtool = 'source-map';
         config.plugins.push(new BundleAnalyzerPlugin());
     }
 
