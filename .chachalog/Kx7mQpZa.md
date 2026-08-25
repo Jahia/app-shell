@@ -12,7 +12,6 @@ Upgraded the shared singleton libraries across major versions. (#373)
 | `react-i18next`      | `^11.2.7` | `^14.1.3`  |
 | `react-redux`        | `^8.0.5`  | `^9.3.0`   |
 | `redux`              | `^4.0.5`  | `^5.0.1`   |
-| `graphql`            | `^15.4.0` | `^16.14.2` |
 
 Singletons resolve to the highest registered version regardless of what each remote asked for,
 so a remote declaring a narrower `requiredVersion` will be handed one of the versions above and
