@@ -1,5 +1,6 @@
 const deps = require('./package.json').dependencies;
 const reactVersion = require('react/package.json').version;
+const compatVersion = require('react-router-dom-v5-compat/package.json').version;
 
 const sharedDeps = [
     'react',
@@ -62,6 +63,16 @@ module.exports = {
     'react-dom/client': {
         singleton: true,
         requiredVersion: deps['react-dom']
+    },
+
+    // Bridges react-router v5 and v6 so modules can migrate one route at a time.
+    // Aliased to the bundle produced by `yarn react-router-compat`, which inlines react-router v6:
+    // left as a bare import, webpack would redirect it to the react-router v5 singleton below and
+    // hand v6 code a v5 module. `version` must be explicit -- that bundle has no package.json.
+    'react-router-dom-v5-compat': {
+        singleton: true,
+        requiredVersion: deps['react-router-dom-v5-compat'],
+        version: compatVersion
     },
 
     ...Object.fromEntries(notImported.map(item => [item, {

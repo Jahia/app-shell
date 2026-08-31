@@ -34,6 +34,8 @@ module.exports = (env, argv) => {
             alias: {
                 'subscriptions-transport-ws': 'subscriptions-transport-ws/dist/client', // This is done to avoid packaging all server nodeJS library because we only need client side,
                 'apollo-client': '@apollo/client',
+                // Produced by `yarn react-router-compat`, see webpack.shared.js
+                'react-router-dom-v5-compat$': path.resolve(__dirname, 'react-router-dom-v5-compat.js'),
                 // Expose a simple shim for `react/jsx-dev-runtime` EVEN IN PROD BUILDS
                 // so that remotes compiled with dev JSX still work
                 ...(argv.mode === 'production' ? {
