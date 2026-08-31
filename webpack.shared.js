@@ -1,76 +1,82 @@
 const deps = require('./package.json').dependencies;
+const reactVersion = require('react/package.json').version;
+const compatVersion = require('react-router-dom-v5-compat/package.json').version;
 
 const sharedDeps = [
-    '@babel/polyfill',
     'react',
     'react-dom',
     'react-router',
-    'react-router-dom',
     'react-i18next',
     'i18next',
-    'i18next-xhr-backend',
     'graphql-tag',
     'react-apollo',
     'react-redux',
     'redux',
-    'rxjs',
-    'whatwg-fetch',
-    'dayjs',
+    'formik',
 
     // JAHIA PACKAGES
     '@jahia/ui-extender',
     '@jahia/moonstone',
-    '@jahia/data-helper',
 
     // Apollo
     '@apollo/client',
-    '@apollo/react-common',
-    '@apollo/react-components',
-    '@apollo/react-hooks',
-
-    // DEPRECATED JAHIA PACKAGES (since 2019)
-    // @jahia/design-system-kit is required to provide the 1.2.1 version that fixes an issue with firefox 130 on windows.
-    '@jahia/design-system-kit'
+    '@apollo/react-components'
 ];
 
 const singletonDeps = [
     'react',
     'react-dom',
     'react-router',
-    'react-router-dom',
     'react-i18next',
     'i18next',
     'react-apollo',
     'react-redux',
     'redux',
-    '@jahia/moonstone',
+    'formik',
     '@jahia/ui-extender',
-    '@apollo/react-common',
     '@apollo/react-components',
-    '@apollo/react-hooks'
 ];
 
 const notImported = [];
 
 module.exports = {
-    ...sharedDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            requiredVersion: deps[item]
-        }
-    }), {}),
-    ...singletonDeps.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            singleton: true,
-            requiredVersion: deps[item]
-        }
-    }), {}),
-    ...notImported.reduce((acc, item) => ({
-        ...acc,
-        [item]: {
-            import: false,
-            requiredVersion: deps[item]
-        }
-    }), {})
+    ...Object.fromEntries(sharedDeps.map(item => [item, {
+        requiredVersion: deps[item]
+    }])),
+    ...Object.fromEntries(singletonDeps.map(item => [item, {
+        singleton: true,
+        requiredVersion: deps[item]
+    }])),
+
+    // Vite remotes add these subpath keys implicitly and inherit
+    // react's `import: false`, so the host has to provide them.
+    'react/jsx-runtime': {
+        singleton: true,
+        requiredVersion: deps.react
+    },
+    'react/jsx-dev-runtime': {
+        singleton: true,
+        requiredVersion: deps.react,
+        // Required because resolves to ./reactJsxDevRuntime.js in production builds, with no package.json nearby
+        version: reactVersion
+    },
+    'react-dom/client': {
+        singleton: true,
+        requiredVersion: deps['react-dom']
+    },
+
+    // Bridges react-router v5 and v6 so modules can migrate one route at a time.
+    // Aliased to the bundle produced by `yarn react-router-compat`, which inlines react-router v6:
+    // left as a bare import, webpack would redirect it to the react-router v5 singleton below and
+    // hand v6 code a v5 module. `version` must be explicit -- that bundle has no package.json.
+    'react-router-dom-v5-compat': {
+        singleton: true,
+        requiredVersion: deps['react-router-dom-v5-compat'],
+        version: compatVersion
+    },
+
+    ...Object.fromEntries(notImported.map(item => [item, {
+        import: false,
+        requiredVersion: deps[item]
+    }]))
 };

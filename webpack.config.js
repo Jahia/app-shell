@@ -1,6 +1,5 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const shared = require('./webpack.shared');
@@ -26,14 +25,22 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
             filename: 'appshell.js',
-            chunkFilename: 'appshell.[id].[contenthash].js'
+            chunkFilename: 'appshell.[id].[contenthash].js',
+            clean: true
         },
         resolve: {
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json'],
             alias: {
                 'subscriptions-transport-ws': 'subscriptions-transport-ws/dist/client', // This is done to avoid packaging all server nodeJS library because we only need client side,
-                'apollo-client': '@apollo/client'
+                'apollo-client': '@apollo/client',
+                // Produced by `yarn react-router-compat`, see webpack.shared.js
+                'react-router-dom-v5-compat$': path.resolve(__dirname, 'react-router-dom-v5-compat.js'),
+                // Expose a simple shim for `react/jsx-dev-runtime` EVEN IN PROD BUILDS
+                // so that remotes compiled with dev JSX still work
+                ...(argv.mode === 'production' ? {
+                    'react/jsx-dev-runtime$': path.resolve(__dirname, 'src/javascript/reactJsxDevRuntime.js')
+                } : {})
             }
         },
         optimization: {
@@ -53,15 +60,13 @@ module.exports = (env, argv) => {
                     use: {
                         loader: 'babel-loader',
                         options: {
+                            // No @babel/preset-env: the app-shell targets evergreen browsers,
+                            // Babel is kept solely to compile JSX.
                             presets: [
-                                ['@babel/preset-env', {
-                                    modules: false,
-                                    targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}
-                                }],
-                                '@babel/preset-react'
-                            ],
-                            plugins: [
-                                '@babel/plugin-syntax-dynamic-import'
+                                ['@babel/preset-react', {
+                                    runtime: 'automatic',
+                                    development: argv.mode !== 'production' // Uses NODE_ENV by default, not set here
+                                }]
                             ]
                         }
                     }
@@ -75,19 +80,29 @@ module.exports = (env, argv) => {
                     test: /\.css$/i,
                     sideEffects: true,
                     use: [
-                        'style-loader',
-                        'css-loader'
+                        {
+                            loader: 'style-loader',
+                            options: {
+                                attributes: {
+                                    styleloader: true
+                                }
+                            }
+                        },
+                        {
+                            loader: 'css-loader',
+                            // css-loader 4+ defaults to esModule: true, which turns Moonstone's
+                            // data-URI url() fonts into ESM imports webpack then splits into
+                            // their own chunks. CJS interop keeps them inlined in the CSS module.
+                            options: {esModule: false}
+                        }
                     ]
                 },
                 {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                    use: [{
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'fonts/'
-                        }
-                    }]
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'fonts/[name][ext]'
+                    }
                 }
             ]
         },
@@ -106,11 +121,10 @@ module.exports = (env, argv) => {
                 },
                 shared
             }),
-            new CleanWebpackPlugin(
-                path.resolve(__dirname, 'src/main/resources/javascript/apps/'), {verbose: false}
-            ),
             new CycloneDxWebpackPlugin(cycloneDxWebpackPluginOptions)
         ],
+        // Evergreen browsers only -- keeps webpack from downgrading its own runtime helpers.
+        target: ['web', 'es2022'],
         mode: 'development'
     };
 
