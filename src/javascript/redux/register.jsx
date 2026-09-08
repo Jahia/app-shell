@@ -2,7 +2,7 @@ import React from 'react';
 import {registry} from '@jahia/ui-extender';
 import {ReduxProvider} from './ReduxProvider';
 import {batchDispatchMiddleware} from 'redux-batched-actions';
-import thunk from 'redux-thunk';
+import {thunk} from 'redux-thunk';
 
 registry.add('callback', 'redux', {
     targets: ['jahiaApp-init:99'],

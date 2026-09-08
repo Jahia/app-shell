@@ -20,3 +20,5 @@ coverage
 
 **/.yarn/*
 !**/.yarn/patches
+
+react-router-dom-v5-compat.js
