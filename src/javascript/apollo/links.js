@@ -56,7 +56,6 @@ export const dxHttpLink = new BatchHttpLink({
 export const ssrLink = new ApolloLink(
     operation => {
         let {operationName, variables, query} = operation;
-        /* eslint-disable-next-line */
         let res = gqlHelper.executeQuery(print(query), operationName, JSON.stringify(variables));
         return Observable.of(JSON.parse(res));
     }
