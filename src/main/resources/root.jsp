@@ -8,6 +8,7 @@
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
 <%@ taglib prefix="user" uri="http://www.jahia.org/tags/user" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
 
 <head>
