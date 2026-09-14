@@ -6,9 +6,7 @@
 *.ipr
 target
 src/main/resources/javascript/bundles
-node
 node_modules
-yarn-error.log
 /src/main/resources/javascript/apps
 /src/main/resources/javascript/commons
 /.externalToolBuilders
@@ -18,6 +16,7 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
-.yalc
-yalc.lock
 coverage
+
+**/.yarn/*
+!**/.yarn/patches

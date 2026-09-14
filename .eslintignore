@@ -1,9 +1,0 @@
-node
-node_modules
-tests
-tests_old
-target
-coverage
-src/main/resources/javascript/apps
-src/main/resources/javascript/commons
-src/main/resources/javascript/locales
