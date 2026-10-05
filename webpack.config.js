@@ -65,7 +65,8 @@ module.exports = (env, argv) => {
                             presets: [
                                 ['@babel/preset-react', {
                                     runtime: 'automatic',
-                                    development: argv.mode !== 'production' // Uses NODE_ENV by default, not set here
+                                    // Defaults to Babel's env, which is `development` while NODE_ENV is unset
+                                    development: argv.mode !== 'production'
                                 }]
                             ]
                         }
