@@ -57,7 +57,8 @@ module.exports = {
     'react/jsx-dev-runtime': {
         singleton: true,
         requiredVersion: deps.react,
-        // Required because resolves to ./reactJsxDevRuntime.js in production builds, with no package.json nearby
+        // In production builds the request resolves to ./reactJsxDevRuntime.js, and webpack would
+        // take the version of the nearest package.json: the app-shell's own
         version: reactVersion
     },
     'react-dom/client': {
@@ -68,7 +69,7 @@ module.exports = {
     // Bridges react-router v5 and v6 so modules can migrate one route at a time.
     // Aliased to the bundle produced by `yarn react-router-compat`, which inlines react-router v6:
     // left as a bare import, webpack would redirect it to the react-router v5 singleton below and
-    // hand v6 code a v5 module. `version` must be explicit -- that bundle has no package.json.
+    // hand v6 code a v5 module. `version` must be explicit, or webpack takes the app-shell's own.
     'react-router-dom-v5-compat': {
         singleton: true,
         requiredVersion: deps['react-router-dom-v5-compat'],

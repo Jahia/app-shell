@@ -11,13 +11,15 @@ import * as i18next from 'i18next';
 import * as reactI18next from 'react-i18next';
 import * as reactRedux from 'react-redux';
 import * as redux from 'redux';
-import * as apolloClient from '@apollo/client';
 import * as uiExtender from '@jahia/ui-extender';
 import * as formik from 'formik';
 import * as reactApollo from 'react-apollo';
 import * as apolloReactComponents from '@apollo/react-components';
 
-// Not singletons but still federated
+// Not singletons here, but some remotes consume them as singletons, and a singleton consumer picks
+// the version already loaded: @jahia/webpack-config marks the first two as singletons, and
+// @jahia/vite-federation-plugin 0.1.x marks every dependency as one
+import * as apolloClient from '@apollo/client';
 import * as moonstone from '@jahia/moonstone';
 import * as graphqlTag from 'graphql-tag';
 
@@ -34,11 +36,11 @@ export default [
     reactI18next,
     reactRedux,
     redux,
-    apolloClient,
     uiExtender,
     formik,
     reactApollo,
     apolloReactComponents,
+    apolloClient,
     moonstone,
     graphqlTag
 ];
