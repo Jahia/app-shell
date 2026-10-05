@@ -14,6 +14,8 @@ import * as redux from 'redux';
 import * as apolloClient from '@apollo/client';
 import * as uiExtender from '@jahia/ui-extender';
 import * as formik from 'formik';
+import * as reactApollo from 'react-apollo';
+import * as apolloReactComponents from '@apollo/react-components';
 
 // Not singletons but still federated
 import * as moonstone from '@jahia/moonstone';
@@ -35,6 +37,8 @@ export default [
     apolloClient,
     uiExtender,
     formik,
+    reactApollo,
+    apolloReactComponents,
     moonstone,
     graphqlTag
 ];

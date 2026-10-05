@@ -48,6 +48,7 @@
     <properties>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
+        <skipTests>false</skipTests>
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
         <jahia-module-signature>MCwCFGfUNnWWbFqCaHVDYfO45aYs63gzAhR/UXYYq82Q8xkBqftxQjd8Y2ZwGg==</jahia-module-signature>
@@ -138,6 +139,19 @@
                         <configuration>
                             <arguments>
                                 <argument>${yarn.arguments}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn verify</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipTests}</skip>
+                            <arguments>
+                                <argument>verify</argument>
                             </arguments>
                         </configuration>
                     </execution>

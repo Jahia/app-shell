@@ -4,7 +4,7 @@
     "scripts": {
         "react-router-compat": "rolldown react-router-dom-v5-compat -e react -e react-dom -e react-router-dom -o react-router-dom-v5-compat.js",
         "build": "yarn react-router-compat && yarn webpack:appshell --mode=development",
-        "prebuild:production": "yarn lint && yarn test",
+        "verify": "yarn lint && yarn test",
         "build:production": "yarn react-router-compat && yarn webpack:appshell --mode=production",
         "webpack:appshell": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "watch": "yarn webpack --watch",
