@@ -3,9 +3,10 @@
     "version": "3.4.0-SNAPSHOT",
     "scripts": {
         "react-router-compat": "rolldown react-router-dom-v5-compat -e react -e react-dom -e react-router-dom -o react-router-dom-v5-compat.js",
-        "build": "yarn react-router-compat && yarn webpack:appshell --mode=development",
+        "postinstall": "yarn react-router-compat",
+        "build": "yarn webpack:appshell --mode=development",
         "verify": "yarn lint && yarn test",
-        "build:production": "yarn react-router-compat && yarn webpack:appshell --mode=production",
+        "build:production": "yarn webpack:appshell --mode=production",
         "webpack:appshell": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
         "watch": "yarn webpack --watch",
         "clean": "rimraf --glob '*.log' src/main/resources/javascript/apps",
