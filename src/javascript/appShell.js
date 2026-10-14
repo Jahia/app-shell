@@ -72,7 +72,7 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
             const errors = inits.filter(value => value instanceof Error);
             errors.forEach(error => console.error(error.message));
             inits.filter(value => !(value instanceof Error) && value !== undefined).forEach(init => {
-                if (typeof init.factory.default === undefined || typeof init.factory.default !== 'function') {
+                if (typeof init.factory.default !== 'function') {
                     let message = `Module ${init.name} does not expose/contain a default function`;
                     console.error(message);
                     registry.add('modules-error', init.name, {message: message});
@@ -94,7 +94,6 @@ export const startAppShell = ({remotes, scripts, targetId}) => {
                 .sort();
 
             for (let priority of priorities) {
-                // eslint-disable-next-line no-await-in-loop
                 await Promise.all(
                     callbacks
                         .filter(entry => {

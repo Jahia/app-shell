@@ -21,7 +21,6 @@ jest.mock('./appShell', () => {
 const uiExtender = require('@jahia/ui-extender');
 const startAppShell = require('./appShell').startAppShell;
 
-// eslint-disable-next-line camelcase
 global.__webpack_share_scopes__ = {};
 
 describe('jahia lib', () => {
@@ -30,7 +29,6 @@ describe('jahia lib', () => {
         window.contextJsParameters = {
             contextPath: ''
         };
-        // eslint-disable-next-line camelcase
         global.__webpack_public_path__ = '';
         window.jahiaCommons = {};
         jahia = require('./bootstrap');

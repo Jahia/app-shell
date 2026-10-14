@@ -13,10 +13,6 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-
-import './commands'
-
 // Ensure fetch is always bound to window
 // https://jahia.slack.com/archives/C013L6U35RA/p1739269102955659
 if (typeof window !== 'undefined' && window.fetch) {
