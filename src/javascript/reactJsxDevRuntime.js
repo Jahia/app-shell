@@ -10,9 +10,9 @@
 // and the `source`/`self` debug arguments React uses to build component stack frames. A
 // production React build has no ReactDebugCurrentFrame to feed those to anyway, which is why
 // re-pointing this key at React's real development runtime is not a safe alternative.
-import {Fragment, jsx, jsxs} from 'react/jsx-runtime';
+import {jsx, jsxs} from 'react/jsx-runtime';
 
-export {Fragment};
+export {Fragment} from 'react/jsx-runtime';
 
 // Mirrors React's dev signature: jsxDEV(type, props, key, isStaticChildren, source, self).
 // `source` and `self` are accepted-and-ignored so remote call sites keep their arity.
