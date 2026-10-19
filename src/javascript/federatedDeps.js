@@ -1,5 +1,6 @@
 // Load all singletons the federation host (the app-shell) provides to federated remotes
-// before loading the remotes themselves, so that the remotes can initialize correctly
+// before loading the remotes themselves, so that the remotes can initialize correctly.
+// Keep in sync with webpack.shared.js, federatedDeps.spec.js checks it
 import * as react from 'react';
 import * as reactJsxRuntime from 'react/jsx-runtime';
 import * as reactJsxDevRuntime from 'react/jsx-dev-runtime';
