@@ -45,7 +45,7 @@
         "rxjs": "^6.6.7",
         "subscriptions-transport-ws": "^0.11.0",
         "whatwg-fetch": "^3.6.20",
-        "zen-observable": "^0.8.15"
+        "zen-observable": "^0.10.0"
     },
     "resolutions": {
         "cheerio": "1.0.0-rc.12"
