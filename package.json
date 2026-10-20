@@ -22,7 +22,7 @@
     "license": "SEE LICENSE IN LICENSE.txt FILE",
     "dependencies": {
         "@apollo/client": "^3.14.1",
-        "@jahia/data-helper": "^1.2.0",
+        "@jahia/data-helper": "^1.2.1",
         "@jahia/design-system-kit": "^1.2.1",
         "@jahia/moonstone": "2.20.3",
         "@jahia/ui-extender": "^1.3.0",

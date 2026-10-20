@@ -1755,7 +1755,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.29.7"
     "@babel/runtime": "npm:^7.29.7"
     "@cyclonedx/webpack-plugin": "npm:^3.17.0"
-    "@jahia/data-helper": "npm:^1.2.0"
+    "@jahia/data-helper": "npm:^1.2.1"
     "@jahia/design-system-kit": "npm:^1.2.1"
     "@jahia/moonstone": "npm:2.20.3"
     "@jahia/test-framework": "npm:^1.3.2"
@@ -1798,9 +1798,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jahia/data-helper@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@jahia/data-helper@npm:1.2.0"
+"@jahia/data-helper@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@jahia/data-helper@npm:1.2.1"
   dependencies:
     "@apollo/client": "npm:^3.7.14"
     fast-deep-equal: "npm:^3.1.1"
@@ -1808,7 +1808,7 @@ __metadata:
     graphql: "npm:^15.4.0"
     react: "npm:^16.12.0"
     rfdc: "npm:^1.3.0"
-  checksum: 10c0/12d064017b376baa8255af22064977f8130ca5d3911fe03784e89c7146ad941a6c12143ea41465002c5c1f87a03865091300f512d1162a23e82e33532f4a27a9
+  checksum: 10c0/534bfef670597a2c285acb92c0ea869a48b8d99d4289e58de25d106fa396aa19fad64397f46005e5ee1bc819e60e4b1ca7964c713297b71e107b2a1537513085
   languageName: node
   linkType: hard
 
