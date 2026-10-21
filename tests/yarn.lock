@@ -73,6 +73,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^10.3.0":
+  version: 10.6.0
+  resolution: "@faker-js/faker@npm:10.6.0"
+  checksum: 10c0/ee285d597249a019f3a11b6705d1908616ea9e880207ca4f89e6205dbf7e98abd1129f025f5da19484f5e88f556b0629a4363745ff0bbaf1984ebf54cffde6e3
+  languageName: node
+  linkType: hard
+
 "@graphql-typed-document-node/core@npm:^3.1.1":
   version: 3.1.1
   resolution: "@graphql-typed-document-node/core@npm:3.1.1"
@@ -98,11 +105,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jahia/cypress@npm:^6.4.5":
-  version: 6.4.5
-  resolution: "@jahia/cypress@npm:6.4.5"
+"@jahia/cypress@npm:^8.7.0":
+  version: 8.7.0
+  resolution: "@jahia/cypress@npm:8.7.0"
   dependencies:
     "@apollo/client": "npm:^3.4.9"
+    "@faker-js/faker": "npm:^10.3.0"
+    compare-versions: "npm:^6.1.1"
+    cypress-mailpit: "npm:^1.4.0"
     cypress-real-events: "npm:^1.11.0"
     graphql: "npm:^15.5.0"
     graphql-tag: "npm:^2.11.0"
@@ -111,7 +121,7 @@ __metadata:
     ci.startup: ./ci.startup.sh
     env.debug: ./env.debug.sh
     env.run: ./env.run.sh
-  checksum: 10c0/a168edc3249d02174e7886a0bbdfdea42dc59746ec0811fd853a0a31e2dc4e62bef4a0664c80fa4f46c1ae19b32c08f8bea7cbc7e7b8984aff1e6f42838aa045
+  checksum: 10c0/90c2111cbd71a72b08cd90b3db32e6b8f50ec4cb1eb3460259049cd546a1d4e900142a14a4458c1f228c9ce69a9c6c0c4cb7b055e7347bb7769a7c7485ebd044
   languageName: node
   linkType: hard
 
@@ -701,7 +711,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "appshell-tests@workspace:."
   dependencies:
-    "@jahia/cypress": "npm:^6.4.5"
+    "@jahia/cypress": "npm:^8.7.0"
     "@jahia/jahia-reporter": "npm:^1.5.0"
     "@types/node": "npm:^25.0.3"
     cypress: "npm:^15.8.2"
@@ -1247,6 +1257,13 @@ __metadata:
   version: 0.0.2
   resolution: "crypt@npm:0.0.2"
   checksum: 10c0/adbf263441dd801665d5425f044647533f39f4612544071b1471962209d235042fb703c27eea2795c7c53e1dfc242405173003f83cf4f4761a633d11f9653f18
+  languageName: node
+  linkType: hard
+
+"cypress-mailpit@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "cypress-mailpit@npm:1.4.0"
+  checksum: 10c0/4cd3788b228c9869331bedd1abd03f2d4e33ce6fb6e287fd5da569e8283fb5bba62f5866095ebe67c31633fbcb031b547df345a33bfb57953c0c45d0039ecd23
   languageName: node
   linkType: hard
 
