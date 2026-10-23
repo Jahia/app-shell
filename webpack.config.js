@@ -1,7 +1,6 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
+const {DefinePlugin, container: {ModuleFederationPlugin}} = require('webpack');
 const shared = require('./webpack.shared');
 const {CycloneDxWebpackPlugin} = require('@cyclonedx/webpack-plugin');
 
