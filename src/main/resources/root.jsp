@@ -248,6 +248,10 @@
             color: var(--color-accent_dark)
         }
 
+        /* Small workaroung until https://github.com/Jahia/jcontent/pull/2892 is released */
+        [data-cm-role="table-content-list-cell-publication"] div:has(> div > [data-cm-role="publication-info"]) {
+            margin-top: -24px;
+        }
     </style>
 </head>
 
