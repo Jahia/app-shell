@@ -1,7 +1,6 @@
 import {print} from 'graphql';
-import {ApolloLink} from '@apollo/client';
+import {ApolloLink, Observable} from '@apollo/client';
 import {BatchHttpLink} from '@apollo/client/link/batch-http';
-import * as Observable from 'zen-observable';
 
 export const dxUploadLink = new ApolloLink(
     (operation, forward) => {
