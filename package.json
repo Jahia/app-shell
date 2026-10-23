@@ -28,7 +28,7 @@
         "@jahia/moonstone": "^2.21.0",
         "@jahia/ui-extender": "^2.0.0",
         "formik": "^2.4.9",
-        "graphql": "^16.14.2",
+        "graphql": "^17.0.2",
         "graphql-tag": "^2.12.7",
         "i18next": "^23.16.8",
         "i18next-http-backend": "^4.0.4",
