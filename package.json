@@ -30,7 +30,7 @@
         "formik": "^2.4.9",
         "graphql": "^16.14.2",
         "graphql-tag": "^2.12.7",
-        "i18next": "^23.16.8",
+        "i18next": "^26.5.3",
         "i18next-http-backend": "^4.0.4",
         "prop-types": "^15.8.1",
         "react": "^18.3.1",
