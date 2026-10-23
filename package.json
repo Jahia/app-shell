@@ -1,6 +1,6 @@
 {
     "name": "@jahia/app-shell",
-    "version": "3.5.0-SNAPSHOT",
+    "version": "4.0.0-SNAPSHOT",
     "scripts": {
         "react-router-compat": "rolldown react-router-dom-v5-compat -e react -e react-dom -e react-router-dom -o react-router-dom-v5-compat.js",
         "postinstall": "yarn react-router-compat",

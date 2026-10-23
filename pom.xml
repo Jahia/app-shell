@@ -29,12 +29,12 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.1.8.0</version>
+        <version>8.2.2.0</version>
         <relativePath />
     </parent>
     <artifactId>app-shell</artifactId>
     <name>Jahia App-shell</name>
-    <version>3.5.0-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (app-shell) for running Jahia javascript applications.</description>
 
@@ -51,7 +51,7 @@
         <skipTests>false</skipTests>
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
-        <jahia-module-signature>MCwCFHUYIRy5r6bZOSZ39j1R5PEc1t8vAhQIe7MwanRL61WMVzkpmGaO6+J1OQ==</jahia-module-signature>
+        <jahia-module-signature>MCwCFDDTNI4MLLf7V1zAt4AkFUooVKrNAhQ1wou9B9NosFKMvC7OSvgtxE9A2A==</jahia-module-signature>
     </properties>
 
     <repositories>
