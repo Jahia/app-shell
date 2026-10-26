@@ -248,6 +248,14 @@
             color: var(--color-accent_dark)
         }
 
+        /* GWT dialogs: the anthracite skin sizes the body of a window in percents of its bwrap,
+           through the ml and mr wrappers, which have no height of their own: in quirks mode
+           a percentage skipped them, in standards mode it resolves to auto */
+        .x-window-bwrap > .x-window-ml,
+        .x-window-ml > .x-window-mr {
+            height: 100%;
+        }
+
     </style>
 </head>
 
