@@ -1,6 +1,6 @@
 describe('Application base URL', () => {
     const urlBaseOf = (appName: string) => {
-        cy.visit(`/modules/appshell/${encodeURIComponent(appName)}/home`, {failOnStatusCode: false});
+        cy.visit(`/modules/appshell/${encodeURIComponent(appName)}/home`);
         return cy.window().its('contextJsParameters.urlbase');
     };
 
