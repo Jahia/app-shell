@@ -1,5 +1,9 @@
 # app-shell Changelog
 
+## 4.0.1
+
+* Hardened the handling of special characters in the addresses of the Jahia administration and editing interfaces.
+
 ## 4.0.0
 
 ### Breaking Changes
