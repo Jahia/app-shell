@@ -51,7 +51,7 @@
         <skipTests>false</skipTests>
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
-        <jahia-module-signature>MCwCFFeE1iqRhwk0cvochP8DaWTT9vZoAhRjtIHVOzznGb7tcJRNWpOQQFdnrA==</jahia-module-signature>
+        <jahia-module-signature>MC0CFQCO/H3eidqaWi5Z3jnyR+BELKCOYgIUZ+7kKxj/UnVt3DT+gCwg69EcdkQ=</jahia-module-signature>
     </properties>
 
     <repositories>
