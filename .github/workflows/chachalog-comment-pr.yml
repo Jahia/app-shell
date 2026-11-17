@@ -5,7 +5,7 @@ name: Chachalog - Comment PR
 on:
   pull_request_target:
     branches:
-      - main
+      - 3_x
 
 jobs:
   comment-pr:

@@ -5,7 +5,7 @@ name: Chachalog - Prepare Changelog
 on:
   push:
     branches:
-      - main
+      - 3_x
   workflow_dispatch: null
 
 jobs:
