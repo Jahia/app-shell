@@ -16,6 +16,7 @@
 
     <internal:gwtGenerateDictionary/>
     <internal:gwtInit locale="${language}"/>
+    <c:url var="appUrlBase" value="/modules/appshell/${appName}"/>
 
     <script type="text/javascript">
         const userFirstname = '${functions:escapeJavaScript(currentUser.properties['j:firstName'])}';
@@ -42,7 +43,7 @@
             config: ${config},
             site: '${defaultSite.siteKey}',
             language: '${language}',
-            urlbase: '<c:url value="/modules/appshell/${appName}"/>'
+            urlbase: '${functions:escapeJavaScript(appUrlBase)}'
         });
     </script>
     <internal:gwtImport module="empty"/>
