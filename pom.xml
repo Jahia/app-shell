@@ -51,7 +51,6 @@
         <export-package>org.jahia.modules.appshell.loader</export-package>
         <jahia.modules.importPackage>org.jahia.security.spi;resolution:=optional,org.jahia.security.license;resolution:=optional</jahia.modules.importPackage>
         <jahia-module-signature>MCwCFGfUNnWWbFqCaHVDYfO45aYs63gzAhR/UXYYq82Q8xkBqftxQjd8Y2ZwGg==</jahia-module-signature>
-        <jahia-plugin-version>5.11</jahia-plugin-version>
     </properties>
 
     <repositories>
@@ -83,15 +82,6 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.jahia.server</groupId>
-                    <artifactId>jahia-maven-plugin</artifactId>
-                    <version>${jahia-plugin-version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
