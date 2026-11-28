@@ -12,6 +12,7 @@ type: Story
 ### Story
 As a 
 I want to 
+So that 
 
 ## Testable scenarios
 
